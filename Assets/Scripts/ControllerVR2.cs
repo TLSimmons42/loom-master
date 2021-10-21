@@ -320,7 +320,7 @@ public class ControllerVR2 : MonoBehaviour
     {
         Manager.NumPlayers = 1;
         onePlayerButton.ExecuteClick();
-        LSLServer.instance.SetServer();
+        //LSLServer.instance.SetServer();
 
     }
     public void TwoPlayerButton()
@@ -328,12 +328,12 @@ public class ControllerVR2 : MonoBehaviour
         Manager.NumPlayers = 2;
         twoPlayerButton.ExecuteClick();
         //LSLServer.instance.SetServer();
-        LSLServer.instance.StartClient();
+        //LSLServer.instance.StartClient();
 
     }
     public void EasyButton()
     {
-        LSLServer.instance.SetStreaming(true);
+        //LSLServer.instance.SetStreaming(true);
         Manager.gameDifficulty = "easy";
         easyButton.ExecuteClick();
 
@@ -353,7 +353,7 @@ public class ControllerVR2 : MonoBehaviour
     }
     public void StartButton()
     {
-        LSLServer.instance.ScanForPlayers();
+        //LSLServer.instance.ScanForPlayers();
         Manager.instance.StartTheGame(Manager.NumPlayers, Manager.gameDifficulty);
         startButton.ExecuteClick();
 

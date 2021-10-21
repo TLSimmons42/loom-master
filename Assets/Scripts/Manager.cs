@@ -114,7 +114,6 @@ public class Manager : Singleton<Manager>
         {
             foreach (var x in o)
             {
-                LSLServer.instance.objectsToStream.Add(new LSLServer.streamData(x, ind, false));
                 x.transform.SetParent(MasterPoolCubes);
                 ++ind;
             }
@@ -130,8 +129,8 @@ public class Manager : Singleton<Manager>
         Debug.Log(PlayerPrefs.GetString("gameLevel"));
         if(num == 2 && PlayerPrefs.GetString("playerChoice") == "P1")
         {
-            LSLServer.instance.SetLevel(PlayerPrefs.GetString("gameDifficulty"));
-            LSLServer.instance.SendCommand("Start Game", "");
+            //LSLServer.instance.SetLevel(PlayerPrefs.GetString("gameDifficulty"));
+            //LSLServer.instance.SendCommand("Start Game", "");
         }
         PlayZoneController.instance.levelOver = false;
         MakeBuildWallandViewWall(num, dif);
@@ -151,8 +150,8 @@ public class Manager : Singleton<Manager>
         string dif = PlayerPrefs.GetString("gameDifficulty");
         if (num == 2 && PlayerPrefs.GetString("playerChoice") == "P1")
         {
-            LSLServer.instance.SetLevel(PlayerPrefs.GetString("gameDifficulty"));
-            LSLServer.instance.SendCommand("Restart Game", "");
+            //LSLServer.instance.SetLevel(PlayerPrefs.GetString("gameDifficulty"));
+            //LSLServer.instance.SendCommand("Restart Game", "");
         }
         Debug.Log("restarting game");
         PlayZoneController.instance.levelOver = false;
@@ -217,20 +216,20 @@ public class Manager : Singleton<Manager>
         {
             if (playerNumber == "P1")
             {
-                LSLServer.instance.SetServer();
-                LSLServer.instance.SetStreaming(true);
+                //LSLServer.instance.SetServer();
+                //LSLServer.instance.SetStreaming(true);
                 yield return new WaitForSeconds(20); // waiting for the client to start
-                LSLServer.instance.ScanForPlayers();
+                //LSLServer.instance.ScanForPlayers();
 
             }
             if (playerNumber == "P2")
             {
                 Debug.Log("player number is" + playerNumber);
                 yield return new WaitForSeconds(10); // setting the server
-                LSLServer.instance.StartClient();
-                LSLServer.instance.SetStreaming(true);
+                //LSLServer.instance.StartClient();
+                //LSLServer.instance.SetStreaming(true);
                 yield return new WaitForSeconds(20); // player 1 scanning for players
-                LSLServer.instance.ScanForPlayers();
+                //LSLServer.instance.ScanForPlayers();
 
             }
         }
