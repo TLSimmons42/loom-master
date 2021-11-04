@@ -17,7 +17,7 @@ public class Manager : Singleton<Manager>
     public static int NumPlayers = 1;
     public static string gameDifficulty;
     public GameObject[] Player;
-    public ControllerVR[] vrControllers;
+    //public ControllerVR[] vrControllers;
 
     public List<SquareController.BlockTypes> MP1Blocks;
     public List<SquareController.BlockTypes> MP2Blocks;
@@ -59,10 +59,10 @@ public class Manager : Singleton<Manager>
         SetPlayerHead(); 
         SetHost();
         BuildMasterPool();
-        Player = GameObject.FindGameObjectsWithTag("Player");
-        P1Laser = GameObject.FindGameObjectWithTag("SelfLine");
-        P2Laser = GameObject.FindGameObjectWithTag("OtherLine");
-        P2Laser.SetActive(false);
+        //Player = GameObject.FindGameObjectsWithTag("Player");
+        //P1Laser = GameObject.FindGameObjectWithTag("SelfLine");
+        //P2Laser = GameObject.FindGameObjectWithTag("OtherLine");
+        //P2Laser.SetActive(false);
         GamePaused = true;
         Manager.instance.Swap();
     }
@@ -135,7 +135,7 @@ public class Manager : Singleton<Manager>
         PlayZoneController.instance.levelOver = false;
         MakeBuildWallandViewWall(num, dif);
         startView.Hide();
-        waitingView.Hide();
+        //waitingView.Hide();
         GamePaused = false;
         TimeLeft = SetupTimer(numPlayers, difficulty);
         PlayZoneController.instance.levelOver = false;
@@ -203,9 +203,8 @@ public class Manager : Singleton<Manager>
         return minutes * 60;
     }
 
-    public IEnumerator StartCoRoutine()
+    public void StartGameNow()
     {
-        yield return new WaitForSeconds(5);
         StartTheGame(PlayerPrefs.GetInt("playerCount"), PlayerPrefs.GetString("gameDifficulty"));
     }
     public IEnumerator ServerClientSetup(string playerNumber)
@@ -263,8 +262,8 @@ public class Manager : Singleton<Manager>
             Player[0].SetActive(true);
             Player[1].SetActive(false);
             //Player[1].GetComponent<Player>().enabled = false;
-            Player[0].GetComponentInChildren<ControllerVR>().PlayerValue(1);
-            Player[1].GetComponentInChildren<ControllerVR>().PlayerValue(2);
+            //Player[0].GetComponentInChildren<ControllerVR>().PlayerValue(1);
+            //Player[1].GetComponentInChildren<ControllerVR>().PlayerValue(2);
         }
         else
         {
@@ -283,9 +282,9 @@ public class Manager : Singleton<Manager>
             if (stateSet == 0)
             {
                 //Player Game oVer Music on time running out. - Nathan
-                SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+                //SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
                 stateSet = 1;
-                gameOverMusic.setState(stateSet);
+                //gameOverMusic.setState(stateSet);
             }
 
             gameOverView.Show();
@@ -438,9 +437,9 @@ public class Manager : Singleton<Manager>
 
 
                 //Play the lose game over fanfare - Nathan
-                SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+                //SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
                 stateSet = 1;
-                gameOverMusic.setState(stateSet);
+                //gameOverMusic.setState(stateSet);
 
                 return;
             }
@@ -461,9 +460,9 @@ public class Manager : Singleton<Manager>
             AnalyticsManager.instance.FillEventLog("Level Complete");
 
             //Play the win game over fanfare - Nathan
-            SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+            //SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
             stateSet = 2;
-            gameOverMusic.setState(stateSet);
+            //gameOverMusic.setState(stateSet);
         }
         else
         {
@@ -472,28 +471,16 @@ public class Manager : Singleton<Manager>
             gameOverText.SetText("Oops... One of these things is not like the other");
 
             //Play the lose game over fanfare - Nathan
-            SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+            //SoundManager gameOverMusic = GameObject.Find("SoundManager").GetComponent<SoundManager>();
             stateSet = 1;
-            gameOverMusic.setState(stateSet);
+            //gameOverMusic.setState(stateSet);
         }
     }
 
     public GameObject P1Laser;
     public GameObject P2Laser;
 
-    public void AssignSelfPointer(string handTag)
-    {
-        P1Laser.SetActive(true);
-        ControllerVR P1Hand = P1Laser.GetComponent<ControllerVR>();
-        P1Hand.MyHand = GameObject.FindGameObjectWithTag(handTag);
-    }
-
-    public void AddP2Pointer(string handTag)
-    {
-        P2Laser.SetActive(true);
-        ControllerVR P2Hand = P2Laser.GetComponent<ControllerVR>();
-        P2Hand.MyHand = GameObject.FindGameObjectWithTag(handTag);
-    }
+    
 
     /// <summary>
     /// reset the blocks in the masterpool

@@ -175,8 +175,8 @@ public class PlayZoneController : Singleton<PlayZoneController>
         goldR.transform.position = gold.transform.position;
         //Manager.instance.vrControllers[0].SetGrabbedObject(goldR.gameObject);
         //Manager.instance.vrControllers[1].SetGrabbedObject(goldL.gameObject);
-        Manager.instance.P1Laser.GetComponent<ControllerVR>().SetGrabbedObject(goldR.gameObject);
-        Manager.instance.P2Laser.GetComponent<ControllerVR>().SetGrabbedObject(goldL.gameObject);
+        //Manager.instance.P1Laser.GetComponent<ControllerVR>().SetGrabbedObject(goldR.gameObject);
+        //Manager.instance.P2Laser.GetComponent<ControllerVR>().SetGrabbedObject(goldL.gameObject);
         RecycleBlock(gold);
         AnalyticsManager.instance.FillEventLog("Gold Block Split");
 

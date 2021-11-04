@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3811,7 +3811,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396850996}
   m_LocalRotation: {x: 0, y: 0.97437006, z: 0, w: 0.22495104}
-  m_LocalPosition: {x: 0, y: 0, z: 22.7}
+  m_LocalPosition: {x: 0, y: 0, z: 22.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 64774301}
@@ -3824,7 +3824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 154.45801, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -265.93, y: -293.01}
+  m_AnchoredPosition: {x: -266.03, y: -293.55}
   m_SizeDelta: {x: 15.91, y: 18.511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &396850998
@@ -3877,7 +3877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  StartPosition: {x: -225.88, y: -296, z: 20.57}
+  StartPosition: {x: -265.93, y: -293.01, z: 22.7}
   StartRotation: {x: -0, y: 154, z: 0}
   StartScale: {x: 1, y: 1, z: 1}
   StartAlpha: 1
@@ -3885,7 +3885,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   BehaviorAtStart: 1
-  CustomStartAnchoredPosition: {x: -257.4, y: -296, z: 5.2}
+  CustomStartAnchoredPosition: {x: -266.03, y: -293.55, z: 22.89}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
@@ -12285,6 +12285,17 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+          - m_Target: {fileID: 0}
+            m_MethodName: 
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -19675,9 +19686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59286863b282a974a8395b644ed73a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: {fileID: 1559383306}
-  title: {fileID: 0}
-  musicSource: {fileID: 0}
 --- !u!114 &893722901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29618,9 +29626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59286863b282a974a8395b644ed73a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: {fileID: 1559383306}
-  title: {fileID: 8300000, guid: 7e29eb9d06553e94faf33d4d4a5797b8, type: 3}
-  musicSource: {fileID: 1559383306}
 --- !u!1001 &1161115677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37957,9 +37962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59286863b282a974a8395b644ed73a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: {fileID: 1559383306}
-  title: {fileID: 0}
-  musicSource: {fileID: 0}
 --- !u!114 &1586679771
 MonoBehaviour:
   m_ObjectHideFlags: 0
