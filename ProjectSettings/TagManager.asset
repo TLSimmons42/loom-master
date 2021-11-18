@@ -49,6 +49,9 @@ TagManager:
   - heads button
   - options back button
   - Floor
+  - Beam
+  - Bullet
+  - cube despawner
   layers:
   - Default
   - TransparentFX
