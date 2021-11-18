@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 
     public float cubeDropTimer = .5f;
+    
     public GameObject[] PlaywallDropPoints;
 
     public GameObject BlueCube;
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     public UIView startView;
     public UIView waitingView;
     public UIView gameOverView;
+
+    public bool dropCubes = false;
 
 
     // Start is called before the first frame update
@@ -51,4 +54,30 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    //This will be the Game Start Function for Single Player Mode
+    public void SinglePlayerStart()
+    {
+
+    }
+
+    // Cube Drop from play wall function for Single player mode
+    public void SinglePlayerCubeDrop()
+    {
+
+    }
+
+    //This will be the Game Start Function for Multiplayer Player Mode
+    public void MultiplayerStart()
+    {
+
+    }
+
+    // Cube Drop from play wall function for Single MultiplayerMode mode
+    public void MultiplayerCubeDrop()
+    {
+
+    }
+
+
 }

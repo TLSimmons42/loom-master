@@ -85,10 +85,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6271573414225017425, guid: e30d8453ee8a99d47bd28a3ecd759aae, type: 3}
+  - {fileID: 2100000, guid: 9f2f9a0d8ae8bee42988c0ee51e4f140, type: 2}
   - {fileID: 2100000, guid: a987dce257c959e41bd055585fef0955, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -289,6 +290,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -338,20 +340,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147c146c76f26b44e8fde25ebf502b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldPrefabL: {fileID: 0}
-  goldPrefabR: {fileID: 0}
   buildZoneOffset: {x: 0, y: 0, z: 0}
   squareSize: 1
   type: 0
-  numPlayers: 1
+  mirror: {fileID: 0}
+  isMirror: 0
   fallSpeed: 1
   maxBuildHeight: 10
   maxPlayHeight: 20
   zone: 
-  dropColumn: -1
+  column: -1
+  row: -1
+  Destination: {x: 0, y: 0, z: 0}
   pair: {fileID: 0}
   isHeld: 0
   playerHolds: 0000
+  SoundManager: {fileID: 0}
+  dirty: 0
+  grabbed: 0
 --- !u!1 &3646495040770922086
 GameObject:
   m_ObjectHideFlags: 0
