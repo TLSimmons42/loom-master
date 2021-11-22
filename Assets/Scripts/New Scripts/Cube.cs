@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Cube : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Cube : MonoBehaviour
     public string PlayerZone = "Player";
     public string NoZone = "No Zone";
 
-    public float playZoneFallSpeed = 25f;
+    private float playZoneFallSpeed = 2f;
 
     // Update is called once per frame
 
@@ -41,4 +42,7 @@ public class Cube : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime* playZoneFallSpeed);
         }
     }
+
+    
+    
 }
