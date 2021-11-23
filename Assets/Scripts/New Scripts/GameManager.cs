@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Doozy.Engine.UI;
 using TMPro;
@@ -37,10 +38,15 @@ public class GameManager : MonoBehaviour
     public bool dropCubes = false;
     public bool networking = false;
 
+    public TextAsset[] easyLevels;
+    public TextAsset[] mediumLevels;
+    public TextAsset[] hardLevels;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        MultiplayerStart();
         dropCubes = true;
 
     }
@@ -55,11 +61,108 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
-    // this will be called at the start of the game to build a the view wall for the player
-    public void BuildViewWall(int difficulty)
-    {
 
+    private int[,] ReadRandomLevel(int difficulty)
+    {
+        int levelSize = difficulty * 5;
+        int[,] level = new int[levelSize, levelSize];
+
+        string levelText = GetRandomLevel(difficulty).text;
+        Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+        levelText = rgx.Replace(levelText, "");
+
+        for (int i = 0; i < levelSize; i++)
+        {
+            for (int j = 0; j < levelSize; j++)
+            {
+                level[i, j] = int.Parse(char.ToString(levelText[j + (levelSize * i)]));
+            }
+        }
+
+        return level;
+    }
+
+    private TextAsset GetRandomLevel(int difficulty)
+    {
+        TextAsset randLevel;
+        switch (difficulty)
+        {
+            case 1:
+                return easyLevels[Mathf.FloorToInt(Random.Range(0, easyLevels.Length))];
+            case 2:
+                return mediumLevels[Mathf.FloorToInt(Random.Range(0, mediumLevels.Length))];
+            default:
+                return hardLevels[Mathf.FloorToInt(Random.Range(0, hardLevels.Length))];
+        }
+    }
+
+
+    // this will be called at the start of the game to build a the view wall for the player
+    public void BuildViewWall(int difficulty, GameObject[] spawnLocations)
+    {
+        Debug.Log("Attempting to create build view wall...");
+
+        //string diff = "easy";
+        int viewWallSize = difficulty * 5;
+        /*
+        switch (diff)
+        {
+            case "easy":
+                viewWallSize = 5;
+                break;
+            case "medium":
+                viewWallSize = 10;
+                break;
+            case "hard":
+                viewWallSize = 15;
+                break;
+        } */
+
+        int[,] testLevel = {{1,2,1,2,1},
+                            {2,1,2,1,2},
+                            {1,2,1,2,1},
+                            {2,1,2,1,2},
+                            {1,2,1,2,1}};
+
+        int[,] easy1 =     {{1,1,1,1,1},
+                            {1,2,2,2,1},
+                            {1,2,3,2,1},
+                            {1,2,2,2,1},
+                            {1,1,1,1,1}};
+
+        int[,] level = ReadRandomLevel(difficulty);
+
+        // Making the view wall depending on the difficulty
+        for (int l = 0; l < spawnLocations.Length; l++)
+        {
+            for (int i = 0; i < viewWallSize; i++)
+            {
+                for (int j = 0; j < viewWallSize; j++)
+                {
+                    Vector3 spawnLocation = spawnLocations[l].transform.position;
+                    spawnLocation += spawnLocations[l].transform.right * -i;
+                    spawnLocation += spawnLocations[l].transform.up * j;
+                    GameObject cube = BlueCube;
+                    switch (level[i, j])
+                    {
+                        case 1:
+                            cube = BlueCube;
+                            break;
+                        case 2:
+                            cube = RedCube;
+                            break;
+                        case 3:
+                            cube = GoldCube;
+                            break;
+                        case 4:
+                            cube = NeutralCube;
+                            break;
+                    }
+                    GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
+                    spawnedCube.GetComponent<Cube>().enabled = false;
+                }
+            }
+        }
     }
 
 
@@ -80,11 +183,11 @@ public class GameManager : MonoBehaviour
             }
             if (cubeChoice == 1)
             {
-                cube =Instantiate(BlueCube, PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                cube = Instantiate(BlueCube, PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
             }
             if (cubeChoice == 2)
             {
-                cube =Instantiate(GoldCube, PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                cube = Instantiate(GoldCube, PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
             }
             if (cubeChoice == 3)
             {
@@ -100,7 +203,7 @@ public class GameManager : MonoBehaviour
     //This will be the Game Start Function for Single Player Mode
     public void SinglePlayerStart()
     {
-
+        BuildViewWall(1, new GameObject[] { ViewWall1 });
     }
 
     // Cube Drop from play wall function for Single player mode
@@ -112,7 +215,7 @@ public class GameManager : MonoBehaviour
     //This will be the Game Start Function for Multiplayer Player Mode
     public void MultiplayerStart()
     {
-
+        BuildViewWall(3, new GameObject[] { ViewWall1, ViewWall2 });
     }
 
     // Cube Drop from play wall function for Single MultiplayerMode mode
