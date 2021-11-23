@@ -71,8 +71,7 @@ public class GameManager : MonoBehaviour
             dropCubes = false;
             int spawnPointChoice = Random.Range(0, PlaywallDropPoints.Length);
             int cubeChoice = Random.Range(0, 4); // 4 = the number of cube choices
-            Debug.Log("spawn point " + spawnPointChoice);
-            Debug.Log("Cube choice " + cubeChoice);
+
 
             if (cubeChoice == 0)
             {
@@ -121,5 +120,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ControllerCubeGrab()
+    {
+
+    }
 
 }
