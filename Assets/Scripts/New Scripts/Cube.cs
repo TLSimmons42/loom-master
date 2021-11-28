@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Cube : MonoBehaviour
+public class Cube : XRGrabInteractable
 {
     public GameManager gameManager;
     private Rigidbody rb;
@@ -43,6 +43,22 @@ public class Cube : MonoBehaviour
         }
     }
 
-    
-    
+    public void PlayerGrab()
+    {
+        if(currentZone == playWallZone)
+        {
+            currentZone = PlayerZone;
+            Debug.Log("Grabed the CUBE");
+        }
+    }
+
+    protected override void OnSelectEntered(XRBaseInteractor interactor)
+    {
+        base.OnSelectEntered(interactor);
+        PlayerGrab();
+        Debug.Log("Grabbed the Cube");
+    }
+
+
+
 }
