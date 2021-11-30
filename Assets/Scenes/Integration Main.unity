@@ -30145,14 +30145,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380159249}
-  m_LocalRotation: {x: -0, y: 0.9553898, z: -0, w: -0.29534805}
-  m_LocalPosition: {x: 10.52, y: 9.49, z: -8.93}
+  m_LocalRotation: {x: 0, y: 0.9238796, z: -0, w: -0.38268325}
+  m_LocalPosition: {x: 10, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1803128551}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 214.357, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 225, z: 0}
 --- !u!1 &384791215
 GameObject:
   m_ObjectHideFlags: 0
@@ -30725,6 +30725,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 7225740643153644496, guid: 008cb725957c29f4a9050d9dcd39f72a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7225740643153644498, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30885,13 +30890,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447822529}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -10, y: 9.49, z: 8}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: -10, y: 10, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1 &451520219
 GameObject:
   m_ObjectHideFlags: 0
@@ -118827,13 +118832,33 @@ MonoBehaviour:
     type: 3}
   buildWall1: {fileID: 0}
   buildWall2: {fileID: 0}
-  ViewWall1: {fileID: 0}
-  ViewWall2: {fileID: 0}
+  ViewWall1: {fileID: 380159249}
+  ViewWall2: {fileID: 447822529}
   startView: {fileID: 0}
   waitingView: {fileID: 0}
   gameOverView: {fileID: 0}
   dropCubes: 0
   networking: 0
+  easyLevels:
+  - {fileID: 4900000, guid: 7e8b0abb0e899444aaa289f8ee3e4956, type: 3}
+  - {fileID: 4900000, guid: 1605be7476084ed468b0abb1504b4200, type: 3}
+  - {fileID: 4900000, guid: a8af6691ba0ad5546b3ba05cbdd617cd, type: 3}
+  - {fileID: 4900000, guid: 130d88df8584fa946865f65ab55d7ce6, type: 3}
+  - {fileID: 4900000, guid: 5519dc44606acb9488fb9a5fb2b34487, type: 3}
+  - {fileID: 4900000, guid: ff70d11a9de555a44b7da7ccd51b8e3f, type: 3}
+  mediumLevels:
+  - {fileID: 4900000, guid: f38e3773d53b0f941bb5bb9b5eb23227, type: 3}
+  - {fileID: 4900000, guid: 2c67b796ff1cb524ea33c242b0b8e75a, type: 3}
+  - {fileID: 4900000, guid: 95fa87635062f2144921c0de805989e3, type: 3}
+  - {fileID: 4900000, guid: 1478a1fbda852304db2b592eae5610ec, type: 3}
+  - {fileID: 4900000, guid: 504e63b688a85a24483df15bd626f3c1, type: 3}
+  - {fileID: 4900000, guid: b992f9383e3e0f34c805893f5c052d1d, type: 3}
+  hardLevels:
+  - {fileID: 4900000, guid: 29f2e5d6f80ab2a45b5a9cb6c8a221fb, type: 3}
+  - {fileID: 4900000, guid: aecaa1ca2ee224b45807b70f26da0b89, type: 3}
+  - {fileID: 4900000, guid: df18bde78e733db42bb980d9e14c58b2, type: 3}
+  - {fileID: 4900000, guid: de1e6393feac50e47adf21aa92398b14, type: 3}
+  - {fileID: 4900000, guid: 9f6c481bac4828042b05a0d8aec01e63, type: 3}
 --- !u!4 &2104167417
 Transform:
   m_ObjectHideFlags: 0
