@@ -52,6 +52,8 @@ TagManager:
   - Beam
   - Bullet
   - cube despawner
+  - right ray
+  - left ray
   layers:
   - Default
   - TransparentFX

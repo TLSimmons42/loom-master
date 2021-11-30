@@ -19,18 +19,39 @@ public class Cube : XRGrabInteractable
 
     private float playZoneFallSpeed = 2f;
 
+    public GameObject rightRay;
+    public GameObject leftRay;
+
+    public LineRenderer rightLineRenderer;
+    public LineRenderer leftLineRenderer;
+
+    private Vector3[] rightRayPoints = new Vector3[2];
+    public Vector3[] leftRayPoints;
+
+
+
     // Update is called once per frame
 
     void Start()
     {
         currentZone = playWallZone;
         rb = GetComponent<Rigidbody>();
+        rightRay = GameObject.FindGameObjectWithTag("right ray");
+        rightLineRenderer = rightRay.GetComponent<LineRenderer>();
+
     }
     void Update()
     {
         if (currentZone == playWallZone)
         {
             MoveCubePlayWall();
+        }
+
+        if (isHeld)
+        {
+            rightLineRenderer.GetPositions(rightRayPoints);
+            gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+            //rightRay.ResetRayObjectPos(gameObject);
         }
     }
 
