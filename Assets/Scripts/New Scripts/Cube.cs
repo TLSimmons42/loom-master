@@ -14,7 +14,7 @@ public class Cube : XRGrabInteractable
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
-    public string PlayerZone = "Player";
+    public bool isHeld = false;
     public string NoZone = "No Zone";
 
     private float playZoneFallSpeed = 2f;
@@ -47,8 +47,9 @@ public class Cube : XRGrabInteractable
     {
         if(currentZone == playWallZone)
         {
-            currentZone = PlayerZone;
-            Debug.Log("Grabed the CUBE");
+            currentZone = NoZone;
+            isHeld = true;
+
         }
     }
 
@@ -56,9 +57,17 @@ public class Cube : XRGrabInteractable
     {
         base.OnSelectEntered(interactor);
         PlayerGrab();
-        Debug.Log("Grabbed the Cube");
+
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "cube despawner")
+        {
+            Destroy(this.gameObject);
+            Debug.Log("cube destroyed");
+        }
+    }
 
 
 }
