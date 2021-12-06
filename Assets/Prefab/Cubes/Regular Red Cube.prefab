@@ -327,7 +327,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11, y: 0.11, z: 0.11}
+  m_Size: {x: 0.09, y: 0.09, z: 0.09}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &579475726601901874
 MonoBehaviour:
@@ -411,8 +411,13 @@ MonoBehaviour:
   currentZone: 
   playWallZone: PlayWall
   BuildWallZone: BuildWall
-  PlayerZone: Player
+  isHeld: 0
   NoZone: No Zone
+  rightRay: {fileID: 0}
+  leftRay: {fileID: 0}
+  rightLineRenderer: {fileID: 0}
+  leftLineRenderer: {fileID: 0}
+  leftRayPoints: []
 --- !u!54 &-6467877572915464199
 Rigidbody:
   m_ObjectHideFlags: 0

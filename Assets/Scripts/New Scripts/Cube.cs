@@ -51,6 +51,7 @@ public class Cube : XRGrabInteractable
         {
             rightLineRenderer.GetPositions(rightRayPoints);
             gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+            rb.detectCollisions = false;
             //rightRay.ResetRayObjectPos(gameObject);
         }
     }
