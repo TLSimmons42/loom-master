@@ -42,11 +42,19 @@ public class GameManager : MonoBehaviour
     public TextAsset[] mediumLevels;
     public TextAsset[] hardLevels;
 
+    int gameDiff;
+    string strGameDiff;
+    int playerCount;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        MultiplayerStart();
+        strGameDiff = PlayerPrefs.GetString("gameDifficulty");
+        playerCount = PlayerPrefs.GetInt("playerCount");
+        ConvertGameDiffToInt(strGameDiff);
+        if (playerCount == 1) SinglePlayerStart();
+        else MultiplayerStart();
         dropCubes = true;
 
     }
@@ -60,7 +68,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void ConvertGameDiffToInt(string strDiff)
+    {
+        switch (strDiff)
+        {
+            case "easy":
+                gameDiff = 1;
+                break;
 
+            case "medium":
+                gameDiff = 2;
+                break;
+
+            case "hard":
+                gameDiff = 3;
+                break;
+        }
+    }
 
     private int[,] ReadRandomLevel(int difficulty)
     {
@@ -75,7 +99,9 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < levelSize; j++)
             {
+                Debug.Log("Attempting to convert to integer");
                 level[i, j] = int.Parse(char.ToString(levelText[j + (levelSize * i)]));
+                Debug.Log("Successfully converted to integer");
             }
         }
 
@@ -159,6 +185,7 @@ public class GameManager : MonoBehaviour
                             break;
                     }
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
+                    //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;
                 }
             }
@@ -202,7 +229,7 @@ public class GameManager : MonoBehaviour
     //This will be the Game Start Function for Single Player Mode
     public void SinglePlayerStart()
     {
-        BuildViewWall(1, new GameObject[] { ViewWall1 });
+        BuildViewWall(gameDiff, new GameObject[] { ViewWall1 });
     }
 
     // Cube Drop from play wall function for Single player mode
@@ -214,7 +241,7 @@ public class GameManager : MonoBehaviour
     //This will be the Game Start Function for Multiplayer Player Mode
     public void MultiplayerStart()
     {
-        BuildViewWall(3, new GameObject[] { ViewWall1, ViewWall2 });
+        BuildViewWall(gameDiff, new GameObject[] { ViewWall1, ViewWall2 });
     }
 
     // Cube Drop from play wall function for Single MultiplayerMode mode
