@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     string strGameDiff;
     int playerCount;
 
+    GameObject[,] buildWallArr;
+
 
     // Start is called before the first frame update
     void Start()
@@ -187,11 +189,21 @@ public class GameManager : MonoBehaviour
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
                     //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;
+
+                    if (l == 0)
+                    {
+                        spawnedCube.transform.parent = ViewWall1.transform;
+                    }
+                    else
+                    {
+                        spawnedCube.transform.parent = ViewWall2.transform;
+                    }
                 }
             }
         }
     }
 
+    
 
     // this will be called durring the game in order to build a new cube on the Play Wall
     public IEnumerator BuildNewCube()

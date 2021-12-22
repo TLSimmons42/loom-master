@@ -8,7 +8,7 @@ public class Cube : XRGrabInteractable
     public GameManager gameManager;
     private Rigidbody rb;
 
-    public Vector3 playWallTargetPos;
+    public Vector3 playWallTargetPos, buildWallTargetPos;
 
     public string currentZone;
 
@@ -32,9 +32,14 @@ public class Cube : XRGrabInteractable
 
     // Update is called once per frame
 
+    private void Awake()
+    {
+        SetZoneToPlay();
+    }
+
     void Start()
     {
-        currentZone = playWallZone;
+        
         rb = GetComponent<Rigidbody>();
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
@@ -47,6 +52,11 @@ public class Cube : XRGrabInteractable
             MoveCubePlayWall();
         }
 
+        if (currentZone == BuildWallZone)
+        {
+            MoveCubeBuildWall();
+        }
+
         if (isHeld)
         {
             rightLineRenderer.GetPositions(rightRayPoints);
@@ -54,6 +64,16 @@ public class Cube : XRGrabInteractable
             rb.detectCollisions = false;
             //rightRay.ResetRayObjectPos(gameObject);
         }
+    }
+    public void SetZoneToPlay()
+    {
+        Debug.Log("Changing to play zone...");
+        currentZone = playWallZone;
+    }
+    public void SetZoneToBuild()
+    {
+        Debug.Log("Changing to build zone...");
+        currentZone = BuildWallZone;
     }
 
     public void MoveCubePlayWall() 
@@ -63,6 +83,11 @@ public class Cube : XRGrabInteractable
         {
             transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime* playZoneFallSpeed);
         }
+    }
+
+    public void MoveCubeBuildWall()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, buildWallTargetPos, Time.deltaTime * playZoneFallSpeed);
     }
 
     public void PlayerGrab()
@@ -84,10 +109,14 @@ public class Cube : XRGrabInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "cube despawner")
+        if (other.tag == "cube despawner")
         {
             Destroy(this.gameObject);
             Debug.Log("cube destroyed");
+        }
+        else
+        {
+            Debug.Log("cube not destroyed");
         }
     }
 

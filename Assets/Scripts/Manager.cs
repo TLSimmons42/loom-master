@@ -33,6 +33,7 @@ public class Manager : Singleton<Manager>
     public GameObject obj4;
     public GameObject obj5;
     public float GameTimer = 0;
+    public GameObject timerObj;
     public List<GameObject> objects = new List<GameObject>();
 
     public bool GamePaused = false;
@@ -201,6 +202,11 @@ public class Manager : Singleton<Manager>
             else if (difficulty == "hard") { minutes = 8; }
         }
         return minutes * 60;
+    }
+
+    void InitializeTimer()
+    {
+        timerObj.GetComponent<TimerScript>().changeAllottedTime(SetupTimer(PlayerPrefs.GetInt("playerCount"), PlayerPrefs.GetString("gameDifficulty")));
     }
 
     public void StartGameNow()
