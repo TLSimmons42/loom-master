@@ -106,6 +106,13 @@ public class Cube : XRGrabInteractable
         PlayerGrab();
 
     }
+    protected override void OnSelectExited(XRBaseInteractor interactor)
+    {
+        Debug.Log("droped cube");
+    }
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {
