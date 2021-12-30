@@ -52,11 +52,13 @@ public class BuildWall : MonoBehaviour
         levelSize = difficulty * 5;
         Debug.Log("levelSize: " + levelSize);
         buildWallArr = new GameObject[levelSize, levelSize];
-        Debug.Log(buildWallArr.Length);
+        //Debug.Log(buildWallArr.Length);
     }
 
     void DisplayBuildWall(int difficulty)
     {
+
+
         int viewWallSize = difficulty * 5;
         //viewWallSize = 15;
 
@@ -66,7 +68,7 @@ public class BuildWall : MonoBehaviour
             spawnLocation += transform.right * -i;
             spawnLocation += (viewWallSize) * transform.up;
 
-            Debug.Log("Attempting to spawn placeholder");
+            //Debug.Log("Attempting to spawn placeholder");
 
             GameObject spawnedCube = Instantiate(dropZone, spawnLocation, transform.rotation);
             spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
@@ -78,7 +80,7 @@ public class BuildWall : MonoBehaviour
                 spawnLocation += transform.right * -i;
                 spawnLocation += transform.up * j;
 
-                Debug.Log("Attempting to spawn placeholder");
+               // Debug.Log("Attempting to spawn placeholder");
 
                 spawnedCube = Instantiate(cubeSlot, spawnLocation, transform.rotation);
                 spawnedCube.transform.parent = transform;
@@ -116,6 +118,7 @@ public class BuildWall : MonoBehaviour
 
         else
         {
+            Debug.Log("calculating the build wall pos for the cube");
             box.transform.position = transform.position+ (transform.right * -col) + (transform.up * (levelSize + 1));
 
             Vector3 newLocation = transform.position;

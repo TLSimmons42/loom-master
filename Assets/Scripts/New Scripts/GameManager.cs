@@ -101,9 +101,9 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < levelSize; j++)
             {
-                Debug.Log("Attempting to convert to integer");
+                //Debug.Log("Attempting to convert to integer");
                 level[i, j] = int.Parse(char.ToString(levelText[j + (levelSize * i)]));
-                Debug.Log("Successfully converted to integer");
+                //Debug.Log("Successfully converted to integer");
             }
         }
 
@@ -232,7 +232,8 @@ public class GameManager : MonoBehaviour
                 cube = Instantiate(NeutralCube, PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
             }
             cube.gameObject.GetComponent<Cube>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
-        
+            cube.GetComponent<Cube>().SetZoneToPlay();
+
         }
         yield return new WaitForSeconds(cubeDropTimer);
         dropCubes = true;
