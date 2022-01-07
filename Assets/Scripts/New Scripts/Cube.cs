@@ -113,7 +113,24 @@ public class Cube : XRGrabInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
-        PlayerGrab();
+
+        //  this will grab all colors in single player mode
+        if(gameManager.playerCount == 1)
+        {
+            PlayerGrab();
+        }
+        else if (gameManager.playerCount > 1)  // this will grab the blocks assigned to you 
+        {
+            if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
+            {
+                PlayerGrab();
+
+            }
+            if (interactor.transform.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
+            {
+                PlayerGrab();
+            }
+        }
 
     }
     protected override void OnSelectExited(XRBaseInteractor interactor)

@@ -275,7 +275,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToOnePlayer
         m_Mode: 1
         m_Arguments:
@@ -4941,7 +4941,6 @@ GameObject:
   - component: {fileID: 506956280}
   - component: {fileID: 506956279}
   - component: {fileID: 506956284}
-  - component: {fileID: 506956285}
   m_Layer: 0
   m_Name: MasterCanvas
   m_TagString: Untagged
@@ -5073,18 +5072,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 2147483647
---- !u!114 &506956285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506956278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383e1f15c43caf4479cc6a2b12016443, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &511371539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: ce7d06bdf8485634588ef8e2e828de37,
@@ -5188,7 +5175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToPlayerTwoChoice
         m_Mode: 1
         m_Arguments:
@@ -6116,7 +6103,7 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 631645273}
+          - m_Target: {fileID: 0}
             m_MethodName: ChangeScene
             m_Mode: 5
             m_Arguments:
@@ -7795,7 +7782,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToPlayerOneChoice
         m_Mode: 1
         m_Arguments:
@@ -11359,7 +11346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &631645273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11369,10 +11356,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 631645272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb9c16427dbf7746805e6a380baed8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 383e1f15c43caf4479cc6a2b12016443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Persistent: 0
 --- !u!4 &631645274
 Transform:
   m_ObjectHideFlags: 0
@@ -13796,18 +13782,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633547031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 506956285}
-        m_MethodName: LaunchGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &633547031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14516,7 +14491,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToEasy
         m_Mode: 1
         m_Arguments:
@@ -15444,15 +15419,26 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 1070727989}
+            m_MethodName: InitiliazeRoom
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
           - m_Target: {fileID: 631645273}
-            m_MethodName: ChangeScene
-            m_Mode: 5
+            m_MethodName: LaunchGame
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Integration Main
+              m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -22637,7 +22623,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToHard
         m_Mode: 1
         m_Arguments:
@@ -23565,15 +23551,26 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 1070727989}
+            m_MethodName: InitiliazeRoom
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
           - m_Target: {fileID: 631645273}
-            m_MethodName: ChangeScene
-            m_Mode: 5
+            m_MethodName: LaunchGame
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Integration Main
+              m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -29543,6 +29540,54 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 2147483647
+--- !u!1 &1070727988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070727990}
+  - component: {fileID: 1070727989}
+  m_Layer: 0
+  m_Name: Netwrok Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1070727989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070727988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1079baf1fe8c043993c7a1fb29946a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultRooms:
+  - Name: Main
+    sceneIndex: 1
+    maxPlayer: 2
+  roomUI: {fileID: 0}
+--- !u!4 &1070727990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070727988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.78278, y: 7.0653005, z: 2.0710795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1111270286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32249,7 +32294,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToMedium
         m_Mode: 1
         m_Arguments:
@@ -33177,15 +33222,26 @@ MonoBehaviour:
       Event:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 1070727989}
+            m_MethodName: InitiliazeRoom
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
           - m_Target: {fileID: 631645273}
-            m_MethodName: ChangeScene
-            m_Mode: 5
+            m_MethodName: LaunchGame
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: Integration Main
+              m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
       GameEvents: []
@@ -44795,7 +44851,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506956285}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeToTwoPlayer
         m_Mode: 1
         m_Arguments:
@@ -45737,6 +45793,17 @@ MonoBehaviour:
           - m_Target: {fileID: 1233647476}
             m_MethodName: Show
             m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 1070727989}
+            m_MethodName: OnConnectedToServer
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

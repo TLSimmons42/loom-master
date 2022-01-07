@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using Doozy.Engine.UI;
 using TMPro;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,15 +38,22 @@ public class GameManager : MonoBehaviour
     public UIView gameOverView;
 
     public bool dropCubes = false;
+    public bool dropNetworkCubes = false;
     public bool networking = false;
+    public bool allPlayersConnected = false;
 
     public TextAsset[] easyLevels;
     public TextAsset[] mediumLevels;
     public TextAsset[] hardLevels;
 
+    List<GameObject> Players = new List<GameObject>();
+
     int gameDiff;
     string strGameDiff;
-    int playerCount;
+    public int playerCount;
+    int playerDesignation;
+    int numOfPlayersInGame = 0;
+
 
     GameObject[,] buildWallArr;
 
@@ -54,19 +63,28 @@ public class GameManager : MonoBehaviour
     {
         strGameDiff = PlayerPrefs.GetString("gameDifficulty");
         playerCount = PlayerPrefs.GetInt("playerCount");
-        ConvertGameDiffToInt(strGameDiff);
-        if (playerCount == 1) SinglePlayerStart();
-        else MultiplayerStart();
-        dropCubes = true;
+        
+        ConvertGameDiffToInt(strGameDiff); //gets game difficulty 
+        MakeViewWall(); // detects # of players and spawns appropriate view walls
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!allPlayersConnected)
+        {
+            DetectNumOfPlayers();
+        }
+
         if (dropCubes)
         {
             StartCoroutine(BuildNewCube());
+        }
+        if (dropNetworkCubes)
+        {
+            StartCoroutine(BuildNewNetworkCube());
         }
     }
 
@@ -239,10 +257,57 @@ public class GameManager : MonoBehaviour
         dropCubes = true;
     }
 
-    //This will be the Game Start Function for Single Player Mode
+    public IEnumerator BuildNewNetworkCube()
+    {
+
+        if (dropNetworkCubes)
+        {
+            dropNetworkCubes = false;
+            int spawnPointChoice = Random.Range(0, PlaywallDropPoints.Length);
+            int cubeChoice = Random.Range(0, 4); // 4 = the number of cube choices
+
+
+            if (cubeChoice == 0)
+            {
+                cube = PhotonNetwork.Instantiate("Network Red Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+            }
+            if (cubeChoice == 1)
+            {
+                cube = PhotonNetwork.Instantiate("Network Blue Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+            }
+            if (cubeChoice == 2)
+            {
+                cube = PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+            }
+            if (cubeChoice == 3)
+            {
+                cube = PhotonNetwork.Instantiate("Network Neutral Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+            }
+            cube.gameObject.GetComponent<Cube>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
+            cube.GetComponent<Cube>().SetZoneToPlay();
+
+        }
+        yield return new WaitForSeconds(cubeDropTimer);
+        dropCubes = true;
+
+    }
+    public void MakeViewWall()
+    {
+        if (PlayerPrefs.GetInt("playerCount") == 1)
+        {
+            BuildViewWall(gameDiff, new GameObject[] { ViewWall1 });
+        }
+        else
+        {
+            BuildViewWall(gameDiff, new GameObject[] { ViewWall1, ViewWall2 });
+        }
+    }
+
+
+    //This wilV l be the Game Start Function for Single Player Mode
     public void SinglePlayerStart()
     {
-        BuildViewWall(gameDiff, new GameObject[] { ViewWall1 });
+        dropCubes = true;
     }
 
     // Cube Drop from play wall function for Single player mode
@@ -254,7 +319,31 @@ public class GameManager : MonoBehaviour
     //This will be the Game Start Function for Multiplayer Player Mode
     public void MultiplayerStart()
     {
-        BuildViewWall(gameDiff, new GameObject[] { ViewWall1, ViewWall2 });
+        dropNetworkCubes = true;
+    }
+    public void DetectNumOfPlayers()
+    {
+        numOfPlayersInGame = 0;
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
+        {
+            if (obj.name == "Network Paleyr")
+            {
+                Players.Add(obj);
+                numOfPlayersInGame++;
+                if (Players.Count == 2)
+                {
+                    allPlayersConnected = true;
+                    AssignPlayerColors();
+                }
+            }
+        }
+
+    }
+
+    public void AssignPlayerColors()
+    {
+        Players[1].tag = "P1";
+        Players[2].tag = "P2";
     }
 
     // Cube Drop from play wall function for Single MultiplayerMode mode

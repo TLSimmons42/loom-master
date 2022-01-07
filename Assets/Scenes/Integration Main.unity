@@ -18720,6 +18720,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 246609329}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &247672040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247672041}
+  m_Layer: 0
+  m_Name: Network Cube Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &247672041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247672040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.999939, y: 23.480011, z: 22.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252398306
 GameObject:
   m_ObjectHideFlags: 0
@@ -113184,6 +113214,64 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1955268383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1955268386}
+  - component: {fileID: 1955268385}
+  - component: {fileID: 1955268384}
+  m_Layer: 0
+  m_Name: Network Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1955268384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955268383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ad4f564ccc681458d4160c976b9a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1955268385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955268383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1079baf1fe8c043993c7a1fb29946a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultRooms: []
+  roomUI: {fileID: 0}
+--- !u!4 &1955268386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955268383}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.999939, y: 23.480011, z: 22.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955329819
 GameObject:
   m_ObjectHideFlags: 0
@@ -118150,7 +118238,9 @@ MonoBehaviour:
   waitingView: {fileID: 0}
   gameOverView: {fileID: 0}
   dropCubes: 0
+  dropNetworkCubes: 0
   networking: 0
+  allPlayersConnected: 0
   easyLevels:
   - {fileID: 4900000, guid: 7e8b0abb0e899444aaa289f8ee3e4956, type: 3}
   - {fileID: 4900000, guid: 1605be7476084ed468b0abb1504b4200, type: 3}
@@ -118171,6 +118261,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: df18bde78e733db42bb980d9e14c58b2, type: 3}
   - {fileID: 4900000, guid: de1e6393feac50e47adf21aa92398b14, type: 3}
   - {fileID: 4900000, guid: 9f6c481bac4828042b05a0d8aec01e63, type: 3}
+  playerCount: 0
 --- !u!4 &2104167417
 Transform:
   m_ObjectHideFlags: 0

@@ -2239,15 +2239,11 @@ namespace Photon.Pun
                 case PunEvent.CloseConnection:
 
                     // MasterClient "requests" a disconnection from us
-                    if (PhotonNetwork.EnableCloseConnection == false)
+                    if (originatingPlayer == null || !originatingPlayer.IsMasterClient)
                     {
-                        Debug.LogWarning("CloseConnection received from " + originatingPlayer + ". PhotonNetwork.EnableCloseConnection is false. Ignoring the request (this client stays in the room).");
+                        Debug.LogError("Error: Someone else(" + originatingPlayer + ") then the masterserver requests a disconnect!");
                     }
-                    else if (originatingPlayer == null || !originatingPlayer.IsMasterClient)
-                    {
-                        Debug.LogWarning("CloseConnection received from " + originatingPlayer + ". That player is not the Master Client. " + PhotonNetwork.MasterClient + " is.");
-                    }
-                    else if (PhotonNetwork.EnableCloseConnection)
+                    else
                     {
                         PhotonNetwork.LeaveRoom(false);
                     }
@@ -2416,16 +2412,6 @@ namespace Photon.Pun
                             int newOwnerId = viewOwnerPair[i];
 
                             PhotonView view = GetPhotonView(viewId);
-                            if (view == null)
-                            {
-                                if (PhotonNetwork.LogLevel >= PunLogLevel.ErrorsOnly)
-                                {
-                                    Debug.LogErrorFormat("Failed to find a PhotonView with ID={0} for incoming OwnershipUpdate event (newOwnerActorNumber={1}), sender={2}. If you load scenes, make sure to pause the message queue.", viewId, newOwnerId, actorNr);
-                                }
-
-                                continue;
-                            }
-
                             Player prevOwner = view.Owner;
                             Player newOwner = CurrentRoom.GetPlayer(newOwnerId, true);
 
