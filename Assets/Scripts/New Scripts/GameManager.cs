@@ -309,7 +309,7 @@ public class GameManager : Singleton<GameManager>
     //This will detect the number of players and start the game accordingly
     public void StartTheGame()
     {
-        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+        //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = true;
         if(playerCount == 2 && host)
         {
@@ -362,7 +362,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Gameover()
     {
-        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+        //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
         gameOverView.Show();
         dropCubes = false;

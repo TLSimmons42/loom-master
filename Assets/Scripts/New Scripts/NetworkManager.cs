@@ -45,9 +45,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void InitiliazeRoom(int defaultRoomIndex)
     {
-        Debug.Log("room index: " + defaultRoomIndex);
-        Debug.Log("indexer length: " + defaultRooms.Count);
-        Debug.Log(defaultRooms[defaultRoomIndex].Name);
+
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
 
         //LOAD SCENE
