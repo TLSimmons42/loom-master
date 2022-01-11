@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerScript : MonoBehaviour
+public class TimerScript : Singleton<TimerScript>
 {
-    float currentTime = 0; // in seconds
+    public float currentTime = 0; // in seconds
     public float allottedTime = 300; // in seconds
+    public bool record = false;
     bool paused = false;
     bool timeUp = false;
     TextMesh txt;
@@ -19,9 +20,13 @@ public class TimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!paused) currentTime += Time.deltaTime;
-        timeUp = isTimeUp();
-        DisplayTimer();
+        if (record)
+        {
+            if (!paused) currentTime += Time.deltaTime;
+            timeUp = isTimeUp();
+            DisplayTimer();
+        }
+
     }
 
     void DisplayTimer()
@@ -53,6 +58,7 @@ public class TimerScript : MonoBehaviour
     {
         if (currentTime >= allottedTime)
         {
+            GameManager.instance.Gameover();
             Debug.Log("Time's up!");
             return true;
         }

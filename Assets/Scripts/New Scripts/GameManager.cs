@@ -7,7 +7,7 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     private float cubeDropTimer = 1.5f;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public bool dropCubes = false;
     public bool dropNetworkCubes = false;
-    public bool networking = false;
+    public bool host = false;
     public bool allPlayersConnected = false;
 
     public TextAsset[] easyLevels;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     string strGameDiff;
     public int playerCount;
     int playerDesignation;
-    int numOfPlayersInGame = 0;
+    int numOfPlayersInGame;
 
 
     GameObject[,] buildWallArr;
@@ -66,17 +66,17 @@ public class GameManager : MonoBehaviour
         
         ConvertGameDiffToInt(strGameDiff); //gets game difficulty 
         MakeViewWall(); // detects # of players and spawns appropriate view walls
-        
+        if (playerCount == 2)
+        {
+            DetectNumOfPlayers(); // this will set the host and give access to the players gameobjects
+        }
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!allPlayersConnected)
-        {
-            DetectNumOfPlayers();
-        }
 
         if (dropCubes)
         {
@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
     // this will be called durring the game in order to build a new cube on the Play Wall
     public IEnumerator BuildNewCube()
     {
-        if (dropCubes && !networking)
+        if (dropCubes)
         {
             dropCubes = false;
             int spawnPointChoice = Random.Range(0, PlaywallDropPoints.Length);
@@ -259,36 +259,38 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator BuildNewNetworkCube()
     {
-
-        if (dropNetworkCubes)
+        if (host)
         {
-            dropNetworkCubes = false;
-            int spawnPointChoice = Random.Range(0, PlaywallDropPoints.Length);
-            int cubeChoice = Random.Range(0, 4); // 4 = the number of cube choices
+            if (dropNetworkCubes)
+            {
+                dropNetworkCubes = false;
+                int spawnPointChoice = Random.Range(0, PlaywallDropPoints.Length);
+                int cubeChoice = Random.Range(0, 4); // 4 = the number of cube choices
 
 
-            if (cubeChoice == 0)
-            {
-                cube = PhotonNetwork.Instantiate("Network Red Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-            }
-            if (cubeChoice == 1)
-            {
-                cube = PhotonNetwork.Instantiate("Network Blue Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-            }
-            if (cubeChoice == 2)
-            {
-                cube = PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-            }
-            if (cubeChoice == 3)
-            {
-                cube = PhotonNetwork.Instantiate("Network Neutral Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-            }
-            cube.gameObject.GetComponent<Cube>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
-            cube.GetComponent<Cube>().SetZoneToPlay();
+                if (cubeChoice == 0)
+                {
+                    cube = PhotonNetwork.Instantiate("Network Red Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                }
+                if (cubeChoice == 1)
+                {
+                    cube = PhotonNetwork.Instantiate("Network Blue Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                }
+                if (cubeChoice == 2)
+                {
+                    cube = PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                }
+                if (cubeChoice == 3)
+                {
+                    cube = PhotonNetwork.Instantiate("Network Neutral Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                }
+                cube.gameObject.GetComponent<Cube>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
+                cube.GetComponent<Cube>().SetZoneToPlay();
 
+            }
+            yield return new WaitForSeconds(cubeDropTimer);
+            dropCubes = true;
         }
-        yield return new WaitForSeconds(cubeDropTimer);
-        dropCubes = true;
 
     }
     public void MakeViewWall()
@@ -304,21 +306,30 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //This wilV l be the Game Start Function for Single Player Mode
+    //This will detect the number of players and start the game accordingly
+    public void StartTheGame()
+    {
+        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+        TimerScript.instance.record = true;
+        if(playerCount == 2 && host)
+        {
+            MultiplayerStart();
+        }
+        else
+        {
+            SinglePlayerStart();
+        }
+    }
+
     public void SinglePlayerStart()
     {
         dropCubes = true;
     }
 
-    // Cube Drop from play wall function for Single player mode
-    public void SinglePlayerCubeDrop()
-    {
-
-    }
-
     //This will be the Game Start Function for Multiplayer Player Mode
     public void MultiplayerStart()
     {
+        Debug.Log("multiplayer start");
         dropNetworkCubes = true;
     }
     public void DetectNumOfPlayers()
@@ -333,28 +344,37 @@ public class GameManager : MonoBehaviour
                 if (Players.Count == 2)
                 {
                     allPlayersConnected = true;
+                    host = true;
+                    this.tag = "host";
                     AssignPlayerColors();
+                    Debug.Log("the host has been set");
+                }
+                else if(Players.Count == 1)
+                {
+                    host = false;
+                    this.tag = "cliant";
+                    Debug.Log("a cliant has been set");
                 }
             }
         }
 
     }
 
+    public void Gameover()
+    {
+        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+        TimerScript.instance.record = false;
+        gameOverView.Show();
+        dropCubes = false;
+        dropNetworkCubes = false;
+    }
+
+    //tags the player gameobjects so that the cubes can identify them
     public void AssignPlayerColors()
     {
         Players[1].tag = "P1";
         Players[2].tag = "P2";
     }
 
-    // Cube Drop from play wall function for Single MultiplayerMode mode
-    public void MultiplayerCubeDrop()
-    {
-
-    }
-
-    public void ControllerCubeGrab()
-    {
-
-    }
 
 }

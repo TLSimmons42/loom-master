@@ -31,16 +31,8 @@ public class Cube : XRGrabInteractable
 
 
 
-    // Update is called once per frame
-
-    //private void Awake()
-    //{
-    //    SetZoneToPlay();
-    //}
-
     void Start()
     {
-        //SetZoneToPlay();
 
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
@@ -64,13 +56,6 @@ public class Cube : XRGrabInteractable
 
             rightLineRenderer.GetPositions(rightRayPoints);
             gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
-            //if (isHeld)
-            //{
-            //    rightLineRenderer.GetPositions(rightRayPoints);
-            //    gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
-            //    rb.detectCollisions = false;
-            //    //rightRay.ResetRayObjectPos(gameObject);
-            //}
         }
         
     }
@@ -124,7 +109,6 @@ public class Cube : XRGrabInteractable
             if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
             {
                 PlayerGrab();
-
             }
             if (interactor.transform.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
             {
