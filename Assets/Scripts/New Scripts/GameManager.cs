@@ -146,7 +146,7 @@ public class GameManager : Singleton<GameManager>
     // this will be called at the start of the game to build a the view wall for the player
     public void BuildViewWall(int difficulty, GameObject[] spawnLocations)
     {
-        Debug.Log("Attempting to create build view wall...");
+
 
         //string diff = "easy";
         int viewWallSize = difficulty * 5;
@@ -334,11 +334,16 @@ public class GameManager : Singleton<GameManager>
     }
     public void DetectNumOfPlayers()
     {
+        Debug.Log("deteting the num of players");
         numOfPlayersInGame = 0;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
         {
-            if (obj.name == "Network Paleyr")
+            Debug.Log("meow");
+
+            if (obj.name == "Network Player")
             {
+                Debug.Log("meow 2");
+
                 Players.Add(obj);
                 numOfPlayersInGame++;
                 if (Players.Count == 2)

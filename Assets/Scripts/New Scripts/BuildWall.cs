@@ -19,7 +19,7 @@ public class BuildWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(PlayerPrefs.GetString("gameDifficulty"));
+
         ConvertGameDiffToInt(PlayerPrefs.GetString("gameDifficulty"));
         InitiateBuildWall(gameDiff);
         DisplayBuildWall(gameDiff);
@@ -50,7 +50,7 @@ public class BuildWall : MonoBehaviour
     void InitiateBuildWall(int difficulty)
     {
         levelSize = difficulty * 5;
-        Debug.Log("levelSize: " + levelSize);
+
         buildWallArr = new GameObject[levelSize, levelSize];
         //Debug.Log(buildWallArr.Length);
     }
