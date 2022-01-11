@@ -14033,6 +14033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a11c3d9daa28d4eb716ac532cf69eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persistent: 0
 --- !u!4 &638651889
 Transform:
   m_ObjectHideFlags: 0
@@ -14534,9 +14535,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ChangeToEasy
-        m_Mode: 1
+      - m_Target: {fileID: 1070727989}
+        m_MethodName: InitiliazeRoom
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15461,29 +15462,7 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1070727989}
-            m_MethodName: InitiliazeRoom
-            m_Mode: 3
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 631645273}
-            m_MethodName: LaunchGame
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -30520,7 +30499,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   BehaviorAtStart: 1
-  CustomStartAnchoredPosition: {x: -257.4, y: -296, z: 5.2}
+  CustomStartAnchoredPosition: {x: -266.06, y: -292.72, z: 22.96}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
@@ -47580,7 +47559,7 @@ PrefabInstance:
     - target: {fileID: 7225740643153644496, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225740643153644498, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}

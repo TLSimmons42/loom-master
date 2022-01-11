@@ -54,6 +54,7 @@ TagManager:
   - cube despawner
   - right ray
   - left ray
+  - Network Player
   layers:
   - Default
   - TransparentFX

@@ -21592,7 +21592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f51be5bb7349b6448ac715add07d90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persistent: 0
+  currentTime: 0
   allottedTime: 300
+  record: 0
 --- !u!1001 &283820476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30244,6 +30247,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225740642353668131, guid: 008cb725957c29f4a9050d9dcd39f72a,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Camera
       objectReference: {fileID: 0}
     - target: {fileID: 7225740643153644496, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}
@@ -118203,6 +118211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768720336b70ab84aacb03757a80a3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persistent: 0
   PlaywallDropPoints:
   - {fileID: 1303456817}
   - {fileID: 1281676690}
