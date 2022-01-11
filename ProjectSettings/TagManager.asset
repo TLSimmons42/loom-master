@@ -55,6 +55,8 @@ TagManager:
   - right ray
   - left ray
   - Network Player
+  - cliant
+  - host
   layers:
   - Default
   - TransparentFX

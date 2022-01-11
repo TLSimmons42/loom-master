@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         MakeViewWall(); // detects # of players and spawns appropriate view walls
         if (playerCount == 2)
         {
-            DetectNumOfPlayers(); // this will set the host and give access to the players gameobjects
+            StartCoroutine( DetectNumOfPlayers()); // this will set the host and give access to the players gameobjects
         }
 
 
@@ -332,15 +332,17 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("multiplayer start");
         dropNetworkCubes = true;
     }
-    public void DetectNumOfPlayers()
+    public IEnumerator DetectNumOfPlayers()
     {
+        yield return new WaitForSeconds(3);
+
         Debug.Log("deteting the num of players");
         numOfPlayersInGame = 0;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
         {
             Debug.Log("meow");
 
-            if (obj.name == "Network Player")
+            if (obj.name == "Network Player(Clone)")
             {
                 Debug.Log("meow 2");
 
