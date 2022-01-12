@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
+
 
 public class Cube : XRGrabInteractable
 {
-    public GameManager gameManager;
+    //public GameManager gameManager;
     private Rigidbody rb;
     private BoxCollider collider;
 
@@ -100,11 +102,11 @@ public class Cube : XRGrabInteractable
         base.OnSelectEntered(interactor);
 
         //  this will grab all colors in single player mode
-        if(gameManager.playerCount == 1)
+        if(GameManager.instance.playerCount == 1)
         {
             PlayerGrab();
         }
-        else if (gameManager.playerCount > 1)  // this will grab the blocks assigned to you 
+        else if (GameManager.instance.playerCount > 1)  // this will grab the blocks assigned to you 
         {
             if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
             {
@@ -119,9 +121,30 @@ public class Cube : XRGrabInteractable
     }
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
-        Debug.Log("droped cube");
-        collider.isTrigger = false;
-        if(currentZone == BuildWallZone)
+        //if (GameManager.instance.playerCount == 2)
+        //{
+        //    Debug.Log("MEOW");
+        //    if (GameManager.instance.host)
+        //    {
+        //        Debug.Log("droped Network cube");
+        //        collider.isTrigger = false;
+        //        if (currentZone == BuildWallZone)
+        //        {
+        //            Debug.Log("In the build wall");
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("destory this cube");
+        //            PhotonNetwork.Destroy(gameObject);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+
+            Debug.Log("droped cube");
+            collider.isTrigger = false;
+        if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
         }
@@ -130,6 +153,8 @@ public class Cube : XRGrabInteractable
             Debug.Log("destory this cube");
             Destroy(gameObject);
         }
+        //    }
+        //}
     }
 
 
@@ -144,7 +169,20 @@ public class Cube : XRGrabInteractable
         }
         if (other.tag == "cube despawner")
         {
-            Destroy(this.gameObject);
+            if (GameManager.instance.playerCount == 2)
+            {
+                Debug.Log("MEOW");
+                if (GameManager.instance.host)
+                {
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
+            }
+            else
+            {
+                Destroy(this.gameObject);
+
+            }
+
            // Debug.Log("cube destroyed");
         }
     }

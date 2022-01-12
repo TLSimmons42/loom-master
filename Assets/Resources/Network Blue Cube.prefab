@@ -570,7 +570,6 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
-  gameManager: {fileID: 0}
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
   currentZone: 

@@ -289,7 +289,7 @@ public class GameManager : Singleton<GameManager>
 
             }
             yield return new WaitForSeconds(cubeDropTimer);
-            dropCubes = true;
+            dropNetworkCubes = true;
         }
 
     }
@@ -323,6 +323,8 @@ public class GameManager : Singleton<GameManager>
 
     public void SinglePlayerStart()
     {
+        Debug.Log("single player start");
+
         dropCubes = true;
     }
 
@@ -340,11 +342,10 @@ public class GameManager : Singleton<GameManager>
         numOfPlayersInGame = 0;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
         {
-            Debug.Log("meow");
+
 
             if (obj.name == "Network Player(Clone)")
             {
-                Debug.Log("meow 2");
 
                 Players.Add(obj);
                 numOfPlayersInGame++;
@@ -379,8 +380,8 @@ public class GameManager : Singleton<GameManager>
     //tags the player gameobjects so that the cubes can identify them
     public void AssignPlayerColors()
     {
-        Players[1].tag = "P1";
-        Players[2].tag = "P2";
+        Players[0].tag = "P1";
+        Players[1].tag = "P2";
     }
 
 
