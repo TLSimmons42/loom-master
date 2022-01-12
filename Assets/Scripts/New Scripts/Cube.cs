@@ -100,9 +100,10 @@ public class Cube : XRGrabInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
+        Debug.Log("gabbing someing");
 
         //  this will grab all colors in single player mode
-        if(GameManager.instance.playerCount == 1)
+        if (GameManager.instance.playerCount == 1)
         {
             PlayerGrab();
         }
@@ -174,7 +175,6 @@ public class Cube : XRGrabInteractable
         {
             if (GameManager.instance.playerCount == 2)
             {
-                Debug.Log("MEOW");
                 if (GameManager.instance.host)
                 {
                     PhotonNetwork.Destroy(this.gameObject);
