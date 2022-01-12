@@ -108,12 +108,15 @@ public class Cube : XRGrabInteractable
         }
         else if (GameManager.instance.playerCount > 1)  // this will grab the blocks assigned to you 
         {
+            Debug.Log("2 player grab");
             if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
             {
+                Debug.Log("host grabbed cube");
                 PlayerGrab();
             }
             if (interactor.transform.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
             {
+                Debug.Log("cliant grabbed cube");
                 PlayerGrab();
             }
         }
