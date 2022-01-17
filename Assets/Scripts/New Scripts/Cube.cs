@@ -81,7 +81,7 @@ public class Cube : XRGrabInteractable
 
     public void MoveCubeBuildWall()
     {
-        Debug.Log("moving the block on the BuildWall");
+        //Debug.Log("moving the block on the BuildWall");
         transform.position = Vector3.MoveTowards(transform.position, buildWallTargetPos, Time.deltaTime * playZoneFallSpeed);
     }
 
