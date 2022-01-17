@@ -100,20 +100,24 @@ public class Cube : XRGrabInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
+        Debug.Log("gabbing someing");
 
         //  this will grab all colors in single player mode
-        if(GameManager.instance.playerCount == 1)
+        if (GameManager.instance.playerCount == 1)
         {
             PlayerGrab();
         }
         else if (GameManager.instance.playerCount > 1)  // this will grab the blocks assigned to you 
         {
+            Debug.Log("2 player grab");
             if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
             {
+                Debug.Log("host grabbed cube");
                 PlayerGrab();
             }
             if (interactor.transform.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
             {
+                Debug.Log("cliant grabbed cube");
                 PlayerGrab();
             }
         }
@@ -171,7 +175,6 @@ public class Cube : XRGrabInteractable
         {
             if (GameManager.instance.playerCount == 2)
             {
-                Debug.Log("MEOW");
                 if (GameManager.instance.host)
                 {
                     PhotonNetwork.Destroy(this.gameObject);
