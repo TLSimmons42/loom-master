@@ -14,7 +14,7 @@ public class MainMenuScript : MonoBehaviour
     {
         Debug.Log("Attemping to change players to one");
         PlayerPrefs.SetInt("playerCount", 1);
-        ChangeToPlayerOneChoice();
+        //ChangeToPlayerOneChoice();
     }
 
     public void ChangeToTwoPlayer()

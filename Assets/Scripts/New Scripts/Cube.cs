@@ -75,8 +75,7 @@ public class Cube : XRGrabInteractable
     {
         //if(currentZone == playWallZone && transform.position == gameManager.PlaywallDropPoints[0].transform.position)
         
-            transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime* playZoneFallSpeed);
-        
+        transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime * playZoneFallSpeed);
     }
 
     public void MoveCubeBuildWall()
@@ -105,17 +104,27 @@ public class Cube : XRGrabInteractable
         //  this will grab all colors in single player mode
         if (GameManager.instance.playerCount == 1)
         {
+
+
+
+            Debug.Log("single player grab");
             PlayerGrab();
         }
         else if (GameManager.instance.playerCount > 1)  // this will grab the blocks assigned to you 
         {
-            Debug.Log("2 player grab");
-            if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
+            Debug.Log("the tag is: "+interactor.transform.parent.gameObject.tag);
+            Debug.Log("the NAME is: " + interactor.transform.parent.parent.gameObject.name);
+
+            if (interactor.transform.parent.parent.gameObject.tag == "P1")
+            //if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
             {
-                Debug.Log("host grabbed cube");
-                PlayerGrab();
+                Debug.Log("teir 1 pass");
+                if (gameObject.tag == "red cube" || gameObject.tag == "invis cube") {
+                    Debug.Log("host grabbed cube");
+                    PlayerGrab();
+                }
             }
-            if (interactor.transform.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
+            if (interactor.transform.parent.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
             {
                 Debug.Log("cliant grabbed cube");
                 PlayerGrab();
