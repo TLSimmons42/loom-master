@@ -28,7 +28,7 @@ public class BuildWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RemovePickedUpCube();
     }
 
     void ConvertGameDiffToInt(string strDiff)
@@ -57,8 +57,6 @@ public class BuildWall : MonoBehaviour
 
     void DisplayBuildWall(int difficulty)
     {
-
-
         int viewWallSize = difficulty * 5;
         //viewWallSize = 15;
 
@@ -157,14 +155,13 @@ public class BuildWall : MonoBehaviour
             newBox.GetComponent<BoxCollider>().enabled = false;
             newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 
-            
-
             //buildWallArr[col, row] = box;
 
-            otherBuildWall.GetComponent<BuildWall>().buildWallArr = buildWallArr;   
+            //otherBuildWall.GetComponent<BuildWall>().buildWallArr = buildWallArr;   
+            otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row] = newBox;
 
             //box.transform.position = newLocation;
-            
+
         }
     }
 
@@ -197,5 +194,45 @@ public class BuildWall : MonoBehaviour
         }
 
         return intArr;
+    }
+
+    void RemovePickedUpCube()
+    {
+        for (int i = 0; i < levelSize; i++)
+        {
+            for (int j = 0; j < levelSize; j++)
+            {
+                if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<Cube>().currentZone != "BuildWall")
+                {
+                    Debug.Log("A cube was removed...");
+                    buildWallArr[i, j] = null;
+                    PushCubesDown(i, j);
+                    DeleteMirrodCube(i, j);
+                }
+            }
+        }
+    }
+
+    void PushCubesDown(int col, int row)
+    {
+        for (int i = row; i < levelSize; i++)
+        {
+            Debug.Log("Col: " + col + ", Row: " + row + ", i: " + i);
+            // Checks if the array is a cube
+            if (i > 0 && i < buildWallArr.Length && buildWallArr[col, i] != null)
+            {
+                buildWallArr[col, i].GetComponent<Cube>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
+                buildWallArr[col, i - 1] = buildWallArr[col, i];
+                buildWallArr[col, i] = null;
+                
+             }        
+        }
+    }
+
+    void DeleteMirrodCube(int col, int row)
+    {
+        Destroy(otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row]);
+        otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row] = null;
+        otherBuildWall.GetComponent<BuildWall>().PushCubesDown(col, row);
     }
 }
