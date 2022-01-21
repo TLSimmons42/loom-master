@@ -63,6 +63,7 @@ public class GameManager : Singleton<GameManager>
     {
         strGameDiff = PlayerPrefs.GetString("gameDifficulty");
         playerCount = PlayerPrefs.GetInt("playerCount");
+        Debug.Log("the player count is: " + playerCount);
         
         ConvertGameDiffToInt(strGameDiff); //gets game difficulty 
         MakeViewWall(); // detects # of players and spawns appropriate view walls

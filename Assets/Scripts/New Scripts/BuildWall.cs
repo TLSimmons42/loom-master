@@ -13,8 +13,8 @@ public class BuildWall : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.SetString("gameDifficulty", "easy");
-        PlayerPrefs.SetInt("playerCount", 2);
+        //PlayerPrefs.SetString("gameDifficulty", "easy");
+        //PlayerPrefs.SetInt("playerCount", 2);
     }
 
     // Start is called before the first frame update
