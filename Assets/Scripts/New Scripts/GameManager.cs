@@ -361,6 +361,7 @@ public class GameManager : Singleton<GameManager>
                    // allPlayersConnected = true;
                     host = true;
                     this.tag = "host";
+                    VRrig.tag = "P1";
                     AssignPlayerTags();
                     VRrig.transform.position = playerPos2.transform.position;
                     Debug.Log("the host has been set");
@@ -369,6 +370,7 @@ public class GameManager : Singleton<GameManager>
                 {
                     host = false;
                     this.tag = "cliant";
+                    VRrig.tag = "P2";
                     VRrig.transform.position = playerPos1.transform.position;
                     Debug.Log("a cliant has been set");
                 }
