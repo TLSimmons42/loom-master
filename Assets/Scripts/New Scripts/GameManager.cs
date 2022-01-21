@@ -15,7 +15,10 @@ public class GameManager : Singleton<GameManager>
     public GameObject[] PlaywallDropPoints;
     public GameObject[] PlaywallEndPoints;
 
-    private GameObject cube; // spawned cube
+    public GameObject VRrig;
+    public GameObject playerPos1;
+    public GameObject playerPos2;
+
     public GameObject BlueCube;
     public GameObject RedCube;
     public GameObject GoldCube;
@@ -25,8 +28,6 @@ public class GameManager : Singleton<GameManager>
     public GameObject NetworkRedCube;
     public GameObject NetworkGoldCube;
     public GameObject NetworkNeutralCube;
-
-
 
     public GameObject buildWall1;
     public GameObject buildWall2;
@@ -45,6 +46,8 @@ public class GameManager : Singleton<GameManager>
     public TextAsset[] easyLevels;
     public TextAsset[] mediumLevels;
     public TextAsset[] hardLevels;
+
+    private GameObject cube; // spawned cube
 
     List<GameObject> Players = new List<GameObject>();
 
@@ -69,7 +72,7 @@ public class GameManager : Singleton<GameManager>
         MakeViewWall(); // detects # of players and spawns appropriate view walls
         if (playerCount == 2)
         {
-            StartCoroutine( DetectNumOfPlayers()); // this will set the host and give access to the players gameobjects
+            StartCoroutine(AssignHostAndPlayerPos()); // this will set the host and give access to the players gameobjects
         }
 
 
@@ -312,7 +315,7 @@ public class GameManager : Singleton<GameManager>
     {
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = true;
-        if(playerCount == 2 && host)
+        if(playerCount == 2)
         {
             MultiplayerStart();
         }
@@ -335,7 +338,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("multiplayer start");
         dropNetworkCubes = true;
     }
-    public IEnumerator DetectNumOfPlayers()
+    public IEnumerator AssignHostAndPlayerPos()
     {
         yield return new WaitForSeconds(3);
 
@@ -352,16 +355,18 @@ public class GameManager : Singleton<GameManager>
                 numOfPlayersInGame++;
                 if (Players.Count == 2)
                 {
-                    allPlayersConnected = true;
+                   // allPlayersConnected = true;
                     host = true;
                     this.tag = "host";
-                    AssignPlayerColors();
+                    AssignPlayerTags();
+                    VRrig.transform.position = playerPos2.transform.position;
                     Debug.Log("the host has been set");
                 }
                 else if(Players.Count == 1)
                 {
                     host = false;
                     this.tag = "cliant";
+                    VRrig.transform.position = playerPos1.transform.position;
                     Debug.Log("a cliant has been set");
                 }
             }
@@ -379,10 +384,11 @@ public class GameManager : Singleton<GameManager>
     }
 
     //tags the player gameobjects so that the cubes can identify them
-    public void AssignPlayerColors()
+    public void AssignPlayerTags()
     {
         Players[0].tag = "P1";
         Players[1].tag = "P2";
+        VRrig.tag = "P1";
     }
 
 

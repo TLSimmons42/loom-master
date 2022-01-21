@@ -104,9 +104,6 @@ public class Cube : XRGrabInteractable
         //  this will grab all colors in single player mode
         if (GameManager.instance.playerCount == 1)
         {
-
-
-
             Debug.Log("single player grab");
             PlayerGrab();
         }
@@ -164,7 +161,7 @@ public class Cube : XRGrabInteractable
         else
         {
             Debug.Log("destory this cube");
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(this.gameObject);
         }
         //    }
         //}
@@ -175,6 +172,7 @@ public class Cube : XRGrabInteractable
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if(other.tag == "DropZone")
         {
             Debug.Log("cube in the dropzone");
