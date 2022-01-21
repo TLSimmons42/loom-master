@@ -178,6 +178,9 @@ public class GameManager : Singleton<GameManager>
 
         int[,] level = ReadRandomLevel(difficulty);
 
+        buildWall1.GetComponent<BuildWall>().SetViewWall(level);
+        buildWall2.GetComponent<BuildWall>().SetViewWall(level);
+
         // Making the view wall depending on the difficulty
         for (int l = 0; l < spawnLocations.Length; l++)
         {

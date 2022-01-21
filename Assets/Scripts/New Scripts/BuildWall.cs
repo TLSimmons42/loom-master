@@ -8,6 +8,7 @@ public class BuildWall : MonoBehaviour
     public GameObject otherBuildWall;
     int gameDiff, levelSize;
     public GameObject cubeSlot, dropZone;
+    int[,] viewWall;
 
 
     private void Awake()
@@ -29,6 +30,9 @@ public class BuildWall : MonoBehaviour
     void Update()
     {
         RemovePickedUpCube();
+        DebugPrint2DArray(CubeToInt());
+        DebugPrint2DArray(viewWall);
+        ConsoleCheckBuildWall();
     }
 
     void ConvertGameDiffToInt(string strDiff)
@@ -52,7 +56,7 @@ public class BuildWall : MonoBehaviour
         levelSize = difficulty * 5;
 
         buildWallArr = new GameObject[levelSize, levelSize];
-        //Debug.Log(buildWallArr.Length);
+        ////Debug.Log(buildWallArr.Length);
     }
 
     void DisplayBuildWall(int difficulty)
@@ -66,7 +70,7 @@ public class BuildWall : MonoBehaviour
             spawnLocation += transform.right * -i;
             spawnLocation += (viewWallSize) * transform.up;
 
-            //Debug.Log("Attempting to spawn placeholder");
+            ////Debug.Log("Attempting to spawn placeholder");
 
             GameObject spawnedCube = Instantiate(dropZone, spawnLocation, transform.rotation);
             spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
@@ -78,7 +82,7 @@ public class BuildWall : MonoBehaviour
                 spawnLocation += transform.right * -i;
                 spawnLocation += transform.up * j;
 
-               // Debug.Log("Attempting to spawn placeholder");
+               // //Debug.Log("Attempting to spawn placeholder");
 
                 spawnedCube = Instantiate(cubeSlot, spawnLocation, transform.rotation);
                 spawnedCube.transform.parent = transform;
@@ -89,19 +93,19 @@ public class BuildWall : MonoBehaviour
 
     int GetNextFreeRow(int col)
     {
-        Debug.Log(buildWallArr.Length);
+        //Debug.Log(buildWallArr.Length);
         for (int i = 0; i < buildWallArr.Length; i++)
         {
-            Debug.Log(i);
-            Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
+            //Debug.Log(i);
+            //Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
 
             if (buildWallArr[col, i] == null)
             {
-                Debug.Log("The next free row is: " + i);
+                //Debug.Log("The next free row is: " + i);
                 return i;
             }
         }
-        Debug.Log("There is no free row");
+        //Debug.Log("There is no free row");
         return -1;
     }
 
@@ -116,7 +120,7 @@ public class BuildWall : MonoBehaviour
 
         else
         {
-            Debug.Log("calculating the build wall pos for the cube");
+            //Debug.Log("calculating the build wall pos for the cube");
             box.transform.position = transform.position+ (transform.right * -col) + (transform.up * (levelSize + 1));
 
             Vector3 newLocation = transform.position;
@@ -137,10 +141,10 @@ public class BuildWall : MonoBehaviour
 
     public void MirrorBuildWalls(int col, int row, GameObject clonedBox)
     {
-        Debug.Log("# of players = " + PlayerPrefs.GetInt("playerCount"));
+        //Debug.Log("# of players = " + PlayerPrefs.GetInt("playerCount"));
         if (PlayerPrefs.GetInt("playerCount") == 2)
         {
-            Debug.Log("Attempting to clone boxes...");
+            //Debug.Log("Attempting to clone boxes...");
 
             GameObject newBox = Instantiate(clonedBox);
             newBox.GetComponent<Cube>().currentZone = newBox.GetComponent<Cube>().BuildWallZone;
@@ -173,27 +177,74 @@ public class BuildWall : MonoBehaviour
         {
             for (int j = 0; j < levelSize; j++)
             {
-                string cubeName = buildWallArr[i, j].tag;
-
-                switch (cubeName)
+                if (buildWallArr[i, j] == null)
                 {
-                    case "blue cube":
-                        intArr[i,j] = 1;
-                        break;
-                    case "red cube":
-                        intArr[i, j] = 2;
-                        break;
-                    case "gold cube":
-                        intArr[i, j] = 3;
-                        break;
-                    case "invis cube":
-                        intArr[i, j] = 4;
-                        break;
+                    intArr[i, j] = -1;
+                }
+                else
+                {
+                    string cubeName = buildWallArr[i, j].tag;
+
+                    switch (cubeName)
+                    {
+                        case "blue cube":
+                            intArr[i, j] = 1;
+                            break;
+                        case "red cube":
+                            intArr[i, j] = 2;
+                            break;
+                        case "gold cube":
+                            intArr[i, j] = 3;
+                            break;
+                        case "invis cube":
+                            intArr[i, j] = 4;
+                            break;
+                    }
                 }
             }
         }
 
         return intArr;
+    }
+
+    void DebugPrint2DArray(int[,] arr)
+    {
+        //Debug.Log("Start");
+        for (int i = 0; i < levelSize; i++)
+        {
+            string line = "";
+            for (int j = 0; j < levelSize; j++)
+            {
+                line += arr[i,j].ToString();
+                
+            }
+            //Debug.Log(line);
+        }
+        //Debug.Log("End");
+    }
+
+    void ConsoleCheckBuildWall()
+    {
+        Debug.Log("Does the build wall match the view wall?: " + CheckBuildWall());
+    }
+    bool CheckBuildWall()
+    {
+        int[,] buildWall = CubeToInt();
+
+        for (int i = 0; i < levelSize; i++)
+        {
+            for (int j = 0; j < levelSize; j++)
+            {
+                if (buildWall[i, j] != viewWall[i, j]) return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void SetViewWall(int[,] level)
+    {
+        viewWall = level; 
     }
 
     void RemovePickedUpCube()
@@ -204,7 +255,7 @@ public class BuildWall : MonoBehaviour
             {
                 if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<Cube>().currentZone != "BuildWall")
                 {
-                    Debug.Log("A cube was removed...");
+                    //Debug.Log("A cube was removed...");
                     buildWallArr[i, j] = null;
                     PushCubesDown(i, j);
                     DeleteMirrodCube(i, j);
@@ -217,7 +268,7 @@ public class BuildWall : MonoBehaviour
     {
         for (int i = row; i < levelSize; i++)
         {
-            Debug.Log("Col: " + col + ", Row: " + row + ", i: " + i);
+            //Debug.Log("Col: " + col + ", Row: " + row + ", i: " + i);
             // Checks if the array is a cube
             if (i > 0 && i < buildWallArr.Length && buildWallArr[col, i] != null)
             {
