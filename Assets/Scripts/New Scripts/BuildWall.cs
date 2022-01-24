@@ -133,7 +133,7 @@ public class BuildWall : MonoBehaviour
             box.GetComponent<Cube>().currentZone = "BuildWall";
             box.GetComponent<Cube>().SetZoneToBuild();
             box.GetComponent<Cube>().buildWallTargetPos = newLocation;
-            box.GetComponent<BoxCollider>().enabled = false;
+            //box.GetComponent<BoxCollider>().enabled = false;
 
             MirrorBuildWalls(col, nextFreeRow, box);
         }
@@ -156,7 +156,7 @@ public class BuildWall : MonoBehaviour
             newLocation += otherBuildWall.transform.up * row;
 
             newBox.GetComponent<Cube>().buildWallTargetPos = newLocation;
-            newBox.GetComponent<BoxCollider>().enabled = false;
+            //newBox.GetComponent<BoxCollider>().enabled = false;
             newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 
             //buildWallArr[col, row] = box;

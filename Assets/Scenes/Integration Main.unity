@@ -18750,7 +18750,7 @@ Transform:
   - {fileID: 2030533058}
   - {fileID: 557783447}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252398306
 GameObject:
@@ -35639,7 +35639,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &539570748 stripped
 GameObject:
@@ -69789,7 +69789,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972963566
 GameObject:
@@ -86372,7 +86372,7 @@ PrefabInstance:
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
@@ -86393,6 +86393,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Regular Blue Cube (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a, type: 3}
@@ -95278,7 +95283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1477072839
 GameObject:
@@ -95555,7 +95560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1505670988
 PrefabInstance:
@@ -96071,7 +96076,7 @@ PrefabInstance:
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
@@ -96092,6 +96097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Regular Blue Cube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a, type: 3}
@@ -105679,7 +105689,7 @@ PrefabInstance:
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
@@ -105700,6 +105710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Regular Blue Cube (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a, type: 3}
@@ -112407,7 +112422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1925887812
 PrefabInstance:
@@ -113431,7 +113446,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955329819
 GameObject:
@@ -113820,7 +113835,7 @@ PrefabInstance:
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 4892660766208822754, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
         type: 3}
@@ -113841,6 +113856,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Regular Blue Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a, type: 3}
