@@ -160,8 +160,15 @@ public class Cube : XRGrabInteractable
         }
         else
         {
-            Debug.Log("destory this cube");
-            PhotonNetwork.Destroy(this.gameObject);
+            if (GameManager.instance.playerCount == 2)
+            {
+                Debug.Log("destory this cube");
+                PhotonNetwork.Destroy(this.gameObject);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
         //    }
         //}
