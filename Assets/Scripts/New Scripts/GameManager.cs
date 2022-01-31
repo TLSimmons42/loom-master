@@ -98,7 +98,7 @@ public class GameManager : Singleton<GameManager>
         {
             case "easy":
                 gameDiff = 1;
-                break;
+                   break;
 
             case "medium":
                 gameDiff = 2;
