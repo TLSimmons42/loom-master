@@ -15,8 +15,8 @@ namespace ViveSR
                 [SerializeField] private LineRenderer GazeRayRenderer;
                 private static EyeData eyeData = new EyeData();
                 private bool eye_callback_registered = false;
-                public Vector3 GazeDirectionCombined;
 
+                public Vector3 GazeDirectionCombined;
                 private void Start()
                 {
                     if (!SRanipal_Eye_Framework.Instance.EnableEye)
