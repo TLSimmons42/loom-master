@@ -63151,7 +63151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ff1bceb4b0d0844bd2a9a2dfb071e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gazerayData: {fileID: 0}
+  gazerayData: {fileID: 1824223530}
   currentRightEyePupilSize: 0
   currentLeftEyePupilSize: 0
 --- !u!1 &825801239
@@ -99307,15 +99307,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -99335,6 +99335,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4879914434278830, guid: f676e25d0fcd1ec4fa22af3017316de9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114214629311031788, guid: f676e25d0fcd1ec4fa22af3017316de9,
+        type: 3}
+      propertyPath: EnableEyeDataCallback
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114214629311031788, guid: f676e25d0fcd1ec4fa22af3017316de9,
+        type: 3}
+      propertyPath: EnableEyeVersion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -110965,6 +110975,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1824223528}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1824223530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114366848731431556, guid: 95145ad4fe8448d4ebdcf3760752e2e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1824223528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccb4b314d213914096a0f83e72ae5eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1828365959
 PrefabInstance:
   m_ObjectHideFlags: 0
