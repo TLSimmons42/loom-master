@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -29646,13 +29646,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380159249}
-  m_LocalRotation: {x: 0, y: 0.9914449, z: 0, w: 0.13052626}
+  m_LocalRotation: {x: 0, y: -0.13052624, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 165, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!1001 &386391410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30213,6 +30213,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: right ray
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340444503886700235, guid: 008cb725957c29f4a9050d9dcd39f72a,
+        type: 3}
+      propertyPath: m_LineLength
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295710434285750444, guid: 008cb725957c29f4a9050d9dcd39f72a,
+        type: 3}
+      propertyPath: m_LineLength
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7225740642353668131, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}

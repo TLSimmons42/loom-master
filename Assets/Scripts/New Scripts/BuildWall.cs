@@ -173,7 +173,7 @@ public class BuildWall : MonoBehaviour
     {
         int[,] intArr = new int[levelSize, levelSize];
 
-        for (int i = 0; i < levelSize; i++)
+        for (int i = levelSize - 1; i >= 0; i--)
         {
             for (int j = 0; j < levelSize; j++)
             {
@@ -209,18 +209,18 @@ public class BuildWall : MonoBehaviour
 
     void DebugPrint2DArray(int[,] arr)
     {
-        //Debug.Log("Start");
+        Debug.Log("Start");
         for (int i = 0; i < levelSize; i++)
         {
             string line = "";
             for (int j = 0; j < levelSize; j++)
             {
-                line += arr[i,j].ToString();
+                line += arr[j,i].ToString();
                 
             }
-            //Debug.Log(line);
+            Debug.Log(line);
         }
-        //Debug.Log("End");
+        Debug.Log("End");
     }
 
     void ConsoleCheckBuildWall()
