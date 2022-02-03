@@ -163,8 +163,8 @@ public class Cube : XRGrabInteractable
         {
             if (GameManager.instance.playerCount == 2)
             {
-                Debug.Log("destory this cube");
-                PhotonNetwork.Destroy(this.gameObject);
+                //Debug.Log("destory this cube");
+                //PhotonNetwork.Destroy(this.gameObject);
             }
             else
             {

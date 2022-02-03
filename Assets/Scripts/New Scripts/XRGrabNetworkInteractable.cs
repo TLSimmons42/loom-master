@@ -47,6 +47,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             {
                 Debug.Log("gold cube zone change");
                 cube.currentZone = cube.NoZone;
+                //PlayerGrab();
             }
 
         }
@@ -67,6 +68,19 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
                 PlayerGrab();
             }
         }
+    }
+
+    protected override void OnSelectExited(XRBaseInteractor interactor)
+    {
+        if (cube.currentZone == cube.BuildWallZone)
+        {
+            Debug.Log("In the build wall");
+        }else{
+            Debug.Log("destory this cube");
+            PhotonNetwork.Destroy(this.gameObject);
+        }
+
+        
     }
 
     public void PlayerGrab()
