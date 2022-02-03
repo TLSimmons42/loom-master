@@ -12,6 +12,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     private PhotonView photonView;
     Cube cube;
 
+    private int playersHoldingCube = 0;
+
     void Start()
     {
         photonView = GetComponent<PhotonView>();
@@ -32,21 +34,36 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         Debug.Log("the tag is: " + interactor.transform.parent.gameObject.tag);
         Debug.Log("the NAME is: " + interactor.transform.parent.parent.gameObject.name);
 
-        if (interactor.transform.parent.parent.gameObject.tag == "P1")
-        //if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
+        if (gameObject.tag == "gold cube")
+        {
+            Debug.Log("gold cube was hit");
+            playersHoldingCube++;
+            if (playersHoldingCube == 2)
+            {
+                // spawn gold half
+                NetworkManager.Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("gold cube zone change");
+                cube.currentZone = cube.NoZone;
+            }
+
+        }
+        else if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
             Debug.Log("teir 1 pass");
             if (gameObject.tag == "red cube" || gameObject.tag == "invis cube")
             {
-                Debug.Log("host grabbed cube");
+                Debug.Log(gameObject.tag + " was grabbed");
                 PlayerGrab();
             }
         }
-        if (interactor.transform.parent.parent.gameObject.tag == "P2" )
+        if (interactor.transform.parent.parent.gameObject.tag == "P2")
         {
             if (gameObject.tag == "blue cube" || gameObject.tag == "invis cube")
             {
-                Debug.Log("host grabbed cube");
+                Debug.Log(gameObject.tag + " was grabbed");
                 PlayerGrab();
             }
         }

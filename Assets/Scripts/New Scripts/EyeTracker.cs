@@ -58,7 +58,7 @@ public class EyeTracker : MonoBehaviour
         pupil_diameter = verboseData.left.pupil_diameter_mm;
 
 
-        Debug.Log("Left eye size: " + pupil_diameter);
+        //Debug.Log("Left eye size: " + pupil_diameter);
 
 
 

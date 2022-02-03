@@ -523,6 +523,7 @@ MonoBehaviour:
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
   currentZone: 
+  playersHoldingCube: 0
   playWallZone: PlayWall
   BuildWallZone: BuildWall
   isHeld: 0
