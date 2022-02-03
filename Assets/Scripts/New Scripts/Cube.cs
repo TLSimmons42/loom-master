@@ -114,6 +114,7 @@ public class Cube : XRGrabInteractable
 
             if(gameObject.tag == "gold cube")
             {
+                Debug.Log("gold cube was hit");
                 playersHoldingCube++;
                 if(playersHoldingCube== 2)
                 {
@@ -122,15 +123,15 @@ public class Cube : XRGrabInteractable
                 }
                 else
                 {
+                    Debug.Log("gold cube zone change");
                     currentZone = NoZone;
                 }
-                Debug.Log("gold cube was hit");
 
             }else if (interactor.transform.parent.parent.gameObject.tag == "P1")
                 {
                     Debug.Log("teir 1 pass");
                     if (gameObject.tag == "red cube" || gameObject.tag == "invis cube") {
-                        Debug.Log("host grabbed cube");
+                        Debug.Log(gameObject.tag + " was grabbed");
                         PlayerGrab();
                     }
                 }
@@ -138,8 +139,8 @@ public class Cube : XRGrabInteractable
                 {
                     if (gameObject.tag == "blue cube" || gameObject.tag == "invis cube")
                     {
-                        Debug.Log("cliant grabbed cube");
-                        PlayerGrab();
+                    Debug.Log(gameObject.tag + " was grabbed");
+                    PlayerGrab();
                     }
                 }
         }
