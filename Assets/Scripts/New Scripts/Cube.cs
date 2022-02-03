@@ -14,6 +14,7 @@ public class Cube : XRGrabInteractable
     public Vector3 playWallTargetPos, buildWallTargetPos;
 
     public string currentZone;
+    public int playersHoldingCube = 0;
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
@@ -95,7 +96,6 @@ public class Cube : XRGrabInteractable
     }
 
 
-
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
@@ -107,53 +107,53 @@ public class Cube : XRGrabInteractable
             Debug.Log("single player grab");
             PlayerGrab();
         }
-        else if (GameManager.instance.playerCount > 1)  // this will grab the blocks assigned to you 
+        else if (GameManager.instance.playerCount > 1)   
         {
             Debug.Log("the tag is: "+interactor.transform.parent.gameObject.tag);
             Debug.Log("the NAME is: " + interactor.transform.parent.parent.gameObject.name);
 
-            if (interactor.transform.parent.parent.gameObject.tag == "P1")
-            //if (interactor.transform.parent.gameObject.tag == "P1" && (gameObject.tag == "red cube" || gameObject.tag == "invis cube"))
+            if(gameObject.tag == "gold cube")
             {
-                Debug.Log("teir 1 pass");
-                if (gameObject.tag == "red cube" || gameObject.tag == "invis cube") {
-                    Debug.Log("host grabbed cube");
-                    PlayerGrab();
+                playersHoldingCube++;
+                if(playersHoldingCube== 2)
+                {
+                    // spawn gold half
+                    NetworkManager.Destroy(gameObject);
                 }
-            }
-            if (interactor.transform.parent.parent.gameObject.tag == "P2" && (gameObject.tag == "blue cube" || gameObject.tag == "invis cube"))
-            {
-                Debug.Log("cliant grabbed cube");
-                PlayerGrab();
-            }
+                else
+                {
+                    currentZone = NoZone;
+                }
+                Debug.Log("gold cube was hit");
+
+            }else if (interactor.transform.parent.parent.gameObject.tag == "P1")
+                {
+                    Debug.Log("teir 1 pass");
+                    if (gameObject.tag == "red cube" || gameObject.tag == "invis cube") {
+                        Debug.Log("host grabbed cube");
+                        PlayerGrab();
+                    }
+                }
+                if (interactor.transform.parent.parent.gameObject.tag == "P2")
+                {
+                    if (gameObject.tag == "blue cube" || gameObject.tag == "invis cube")
+                    {
+                        Debug.Log("cliant grabbed cube");
+                        PlayerGrab();
+                    }
+                }
         }
 
     }
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
-        //if (GameManager.instance.playerCount == 2)
-        //{
-        //    Debug.Log("MEOW");
-        //    if (GameManager.instance.host)
-        //    {
-        //        Debug.Log("droped Network cube");
-        //        collider.isTrigger = false;
-        //        if (currentZone == BuildWallZone)
-        //        {
-        //            Debug.Log("In the build wall");
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("destory this cube");
-        //            PhotonNetwork.Destroy(gameObject);
-        //        }
-        //    }
-        //}
-        //else
-        //{
 
-            Debug.Log("droped cube");
-            collider.isTrigger = false;
+            
+        Debug.Log("droped cube");
+        playersHoldingCube--;
+        collider.isTrigger = false;
+
+
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
