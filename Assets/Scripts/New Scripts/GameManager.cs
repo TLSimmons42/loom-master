@@ -6,6 +6,7 @@ using Doozy.Engine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -396,5 +397,23 @@ public class GameManager : Singleton<GameManager>
         VRrig.tag = "P1";
     }
 
+    public void SubmitButton()
+    {
+        if (buildWall1.GetComponent<BuildWall>().CheckBuildWall())
+        {
+            // The build wall matches the view wall
+            TimerScript.instance.DisplayText("You win!", 5);
+            TimerScript.instance.record = false;
+        }
+        else
+        {
+            // The build wall DOESN'T match the view wall
+            TimerScript.instance.DisplayText("Doesn't match", 5);
+        }
+    }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

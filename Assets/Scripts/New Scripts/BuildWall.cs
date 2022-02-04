@@ -227,7 +227,7 @@ public class BuildWall : MonoBehaviour
     {
         Debug.Log("Does the build wall match the view wall?: " + CheckBuildWall());
     }
-    bool CheckBuildWall()
+    public bool CheckBuildWall()
     {
         int[,] buildWall = CubeToInt();
 

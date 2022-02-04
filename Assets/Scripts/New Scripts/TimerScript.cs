@@ -4,36 +4,40 @@ using UnityEngine;
 
 public class TimerScript : Singleton<TimerScript>
 {
-    public float currentTime = 0; // in seconds
-    public float allottedTime = 300; // in seconds
+    public float currentTime = 300; // in seconds
+    public float startingTime = 300; // in seconds
     public bool record = false;
     bool paused = false;
-    bool timeUp = false;
-    TextMesh txt;
+    //bool timeUp = false;
+    public TextMesh txt;
+    float textTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentTime = startingTime;
         txt = GetComponent<TextMesh>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        textTime -= Time.deltaTime;
         if (record)
         {
-            if (!paused) currentTime += Time.deltaTime;
-            timeUp = isTimeUp();
-            DisplayTimer();
+            if (!paused) currentTime -= Time.deltaTime;
+            //timeUp = isTimeUp();
+            if (currentTime <= 0) DisplayTimer();
         }
 
     }
 
     void DisplayTimer()
     {
-        if (timeUp)
+        if (isTimeUp())
         {
-            txt.text = "Time's Up!";
+            //txt.text = "Time's Up!";
+            DisplayText("Time's Up!", 5);
         }
         else
         {
@@ -56,7 +60,7 @@ public class TimerScript : Singleton<TimerScript>
 
     public bool isTimeUp()
     {
-        if (currentTime >= allottedTime)
+        if (currentTime <= 0)
         {
             GameManager.instance.Gameover();
             Debug.Log("Time's up!");
@@ -70,6 +74,12 @@ public class TimerScript : Singleton<TimerScript>
 
     public void changeAllottedTime(float newTime)
     {
-        allottedTime = newTime;
+        startingTime = newTime;
+    }
+
+    public void DisplayText(string msg, float time)
+    {
+        textTime = time;
+        txt.text = msg;
     }
 }

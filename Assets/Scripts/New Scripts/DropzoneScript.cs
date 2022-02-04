@@ -29,6 +29,7 @@ public class DropzoneScript : MonoBehaviour
         if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && other.GetComponent<Cube>().currentZone != "BuildWall")
         {
             Debug.Log("drop zone script");
+            other.transform.rotation = transform.rotation;
             buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
         }
     }
