@@ -209,7 +209,7 @@ public class BuildWall : MonoBehaviour
 
     void DebugPrint2DArray(int[,] arr)
     {
-        Debug.Log("Start");
+        //Debug.Log("Start");
         for (int i = 0; i < levelSize; i++)
         {
             string line = "";
@@ -218,9 +218,9 @@ public class BuildWall : MonoBehaviour
                 line += arr[j,i].ToString();
                 
             }
-            Debug.Log(line);
+           // Debug.Log(line);
         }
-        Debug.Log("End");
+        //Debug.Log("End");
     }
 
     void ConsoleCheckBuildWall()

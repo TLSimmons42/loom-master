@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using Photon.Pun;
 
 public class XRGrabNetworkInteractable : XRGrabInteractable
 {
 
     private BoxCollider collider;
     private PhotonView photonView;
+    private Transform currentPos;
     Cube cube;
 
     private int playersHoldingCube = 0;
@@ -81,6 +81,16 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         }
 
         
+    }
+
+    protected override void OnHoverEntered(XRBaseInteractor interactor)
+    {
+
+    }
+
+    public void GoldBlockHold(Transform obj)
+    {
+        //gameObject.transform.position = 
     }
 
     public void PlayerGrab()

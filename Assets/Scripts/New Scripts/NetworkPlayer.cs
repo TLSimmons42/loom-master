@@ -26,6 +26,8 @@ public class NetworkPlayer : MonoBehaviour
     private Transform rightHandRayRig;
     private Transform leftHandRayRig;
 
+    public float timingPulse= 0;
+
 
     void Start()
     {

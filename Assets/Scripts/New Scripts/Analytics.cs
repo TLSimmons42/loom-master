@@ -32,22 +32,26 @@ public class Analytics : Singleton<Analytics>
     }
 
 
-    public void WriteData(string eventString, string participant, string sessionTime)
+    public void WriteData(string eventString, string participant, string sessionTime, string testX, string testY, string testZ)
     {
         DataPoint data = new DataPoint();
-        data.timestamp = DateTime.Now.ToString();
+        data.timestamp = DateTime.Now.Ticks.ToString();
         data.participant = "placeholder";
         data.task = "Loom";
         data.sessionTime = sessionTime;
         data.eventName = eventString;
-        
+        data.testX = testX;
+        data.testY = testY;
+        data.testZ = testZ;
+
+
 
         string jsonString = JsonUtility.ToJson(data);
         string csvstring = String.Join(",", GetDataArray(data));
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath))
         {
-            File.WriteAllText(csvPath, "TimeStamp,participant,Experiment,SessionTime,TrialType,Event");
+            File.WriteAllText(csvPath, "TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos");
         }
         File.AppendAllText(csvPath, "\n");
         File.AppendAllText(filePath, jsonString);
@@ -62,6 +66,10 @@ public class Analytics : Singleton<Analytics>
         stringlist.Add(data.task);
         stringlist.Add(data.sessionTime);
         stringlist.Add(data.eventName);
+        stringlist.Add(data.testX);
+        stringlist.Add(data.testY);
+        stringlist.Add(data.testZ);
+
 
         return stringlist.ToArray();
     }
@@ -73,6 +81,10 @@ public class Analytics : Singleton<Analytics>
         public string task;
         public string sessionTime;
         public string eventName;
+        public string testX;
+        public string testY;
+        public string testZ;
+
 
     }
 }
