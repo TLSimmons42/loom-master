@@ -120,8 +120,9 @@ public class BuildWall : MonoBehaviour
 
         else
         {
+            box.transform.rotation = this.transform.rotation;
             //Debug.Log("calculating the build wall pos for the cube");
-            box.transform.position = transform.position+ (transform.right * -col) + (transform.up * (levelSize + 1));
+            box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
 
             Vector3 newLocation = transform.position;
             newLocation += transform.right * -col;
@@ -133,6 +134,7 @@ public class BuildWall : MonoBehaviour
             box.GetComponent<Cube>().currentZone = "BuildWall";
             box.GetComponent<Cube>().SetZoneToBuild();
             box.GetComponent<Cube>().buildWallTargetPos = newLocation;
+            box.GetComponent<Cube>().buildWallTargetRotation = this.transform.rotation;
             //box.GetComponent<BoxCollider>().enabled = false;
 
             MirrorBuildWalls(col, nextFreeRow, box);

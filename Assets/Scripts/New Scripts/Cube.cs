@@ -12,6 +12,7 @@ public class Cube : XRGrabInteractable
     private BoxCollider collider;
 
     public Vector3 playWallTargetPos, buildWallTargetPos;
+    public Quaternion buildWallTargetRotation;
 
     public string currentZone;
     public int playersHoldingCube = 0;
@@ -77,18 +78,30 @@ public class Cube : XRGrabInteractable
         //if(currentZone == playWallZone && transform.position == gameManager.PlaywallDropPoints[0].transform.position)
         
         transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime * playZoneFallSpeed);
+        transform.rotation = buildWallTargetRotation;
     }
 
     public void MoveCubeBuildWall()
     {
         //Debug.Log("moving the block on the BuildWall");
         transform.position = Vector3.MoveTowards(transform.position, buildWallTargetPos, Time.deltaTime * playZoneFallSpeed);
+        transform.rotation = buildWallTargetRotation;
     }
 
     public void PlayerGrab()
     {
         currentZone = NoZone;
         collider.isTrigger = true;
+        //rb.detectCollisions = false;
+        //gameObject.layer = 2;
+        //isHeld = true;
+        //Debug.Log("GRABBED cube");
+    }
+
+    public void PlayerDrop()
+    {
+        currentZone = NoZone;
+        collider.isTrigger = false;
         //rb.detectCollisions = false;
         //gameObject.layer = 2;
         //isHeld = true;
@@ -152,6 +165,7 @@ public class Cube : XRGrabInteractable
             
         Debug.Log("droped cube");
         playersHoldingCube--;
+        //PlayerDrop();
         collider.isTrigger = false;
 
 
@@ -184,6 +198,7 @@ public class Cube : XRGrabInteractable
         if(other.tag == "DropZone")
         {
             Debug.Log("cube in the dropzone");
+            
            // currentZone = BuildWallZone;
         }
         if (other.tag == "cube despawner")

@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
 {
 
     private float cubeDropTimer = 1.5f;
-    
+
     public GameObject[] PlaywallDropPoints;
     public GameObject[] PlaywallEndPoints;
 
@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         strGameDiff = PlayerPrefs.GetString("gameDifficulty");
         playerCount = PlayerPrefs.GetInt("playerCount");
         Debug.Log("the player count is: " + playerCount);
-        
+
         ConvertGameDiffToInt(strGameDiff); //gets game difficulty 
         MakeViewWall(); // detects # of players and spawns appropriate view walls
         if (playerCount == 2)
@@ -99,7 +99,7 @@ public class GameManager : Singleton<GameManager>
         {
             case "easy":
                 gameDiff = 1;
-                   break;
+                break;
 
             case "medium":
                 gameDiff = 2;
@@ -215,6 +215,7 @@ public class GameManager : Singleton<GameManager>
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
                     //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;
+                    spawnedCube.GetComponent<BoxCollider>().enabled = false;
 
                     if (l == 0)
                     {
@@ -229,7 +230,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    
+
 
     // this will be called durring the game in order to build a new cube on the Play Wall
     public IEnumerator BuildNewCube()
@@ -243,7 +244,7 @@ public class GameManager : Singleton<GameManager>
 
             if (cubeChoice == 0)
             {
-                cube = Instantiate(RedCube,PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity) ;
+                cube = Instantiate(RedCube, PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
             }
             if (cubeChoice == 1)
             {
@@ -319,7 +320,7 @@ public class GameManager : Singleton<GameManager>
     {
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = true;
-        if(playerCount == 2)
+        if (playerCount == 2)
         {
             MultiplayerStart();
         }
@@ -359,7 +360,7 @@ public class GameManager : Singleton<GameManager>
                 numOfPlayersInGame++;
                 if (Players.Count == 2)
                 {
-                   // allPlayersConnected = true;
+                    // allPlayersConnected = true;
                     host = true;
                     this.tag = "host";
                     VRrig.tag = "P1";
@@ -367,7 +368,7 @@ public class GameManager : Singleton<GameManager>
                     VRrig.transform.position = playerPos2.transform.position;
                     Debug.Log("the host has been set");
                 }
-                else if(Players.Count == 1)
+                else if (Players.Count == 1)
                 {
                     host = false;
                     this.tag = "cliant";
@@ -404,6 +405,7 @@ public class GameManager : Singleton<GameManager>
             // The build wall matches the view wall
             TimerScript.instance.DisplayText("You win!", 5);
             TimerScript.instance.record = false;
+            Gameover();
         }
         else
         {
@@ -415,5 +417,15 @@ public class GameManager : Singleton<GameManager>
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

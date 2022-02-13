@@ -25,9 +25,10 @@ public class TimerScript : Singleton<TimerScript>
         textTime -= Time.deltaTime;
         if (record)
         {
+
             if (!paused) currentTime -= Time.deltaTime;
             //timeUp = isTimeUp();
-            if (currentTime <= 0) DisplayTimer();
+            if (textTime <= 0) DisplayTimer();
         }
 
     }
@@ -47,7 +48,7 @@ public class TimerScript : Singleton<TimerScript>
 
     public void ResetTime()
     {
-        currentTime = 0;
+        currentTime = startingTime;
     }
 
     public string TimeToString()

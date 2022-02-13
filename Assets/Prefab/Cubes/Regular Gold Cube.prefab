@@ -435,13 +435,19 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
-  gameManager: {fileID: 0}
   playWallTargetPos: {x: 0, y: 0, z: 0}
+  buildWallTargetPos: {x: 0, y: 0, z: 0}
   currentZone: 
+  playersHoldingCube: 0
   playWallZone: PlayWall
   BuildWallZone: BuildWall
-  PlayerZone: Player
+  isHeld: 0
   NoZone: No Zone
+  rightRay: {fileID: 0}
+  leftRay: {fileID: 0}
+  rightLineRenderer: {fileID: 0}
+  leftLineRenderer: {fileID: 0}
+  leftRayPoints: []
 --- !u!54 &6165980163844815590
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -456,7 +462,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &3443443234530563578
 GameObject:
