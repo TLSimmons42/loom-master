@@ -16,11 +16,13 @@ public class Cube : XRGrabInteractable
 
     public string currentZone;
     public int playersHoldingCube = 0;
+    public Vector3 goldCubeHoldPos;
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
     public bool isHeld = false;
     public string NoZone = "No Zone";
+    public string holdGold = "Hold Gold";
 
     private float playZoneFallSpeed = 2f;
 
@@ -60,6 +62,10 @@ public class Cube : XRGrabInteractable
 
             rightLineRenderer.GetPositions(rightRayPoints);
             gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+        }
+        if(currentZone == holdGold)
+        {
+            transform.position = goldCubeHoldPos;
         }
         
     }
@@ -106,6 +112,11 @@ public class Cube : XRGrabInteractable
         //gameObject.layer = 2;
         //isHeld = true;
         //Debug.Log("GRABBED cube");
+    }
+    public void GoldHold(Vector3 CubePos)
+    {
+        currentZone = holdGold;
+        goldCubeHoldPos = CubePos;
     }
 
 
@@ -194,10 +205,9 @@ public class Cube : XRGrabInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+
         if(other.tag == "DropZone")
         {
-            Debug.Log("cube in the dropzone");
             
            // currentZone = BuildWallZone;
         }

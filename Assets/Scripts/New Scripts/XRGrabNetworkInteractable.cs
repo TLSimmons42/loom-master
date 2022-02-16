@@ -28,7 +28,6 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
-        photonView.RequestOwnership();
         base.OnSelectEntered(interactor);
 
         Debug.Log("the tag is: " + interactor.transform.parent.gameObject.tag);
@@ -46,7 +45,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             else
             {
                 Debug.Log("gold cube zone change");
-                cube.currentZone = cube.NoZone;
+
+                cube.GoldHold(gameObject.transform.position);
                 //PlayerGrab();
             }
 
@@ -95,6 +95,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public void PlayerGrab()
     {
+        photonView.RequestOwnership();
         cube.currentZone = cube.NoZone;
         collider.isTrigger = true;
         //rb.detectCollisions = false;

@@ -522,12 +522,15 @@ MonoBehaviour:
   m_RetainTransformParent: 1
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
+  buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   currentZone: 
   playersHoldingCube: 0
+  goldCubeHoldPos: {x: 0, y: 0, z: 0}
   playWallZone: PlayWall
   BuildWallZone: BuildWall
   isHeld: 0
   NoZone: No Zone
+  holdGold: 
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
   rightLineRenderer: {fileID: 0}
