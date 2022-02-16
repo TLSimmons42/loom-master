@@ -30,9 +30,9 @@ public class BuildWall : MonoBehaviour
     void Update()
     {
         RemovePickedUpCube();
-        DebugPrint2DArray(CubeToInt());
-        DebugPrint2DArray(viewWall);
-        ConsoleCheckBuildWall();
+        //DebugPrint2DArray(CubeToInt());
+        //DebugPrint2DArray(viewWall);
+        //ConsoleCheckBuildWall();
     }
 
     void ConvertGameDiffToInt(string strDiff)
@@ -111,6 +111,7 @@ public class BuildWall : MonoBehaviour
 
     public void DropBox(GameObject box, int col)
     {
+        box.GetComponent<BoxCollider>().isTrigger = false;
         int nextFreeRow = GetNextFreeRow(col);
 
         if (nextFreeRow == -1)

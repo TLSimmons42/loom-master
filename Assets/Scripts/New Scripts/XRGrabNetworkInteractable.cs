@@ -30,8 +30,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         base.OnSelectEntered(interactor);
 
-        Debug.Log("the tag is: " + interactor.transform.parent.gameObject.tag);
-        Debug.Log("the NAME is: " + interactor.transform.parent.parent.gameObject.name);
+
 
         if (gameObject.tag == "gold cube")
         {
@@ -39,20 +38,32 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             playersHoldingCube++;
             if (playersHoldingCube == 2)
             {
-                // spawn gold half
-                NetworkManager.Destroy(gameObject);
+                if (interactor.transform.parent.parent.gameObject.tag == "P1")
+                {
+
+                    PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                    NetworkManager.Destroy(gameObject);
+                }
+                else
+                {
+                    PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                    NetworkManager.Destroy(gameObject);
+                }
             }
             else
             {
                 Debug.Log("gold cube zone change");
-
                 cube.GoldHold(gameObject.transform.position);
-                //PlayerGrab();
             }
 
         }
         else if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
+            if(gameObject.tag == "left gold cube" || gameObject.tag == "left gold cube")
+            {
+                PlayerGrabGoldHalf();
+            }
+
             Debug.Log("teir 1 pass");
             if (gameObject.tag == "red cube" || gameObject.tag == "invis cube")
             {
@@ -98,9 +109,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         photonView.RequestOwnership();
         cube.currentZone = cube.NoZone;
         collider.isTrigger = true;
-        //rb.detectCollisions = false;
-        //gameObject.layer = 2;
-        //isHeld = true;
-        //Debug.Log("GRABBED cube");
+    }
+    public void PlayerGrabGoldHalf()
+    {
+        cube.currentZone = cube.NoZone;
+        collider.isTrigger = true;
     }
 }

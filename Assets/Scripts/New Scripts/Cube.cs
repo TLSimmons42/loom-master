@@ -135,38 +135,6 @@ public class Cube : XRGrabInteractable
         {
             Debug.Log("did nothing in the cube script");
             
-
-            //if(gameObject.tag == "gold cube")
-            //{
-            //    Debug.Log("gold cube was hit");
-            //    playersHoldingCube++;
-            //    if(playersHoldingCube== 2)
-            //    {
-            //        // spawn gold half
-            //        NetworkManager.Destroy(gameObject);
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("gold cube zone change");
-            //        currentZone = NoZone;
-            //    }
-
-            //}else if (interactor.transform.parent.parent.gameObject.tag == "P1")
-            //    {
-            //        Debug.Log("teir 1 pass");
-            //        if (gameObject.tag == "red cube" || gameObject.tag == "invis cube") {
-            //            Debug.Log(gameObject.tag + " was grabbed");
-            //            PlayerGrab();
-            //        }
-            //    }
-            //    if (interactor.transform.parent.parent.gameObject.tag == "P2")
-            //    {
-            //        if (gameObject.tag == "blue cube" || gameObject.tag == "invis cube")
-            //        {
-            //        Debug.Log(gameObject.tag + " was grabbed");
-            //        PlayerGrab();
-            //        }
-            //    }
         }
 
     }
