@@ -7,13 +7,37 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class XRGrabNetworkInteractable : XRGrabInteractable
 {
 
+
+    public Vector3 playWallTargetPos, buildWallTargetPos;
+    public Quaternion buildWallTargetRotation;
+
+    public string currentZone;
+    public int playersHoldingCube = 0;
+    public Vector3 goldCubeHoldPos;
+
+    public string playWallZone = "PlayWall";
+    public string BuildWallZone = "BuildWall";
+    public bool isHeld = false;
+    public string NoZone = "No Zone";
+    public string holdGold = "Hold Gold";
+
     private BoxCollider collider;
     private PhotonView photonView;
     private Transform currentPos;
     Cube cube;
+    private Rigidbody rb;
 
-    private int playersHoldingCube = 0;
+    private float playZoneFallSpeed = 2f;
 
+    public GameObject rightRay;
+    public GameObject leftRay;
+
+    public LineRenderer rightLineRenderer;
+    public LineRenderer leftLineRenderer;
+
+    private Vector3[] rightRayPoints = new Vector3[2];
+    public Vector3[] leftRayPoints;
+ 
     void Start()
     {
         photonView = GetComponent<PhotonView>();
@@ -23,7 +47,53 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     void Update()
     {
+        if (currentZone == playWallZone)
+        {
+            MoveCubePlayWall();
+        }
 
+        if (currentZone == BuildWallZone)
+        {
+            MoveCubeBuildWall();
+        }
+        if (currentZone == NoZone)
+        {
+            rightLineRenderer.GetPositions(rightRayPoints);
+            gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+        }
+        if (currentZone == holdGold)
+        {
+            transform.position = goldCubeHoldPos;
+        }
+    }
+
+    public void SetZoneToPlay()
+    {
+        currentZone = playWallZone;
+    }
+    public void SetZoneToBuild()
+    {
+        Debug.Log("Changing to build zone...");
+        currentZone = BuildWallZone;
+    }
+    public void MoveCubePlayWall()
+    {
+        //if(currentZone == playWallZone && transform.position == gameManager.PlaywallDropPoints[0].transform.position)
+
+        transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime * playZoneFallSpeed);
+        transform.rotation = buildWallTargetRotation;
+    }
+    public void MoveCubeBuildWall()
+    {
+        //Debug.Log("moving the block on the BuildWall");
+        transform.position = Vector3.MoveTowards(transform.position, buildWallTargetPos, Time.deltaTime * playZoneFallSpeed);
+        transform.rotation = buildWallTargetRotation;
+    }
+
+    public void GoldHold(Vector3 CubePos)
+    {
+        currentZone = holdGold;
+        goldCubeHoldPos = CubePos;
     }
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -53,7 +123,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             else
             {
                 Debug.Log("gold cube zone change");
-                cube.GoldHold(gameObject.transform.position);
+                GoldHold(gameObject.transform.position);
             }
 
         }
@@ -114,5 +184,32 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         cube.currentZone = cube.NoZone;
         collider.isTrigger = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "DropZone")
+        {
+
+            // currentZone = BuildWallZone;
+        }
+        if (other.tag == "cube despawner")
+        {
+            if (GameManager.instance.playerCount == 2)
+            {
+                if (GameManager.instance.host)
+                {
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
+            }
+            else
+            {
+                Destroy(this.gameObject);
+
+            }
+
+            // Debug.Log("cube destroyed");
+        }
     }
 }

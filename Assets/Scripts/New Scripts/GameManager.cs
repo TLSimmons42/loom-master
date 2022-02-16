@@ -293,8 +293,8 @@ public class GameManager : Singleton<GameManager>
                 {
                     cube = PhotonNetwork.Instantiate("Network Neutral Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
                 }
-                cube.gameObject.GetComponent<Cube>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
-                cube.GetComponent<Cube>().SetZoneToPlay();
+                cube.gameObject.GetComponent<XRGrabNetworkInteractable>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
+                cube.GetComponent<XRGrabNetworkInteractable>().SetZoneToPlay();
 
             }
             yield return new WaitForSeconds(cubeDropTimer);
@@ -318,7 +318,7 @@ public class GameManager : Singleton<GameManager>
     //This will detect the number of players and start the game accordingly
     public void StartTheGame()
     {
-        //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+       // Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = true;
         if (playerCount == 2)
         {

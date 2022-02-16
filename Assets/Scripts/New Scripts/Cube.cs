@@ -113,11 +113,6 @@ public class Cube : XRGrabInteractable
         //isHeld = true;
         //Debug.Log("GRABBED cube");
     }
-    public void GoldHold(Vector3 CubePos)
-    {
-        currentZone = holdGold;
-        goldCubeHoldPos = CubePos;
-    }
 
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
