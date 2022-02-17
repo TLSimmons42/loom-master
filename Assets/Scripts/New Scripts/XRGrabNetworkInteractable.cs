@@ -193,6 +193,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     }
     public void PlayerGrabGoldHalf()
     {
+        photonView.RequestOwnership();
         currentZone = NoZone;
         collider.isTrigger = true;
     }
