@@ -166,7 +166,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     protected override void OnHoverEntered(XRBaseInteractor interactor)
     {
-
+        Debug.Log(gameObject.name + " has been hovered");
     }
 
     public void GoldBlockHold(Transform obj)

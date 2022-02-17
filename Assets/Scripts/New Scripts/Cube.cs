@@ -59,13 +59,8 @@ public class Cube : XRGrabInteractable
         }
         if(currentZone == NoZone)
         {
-
             rightLineRenderer.GetPositions(rightRayPoints);
             gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
-        }
-        if(currentZone == holdGold)
-        {
-            transform.position = goldCubeHoldPos;
         }
         
     }
@@ -104,15 +99,6 @@ public class Cube : XRGrabInteractable
         //Debug.Log("GRABBED cube");
     }
 
-    public void PlayerDrop()
-    {
-        currentZone = NoZone;
-        collider.isTrigger = false;
-        //rb.detectCollisions = false;
-        //gameObject.layer = 2;
-        //isHeld = true;
-        //Debug.Log("GRABBED cube");
-    }
 
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)

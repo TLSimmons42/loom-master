@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
-public class GoldCubeHalf : Singleton<GoldCubeHalf>
+public class GoldCubeHalf : XRGrabInteractable
 {
 
     public string currentZone;
