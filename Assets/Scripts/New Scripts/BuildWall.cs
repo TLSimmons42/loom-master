@@ -121,24 +121,46 @@ public class BuildWall : MonoBehaviour
 
         else
         {
-            box.transform.rotation = this.transform.rotation;
-            //Debug.Log("calculating the build wall pos for the cube");
-            box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
+            if (PlayerPrefs.GetInt("playerCount") == 1)
+            {
+                box.transform.rotation = this.transform.rotation;
+                //Debug.Log("calculating the build wall pos for the cube");
+                box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
 
-            Vector3 newLocation = transform.position;
-            newLocation += transform.right * -col;
-            newLocation += transform.up * nextFreeRow;
+                Vector3 newLocation = transform.position;
+                newLocation += transform.right * -col;
+                newLocation += transform.up * nextFreeRow;
 
-            buildWallArr[col, nextFreeRow] = box;
+                buildWallArr[col, nextFreeRow] = box;
 
-            //box.transform.position = newLocation;
-            box.GetComponent<Cube>().currentZone = "BuildWall";
-            box.GetComponent<Cube>().SetZoneToBuild();
-            box.GetComponent<Cube>().buildWallTargetPos = newLocation;
-            box.GetComponent<Cube>().buildWallTargetRotation = this.transform.rotation;
-            //box.GetComponent<BoxCollider>().enabled = false;
+                //box.transform.position = newLocation;
+                box.GetComponent<Cube>().currentZone = "BuildWall";
+                box.GetComponent<Cube>().SetZoneToBuild();
+                box.GetComponent<Cube>().buildWallTargetPos = newLocation;
+                box.GetComponent<Cube>().buildWallTargetRotation = this.transform.rotation;
+                //box.GetComponent<BoxCollider>().enabled = false;
+            }
+            else
+            {
+                box.transform.rotation = this.transform.rotation;
+                //Debug.Log("calculating the build wall pos for the cube");
+                box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
 
-            MirrorBuildWalls(col, nextFreeRow, box);
+                Vector3 newLocation = transform.position;
+                newLocation += transform.right * -col;
+                newLocation += transform.up * nextFreeRow;
+
+                buildWallArr[col, nextFreeRow] = box;
+
+                //box.transform.position = newLocation;
+                box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
+                box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+                box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+                box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
+                //box.GetComponent<BoxCollider>().enabled = false;
+                MirrorBuildWalls(col, nextFreeRow, box);
+            }
+            
         }
     }
 
@@ -150,15 +172,15 @@ public class BuildWall : MonoBehaviour
             //Debug.Log("Attempting to clone boxes...");
 
             GameObject newBox = Instantiate(clonedBox);
-            newBox.GetComponent<Cube>().currentZone = newBox.GetComponent<Cube>().BuildWallZone;
-            newBox.GetComponent<Cube>().SetZoneToBuild();
+            newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
+            newBox.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
 
 
             Vector3 newLocation = otherBuildWall.transform.position;
             newLocation += otherBuildWall.transform.right * -col;
             newLocation += otherBuildWall.transform.up * row;
 
-            newBox.GetComponent<Cube>().buildWallTargetPos = newLocation;
+            newBox.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
             //newBox.GetComponent<BoxCollider>().enabled = false;
             newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 

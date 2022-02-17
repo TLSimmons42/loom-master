@@ -6,7 +6,6 @@ TagManager:
   tags:
   - cube
   - projectile
-  - FxTemporaire
   - DropZone
   - one player button
   - two player button
@@ -18,8 +17,6 @@ TagManager:
   - blue cube
   - gold cube
   - invis cube
-  - left gold cube
-  - right gold cube
   - 1PCamera
   - 2PCamera
   - P1Head
@@ -59,6 +56,8 @@ TagManager:
   - host
   - P1
   - P2
+  - right gold cube
+  - left gold cube
   layers:
   - Default
   - TransparentFX
