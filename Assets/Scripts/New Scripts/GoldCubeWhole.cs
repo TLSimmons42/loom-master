@@ -78,12 +78,14 @@ public class GoldCubeWhole : XRSimpleInteractable
         {
             if (interactor.transform.parent.parent.gameObject.tag == "P1")
             {
-                PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                cube.GetComponent<XRGrabNetworkInteractable>().currentZone = cube.GetComponent<XRGrabNetworkInteractable>().NoZone;
                 PhotonNetwork.Destroy(gameObject);
             }
             else if (interactor.transform.parent.parent.gameObject.tag == "P2")
             {
-                PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                GameObject cube = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                cube.GetComponent<XRGrabNetworkInteractable>().currentZone = cube.GetComponent<XRGrabNetworkInteractable>().NoZone;
                 PhotonNetwork.Destroy(gameObject);
             }
         }
