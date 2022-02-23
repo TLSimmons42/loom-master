@@ -111,7 +111,7 @@ public class BuildWall : MonoBehaviour
     {
         for (int i = 0; i < buildWallArr.Length; i++)
         {
-            Debug.Log(i);
+
             //Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
 
             if (buildWallArr[col, i] == null)

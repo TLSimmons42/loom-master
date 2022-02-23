@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 6746971230763778720}
   - component: {fileID: 4619486869543748817}
   - component: {fileID: 6165980163844815590}
+  - component: {fileID: 8163413773293011809}
   m_Layer: 0
   m_Name: Regular Gold Cube
   m_TagString: gold cube
@@ -437,12 +438,15 @@ MonoBehaviour:
   m_RetainTransformParent: 1
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
+  buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   currentZone: 
   playersHoldingCube: 0
+  goldCubeHoldPos: {x: 0, y: 0, z: 0}
   playWallZone: PlayWall
   BuildWallZone: BuildWall
   isHeld: 0
   NoZone: No Zone
+  holdGold: Hold Gold
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
   rightLineRenderer: {fileID: 0}
@@ -464,6 +468,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8163413773293011809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285423848479979651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d854917d39e2f7d4588d9ef8c25d8bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: gold cube
 --- !u!1 &3443443234530563578
 GameObject:
   m_ObjectHideFlags: 0

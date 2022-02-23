@@ -26,6 +26,10 @@ public class EyeTracker : MonoBehaviour
     public VerboseData verboseData;
 
 
+    private Vector3[] LRpoints = new Vector3[2];
+    public GameObject endCollider;
+    LineRenderer LR;
+
 
     Vector3 SRCombinedPoint;
     Vector3 gazePoint;
@@ -37,8 +41,9 @@ public class EyeTracker : MonoBehaviour
         gazerayData = gazerayData.GetComponent<SRanipal_GazeRaySample>();
         rightEyeData = rightEye.right;
         leftEyeData = leftEye.left;
+        LR = gazerayData.GetComponent<LineRenderer>();
 
-        
+
 
         //ViveSR.anipal.Eye.SRanipal_Eye_API.GetEyeData(ref eye_data);
 
@@ -58,14 +63,14 @@ public class EyeTracker : MonoBehaviour
         pupil_diameter = verboseData.left.pupil_diameter_mm;
 
 
-        //Debug.Log("Left eye size: " + pupil_diameter);
-
+       // Debug.Log("Left eye size: " + pupil_diameter);
 
 
         SRCombinedPoint = Camera.main.transform.position - Camera.main.transform.up * 0.05f;
         //Debug.Log(gazerayData.GazeDirectionCombined);
         gazePoint = Camera.main.transform.position + gazerayData.GazeDirectionCombined;
         gazeRay = new Ray(SRCombinedPoint, gazePoint);
+        
         if (Physics.Raycast(gazeRay, out hit, 100))
         {
             Debug.Log(hit.transform.name);
@@ -75,19 +80,23 @@ public class EyeTracker : MonoBehaviour
                 //EventManager.instance.FixationOnObject.Invoke(type);
                 if (type == "blue cube")
                 {
+                    Analytics.instance.WriteData("looking at blue cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                 }
                 if (type == "red cube")
                 {
+                    Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                 }
                 if (type == "invis cube")
                 {
-                    Debug.Log("looking at: " + type.ToString());
+                    Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                   // Debug.Log("looking at: " + type.ToString());
                 }
                 if (type == "gold cube")
                 {
-                    Debug.Log("looking at: " + type.ToString());
+                    Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    //Debug.Log("looking at: " + type.ToString());
                 }
             }
         }
@@ -96,6 +105,10 @@ public class EyeTracker : MonoBehaviour
            // EventManager.instance.CenterFocusLost.Invoke();
             //EventManager.instance.LaserEyeFixationLoss.Invoke();
         }
+        LR.GetPositions(LRpoints);
+        endCollider.transform.position = LRpoints[LRpoints.Length - 1];
+        
+
 
     }
 }

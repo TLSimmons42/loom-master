@@ -58,6 +58,8 @@ TagManager:
   - P2
   - right gold cube
   - left gold cube
+  - host right ray
+  - cliant left ray
   - network right ray
   - network left ray
   layers:
