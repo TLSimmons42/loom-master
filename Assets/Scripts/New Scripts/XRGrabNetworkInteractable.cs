@@ -207,8 +207,12 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
         if (other.tag == "DropZone")
         {
-
-            // currentZone = BuildWallZone;
+            if (currentZone != BuildWallZone)
+            {
+                int col;
+                BuildWall.instance.DropBox(gameObject, other.GetComponent<DropzoneScript>().column);
+                currentZone = BuildWallZone;
+            }
         }
         if (other.tag == "cube despawner")
         {

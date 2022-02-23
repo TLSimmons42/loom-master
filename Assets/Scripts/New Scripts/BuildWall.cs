@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
 
-public class BuildWall : MonoBehaviour
+public class BuildWall : Singleton<BuildWall>
 {
     GameObject[,] buildWallArr;
     public GameObject otherBuildWall;
@@ -208,7 +208,7 @@ public class BuildWall : MonoBehaviour
             
         }
     }
-
+    private string tempName;
     public void MirrorBuildWalls(int col, int row, GameObject clonedBox)
     {
         //Debug.Log("# of players = " + PlayerPrefs.GetInt("playerCount"));
@@ -219,7 +219,7 @@ public class BuildWall : MonoBehaviour
             newLocation += otherBuildWall.transform.up * row;
             Vector3 tempPos = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 
-            string tempName;
+            
             if(clonedBox.tag== "red cube"){
                 tempName = "Network Red Cube";
             }
