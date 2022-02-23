@@ -214,6 +214,7 @@ public class BuildWall : Singleton<BuildWall>
         //Debug.Log("# of players = " + PlayerPrefs.GetInt("playerCount"));
         if (PlayerPrefs.GetInt("playerCount") == 2)
         {
+
             Vector3 newLocation = otherBuildWall.transform.position;
             newLocation += otherBuildWall.transform.right * -col;
             newLocation += otherBuildWall.transform.up * row;
@@ -246,8 +247,7 @@ public class BuildWall : Singleton<BuildWall>
 
 
             GameObject newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
-            newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
-            newBox.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+            newBox.GetComponent<BoxCollider>().isTrigger = false;
 
             newBox.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
             //newBox.GetComponent<BoxCollider>().enabled = false;

@@ -26,22 +26,22 @@ public class DropzoneScript : MonoBehaviour
     //&& (other.GetComponent<Cube>().currentZone != "BuildWall" || other.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.tag + " THIS IS THE TAG");
-        //if(GameManager.instance.playerCount == 1)
-        //{
-        //    if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube" || other.tag == "right gold cube" || other.tag == "left gold cube") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall"))
-        //    {
-        //        Debug.Log("drop zone script");
-        //        buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
-        //    }
-        //}
-        //else
+        Debug.Log(other.tag + " THIS IS THE TAG");
+        if (GameManager.instance.playerCount == 1)
+        {
+            if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube" || other.tag == "right gold cube" || other.tag == "left gold cube") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall"))
+            {
+                Debug.Log("drop zone script");
+                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+            }
+        }
+        else
 
-        
-        //if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube" || other.tag == "right gold cube" || other.tag == "left gold cube") && ( other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall"))
-        //{
-        //    Debug.Log("drop zone script");
-        //    buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
-        //}
+
+        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube" || other.tag == "right gold cube" || other.tag == "left gold cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall"))
+        {
+            Debug.Log("drop zone script");
+            buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+        }
     }
 }
