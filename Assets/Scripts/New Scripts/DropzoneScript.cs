@@ -23,10 +23,12 @@ public class DropzoneScript : MonoBehaviour
     {
         column = c;
     }
-
+    //&& (other.GetComponent<Cube>().currentZone != "BuildWall" || other.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && other.GetComponent<Cube>().currentZone != "BuildWall")
+        Debug.Log(other.tag + " THIS IS THE TAG");
+        //other.gameObject.GetComponent<Cube>().currentZone != "BuildWall" ||
+        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube" || other.tag == "right gold cube" || other.tag == "left gold cube") && ( other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall"))
         {
             Debug.Log("drop zone script");
             buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);

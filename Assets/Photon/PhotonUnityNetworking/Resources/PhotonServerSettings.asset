@@ -42,6 +42,10 @@ MonoBehaviour:
   - CantHearYou
   - ChangeColour
   - HeresWhy
+  - RPC_TestFunction
+  - ChangeVar
+  - DecreaseGoldCubeNetworkVar
+  - IncreaseGoldCubeNetworkVar
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

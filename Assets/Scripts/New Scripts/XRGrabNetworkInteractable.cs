@@ -36,11 +36,16 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     private Vector3[] rightRayPoints = new Vector3[2];
     public Vector3[] leftRayPoints;
+
+    public PhotonView PV;
  
     void Start()
     {
         photonView = GetComponent<PhotonView>();
         collider = GetComponent<BoxCollider>();
+        PV = GetComponent<PhotonView>();
+        rightRay = GameObject.FindGameObjectWithTag("right ray");
+        rightLineRenderer = rightRay.GetComponent<LineRenderer>();
         //cube = GetComponent<Cube>();
     }
 
@@ -91,8 +96,22 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public void GoldHold(Vector3 CubePos)
     {
+        photonView.RequestOwnership();
         currentZone = holdGold;
         goldCubeHoldPos = CubePos;
+    }
+
+    public void PlayerGrab()
+    {
+        photonView.RequestOwnership();
+        currentZone = NoZone;
+        collider.isTrigger = true;
+    }
+    public void PlayerGrabGoldHalf()
+    {
+        photonView.RequestOwnership();
+        currentZone = NoZone;
+        collider.isTrigger = true;
     }
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -105,7 +124,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             if (gameObject.tag == "gold cube")
             {
                 Debug.Log("gold cube was hit");
-                playersHoldingCube++;
+                PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
                 if (playersHoldingCube == 2)
                 {
                     PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
@@ -136,7 +155,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             if (gameObject.tag == "gold cube")
             {
                 Debug.Log("gold cube was hit");
-                playersHoldingCube++;
+                PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
                 if (playersHoldingCube == 2)
                 {
                     PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
@@ -164,6 +183,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
+        collider.isTrigger = false;
+
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
@@ -180,23 +201,6 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         Debug.Log(gameObject.name + " has been hovered");
     }
 
-    public void GoldBlockHold(Transform obj)
-    {
-        //gameObject.transform.position = 
-    }
-
-    public void PlayerGrab()
-    {
-        photonView.RequestOwnership();
-        currentZone = NoZone;
-        collider.isTrigger = true;
-    }
-    public void PlayerGrabGoldHalf()
-    {
-        photonView.RequestOwnership();
-        currentZone = NoZone;
-        collider.isTrigger = true;
-    }
 
     private void OnTriggerEnter(Collider other)
     {

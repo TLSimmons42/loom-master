@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class BuildWall : MonoBehaviour
 {
@@ -90,6 +92,36 @@ public class BuildWall : MonoBehaviour
             }
         }
     }
+    bool CheckGoldMatch(GameObject cube1, GameObject cube2)
+    {
+        if(cube1.tag == "left gold cube" && cube2.tag == "right gold cube")
+        {
+            return true;
+            //PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+            //PhotonNetwork.Destroy()
+        }
+        if (cube1.tag == "right gold cube" && cube2.tag == "left gold cube")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    GameObject GetLastDropedCube(int col)
+    {
+        for (int i = 0; i < buildWallArr.Length; i++)
+        {
+            //Debug.Log(i);
+            //Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
+
+            if (buildWallArr[col, i] == null)
+            {
+                //Debug.Log("The next free row is: " + i);
+                return buildWallArr[col, i-1];
+            }
+        }
+        return null;
+    }
 
     int GetNextFreeRow(int col)
     {
@@ -113,6 +145,7 @@ public class BuildWall : MonoBehaviour
     {
         box.GetComponent<BoxCollider>().isTrigger = false;
         int nextFreeRow = GetNextFreeRow(col);
+        GameObject lastRowObj = GetLastDropedCube(col);
 
         if (nextFreeRow == -1)
         {
@@ -142,6 +175,15 @@ public class BuildWall : MonoBehaviour
             }
             else
             {
+                bool isMatch = CheckGoldMatch(box, lastRowObj);
+                if (isMatch)
+                {
+                    Vector3 tempPos = box.transform.position;
+                    PhotonNetwork.Destroy(box);
+                    box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
+
+                }
+
                 box.transform.rotation = this.transform.rotation;
                 //Debug.Log("calculating the build wall pos for the cube");
                 box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));

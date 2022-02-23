@@ -293,9 +293,17 @@ public class GameManager : Singleton<GameManager>
                 {
                     cube = PhotonNetwork.Instantiate("Network Neutral Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
                 }
-                cube.gameObject.GetComponent<XRGrabNetworkInteractable>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
-                cube.GetComponent<XRGrabNetworkInteractable>().SetZoneToPlay();
 
+                if (cube.gameObject.tag == "gold cube")
+                {
+                    cube.gameObject.GetComponent<GoldCubeWhole>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
+                    cube.GetComponent<GoldCubeWhole>().currentZone = cube.GetComponent<GoldCubeWhole>().playWallZone;
+                }
+                else
+                {
+                    cube.gameObject.GetComponent<XRGrabNetworkInteractable>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
+                    cube.GetComponent<XRGrabNetworkInteractable>().SetZoneToPlay();
+                }
             }
             yield return new WaitForSeconds(cubeDropTimer);
             dropNetworkCubes = true;

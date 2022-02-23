@@ -104,12 +104,11 @@ public class Cube : XRGrabInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
-        Debug.Log("gabbing someing");
 
         //  this will grab all colors in single player mode
         if (GameManager.instance.playerCount == 1)
         {
-            Debug.Log("single player grab");
+
             PlayerGrab();
         }
         else if (GameManager.instance.playerCount > 1)   
@@ -122,12 +121,7 @@ public class Cube : XRGrabInteractable
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
 
-            
-        Debug.Log("droped cube");
-        playersHoldingCube--;
-        //PlayerDrop();
         collider.isTrigger = false;
-
 
         if (currentZone == BuildWallZone)
         {
@@ -143,6 +137,7 @@ public class Cube : XRGrabInteractable
             else
             {
                 Destroy(this.gameObject);
+                Debug.Log("DESTORY THIS CUBE");
             }
         }
         //    }

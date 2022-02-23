@@ -58,6 +58,8 @@ TagManager:
   - P2
   - right gold cube
   - left gold cube
+  - network right ray
+  - network left ray
   layers:
   - Default
   - TransparentFX

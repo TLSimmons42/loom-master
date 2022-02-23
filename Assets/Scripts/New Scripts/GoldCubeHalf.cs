@@ -9,7 +9,7 @@ public class GoldCubeHalf : XRGrabInteractable
 
     public string currentZone;
     public string NoZone = "No Zone";
-    public string buildWallZone = "BuildWall";
+    public string BuildWallZone = "BuildWall";
 
     public GameObject replacedCube;
     public GameObject rightRay;
@@ -21,8 +21,12 @@ public class GoldCubeHalf : XRGrabInteractable
     private Vector3[] rightRayPoints = new Vector3[2];
     public Vector3[] leftRayPoints;
 
+    private BoxCollider collider;
+
     void Start()
     {
+        collider = GetComponent<BoxCollider>();
+
         currentZone = NoZone;
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
@@ -47,4 +51,18 @@ public class GoldCubeHalf : XRGrabInteractable
     {
         obj = replacedCube;
     }
+    protected override void OnSelectExited(XRBaseInteractor interactor)
+    {
+        collider.isTrigger = false;
+
+        if (currentZone == BuildWallZone)
+        {
+            Debug.Log("In the build wall");
+        }
+        else
+        {
+            
+        }
+    }
+
 }

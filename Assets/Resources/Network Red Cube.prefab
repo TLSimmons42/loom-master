@@ -447,6 +447,7 @@ MonoBehaviour:
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []
+  PV: {fileID: 0}
 --- !u!1 &3106996390058224459
 GameObject:
   m_ObjectHideFlags: 0
