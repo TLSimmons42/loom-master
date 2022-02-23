@@ -111,12 +111,15 @@ public class BuildWall : MonoBehaviour
     {
         for (int i = 0; i < buildWallArr.Length; i++)
         {
-            //Debug.Log(i);
+            Debug.Log(i);
             //Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
 
             if (buildWallArr[col, i] == null)
             {
-                //Debug.Log("The next free row is: " + i);
+                if(i == 0)
+                {
+                    return null;
+                }
                 return buildWallArr[col, i-1];
             }
         }
@@ -211,20 +214,19 @@ public class BuildWall : MonoBehaviour
         //Debug.Log("# of players = " + PlayerPrefs.GetInt("playerCount"));
         if (PlayerPrefs.GetInt("playerCount") == 2)
         {
-            //Debug.Log("Attempting to clone boxes...");
-
-            GameObject newBox = Instantiate(clonedBox);
-            newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
-            newBox.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
-
-
             Vector3 newLocation = otherBuildWall.transform.position;
             newLocation += otherBuildWall.transform.right * -col;
             newLocation += otherBuildWall.transform.up * row;
+            Vector3 tempPos = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
+
+
+            GameObject newBox = PhotonNetwork.Instantiate(clonedBox.name, tempPos, Quaternion.identity);
+            newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
+            newBox.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
 
             newBox.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
             //newBox.GetComponent<BoxCollider>().enabled = false;
-            newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
+         //   newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 
             //buildWallArr[col, row] = box;
 
