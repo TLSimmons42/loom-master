@@ -219,8 +219,33 @@ public class BuildWall : MonoBehaviour
             newLocation += otherBuildWall.transform.up * row;
             Vector3 tempPos = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 
+            string tempName;
+            if(clonedBox.tag== "red cube"){
+                tempName = "Network Red Cube";
+            }
+            if (clonedBox.tag == "blue cube")
+            {
+                tempName = "Network Blue Cube";
+            }
+            if (clonedBox.tag == "invis cube")
+            {
+                tempName = "Network Neutral Cube";
+            }
+            if (clonedBox.tag == "gold cube")
+            {
+                tempName = "Network Gold Cube";
+            }
+            if (clonedBox.tag == "left gold cube")
+            {
+                tempName = "Network Gold Right Cube";
+            }
+            if (clonedBox.tag == "right gold cube")
+            {
+                tempName = "Network Gold Right Cube";
+            }
 
-            GameObject newBox = PhotonNetwork.Instantiate(clonedBox.name, tempPos, Quaternion.identity);
+
+            GameObject newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
             newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
             newBox.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
 
