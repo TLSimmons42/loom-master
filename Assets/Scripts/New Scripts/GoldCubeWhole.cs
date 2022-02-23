@@ -9,9 +9,12 @@ public class GoldCubeWhole : XRSimpleInteractable
     public string currentZone;
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
-    public bool isHeld = false;
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
+
+    public bool isHeld = false;
+    public bool isHeldByBoth = false;
+
 
     public int playersHoldingCube = 0;
     private float playZoneFallSpeed = 2f;
@@ -51,14 +54,25 @@ public class GoldCubeWhole : XRSimpleInteractable
     }
 
     [PunRPC]
-    public void DecreaseGoldCubeNetworkVar()
+    public void SpawnCubeHalves(XRBaseInteractor interactor)
     {
-        playersHoldingCube--;
+        if (interactor.transform.parent.parent.gameObject.tag == "P1")
+        {
+            PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+            PhotonNetwork.Destroy(gameObject);
+        }
+        else if(interactor.transform.parent.parent.gameObject.tag == "P2")
+        {
+            PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
+        isHeld = true;
+        PV.RequestOwnership();
         PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
         if(playersHoldingCube == 2)
         {
@@ -67,7 +81,7 @@ public class GoldCubeWhole : XRSimpleInteractable
                 PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                 PhotonNetwork.Destroy(gameObject);
             }
-            else
+            else if (interactor.transform.parent.parent.gameObject.tag == "P2")
             {
                 PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
                 PhotonNetwork.Destroy(gameObject);
@@ -76,7 +90,6 @@ public class GoldCubeWhole : XRSimpleInteractable
         else
         {
             currentZone = holdGold;
-            PV.RequestOwnership();
         }
     }
 
