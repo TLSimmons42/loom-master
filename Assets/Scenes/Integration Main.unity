@@ -17478,6 +17478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8130972a2c954734ebc4c919bebd8062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persistent: 0
   otherBuildWall: {fileID: 417753606}
   cubeSlot: {fileID: 7624834715429502512, guid: 9669a30ac9bdf15478bf8532c9f9682b,
     type: 3}
@@ -32724,6 +32725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8130972a2c954734ebc4c919bebd8062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Persistent: 0
   otherBuildWall: {fileID: 196652852}
   cubeSlot: {fileID: 7624834715429502512, guid: 9669a30ac9bdf15478bf8532c9f9682b,
     type: 3}
@@ -129615,7 +129617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2012845638
 Transform:
   m_ObjectHideFlags: 0

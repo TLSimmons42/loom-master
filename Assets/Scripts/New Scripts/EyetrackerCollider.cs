@@ -25,17 +25,17 @@ public class EyetrackerCollider : MonoBehaviour
         }
         if (other.gameObject.tag == "red cube")
         {
-            Analytics.instance.WriteData("looking at blue cube", "", "", gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
+            Analytics.instance.WriteData("looking at red cube", "", "", gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
             Debug.Log("looking at: " + other.ToString());
         }
         if (other.gameObject.tag == "invis cube")
         {
-            Analytics.instance.WriteData("looking at blue cube", "", "", gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
+            Analytics.instance.WriteData("looking at invis cube", "", "", gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
             Debug.Log("looking at: " + other.ToString());
         }
         if (other.gameObject.tag == "gold cube")
         {
-            Analytics.instance.WriteData("looking at blue cube", "", "", gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
+            Analytics.instance.WriteData("looking at gold cube", "", "", gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
             Debug.Log("looking at: " + other.ToString());
         }
     }

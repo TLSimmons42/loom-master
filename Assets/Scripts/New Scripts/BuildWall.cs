@@ -248,10 +248,11 @@ public class BuildWall : Singleton<BuildWall>
 
             GameObject newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
             newBox.GetComponent<BoxCollider>().isTrigger = false;
-
             newBox.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+            newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
+
             //newBox.GetComponent<BoxCollider>().enabled = false;
-         //   newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
+            //   newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));
 
             //buildWallArr[col, row] = box;
 
