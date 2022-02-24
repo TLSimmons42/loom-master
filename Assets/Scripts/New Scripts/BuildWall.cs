@@ -214,7 +214,7 @@ public class BuildWall : Singleton<BuildWall>
         //Debug.Log("# of players = " + PlayerPrefs.GetInt("playerCount"));
         if (PlayerPrefs.GetInt("playerCount") == 2)
         {
-
+            Debug.Log("MIRRORING THE CUBE");
             Vector3 newLocation = otherBuildWall.transform.position;
             newLocation += otherBuildWall.transform.right * -col;
             newLocation += otherBuildWall.transform.up * row;

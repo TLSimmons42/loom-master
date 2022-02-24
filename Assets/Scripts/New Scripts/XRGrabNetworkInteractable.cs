@@ -119,7 +119,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     IEnumerator CanDropCubeTimer()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         canBeDroped = true;
     }
 
