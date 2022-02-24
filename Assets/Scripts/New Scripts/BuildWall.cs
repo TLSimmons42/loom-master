@@ -178,32 +178,35 @@ public class BuildWall : Singleton<BuildWall>
             }
             else
             {
-                bool isMatch = CheckGoldMatch(box, lastRowObj);
-                if (isMatch)
+                if (GameManager.instance.gameObject.tag == "host")
                 {
-                    Vector3 tempPos = box.transform.position;
-                    PhotonNetwork.Destroy(box);
-                    box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
+                    bool isMatch = CheckGoldMatch(box, lastRowObj);
+                    if (isMatch)
+                    {
+                        Vector3 tempPos = box.transform.position;
+                        PhotonNetwork.Destroy(box);
+                        box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
 
+                    }
+
+                    box.transform.rotation = this.transform.rotation;
+                    //Debug.Log("calculating the build wall pos for the cube");
+                    box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
+
+                    Vector3 newLocation = transform.position;
+                    newLocation += transform.right * -col;
+                    newLocation += transform.up * nextFreeRow;
+
+                    buildWallArr[col, nextFreeRow] = box;
+
+                    //box.transform.position = newLocation;
+                    box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
+                    box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
+                    //box.GetComponent<BoxCollider>().enabled = false;
+                    MirrorBuildWalls(col, nextFreeRow, box);
                 }
-
-                box.transform.rotation = this.transform.rotation;
-                //Debug.Log("calculating the build wall pos for the cube");
-                box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
-
-                Vector3 newLocation = transform.position;
-                newLocation += transform.right * -col;
-                newLocation += transform.up * nextFreeRow;
-
-                buildWallArr[col, nextFreeRow] = box;
-
-                //box.transform.position = newLocation;
-                box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
-                box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
-                box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
-                box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
-                //box.GetComponent<BoxCollider>().enabled = false;
-                MirrorBuildWalls(col, nextFreeRow, box);
             }
             
         }
@@ -348,7 +351,7 @@ public class BuildWall : Singleton<BuildWall>
         {
             for (int j = 0; j < levelSize; j++)
             {
-                if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<Cube>().currentZone != "BuildWall")
+                if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
                 {
                     //Debug.Log("A cube was removed...");
                     buildWallArr[i, j] = null;
@@ -367,7 +370,7 @@ public class BuildWall : Singleton<BuildWall>
             // Checks if the array is a cube
             if (i > 0 && i < buildWallArr.Length && buildWallArr[col, i] != null)
             {
-                buildWallArr[col, i].GetComponent<Cube>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
+                buildWallArr[col, i].GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
                 buildWallArr[col, i - 1] = buildWallArr[col, i];
                 buildWallArr[col, i] = null;
                 
