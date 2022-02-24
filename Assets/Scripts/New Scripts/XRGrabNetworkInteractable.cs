@@ -16,9 +16,11 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
-    public bool isHeld = false;
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
+
+    public bool isHeld = false;
+    public bool canBeDroped = false;
 
     private BoxCollider collider;
     private PhotonView photonView;
@@ -41,6 +43,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
  
     void Start()
     {
+        StartCoroutine(CanDropCubeTimer());
         photonView = GetComponent<PhotonView>();
         collider = GetComponent<BoxCollider>();
         PV = GetComponent<PhotonView>();
@@ -112,6 +115,12 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         photonView.RequestOwnership();
         currentZone = NoZone;
         collider.isTrigger = true;
+    }
+
+    IEnumerator CanDropCubeTimer()
+    {
+        yield return new WaitForSeconds(2);
+        canBeDroped = true;
     }
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
