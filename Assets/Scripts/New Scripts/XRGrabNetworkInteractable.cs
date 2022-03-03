@@ -234,7 +234,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         {
             if (GameManager.instance.playerCount == 2)
             {
-                if (GameManager.instance.host)
+                if (photonView.IsMine)
                 {
                     PhotonNetwork.Destroy(this.gameObject);
                 }

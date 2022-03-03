@@ -157,20 +157,10 @@ public class Cube : XRGrabInteractable
         }
         if (other.tag == "cube despawner")
         {
-            if (GameManager.instance.playerCount == 2)
-            {
-                if (GameManager.instance.host)
-                {
-                    PhotonNetwork.Destroy(this.gameObject);
-                }
-            }
-            else
-            {
+            
                 Destroy(this.gameObject);
 
-            }
-
-           // Debug.Log("cube destroyed");
+           
         }
     }
 

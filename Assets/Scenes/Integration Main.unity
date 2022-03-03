@@ -35468,7 +35468,7 @@ PrefabInstance:
     - target: {fileID: 2427476027844894245, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}
       propertyPath: m_InteractionLayerMask.m_Bits
-      value: 33
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3113927694997994901, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}
