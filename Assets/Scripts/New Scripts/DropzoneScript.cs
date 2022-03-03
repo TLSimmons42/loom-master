@@ -36,11 +36,13 @@ public class DropzoneScript : MonoBehaviour
             }
         }
         else
-
-
-        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube" || other.tag == "right gold cube" || other.tag == "left gold cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
+        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
         {
             Debug.Log("drop zone script");
+            buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+        }
+        else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall"))
+        {
             buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
         }
     }
