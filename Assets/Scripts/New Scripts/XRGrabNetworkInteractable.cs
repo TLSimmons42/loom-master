@@ -65,8 +65,17 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         }
         if (currentZone == NoZone)
         {
-            rightLineRenderer.GetPositions(rightRayPoints);
-            gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+            if (photonView.IsMine)
+            {
+                Debug.Log("is yours");
+
+                rightLineRenderer.GetPositions(rightRayPoints);
+                gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+            }
+            else
+            {
+                Debug.Log("not yours");
+            }
         }
         if (currentZone == holdGold)
         {
@@ -133,7 +142,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             if (gameObject.tag == "gold cube")
             {
                 Debug.Log("gold cube was hit");
-                PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
+                photonView.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
                 if (playersHoldingCube == 2)
                 {
                     PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
@@ -164,7 +173,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             if (gameObject.tag == "gold cube")
             {
                 Debug.Log("gold cube was hit");
-                PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
+                photonView.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
                 if (playersHoldingCube == 2)
                 {
                     PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);

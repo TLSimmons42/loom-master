@@ -35607,64 +35607,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 008cb725957c29f4a9050d9dcd39f72a, type: 3}
---- !u!1 &445238889 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7225740642353668131, guid: 008cb725957c29f4a9050d9dcd39f72a,
-    type: 3}
-  m_PrefabInstance: {fileID: 445238888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &445238890 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7225740642353668142, guid: 008cb725957c29f4a9050d9dcd39f72a,
     type: 3}
   m_PrefabInstance: {fileID: 445238888}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &445238891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445238889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_PositionAction:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 05954108-8f44-4e10-b990-b63412980316
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 0b43bd29-831e-4975-b95c-79103898f327
-      m_Path: <XRHMD>/centerEyePosition
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-  m_RotationAction:
-    m_Name: Rotation
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8e3b06f8-35ef-4a8a-b91d-7784850675d7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 694f004f-1917-4fd5-a234-a41259765385
-      m_Path: <XRHMD>/centerEyeRotation
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 0
 --- !u!114 &445238892 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 56540050941338475, guid: 008cb725957c29f4a9050d9dcd39f72a,
@@ -68569,7 +68517,8 @@ MonoBehaviour:
   gazerayData: {fileID: 1824223530}
   currentRightEyePupilSize: 0
   currentLeftEyePupilSize: 0
-  pupil_diameter: 0
+  rightEyePupil_diameter: 0
+  leftEyePupil_diameter: 0
   endCollider: {fileID: 1966844644}
 --- !u!1 &825801239
 GameObject:
