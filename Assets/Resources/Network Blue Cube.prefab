@@ -500,9 +500,10 @@ MonoBehaviour:
   goldCubeHoldPos: {x: 0, y: 0, z: 0}
   playWallZone: PlayWall
   BuildWallZone: BuildWall
-  isHeld: 0
   NoZone: No Zone
   holdGold: Hold Gold
+  isHeld: 0
+  canBeDroped: 0
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
   rightLineRenderer: {fileID: 0}

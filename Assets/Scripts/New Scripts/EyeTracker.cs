@@ -21,7 +21,9 @@ public class EyeTracker : MonoBehaviour
     //new stuff
     public ViveSR.anipal.Eye.EyeData_v2 eyeData = new ViveSR.anipal.Eye.EyeData_v2();
 
-    public float pupil_diameter;
+    public float rightEyePupil_diameter;
+    public float leftEyePupil_diameter;
+
 
     public VerboseData verboseData;
 
@@ -60,10 +62,12 @@ public class EyeTracker : MonoBehaviour
         currentRightEyePupilSize = rightEyeData.pupil_diameter_mm;
         currentLeftEyePupilSize = leftEyeData.pupil_diameter_mm;
         SRanipal_Eye.GetVerboseData(out verboseData);
-        pupil_diameter = verboseData.left.pupil_diameter_mm;
+        leftEyePupil_diameter = verboseData.left.pupil_diameter_mm;
+        rightEyePupil_diameter = verboseData.right.pupil_diameter_mm;
 
 
-       // Debug.Log("Left eye size: " + pupil_diameter);
+
+        // Debug.Log("Left eye size: " + pupil_diameter);
 
 
         SRCombinedPoint = Camera.main.transform.position - Camera.main.transform.up * 0.05f;

@@ -356,23 +356,18 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(3);
 
         Debug.Log("deteting the num of players");
-        numOfPlayersInGame = 0;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
         {
 
-
             if (obj.name == "Network Player(Clone)")
             {
-
                 Players.Add(obj);
-                numOfPlayersInGame++;
                 if (Players.Count == 2)
                 {
-                    // allPlayersConnected = true;
                     host = true;
                     this.tag = "host";
                     VRrig.tag = "P1";
-                    AssignPlayerTags();
+                    //AssignPlayerTags();
                     VRrig.transform.position = playerPos2.transform.position;
                     Debug.Log("the host has been set");
                 }
