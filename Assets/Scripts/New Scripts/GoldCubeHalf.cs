@@ -77,14 +77,14 @@ public class GoldCubeHalf : XRSimpleInteractable
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
         collider.isTrigger = false;
-
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
         }
         else
         {
-            
+            Debug.Log("destory this cube");
+            PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
