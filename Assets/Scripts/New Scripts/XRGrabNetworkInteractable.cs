@@ -39,14 +39,12 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     private Vector3[] rightRayPoints = new Vector3[2];
     public Vector3[] leftRayPoints;
 
-    public PhotonView PV;
  
     void Start()
     {
         StartCoroutine(CanDropCubeTimer());
         photonView = GetComponent<PhotonView>();
         collider = GetComponent<BoxCollider>();
-        PV = GetComponent<PhotonView>();
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
         //cube = GetComponent<Cube>();
