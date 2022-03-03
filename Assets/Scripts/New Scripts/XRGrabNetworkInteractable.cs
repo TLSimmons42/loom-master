@@ -114,7 +114,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public void PlayerGrab()
     {
         photonView.RequestOwnership();
-        currentZone = NoZone;
+        //currentZone = NoZone
+        photonView.RPC("changeState", RpcTarget.AllBuffered);
         collider.isTrigger = true;
     }
     public void PlayerGrabGoldHalf()
@@ -134,7 +135,6 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         base.OnSelectEntered(interactor);
 
-        
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
             if (gameObject.tag == "gold cube")
@@ -247,5 +247,12 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
             // Debug.Log("cube destroyed");
         }
+    }
+
+    [PunRPC]
+
+    public void changeState()
+    {
+        currentZone = NoZone;
     }
 }
