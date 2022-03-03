@@ -67,6 +67,12 @@ public class GoldCubeWhole : XRSimpleInteractable
             PhotonNetwork.Destroy(gameObject);
         }
     }
+    [PunRPC]
+
+    public void changeState()
+    {
+        currentZone = holdGold;
+    }
 
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -80,19 +86,22 @@ public class GoldCubeWhole : XRSimpleInteractable
             {
                 Debug.Log("spawning left half");
                 GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
-                cube.GetComponent<XRGrabNetworkInteractable>().currentZone = cube.GetComponent<XRGrabNetworkInteractable>().NoZone;
+                GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                //cube.GetComponent<XRGrabNetworkInteractable>().currentZone = cube.GetComponent<XRGrabNetworkInteractable>().NoZone;
                 PhotonNetwork.Destroy(gameObject);
             }
             else if (interactor.transform.parent.parent.gameObject.tag == "P2")
             {
                 Debug.Log("spawning right half");
-                GameObject cube = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                cube.GetComponent<XRGrabNetworkInteractable>().currentZone = cube.GetComponent<XRGrabNetworkInteractable>().NoZone;
+                GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+               // cube.GetComponent<XRGrabNetworkInteractable>().currentZone = cube.GetComponent<XRGrabNetworkInteractable>().NoZone;
                 PhotonNetwork.Destroy(gameObject);
             }
         }
         else
         {
+            PV.RPC("changeState", RpcTarget.AllBuffered);
             currentZone = holdGold;
         }
     }

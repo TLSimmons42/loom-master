@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
 
-public class GoldCubeHalf : XRGrabInteractable
+public class GoldCubeHalf : XRSimpleInteractable
 {
 
     public string currentZone;
@@ -21,15 +21,19 @@ public class GoldCubeHalf : XRGrabInteractable
     private Vector3[] rightRayPoints = new Vector3[2];
     public Vector3[] leftRayPoints;
 
+    PhotonView PV;
     private BoxCollider collider;
+
 
     void Start()
     {
         collider = GetComponent<BoxCollider>();
-
-        currentZone = NoZone;
+        PV = GetComponent<PhotonView>();
+        //currentZone = NoZone;
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
+
+        AssignCubeToPlayers();
     }
 
     // Update is called once per frame
@@ -50,6 +54,25 @@ public class GoldCubeHalf : XRGrabInteractable
     public void SetMirrorObj(GameObject obj)
     {
         obj = replacedCube;
+    }
+
+    public void AssignCubeToPlayers()
+    {
+        if(this.name == "Network Gold Left Half(Clone)")
+        {
+            if(rightRay.transform.parent.parent.gameObject.tag == "P1")
+            {
+                PV.RequestOwnership();
+                currentZone = NoZone;
+            }
+        }else if (this.name == "Network Gold Right Half(Clone)")
+        {
+            if (rightRay.transform.parent.parent.gameObject.tag == "P2")
+            {
+                PV.RequestOwnership();
+                currentZone = NoZone;
+            }
+        }
     }
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
