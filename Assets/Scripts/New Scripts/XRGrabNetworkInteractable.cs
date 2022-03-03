@@ -115,6 +115,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         photonView.RequestOwnership();
         //currentZone = NoZone
+        changeState();
         photonView.RPC("changeState", RpcTarget.AllBuffered);
         collider.isTrigger = true;
     }
