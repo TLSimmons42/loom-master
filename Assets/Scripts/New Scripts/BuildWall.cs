@@ -200,10 +200,20 @@ public class BuildWall : Singleton<BuildWall>
                     buildWallArr[col, nextFreeRow] = box;
 
                     //box.transform.position = newLocation;
-                    box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
-                    box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
-                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
-                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
+                    if (box.tag == "left gold cube" || box.tag == "right gold cube")
+                    {
+                        box.GetComponent<GoldCubeHalf>().currentZone = "BuildWall";
+                        // box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+                        box.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
+                        box.GetComponent<GoldCubeHalf>().buildWallTargetRotation = this.transform.rotation;
+                    }
+                    else
+                    {
+                        box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
+                        box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+                        box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+                        box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
+                    }
                     //box.GetComponent<BoxCollider>().enabled = false;
                     MirrorBuildWalls(col, nextFreeRow, box);
                 }

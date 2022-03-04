@@ -20,11 +20,16 @@ public class GoldCubeHalf : XRSimpleInteractable
 
     private Vector3[] rightRayPoints = new Vector3[2];
     public Vector3[] leftRayPoints;
+    public Vector3 buildWallTargetPos;
+
+    private float playZoneFallSpeed = 2f;
+
+    public Quaternion buildWallTargetRotation;
 
     PhotonView PV;
     private BoxCollider collider;
 
-
+    MyRayInteractor myRay;
     void Start()
     {
         collider = GetComponent<BoxCollider>();
@@ -34,6 +39,7 @@ public class GoldCubeHalf : XRSimpleInteractable
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
 
         AssignCubeToPlayers();
+
     }
 
     // Update is called once per frame
@@ -43,12 +49,22 @@ public class GoldCubeHalf : XRSimpleInteractable
         {
             PlayerMovesHalf();
         }
+        if(currentZone == BuildWallZone)
+        {
+            MoveCubeBuildWall
+        }
     }
 
     public void PlayerMovesHalf()
     {
         rightLineRenderer.GetPositions(rightRayPoints);
         gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+    }
+    public void MoveCubeBuildWall()
+    {
+        //Debug.Log("moving the block on the BuildWall");
+        transform.position = Vector3.MoveTowards(transform.position, buildWallTargetPos, Time.deltaTime * playZoneFallSpeed);
+        transform.rotation = buildWallTargetRotation;
     }
 
     public void SetMirrorObj(GameObject obj)
