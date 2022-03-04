@@ -94,16 +94,17 @@ public class BuildWall : Singleton<BuildWall>
     }
     bool CheckGoldMatch(GameObject cube1, GameObject cube2)
     {
-        if (cube1 != null && cube2 != null) { 
-        }else if(cube1.tag == "left gold cube" && cube2.tag == "right gold cube")
-        {
-            return true;
-            //PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-            //PhotonNetwork.Destroy()
-        }
-        if (cube1.tag == "right gold cube" && cube2.tag == "left gold cube")
-        {
-            return true;
+        if (cube1 != null && cube2 != null) {
+            if (cube1.tag == "left gold cube" && cube2.tag == "right gold cube")
+            {
+                return true;
+                //PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                //PhotonNetwork.Destroy()
+            }
+            if (cube1.tag == "right gold cube" && cube2.tag == "left gold cube")
+            {
+                return true;
+            }
         }
 
         return false;
