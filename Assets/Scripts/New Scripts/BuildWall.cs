@@ -254,18 +254,29 @@ public class BuildWall : Singleton<BuildWall>
             }
             if (clonedBox.tag == "left gold cube")
             {
-                tempName = "Network Gold Right Cube";
+                tempName = "Network Gold Right Half";
             }
             if (clonedBox.tag == "right gold cube")
             {
-                tempName = "Network Gold Right Cube";
+                tempName = "Network Gold Right Half";
             }
 
 
             GameObject newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
             newBox.GetComponent<BoxCollider>().isTrigger = false;
-            newBox.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
-            newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
+
+            if (tempName == "Network Gold Right Half" || tempName == "Network Gold Left Half")
+            {
+                newBox.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
+                newBox.GetComponent<GoldCubeHalf>().currentZone = newBox.GetComponent<GoldCubeHalf>().BuildWallZone;
+            }
+            else
+            {
+                newBox.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+                newBox.GetComponent<XRGrabNetworkInteractable>().currentZone = newBox.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
+            }
+            
+
 
             //newBox.GetComponent<BoxCollider>().enabled = false;
             //   newBox.transform.position = otherBuildWall.transform.position + (otherBuildWall.transform.right * -col) + (otherBuildWall.transform.up * (levelSize + 1));

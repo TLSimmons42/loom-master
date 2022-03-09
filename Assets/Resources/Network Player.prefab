@@ -212,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 1496890722665225062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.916, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: -2645282701834323560}
   m_Father: {fileID: 635443423604223105}
@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 4562328305860287319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.523, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7240485897783991203}
   m_Father: {fileID: 635443423604223105}
@@ -375,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 5980898173984217712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.277}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 7444927949507973094}
   m_Father: {fileID: 635443423604223105}
@@ -1556,6 +1556,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Hand Model
       objectReference: {fileID: 0}
+    - target: {fileID: 5686134208196863108, guid: c80d70194933a3543ac0f5d8f434b727,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 065b92a6193703e479d3886c7d79c3e3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c80d70194933a3543ac0f5d8f434b727, type: 3}
 --- !u!1 &2644583400776451782 stripped
@@ -1646,6 +1651,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6588453173766787012}
     m_Modifications:
+    - target: {fileID: 109434732392105323, guid: 8127d9cef0cf1b740b4d63bb86efb458,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 065b92a6193703e479d3886c7d79c3e3, type: 2}
     - target: {fileID: 109434732395284509, guid: 8127d9cef0cf1b740b4d63bb86efb458,
         type: 3}
       propertyPath: m_Name

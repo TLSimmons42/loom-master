@@ -23,14 +23,16 @@ public class MyRayInteractor : XRRayInteractor
 
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
+        Debug.Log("ray select exited");
         if(interactor.gameObject.tag == "gold cube"){
             GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
             GameObject rightCube = GameObject.FindGameObjectWithTag("right gold cube");
-
-            if(GameManager.instance.tag == "host")
+            Debug.Log("exited gold cube");
+            if (GameManager.instance.tag == "host")
             {
                 if (leftCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
                 {
+                    Debug.Log("host destroy cube");
                     PhotonNetwork.Destroy(leftCube);
                 }
             }

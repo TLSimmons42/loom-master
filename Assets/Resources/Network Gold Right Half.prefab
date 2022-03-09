@@ -83,6 +83,8 @@ MonoBehaviour:
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []
+  buildWallTargetPos: {x: 0, y: 0, z: 0}
+  buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &-4750746698835154573
 MonoBehaviour:
   m_ObjectHideFlags: 0

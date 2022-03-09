@@ -338,7 +338,6 @@ MonoBehaviour:
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []
-  PV: {fileID: 0}
 --- !u!1 &1898144210675743135
 GameObject:
   m_ObjectHideFlags: 0
