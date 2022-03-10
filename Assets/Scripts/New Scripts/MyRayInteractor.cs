@@ -20,11 +20,27 @@ public class MyRayInteractor : XRRayInteractor
     {
         
     }
+    public void CheckDelete(GameObject obj)
+    {
+        if (couldDelete)
+        {
+            PhotonNetwork.Destroy(obj);
+            couldDelete = false;
+        }
+    }
+
+    [PunRPC]
+
+    public void DeleteObjsOverNetwork(GameObject obj1, GameObject obj2)
+    {
+        PhotonNetwork.Destroy(obj1);
+        PhotonNetwork.Destroy(obj2);
+    }
 
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
         Debug.Log("ray select exited");
-        if(interactor.gameObject.tag == "gold cube"){
+        if(interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
             GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
             GameObject rightCube = GameObject.FindGameObjectWithTag("right gold cube");
             Debug.Log("exited gold cube");
@@ -50,14 +66,6 @@ public class MyRayInteractor : XRRayInteractor
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
 
-    public void CheckDelete(GameObject obj)
-    {
-        if (couldDelete)
-        {
-            PhotonNetwork.Destroy(obj);
-            couldDelete = false;
-        }
-    }
     protected override void OnHoverExited(XRBaseInteractable obj)
     {
 

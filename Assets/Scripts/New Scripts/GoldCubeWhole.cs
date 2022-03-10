@@ -74,7 +74,6 @@ public class GoldCubeWhole : XRSimpleInteractable
         currentZone = holdGold;
     }
 
-
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         isHeld = true;

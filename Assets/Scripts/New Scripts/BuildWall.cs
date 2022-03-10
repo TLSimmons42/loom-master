@@ -261,7 +261,6 @@ public class BuildWall : Singleton<BuildWall>
                 tempName = "Network Gold Right Half";
             }
 
-
             GameObject newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
             newBox.GetComponent<BoxCollider>().isTrigger = false;
 
