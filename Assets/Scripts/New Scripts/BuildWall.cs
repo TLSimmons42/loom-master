@@ -255,7 +255,7 @@ public class BuildWall : Singleton<BuildWall>
             }
             if (clonedBox.tag == "left gold cube")
             {
-                tempName = "Network Gold Right Half";
+                tempName = "Network Gold Left Half";
             }
             if (clonedBox.tag == "right gold cube")
             {
