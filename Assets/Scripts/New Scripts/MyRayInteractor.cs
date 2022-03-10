@@ -62,7 +62,10 @@ public class MyRayInteractor : XRRayInteractor
 
 
         }
-        PhotonNetwork.Destroy(gameObject);
+        if (GameManager.instance.host)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
 
