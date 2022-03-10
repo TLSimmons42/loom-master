@@ -26,6 +26,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     void Start()
     {
+
         //playersHoldingCube = 1;
         PV = GetComponent<PhotonView>();
     }

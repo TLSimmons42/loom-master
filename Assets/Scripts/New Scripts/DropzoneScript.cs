@@ -41,7 +41,7 @@ public class DropzoneScript : MonoBehaviour
             Debug.Log("drop zone script");
             buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
         }
-        else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall"))
+        else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)
         {
             buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
         }
