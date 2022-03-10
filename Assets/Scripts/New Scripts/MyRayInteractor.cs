@@ -40,7 +40,7 @@ public class MyRayInteractor : XRRayInteractor
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
         Debug.Log("ray select exited");
-        if(interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
+        if(interactor != null && interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
             GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
             GameObject rightCube = GameObject.FindGameObjectWithTag("right gold cube");
             Debug.Log("exited gold cube");

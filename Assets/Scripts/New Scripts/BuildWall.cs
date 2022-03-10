@@ -379,7 +379,7 @@ public class BuildWall : Singleton<BuildWall>
             {
                 if (buildWallArr[i, j] != null)
                 {
-                    Debug.Log(buildWallArr[i, j].name);
+                    //Debug.Log(buildWallArr[i, j].name);
                     if (buildWallArr[i, j].gameObject.tag == "left gold cube" || buildWallArr[i, j].gameObject.tag == "right gold cube")
                     {
                         if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
