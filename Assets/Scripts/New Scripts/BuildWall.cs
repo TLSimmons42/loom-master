@@ -377,38 +377,42 @@ public class BuildWall : Singleton<BuildWall>
         {
             for (int j = 0; j < levelSize; j++)
             {
-                Debug.Log(buildWallArr[i, j].name);
-                if(buildWallArr[i, j].gameObject.tag == "left gold cube" || buildWallArr[i, j].gameObject.tag == "right gold cube")
+                if (buildWallArr[i, j] != null)
                 {
-                    if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
+                    Debug.Log(buildWallArr[i, j].name);
+                    if (buildWallArr[i, j].gameObject.tag == "left gold cube" || buildWallArr[i, j].gameObject.tag == "right gold cube")
                     {
-                        //Debug.Log("A cube was removed...");
-                        buildWallArr[i, j] = null;
-                        PushCubesDown(i, j);
-                        DeleteMirrodCube(i, j);
+                        if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
+                        {
+                            //Debug.Log("A cube was removed...");
+                            buildWallArr[i, j] = null;
+                            PushCubesDown(i, j);
+                            DeleteMirrodCube(i, j);
+                        }
                     }
-                }else
-                if (buildWallArr[i, j].gameObject.tag == "gold cube")
-                {
-                    if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<GoldCubeWhole>().currentZone != "BuildWall")
+                    else
+                    if (buildWallArr[i, j].gameObject.tag == "gold cube")
                     {
-                        //Debug.Log("A cube was removed...");
-                        buildWallArr[i, j] = null;
-                        PushCubesDown(i, j);
-                        DeleteMirrodCube(i, j);
+                        if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<GoldCubeWhole>().currentZone != "BuildWall")
+                        {
+                            //Debug.Log("A cube was removed...");
+                            buildWallArr[i, j] = null;
+                            PushCubesDown(i, j);
+                            DeleteMirrodCube(i, j);
+                        }
                     }
-                }else
-                if (buildWallArr[i, j].gameObject.tag == "invis cube" || buildWallArr[i, j].gameObject.tag == "red cube" || buildWallArr[i, j].gameObject.tag == "blue cube")
-                {
-                    if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
+                    else
+                    if (buildWallArr[i, j].gameObject.tag == "invis cube" || buildWallArr[i, j].gameObject.tag == "red cube" || buildWallArr[i, j].gameObject.tag == "blue cube")
                     {
-                        //Debug.Log("A cube was removed...");
-                        buildWallArr[i, j] = null;
-                        PushCubesDown(i, j);
-                        DeleteMirrodCube(i, j);
+                        if (buildWallArr[i, j] != null && buildWallArr[i, j].GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
+                        {
+                            //Debug.Log("A cube was removed...");
+                            buildWallArr[i, j] = null;
+                            PushCubesDown(i, j);
+                            DeleteMirrodCube(i, j);
+                        }
                     }
                 }
-                
             }
         }
     }
