@@ -77,6 +77,7 @@ MonoBehaviour:
   currentZone: 
   NoZone: No Zone
   BuildWallZone: BuildWall
+  canBeDroped: 0
   replacedCube: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}

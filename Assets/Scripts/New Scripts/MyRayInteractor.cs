@@ -40,28 +40,28 @@ public class MyRayInteractor : XRRayInteractor
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
         Debug.Log("ray select exited");
-        if(interactor != null && interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
-            GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
-            GameObject rightCube = GameObject.FindGameObjectWithTag("right gold cube");
-            Debug.Log("exited gold cube");
-            if (GameManager.instance.tag == "host")
-            {
-                if (leftCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
-                {
-                    Debug.Log("host destroy cube");
-                    PhotonNetwork.Destroy(leftCube);
-                }
-            }
-            if (GameManager.instance.tag == "cliant")
-            {
-                if (rightCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
-                {
-                    PhotonNetwork.Destroy(rightCube);
-                }
-            }
+        //if(interactor != null && interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
+        //    GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
+        //    GameObject rightCube = GameObject.FindGameObjectWithTag("right gold cube");
+        //    Debug.Log("exited gold cube");
+        //    if (GameManager.instance.tag == "host")
+        //    {
+        //        if (leftCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
+        //        {
+        //            Debug.Log("host destroy cube");
+        //            PhotonNetwork.Destroy(leftCube);
+        //        }
+        //    }
+        //    if (GameManager.instance.tag == "cliant")
+        //    {
+        //        if (rightCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
+        //        {
+        //            PhotonNetwork.Destroy(rightCube);
+        //        }
+        //    }
 
 
-        }
+        //}
         if (GameManager.instance.host)
         {
             PhotonNetwork.Destroy(gameObject);
