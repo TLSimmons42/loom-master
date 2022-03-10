@@ -111,8 +111,29 @@ public class GoldCubeWhole : XRSimpleInteractable
         PhotonNetwork.Destroy(gameObject);
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "cube despawner")
+        {
+            if (GameManager.instance.playerCount == 2)
+            {
+                if (PV.IsMine)
+                {
+                    PhotonNetwork.Destroy(this.gameObject);
+                }
+            }
+            else
+            {
+                Destroy(this.gameObject);
+
+            }
+
+            // Debug.Log("cube destroyed");
+        }
+    }
 
 
 
 
-}
+    }
