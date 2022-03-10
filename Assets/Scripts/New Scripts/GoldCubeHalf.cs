@@ -85,21 +85,27 @@ public class GoldCubeHalf : XRSimpleInteractable
         {
             if(rightRay.transform.parent.parent.gameObject.tag == "P1")
             {
-                PV.RequestOwnership();
-                currentZone = NoZone;
+                if (currentZone != BuildWallZone)
+                {
+                    PV.RequestOwnership();
+                    currentZone = NoZone;
+                }
             }
         }else if (this.name == "Network Gold Right Half(Clone)")
         {
             if (rightRay.transform.parent.parent.gameObject.tag == "P2")
             {
-                PV.RequestOwnership();
-                currentZone = NoZone;
+                if (currentZone != BuildWallZone)
+                {
+                    PV.RequestOwnership();
+                    currentZone = NoZone;
+                }
             }
         }
     }
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
-        collider.isTrigger = false;
+        //collider.isTrigger = false;
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
