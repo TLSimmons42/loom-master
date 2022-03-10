@@ -11,6 +11,7 @@ public class GoldCubeHalf : XRSimpleInteractable
     public string NoZone = "No Zone";
     public string BuildWallZone = "BuildWall";
 
+    public bool canBeDroped;
     public GameObject replacedCube;
     public GameObject rightRay;
     public GameObject leftRay;
@@ -32,6 +33,7 @@ public class GoldCubeHalf : XRSimpleInteractable
     MyRayInteractor myRay;
     void Start()
     {
+        StartCoroutine(CanDropCubeTimer());
         collider = GetComponent<BoxCollider>();
         PV = GetComponent<PhotonView>();
         //currentZone = NoZone;
@@ -53,6 +55,11 @@ public class GoldCubeHalf : XRSimpleInteractable
         {
             MoveCubeBuildWall();
         }
+    }
+    IEnumerator CanDropCubeTimer()
+    {
+        yield return new WaitForSeconds(4);
+        canBeDroped = true;
     }
 
     public void PlayerMovesHalf()
