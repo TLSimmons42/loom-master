@@ -14,19 +14,22 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     public bool isHeld = false;
     public bool isHeldByBoth = false;
+    public bool canBeDroped = false;
+
 
 
     public int playersHoldingCube = 0;
     private float playZoneFallSpeed = 2f;
 
-    public Vector3 playWallTargetPos;
+    public Vector3 playWallTargetPos, buildWallTargetPos;
+    public Quaternion buildWallTargetRotation;
 
     public PhotonView PV;
 
 
     void Start()
     {
-
+        StartCoroutine(CanDropCubeTimer());
         //playersHoldingCube = 1;
         PV = GetComponent<PhotonView>();
     }
@@ -38,6 +41,10 @@ public class GoldCubeWhole : XRSimpleInteractable
         {
             MoveCubePlayWall();
         }
+        if (currentZone == BuildWallZone)
+        {
+            MoveCubeBuildWall();
+        }
     }
 
     public void MoveCubePlayWall()
@@ -46,6 +53,17 @@ public class GoldCubeWhole : XRSimpleInteractable
 
         transform.position = Vector3.MoveTowards(transform.position, playWallTargetPos, Time.deltaTime * playZoneFallSpeed);
         //transform.rotation = buildWallTargetRotation;
+    }
+    public void MoveCubeBuildWall()
+    {
+        //Debug.Log("moving the block on the BuildWall");
+        transform.position = Vector3.MoveTowards(transform.position, buildWallTargetPos, Time.deltaTime * playZoneFallSpeed);
+        transform.rotation = buildWallTargetRotation;
+    }
+    IEnumerator CanDropCubeTimer()
+    {
+        yield return new WaitForSeconds(4);
+        canBeDroped = true;
     }
 
     [PunRPC]
@@ -85,23 +103,23 @@ public class GoldCubeWhole : XRSimpleInteractable
             if (interactor.transform.parent.parent.gameObject.tag == "P1")
             {
                 Debug.Log("spawning left half");
-                gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
-                gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
-                gameObject.SetActive(false);
-                //GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
-                //GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                //PhotonNetwork.Destroy(gameObject);
+                //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
+                //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
+                //gameObject.SetActive(false);
+                GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                PhotonNetwork.Destroy(gameObject);
             }
             else if (interactor.transform.parent.parent.gameObject.tag == "P2")
             {
                 Debug.Log("spawning right half");
-                gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
-                gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
-                gameObject.SetActive(false);
+                //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
+                //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
+                //gameObject.SetActive(false);
 
-                //GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
-                //GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                //PhotonNetwork.Destroy(gameObject);
+                GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                PhotonNetwork.Destroy(gameObject);
             }
         }
         else

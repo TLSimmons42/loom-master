@@ -12,6 +12,8 @@ public class BuildWall : Singleton<BuildWall>
     public GameObject cubeSlot, dropZone;
     int[,] viewWall;
 
+    public GameObject newBox;
+
 
     private void Awake()
     {
@@ -188,8 +190,9 @@ public class BuildWall : Singleton<BuildWall>
                     {
                         Vector3 tempPos = box.transform.position;
                         PhotonNetwork.Destroy(box);
+                        DeleteMirrodCube(col, nextFreeRow - 1);
                         box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
-
+                        nextFreeRow -= 1;
                     }
 
                     box.transform.rotation = this.transform.rotation;
@@ -202,21 +205,28 @@ public class BuildWall : Singleton<BuildWall>
 
                     buildWallArr[col, nextFreeRow] = box;
 
-                    //box.transform.position = newLocation;
-                    if (box.tag == "left gold cube" || box.tag == "right gold cube")
-                    {
-                        box.GetComponent<GoldCubeHalf>().currentZone = "BuildWall";
-                        // box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
-                        box.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
-                        box.GetComponent<GoldCubeHalf>().buildWallTargetRotation = this.transform.rotation;
-                    }
-                    else
-                    {
-                        box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
-                        box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
-                        box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
-                        box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
-                    }
+                //box.transform.position = newLocation;
+                if (box.tag == "left gold cube" || box.tag == "right gold cube")
+                {
+                    box.GetComponent<GoldCubeHalf>().currentZone = "BuildWall";
+                    //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+                    box.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
+                    box.GetComponent<GoldCubeHalf>().buildWallTargetRotation = this.transform.rotation;
+                }
+                else if (box.tag == "gold cube") 
+                {
+                    box.GetComponent<GoldCubeWhole>().currentZone = "BuildWall";
+                    //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+                    box.GetComponent<GoldCubeWhole>().buildWallTargetPos = newLocation;
+                    box.GetComponent<GoldCubeWhole>().buildWallTargetRotation = this.transform.rotation;
+                }
+                else
+                {
+                    box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
+                    box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
+                }
                     //box.GetComponent<BoxCollider>().enabled = false;
 
                     MirrorBuildWalls(col, nextFreeRow, box);
@@ -263,14 +273,23 @@ public class BuildWall : Singleton<BuildWall>
             }
 
             Debug.Log("this is being made " + tempName);
-            GameObject newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
-            newBox.GetComponent<BoxCollider>().isTrigger = false;
+            if (GameManager.instance.host)
+            {
+                newBox = PhotonNetwork.Instantiate(tempName, tempPos, Quaternion.identity);
+            }
+                newBox.GetComponent<BoxCollider>().isTrigger = false;
 
             if (tempName == "Network Gold Right Half" || tempName == "Network Gold Left Half")
             {
                 newBox.GetComponent<GoldCubeHalf>().canBeDroped = false;
                 newBox.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
                 newBox.GetComponent<GoldCubeHalf>().currentZone = newBox.GetComponent<GoldCubeHalf>().BuildWallZone;
+            }
+            else if(tempName == "Network Gold Cube")
+            {
+                newBox.GetComponent<GoldCubeWhole>().canBeDroped = false;
+                newBox.GetComponent<GoldCubeWhole>().buildWallTargetPos = newLocation;
+                newBox.GetComponent<GoldCubeWhole>().currentZone = newBox.GetComponent<GoldCubeWhole>().BuildWallZone;
             }
             else
             {

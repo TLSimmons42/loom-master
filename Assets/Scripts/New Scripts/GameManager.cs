@@ -287,9 +287,9 @@ public class GameManager : Singleton<GameManager>
                 }
                 if (cubeChoice == 2)
                 {
-                    //cube = PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-                    cube = PhotonNetwork.Instantiate("Gold Parent", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
-                    cube.transform.GetChild(0).GetComponent<GoldCubeWhole>().currentZone = cube.transform.GetChild(0).GetComponent<GoldCubeWhole>().playWallZone;
+                    cube = PhotonNetwork.Instantiate("Network Gold Cube", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                    //cube = PhotonNetwork.Instantiate("Gold Parent", PlaywallDropPoints[spawnPointChoice].transform.position, Quaternion.identity);
+                    //cube.transform.GetChild(0).GetComponent<GoldCubeWhole>().currentZone = cube.transform.GetChild(0).GetComponent<GoldCubeWhole>().playWallZone;
 
                 }
                 if (cubeChoice == 3)

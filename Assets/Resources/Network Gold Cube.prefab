@@ -417,8 +417,11 @@ MonoBehaviour:
   holdGold: Hold Gold
   isHeld: 0
   isHeldByBoth: 0
-  playersHoldingCube: 0
+  canBeDroped: 0
+  playersHoldingCube: 1
   playWallTargetPos: {x: 0, y: 0, z: 0}
+  buildWallTargetPos: {x: 0, y: 0, z: 0}
+  buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   PV: {fileID: 0}
 --- !u!1 &4845458031497525813
 GameObject:

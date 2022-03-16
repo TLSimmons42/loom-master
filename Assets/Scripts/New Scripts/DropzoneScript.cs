@@ -36,7 +36,7 @@ public class DropzoneScript : MonoBehaviour
             }
         }
         else
-        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
+        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
         {
             Debug.Log("drop zone script");
             buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
@@ -44,7 +44,14 @@ public class DropzoneScript : MonoBehaviour
         else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)
         {
             Debug.Log("bout to drop a cube");
-            buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+            if (GameManager.instance.host)
+            {
+                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+            }
+        }
+        else
+        {
+            Debug.Log("nothing happens in this collision");
         }
     }
 }
