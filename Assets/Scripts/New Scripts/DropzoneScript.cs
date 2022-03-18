@@ -49,6 +49,13 @@ public class DropzoneScript : MonoBehaviour
                 buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
             }
         }
+        else if(other.tag == "gold cube")
+        {
+            if (GameManager.instance.host)
+            {
+                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+            }
+        }
         else
         {
             Debug.Log("nothing happens in this collision");

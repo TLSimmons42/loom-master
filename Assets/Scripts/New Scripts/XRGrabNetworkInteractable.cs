@@ -65,7 +65,6 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         {
             if (photonView.IsMine)
             {
-                Debug.Log("is yours");
 
                 rightLineRenderer.GetPositions(rightRayPoints);
                 gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];

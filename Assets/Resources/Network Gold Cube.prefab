@@ -423,6 +423,10 @@ MonoBehaviour:
   buildWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   PV: {fileID: 0}
+  rightRay: {fileID: 0}
+  leftRay: {fileID: 0}
+  rightLineRenderer: {fileID: 0}
+  leftLineRenderer: {fileID: 0}
 --- !u!1 &4845458031497525813
 GameObject:
   m_ObjectHideFlags: 0

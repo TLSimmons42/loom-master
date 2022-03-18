@@ -188,11 +188,16 @@ public class BuildWall : Singleton<BuildWall>
                     bool isMatch = CheckGoldMatch(box, lastRowObj);
                     if (isMatch)
                     {
-                        Vector3 tempPos = box.transform.position;
-                        PhotonNetwork.Destroy(box);
-                        DeleteMirrodCube(col, nextFreeRow - 1);
-                        box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
-                        nextFreeRow -= 1;
+                        if (GameManager.instance.host)
+                        {
+                            Debug.Log("next free row: " + nextFreeRow);
+                            Vector3 tempPos = box.transform.position;
+                            PhotonNetwork.Destroy(box);
+                            PhotonNetwork.Destroy(buildWallArr[col, nextFreeRow - 1]);
+                            DeleteMirrodCube(col, nextFreeRow - 1);
+                            box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
+                            nextFreeRow -= 1;
+                        }
                     }
 
                     box.transform.rotation = this.transform.rotation;
@@ -405,7 +410,7 @@ public class BuildWall : Singleton<BuildWall>
                         {
                             //Debug.Log("A cube was removed...");
                             buildWallArr[i, j] = null;
-                            PushCubesDown(i, j);
+                            //PushCubesDown(i, j);
                             DeleteMirrodCube(i, j);
                         }
                     }
@@ -416,7 +421,7 @@ public class BuildWall : Singleton<BuildWall>
                         {
                             //Debug.Log("A cube was removed...");
                             buildWallArr[i, j] = null;
-                            PushCubesDown(i, j);
+                            //PushCubesDown(i, j);
                             DeleteMirrodCube(i, j);
                         }
                     }
@@ -427,7 +432,7 @@ public class BuildWall : Singleton<BuildWall>
                         {
                             //Debug.Log("A cube was removed...");
                             buildWallArr[i, j] = null;
-                            PushCubesDown(i, j);
+                            //PushCubesDown(i, j);
                             DeleteMirrodCube(i, j);
                         }
                     }
@@ -444,6 +449,18 @@ public class BuildWall : Singleton<BuildWall>
             // Checks if the array is a cube
             if (i > 0 && i < buildWallArr.Length && buildWallArr[col, i] != null)
             {
+                if (buildWallArr[col, i].gameObject.tag == "left gold cube" || buildWallArr[col, i].gameObject.tag == "right gold cube")
+                {
+                    buildWallArr[col, i].GetComponent<GoldCubeHalf>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
+                }
+                if (buildWallArr[col, i].gameObject.tag == "gold cube")
+                {
+                    buildWallArr[col, i].GetComponent<GoldCubeWhole>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
+                }
+                if (buildWallArr[col, i].gameObject.tag == "invis cube" || buildWallArr[col, i].gameObject.tag == "red cube" || buildWallArr[col, i].gameObject.tag == "blue cube")
+                {
+                    buildWallArr[col, i].GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
+                }
                 buildWallArr[col, i].GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos += buildWallArr[col, i].transform.up * -1;
                 buildWallArr[col, i - 1] = buildWallArr[col, i];
                 buildWallArr[col, i] = null;
@@ -454,8 +471,10 @@ public class BuildWall : Singleton<BuildWall>
 
     void DeleteMirrodCube(int col, int row)
     {
-        Destroy(otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row]);
+        PushCubesDown(col, row);
+        PhotonNetwork.Destroy(otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row]);
         otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row] = null;
         otherBuildWall.GetComponent<BuildWall>().PushCubesDown(col, row);
+        Debug.Log("Deleteing a Mirroed Cube");
     }
 }

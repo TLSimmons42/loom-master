@@ -16,7 +16,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public bool isHeldByBoth = false;
     public bool canBeDroped = false;
 
-
+    private BoxCollider collider;
 
     public int playersHoldingCube = 0;
     private float playZoneFallSpeed = 2f;
@@ -26,12 +26,23 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     public PhotonView PV;
 
+    public GameObject rightRay;
+    public GameObject leftRay;
+
+    public LineRenderer rightLineRenderer;
+    public LineRenderer leftLineRenderer;
+    private Vector3[] rightRayPoints = new Vector3[2];
+
+
+
 
     void Start()
     {
         StartCoroutine(CanDropCubeTimer());
-        //playersHoldingCube = 1;
         PV = GetComponent<PhotonView>();
+        collider = GetComponent<BoxCollider>();
+        rightRay = GameObject.FindGameObjectWithTag("right ray");
+        rightLineRenderer = rightRay.GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -44,6 +55,11 @@ public class GoldCubeWhole : XRSimpleInteractable
         if (currentZone == BuildWallZone)
         {
             MoveCubeBuildWall();
+        }
+        if(currentZone == NoZone)
+        {
+            rightLineRenderer.GetPositions(rightRayPoints);
+            gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
         }
     }
 
@@ -97,35 +113,44 @@ public class GoldCubeWhole : XRSimpleInteractable
     {
         isHeld = true;
         PV.RequestOwnership();
-        PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
-        if(playersHoldingCube == 2)
-        {
-            if (interactor.transform.parent.parent.gameObject.tag == "P1")
-            {
-                Debug.Log("spawning left half");
-                //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
-                //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
-                //gameObject.SetActive(false);
-                GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
-                GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                PhotonNetwork.Destroy(gameObject);
-            }
-            else if (interactor.transform.parent.parent.gameObject.tag == "P2")
-            {
-                Debug.Log("spawning right half");
-                //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
-                //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
-                //gameObject.SetActive(false);
 
-                GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
-                GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                PhotonNetwork.Destroy(gameObject);
-            }
+        if (currentZone == BuildWallZone)
+        {
+            collider.isTrigger = true;
+            currentZone = NoZone;
         }
         else
         {
-            PV.RPC("changeState", RpcTarget.AllBuffered);
-            currentZone = holdGold;
+            PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
+            if (playersHoldingCube == 2)
+            {
+                if (interactor.transform.parent.parent.gameObject.tag == "P1")
+                {
+                    Debug.Log("spawning left half");
+                    //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
+                    //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
+                    //gameObject.SetActive(false);
+                    GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                    GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                    PhotonNetwork.Destroy(gameObject);
+                }
+                else if (interactor.transform.parent.parent.gameObject.tag == "P2")
+                {
+                    Debug.Log("spawning right half");
+                    //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
+                    //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
+                    //gameObject.SetActive(false);
+
+                    GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
+                    GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                    PhotonNetwork.Destroy(gameObject);
+                }
+            }
+            else
+            {
+                PV.RPC("changeState", RpcTarget.AllBuffered);
+                currentZone = holdGold;
+            }
         }
     }
 

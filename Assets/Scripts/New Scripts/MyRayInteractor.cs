@@ -64,6 +64,7 @@ public class MyRayInteractor : XRRayInteractor
         //}
         if (GameManager.instance.host)
         {
+            Debug.Log("the ray is about to delete the cube");
             PhotonNetwork.Destroy(gameObject);
         }
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
