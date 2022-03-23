@@ -17484,6 +17484,7 @@ MonoBehaviour:
     type: 3}
   dropZone: {fileID: 3029639077781219959, guid: 05c32af6071dedd489df537f9214779f,
     type: 3}
+  newBox: {fileID: 0}
 --- !u!4 &196652854
 Transform:
   m_ObjectHideFlags: 0
@@ -32731,6 +32732,7 @@ MonoBehaviour:
     type: 3}
   dropZone: {fileID: 3029639077781219959, guid: 05c32af6071dedd489df537f9214779f,
     type: 3}
+  newBox: {fileID: 0}
 --- !u!4 &417753608
 Transform:
   m_ObjectHideFlags: 0
@@ -32739,7 +32741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417753606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.25, y: 7.3, z: -8.4}
+  m_LocalPosition: {x: -12.25, y: 7.3, z: -5.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
