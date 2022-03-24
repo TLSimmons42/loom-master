@@ -195,8 +195,7 @@ public class BuildWall : Singleton<BuildWall>
             }
             else
             {
-                if (GameManager.instance.gameObject.tag == "host")
-                {
+                
                         bool isMatch = CheckGoldMatch(box, lastRowObj);
                         if (isMatch)
                         {
@@ -222,8 +221,8 @@ public class BuildWall : Singleton<BuildWall>
                     newLocation += transform.up * nextFreeRow;
                     
                     Debug.Log("putting box into array: " + box.name);
-                    buildWallArr[col, nextFreeRow] = box;
-                    //PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered);
+                    //buildWallArr[col, nextFreeRow] = box;
+                    PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered, box, col, nextFreeRow);
 
                     //box.transform.position = newLocation;
                     if (box.tag == "left gold cube" || box.tag == "right gold cube")
@@ -251,7 +250,7 @@ public class BuildWall : Singleton<BuildWall>
 
                     MirrorBuildWalls(col, nextFreeRow, box);
                 }
-            }
+            
             
         }
     }
