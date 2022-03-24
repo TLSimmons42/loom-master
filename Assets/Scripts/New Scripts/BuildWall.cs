@@ -221,8 +221,8 @@ public class BuildWall : Singleton<BuildWall>
                     newLocation += transform.up * nextFreeRow;
                     
                     Debug.Log("putting box into array: " + box.name);
-                    //buildWallArr[col, nextFreeRow] = box;
-                    PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered, box, col, nextFreeRow);
+                    buildWallArr[col, nextFreeRow] = box;
+                    PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered, col, nextFreeRow);
 
                     //box.transform.position = newLocation;
                     if (box.tag == "left gold cube" || box.tag == "right gold cube")
@@ -493,8 +493,9 @@ public class BuildWall : Singleton<BuildWall>
     }
 
     [PunRPC]
-    public void FillArrayOverNetwork(GameObject obj, int col, int row)
+    public void FillArrayOverNetwork( int col, int row)
     {
-        buildWallArr[col, row] = obj;
+        Debug.Log("This int is coming ove rthe Network: " + col);
+        //buildWallArr[col, row] = obj;
     }
 }
