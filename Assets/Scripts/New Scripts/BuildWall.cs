@@ -222,7 +222,7 @@ public class BuildWall : Singleton<BuildWall>
                     
                     Debug.Log("putting box into array: " + box.name);
                     buildWallArr[col, nextFreeRow] = box;
-                    PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered, col, nextFreeRow);
+                    PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered, box.GetComponent<PhotonView>().ViewID, col, nextFreeRow);
 
                     //box.transform.position = newLocation;
                     if (box.tag == "left gold cube" || box.tag == "right gold cube")
