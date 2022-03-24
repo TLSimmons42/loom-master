@@ -200,8 +200,8 @@ public class BuildWall : Singleton<BuildWall>
                             PhotonNetwork.Destroy(buildWallArr[col, nextFreeRow - 1]);
                             DeleteMirrodCube(col, nextFreeRow - 1);
                             box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
-                            buildWallArr[col, nextFreeRow - 1] = box;
-                            //nextFreeRow -= 1;
+                            //buildWallArr[col, nextFreeRow - 1] = box;
+                            nextFreeRow -= 1;
                         }
                     }
 
