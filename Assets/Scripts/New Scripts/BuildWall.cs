@@ -493,9 +493,9 @@ public class BuildWall : Singleton<BuildWall>
     }
 
     [PunRPC]
-    public void FillArrayOverNetwork( int col, int row)
+    public void FillArrayOverNetwork(int photonID, int col, int row)
     {
-        Debug.Log("This int is coming ove rthe Network: " + col);
-        //buildWallArr[col, row] = obj;
+        GameObject obj =  PhotonNetwork.GetPhotonView(photonID).gameObject;
+        buildWallArr[col, row] = obj;
     }
 }
