@@ -161,9 +161,15 @@ public class BuildWall : Singleton<BuildWall>
 
         if (nextFreeRow == -1)
         {
-            Destroy(box);
+            if (PlayerPrefs.GetInt("playerCount") == 1)
+            {
+                Destroy(box);
+            }
+            else
+            {
+                PhotonNetwork.Destroy(box);
+            }
         }
-
         else
         {
             if (PlayerPrefs.GetInt("playerCount") == 1)
@@ -205,15 +211,16 @@ public class BuildWall : Singleton<BuildWall>
                         }
                     }
 
-                    box.transform.rotation = this.transform.rotation;
-                    //Debug.Log("calculating the build wall pos for the cube");
-                    box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
+                box.transform.rotation = this.transform.rotation;
+                //Debug.Log("calculating the build wall pos for the cube");
+                box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
 
-                    Vector3 newLocation = transform.position;
-                    newLocation += transform.right * -col;
-                    newLocation += transform.up * nextFreeRow;
-
-                    buildWallArr[col, nextFreeRow] = box;
+                Vector3 newLocation = transform.position;
+                newLocation += transform.right * -col;
+                newLocation += transform.up * nextFreeRow;
+                    
+                Debug.Log("putting box into array: " + box.name);
+                buildWallArr[col, nextFreeRow] = box;
 
                 //box.transform.position = newLocation;
                 if (box.tag == "left gold cube" || box.tag == "right gold cube")
