@@ -144,6 +144,10 @@ public class BuildWall : Singleton<BuildWall>
                 //Debug.Log("The next free row is: " + i);
                 return i;
             }
+            else
+            {
+                Debug.Log("NOT NULL");
+            }
         }
         //Debug.Log("There is no free row");
         return -1;

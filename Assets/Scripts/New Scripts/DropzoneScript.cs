@@ -44,10 +44,8 @@ public class DropzoneScript : MonoBehaviour
         else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)
         {
             Debug.Log("bout to drop a cube");
-            if (GameManager.instance.host)
-            {
-                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
-            }
+            buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+            
         }
         else if(other.tag == "gold cube")
         {
