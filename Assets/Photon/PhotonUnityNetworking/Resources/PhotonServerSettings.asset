@@ -49,6 +49,8 @@ MonoBehaviour:
   - SpawnCubeHalves
   - changeState
   - DeleteObjsOverNetwork
+  - FillArray
+  - FillArrayOverNetwork
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

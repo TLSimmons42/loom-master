@@ -14,6 +14,8 @@ public class BuildWall : Singleton<BuildWall>
 
     public GameObject newBox;
 
+    PhotonView PV;
+
 
     private void Awake()
     {
@@ -24,7 +26,7 @@ public class BuildWall : Singleton<BuildWall>
     // Start is called before the first frame update
     void Start()
     {
-
+        PV = GetComponent<PhotonView>();
         ConvertGameDiffToInt(PlayerPrefs.GetString("gameDifficulty"));
         InitiateBuildWall(gameDiff);
         DisplayBuildWall(gameDiff);
@@ -183,7 +185,7 @@ public class BuildWall : Singleton<BuildWall>
                 newLocation += transform.up * nextFreeRow;
 
                 buildWallArr[col, nextFreeRow] = box;
-
+                //PV.RPC("changeState", RpcTarget.AllBuffered);
                 //box.transform.position = newLocation;
                 box.GetComponent<Cube>().currentZone = "BuildWall";
                 box.GetComponent<Cube>().SetZoneToBuild();
@@ -193,61 +195,62 @@ public class BuildWall : Singleton<BuildWall>
             }
             else
             {
-                //if (GameManager.instance.gameObject.tag == "host")
-                //{
-                    bool isMatch = CheckGoldMatch(box, lastRowObj);
-                    if (isMatch)
-                    {
-                        if (GameManager.instance.host)
+                if (GameManager.instance.gameObject.tag == "host")
+                {
+                        bool isMatch = CheckGoldMatch(box, lastRowObj);
+                        if (isMatch)
                         {
-                            Debug.Log("next free row: " + nextFreeRow);
-                            Vector3 tempPos = box.transform.position;
-                            PhotonNetwork.Destroy(box);
-                            PhotonNetwork.Destroy(buildWallArr[col, nextFreeRow - 1]);
-                            DeleteMirrodCube(col, nextFreeRow - 1);
-                            box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
-                            //buildWallArr[col, nextFreeRow - 1] = box;
-                            nextFreeRow -= 1;
+                            if (GameManager.instance.host)
+                            {
+                                Debug.Log("next free row: " + nextFreeRow);
+                                Vector3 tempPos = box.transform.position;
+                                PhotonNetwork.Destroy(box);
+                                PhotonNetwork.Destroy(buildWallArr[col, nextFreeRow - 1]);
+                                DeleteMirrodCube(col, nextFreeRow - 1);
+                                box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
+                                //buildWallArr[col, nextFreeRow - 1] = box;
+                                nextFreeRow -= 1;
+                            }
                         }
-                    }
 
-                box.transform.rotation = this.transform.rotation;
-                //Debug.Log("calculating the build wall pos for the cube");
-                box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
+                    box.transform.rotation = this.transform.rotation;
+                    //Debug.Log("calculating the build wall pos for the cube");
+                    box.transform.position = transform.position + (transform.right * -col) + (transform.up * (levelSize + 1));
 
-                Vector3 newLocation = transform.position;
-                newLocation += transform.right * -col;
-                newLocation += transform.up * nextFreeRow;
+                    Vector3 newLocation = transform.position;
+                    newLocation += transform.right * -col;
+                    newLocation += transform.up * nextFreeRow;
                     
-                Debug.Log("putting box into array: " + box.name);
-                buildWallArr[col, nextFreeRow] = box;
+                    Debug.Log("putting box into array: " + box.name);
+                    buildWallArr[col, nextFreeRow] = box;
+                    //PV.RPC("FillArrayOverNetwork", RpcTarget.AllBuffered);
 
-                //box.transform.position = newLocation;
-                if (box.tag == "left gold cube" || box.tag == "right gold cube")
-                {
-                    box.GetComponent<GoldCubeHalf>().currentZone = "BuildWall";
-                    //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
-                    box.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
-                    box.GetComponent<GoldCubeHalf>().buildWallTargetRotation = this.transform.rotation;
-                }
-                else if (box.tag == "gold cube") 
-                {
-                    box.GetComponent<GoldCubeWhole>().currentZone = "BuildWall";
-                    //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
-                    box.GetComponent<GoldCubeWhole>().buildWallTargetPos = newLocation;
-                    box.GetComponent<GoldCubeWhole>().buildWallTargetRotation = this.transform.rotation;
-                }
-                else
-                {
-                    box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
-                    box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
-                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
-                    box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
-                }
-                    //box.GetComponent<BoxCollider>().enabled = false;
+                    //box.transform.position = newLocation;
+                    if (box.tag == "left gold cube" || box.tag == "right gold cube")
+                    {
+                        box.GetComponent<GoldCubeHalf>().currentZone = "BuildWall";
+                        //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+                        box.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
+                        box.GetComponent<GoldCubeHalf>().buildWallTargetRotation = this.transform.rotation;
+                    }
+                    else if (box.tag == "gold cube") 
+                    {
+                        box.GetComponent<GoldCubeWhole>().currentZone = "BuildWall";
+                        //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+                        box.GetComponent<GoldCubeWhole>().buildWallTargetPos = newLocation;
+                        box.GetComponent<GoldCubeWhole>().buildWallTargetRotation = this.transform.rotation;
+                    }
+                    else
+                    {
+                        box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
+                        box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+                        box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+                        box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = this.transform.rotation;
+                    }
+                        //box.GetComponent<BoxCollider>().enabled = false;
 
-                MirrorBuildWalls(col, nextFreeRow, box);
-                //}
+                    MirrorBuildWalls(col, nextFreeRow, box);
+                }
             }
             
         }
@@ -488,5 +491,11 @@ public class BuildWall : Singleton<BuildWall>
         otherBuildWall.GetComponent<BuildWall>().buildWallArr[col, row] = null;
         otherBuildWall.GetComponent<BuildWall>().PushCubesDown(col, row);
         Debug.Log("Deleteing a Mirroed Cube");
+    }
+
+    [PunRPC]
+    public void FillArrayOverNetwork(GameObject obj, int col, int row)
+    {
+        buildWallArr[col, row] = obj;
     }
 }
