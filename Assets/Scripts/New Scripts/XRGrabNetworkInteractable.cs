@@ -71,7 +71,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             }
             else
             {
-                Debug.Log("not yours");
+                //Debug.Log("not yours");
             }
         }
         if (currentZone == holdGold)

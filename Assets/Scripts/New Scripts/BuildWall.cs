@@ -137,7 +137,7 @@ public class BuildWall : Singleton<BuildWall>
         for (int i = 0; i < buildWallArr.Length; i++)
         {
             //Debug.Log(i);
-            //Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
+            Debug.Log(col + ", " + i + ": " + buildWallArr[col, i]);
 
             if (buildWallArr[col, i] == null)
             {
@@ -196,7 +196,8 @@ public class BuildWall : Singleton<BuildWall>
                             PhotonNetwork.Destroy(buildWallArr[col, nextFreeRow - 1]);
                             DeleteMirrodCube(col, nextFreeRow - 1);
                             box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
-                            nextFreeRow -= 1;
+                            buildWallArr[col, nextFreeRow - 1] = box;
+                            //nextFreeRow -= 1;
                         }
                     }
 
