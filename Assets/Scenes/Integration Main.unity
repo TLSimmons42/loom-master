@@ -17466,7 +17466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &196652853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32737,7 +32737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &417753607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90832,7 +90832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Persistent: 0
-  editorBuildArray:
+  editorBuildMasterArray:
     gridSize: {x: 15, y: 15}
     cellSize: {x: 16, y: 16}
     cells:
@@ -91076,11 +91076,261 @@ MonoBehaviour:
       - 
       - 
       - 
+  editorTargetWall:
+    gridSize: {x: 15, y: 15}
+    cellSize: {x: 16, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+  hostBuildWallLocation: {fileID: 0}
+  clientBuildWallLocation: {fileID: 0}
   dropZone: {fileID: 0}
-  redCube: {fileID: 0}
-  blueCube: {fileID: 0}
-  clearCube: {fileID: 0}
-  goldCube: {fileID: 0}
+  spotPlaceHolder: {fileID: 0}
+  redCube: {fileID: 3515984329757670175, guid: 325fb100648b778499e4e211396229e3, type: 3}
+  blueCube: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
+    type: 3}
+  invsCube: {fileID: 7363820828797063875, guid: 8682b0d11a075334f9ce8cfd10d94e02,
+    type: 3}
+  goldCube: {fileID: 3285423848479979651, guid: fae547fab4b5bee408df1ff6ceaece54,
+    type: 3}
   leftGoldCube: {fileID: 0}
   rightGoldCube: {fileID: 0}
 --- !u!4 &1133431148
@@ -91115,52 +91365,52 @@ MonoBehaviour:
     cellSize: {x: 16, y: 16}
     cells:
     - row:
+      - h
+      - e
+      - l
+      - l
+      - o
+      - '!'
+      - '!'
+    - row:
       - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - r
+      - b
+      - r
+      - b
+      - r
       - 
     - row:
       - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-    - row:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - b
+      - r
+      - b
+      - r
+      - b
       - 
     - row:
       - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-    - row:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - r
+      - b
+      - r
+      - b
+      - r
       - 
     - row:
       - 
+      - b
+      - r
+      - b
+      - r
+      - b
       - 
+    - row:
       - 
-      - 
-      - 
-      - 
+      - r
+      - b
+      - r
+      - b
+      - r
       - 
     - row:
       - 
@@ -91175,13 +91425,21 @@ MonoBehaviour:
     cellSize: {x: 16, y: 16}
     cells:
     - row:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - t
+      - e
+      - s
+      - t
+      - i
+      - n
+      - g
+    - row:
+      - t
+      - e
+      - s
+      - t
+      - i
+      - n
+      - g
     - row:
       - 
       - 
@@ -91192,19 +91450,11 @@ MonoBehaviour:
       - 
     - row:
       - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-    - row:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - h
+      - e
+      - l
+      - l
+      - o
       - 
     - row:
       - 
