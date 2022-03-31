@@ -51,6 +51,8 @@ MonoBehaviour:
   - DeleteObjsOverNetwork
   - FillArray
   - FillArrayOverNetwork
+  - addCube
+  - removeCube
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
