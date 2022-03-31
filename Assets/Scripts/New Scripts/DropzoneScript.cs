@@ -6,6 +6,8 @@ public class DropzoneScript : MonoBehaviour
 {
     public int column;
     GameObject buildWall;
+    public string direction;
+    public Vector2Int index;
 
     // Start is called before the first frame update
     void Start()

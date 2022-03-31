@@ -10,6 +10,8 @@ public class Cube : XRGrabInteractable
     //public GameManager gameManager;
     private Rigidbody rb;
     private BoxCollider collider;
+    public Vector2Int index;
+    
 
     public Vector3 playWallTargetPos, buildWallTargetPos;
     public Quaternion buildWallTargetRotation;
@@ -44,6 +46,9 @@ public class Cube : XRGrabInteractable
         collider = GetComponent<BoxCollider>();
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
+
+
+        
 
     }
     void Update()

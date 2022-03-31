@@ -5,8 +5,6 @@ using Array2DEditor;
 
 public class Levels : Singleton<Levels>
 {
-    
-
     List<Array2DString> easyLevels = new List<Array2DString>();
     [Header("Easy Levels")]
 
@@ -33,7 +31,7 @@ public class Levels : Singleton<Levels>
     [SerializeField]
     public Array2DString hard2;
 
-    public void Start()
+    public void Awake()
     {
         initializeLevels();
     }
@@ -52,6 +50,7 @@ public class Levels : Singleton<Levels>
 
     public string[,] getRandomLevel(string difficulty)
     {
+        //initializeLevels();
         switch (difficulty) 
         {
             case "easy":
