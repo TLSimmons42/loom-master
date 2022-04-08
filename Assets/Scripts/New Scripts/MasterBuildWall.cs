@@ -22,9 +22,12 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     List<GameObject> hostCubes = new List<GameObject>();
     List<GameObject> clientCubes = new List<GameObject>();
 
+    PhotonView PV;
+
 
     public void Start()
     {
+        PV = GetComponent<PhotonView>();
         importLevel();
         initBuildWallTest();
         displayEditorMasterArray();
@@ -82,10 +85,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                         clientDropZone.transform.parent = clientBuildWallLocation.transform;
                     }
-            }
                 }
             }
         }
+    }
 
     // Converts given indices and returns the direction is should face
     public string indicesToDirection(int x, int y, string[,] array)
@@ -131,7 +134,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     void ConstructBuildWall(Transform wallLocation)
     {
-        
         initalizeDropZones();
         for (int i = 0; i < targetWall.GetLength(0); i++)
         {
@@ -228,32 +230,88 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
 
+    public void calculateNextFreePosition(DropzoneScript drop)
+    {
+        Vector3 dropPos = drop.gameObject.transform.position;
+        Vector3 deltaPosition = new Vector3(Mathf.Abs(dropPos.x), Mathf.Abs(dropPos.y), Mathf.Abs(dropPos.z));
+
+        switch (drop.direction)
+        {
+            case "right":
+                for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
+                {
+                    if (masterBuildArray[i, drop.index.y] == null)
+                    {
+                        PV.RPC("addCube", RpcTarget.AllBuffered, i, drop.index.y, drop.tag);
+                    }
+                }
+                break;
+            case "left":
+                for (int i = 0; i < masterBuildArray.GetLength(0); i++)
+                {
+                    if (masterBuildArray[i, drop.index.y] == null)
+                    {
+                        PV.RPC("addCube", RpcTarget.AllBuffered, i, drop.index.y, drop.tag);
+                    }
+                }
+                break;
+            case "up":
+                for (int i = 0; i < masterBuildArray.GetLength(0); i++)
+                {
+                    if (masterBuildArray[drop.index.x, i] == null)
+                    {
+                        PV.RPC("addCube", RpcTarget.AllBuffered, drop.index.y, i, drop.tag);
+                    }
+                }
+                break;
+            case "down":
+                for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
+                {
+                    if (masterBuildArray[drop.index.x, i] == null)
+                    {
+                        PV.RPC("addCube", RpcTarget.AllBuffered, drop.index.y, i, drop.tag);
+                    }
+                }
+                break;
+            default:
+                Debug.LogError("Trying to drop at zone without valid direction)");
+                break;
+        }
+    }
+
     [PunRPC]
 
     public void addCube(int x, int y, string cubeCode)
-    {
-        hostCubes.Add(cubeCodeToGameObject(cubeCode));
-        clientCubes.Add(cubeCodeToGameObject(cubeCode));
+    { 
+        if (GameManager.instance.host)
+        {
+            GameObject hostCube = PhotonNetwork.Instantiate("Network Blue Cube", hostBuildWallLocation.transform.position, hostBuildWallLocation.transform.rotation);
+            GameObject clientCube = cubeCodeToGameObject(cubeCode);
+
+            hostCube.GetComponent<Cube>().index = new Vector2Int(x, y);
+            clientCube.GetComponent<Cube>().index = new Vector2Int(x, y);
+        }
     }
 
     [PunRPC]
 
     public void removeCube(int x, int y, string cubeCode)
     {
-        foreach (GameObject cube in hostCubes)
+        if (GameManager.instance.host)
         {
-            if (cube.GetComponent<Cube>().index == new Vector2Int(x, y))
-            {
-                hostCubes.Remove(cube);
-            }
-        }
+            masterBuildArray[x, y] = null;
 
-        foreach (GameObject cube in clientCubes)
-        {
-            if (cube.GetComponent<Cube>().index == new Vector2Int(x, y))
+            GameObject[] cubes = GameObject.FindGameObjectsWithTag(cubeCode);
+
+            foreach (GameObject c in cubes)
             {
-                clientCubes.Remove(cube);
+                PhotonNetwork.Destroy(c);
             }
-        }
+        }   
+    }
+
+    public void pushCubes()
+    {
+
     }
 }

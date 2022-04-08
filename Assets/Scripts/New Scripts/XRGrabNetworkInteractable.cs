@@ -22,6 +22,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public bool isHeld = false;
     public bool canBeDroped = false;
 
+    public Vector2Int index;
+
     private BoxCollider collider;
     private PhotonView photonView;
     private Transform currentPos;
