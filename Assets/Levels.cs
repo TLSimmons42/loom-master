@@ -12,8 +12,10 @@ public class Levels : Singleton<Levels>
     public Array2DString easy1;
     [SerializeField]
     public Array2DString easy2;
+    [SerializeField]
+    public Array2DString easy3;
 
-    
+
 
     List<Array2DString> mediumLevels = new List<Array2DString>();
     [Header("Medium Levels")]
@@ -40,6 +42,7 @@ public class Levels : Singleton<Levels>
     {
         easyLevels.Add(easy1);
         easyLevels.Add(easy2);
+        easyLevels.Add(easy3);
 
         mediumLevels.Add(medium1);
         mediumLevels.Add(medium2);

@@ -91369,29 +91369,13 @@ MonoBehaviour:
     cellSize: {x: 16, y: 16}
     cells:
     - row:
-      - h
-      - e
-      - l
-      - 
-      - o
-      - '!'
-      - '!'
-    - row:
-      - 
-      - r
-      - b
-      - r
-      - b
-      - r
-      - 
-    - row:
-      - 
-      - b
-      - r
-      - b
-      - r
-      - b
-      - 
+      - d
+      - d
+      - d
+      - d
+      - d
+      - d
+      - d
     - row:
       - d
       - r
@@ -91401,29 +91385,45 @@ MonoBehaviour:
       - r
       - d
     - row:
-      - 
+      - d
       - b
       - r
       - b
       - r
       - b
-      - 
+      - d
     - row:
-      - 
+      - d
       - r
       - b
       - r
       - b
       - r
-      - 
+      - d
     - row:
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
-      - 
+      - d
+      - b
+      - r
+      - b
+      - r
+      - b
+      - d
+    - row:
+      - d
+      - r
+      - b
+      - r
+      - b
+      - r
+      - d
+    - row:
+      - d
+      - d
+      - d
+      - d
+      - d
+      - d
+      - d
   easy2:
     gridSize: {x: 7, y: 7}
     cellSize: {x: 16, y: 16}
@@ -91460,6 +91460,66 @@ MonoBehaviour:
       - l
       - o
       - d
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+  easy3:
+    gridSize: {x: 7, y: 7}
+    cellSize: {x: 16, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
     - row:
       - 
       - 
