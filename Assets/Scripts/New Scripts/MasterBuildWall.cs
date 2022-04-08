@@ -56,36 +56,36 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             for (int j = 0; j < levelImport.GetLength(1); j++)
             {
-                // Checks if the indices are on the border of the 2D array
-                if ((i == 0 || i == levelImport.GetLength(0) - 1) && 
-                    (j == 0 || j == levelImport.GetLength(1) - 1))
-                {
-                    // Checks that the indices are not the corners of the 2D array
-                    //if (!(j == 0 && i == 0) && 
-                    //    !(j == 0 && i == levelImport.GetLength(0) - 1) && 
-                    //    !(j == levelImport.GetLength(1) - 1 && i == 0) &&
-                    //    !(j == levelImport.GetLength(1) - 1 && i == levelImport.GetLength(0) - 1)) {
-                        // Checks if there is a valid string in the specified index
-                        if (levelImport[i, j] != null)
-                        {
-                            Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
-                            GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
-                            hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
-                            hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
+                Debug.Log("Current indices: (" + i + ", " + j + ")");
+                if (i == 0 || i == levelImport.GetLength(0) - 1 || j == 0 || j == levelImport.GetLength(1) - 1)
+                { 
+                    if (!levelImport[i, j].Equals(""))
+                    {
+                        Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
+                        GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
+                        hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
+                        hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
 
-                            hostDropZone.transform.parent = hostBuildWallLocation.transform;
+                        hostDropZone.transform.position = hostBuildWallLocation.transform.position;
+                        hostDropZone.transform.position += hostBuildWallLocation.transform.right * -j;
+                        hostDropZone.transform.position += hostBuildWallLocation.transform.up * -i + hostBuildWallLocation.transform.up * levelImport.GetLength(1);
 
-                            GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
-                            clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
-                            clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
+                        hostDropZone.transform.parent = hostBuildWallLocation.transform;
 
-                            clientDropZone.transform.parent = clientBuildWallLocation.transform;
-                        }
-                    //}
+                        GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
+                        clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
+                        clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
+
+                        clientDropZone.transform.position = clientBuildWallLocation.transform.position;
+                        clientDropZone.transform.position += clientBuildWallLocation.transform.right * -j;
+                        clientDropZone.transform.position += clientBuildWallLocation.transform.up * -i;
+
+                        clientDropZone.transform.parent = clientBuildWallLocation.transform;
+                    }
+            }
                 }
             }
         }
-    }
 
     // Converts given indices and returns the direction is should face
     public string indicesToDirection(int x, int y, string[,] array)
@@ -129,7 +129,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     void ConstructBuildWall(Transform wallLocation)
     {
-
+        initalizeDropZones();
         for (int i = 0; i < targetWall.GetLength(0); i++)
         {
             Vector3 spawnLocation = wallLocation.position;
