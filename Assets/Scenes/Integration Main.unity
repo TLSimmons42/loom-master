@@ -91320,10 +91320,12 @@ MonoBehaviour:
       - 
       - 
       - 
-  hostBuildWallLocation: {fileID: 0}
-  clientBuildWallLocation: {fileID: 0}
-  dropZone: {fileID: 0}
-  spotPlaceHolder: {fileID: 0}
+  hostBuildWallLocation: {fileID: 2100322412}
+  clientBuildWallLocation: {fileID: 2090823310}
+  dropZone: {fileID: 3029639077781219959, guid: 05c32af6071dedd489df537f9214779f,
+    type: 3}
+  spotPlaceHolder: {fileID: 7624834715429502512, guid: 9669a30ac9bdf15478bf8532c9f9682b,
+    type: 3}
   redCube: {fileID: 3515984329757670175, guid: 325fb100648b778499e4e211396229e3, type: 3}
   blueCube: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
     type: 3}
@@ -91343,7 +91345,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2100322413}
+  - {fileID: 2090823311}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91368,7 +91372,7 @@ MonoBehaviour:
       - h
       - e
       - l
-      - l
+      - 
       - o
       - '!'
       - '!'
@@ -91389,13 +91393,13 @@ MonoBehaviour:
       - b
       - 
     - row:
-      - 
+      - d
       - r
       - b
       - r
       - b
       - r
-      - 
+      - d
     - row:
       - 
       - b
@@ -91449,13 +91453,13 @@ MonoBehaviour:
       - 
       - 
     - row:
-      - 
+      - d
       - h
       - e
       - l
       - l
       - o
-      - 
+      - d
     - row:
       - 
       - 
@@ -134820,6 +134824,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087162940}
   m_CullTransparentMesh: 0
+--- !u!1 &2090823310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2090823311}
+  m_Layer: 0
+  m_Name: Client Build Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2090823311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090823310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1133431148}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2100322412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100322413}
+  m_Layer: 0
+  m_Name: Host Build Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2100322413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100322412}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1133431148}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2100662934
 GameObject:
   m_ObjectHideFlags: 0

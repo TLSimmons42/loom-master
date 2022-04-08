@@ -61,22 +61,27 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     (j == 0 || j == levelImport.GetLength(1) - 1))
                 {
                     // Checks that the indices are not the corners of the 2D array
-                    if (!(j == 0 && i == 0) && 
-                        !(j == 0 && i == levelImport.GetLength(0) - 1) && 
-                        !(j == levelImport.GetLength(1) - 1 && i == 0) &&
-                        !(j == levelImport.GetLength(1) - 1 && i == levelImport.GetLength(0) - 1)) {
+                    //if (!(j == 0 && i == 0) && 
+                    //    !(j == 0 && i == levelImport.GetLength(0) - 1) && 
+                    //    !(j == levelImport.GetLength(1) - 1 && i == 0) &&
+                    //    !(j == levelImport.GetLength(1) - 1 && i == levelImport.GetLength(0) - 1)) {
                         // Checks if there is a valid string in the specified index
                         if (levelImport[i, j] != null)
                         {
+                            Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
                             GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
                             hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
                             hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
 
+                            hostDropZone.transform.parent = hostBuildWallLocation.transform;
+
                             GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
                             clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
                             clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
+
+                            clientDropZone.transform.parent = clientBuildWallLocation.transform;
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -118,33 +123,31 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void initializeBuildWalls()
     {
-        ConstructBuildWall(targetWall.GetLength(0), hostBuildWallLocation.transform);
-        ConstructBuildWall(targetWall.GetLength(0), clientBuildWallLocation.transform);
+        ConstructBuildWall(hostBuildWallLocation.transform);
+        ConstructBuildWall(clientBuildWallLocation.transform);
     }
 
-    void ConstructBuildWall(int size, Transform wallLocation)
+    void ConstructBuildWall(Transform wallLocation)
     {
-        int viewWallSize = size;
-        //viewWallSize = 15;
 
-        for (int i = 0; i < viewWallSize; i++)
+        for (int i = 0; i < targetWall.GetLength(0); i++)
         {
             Vector3 spawnLocation = wallLocation.position;
             spawnLocation += wallLocation.right * -i;
-            spawnLocation += (viewWallSize) * wallLocation.up;
+            spawnLocation += (targetWall.GetLength(0)) * wallLocation.up;
 
-            GameObject spawnedCube = Instantiate(dropZone, spawnLocation, wallLocation.rotation);
-            spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
-            spawnedCube.transform.parent = transform;
+            //GameObject spawnedCube = Instantiate(dropZone, spawnLocation, wallLocation.rotation);
+            //spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
+            //spawnedCube.transform.parent = transform;
 
-            for (int j = 0; j < viewWallSize; j++)
+            for (int j = 0; j < targetWall.GetLength(0); j++)
             {
                 spawnLocation = wallLocation.position;
                 spawnLocation += wallLocation.right * -i;
                 spawnLocation += wallLocation.up * j;
 
-                spawnedCube = Instantiate(spotPlaceHolder, spawnLocation, wallLocation.rotation);
-                spawnedCube.transform.parent = transform;
+                GameObject placeholder = Instantiate(spotPlaceHolder, spawnLocation, wallLocation.rotation);
+                placeholder.transform.parent = wallLocation.transform;
             }
         }
     }
