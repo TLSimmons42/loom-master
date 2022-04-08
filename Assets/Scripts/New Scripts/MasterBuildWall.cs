@@ -68,7 +68,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                         hostDropZone.transform.position = hostBuildWallLocation.transform.position;
                         hostDropZone.transform.position += hostBuildWallLocation.transform.right * -j;
-                        hostDropZone.transform.position += hostBuildWallLocation.transform.up * -i + hostBuildWallLocation.transform.up * levelImport.GetLength(1);
+                        hostDropZone.transform.position += hostBuildWallLocation.transform.up * -i;
 
                         hostDropZone.transform.parent = hostBuildWallLocation.transform;
 
@@ -123,28 +123,23 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void initializeBuildWalls()
     {
+        hostBuildWallLocation.transform.position += hostBuildWallLocation.transform.up * masterBuildArray.GetLength(0);
+        clientBuildWallLocation.transform.position += clientBuildWallLocation.transform.up * masterBuildArray.GetLength(0);
         ConstructBuildWall(hostBuildWallLocation.transform);
         ConstructBuildWall(clientBuildWallLocation.transform);
     }
 
     void ConstructBuildWall(Transform wallLocation)
     {
+        
         initalizeDropZones();
         for (int i = 0; i < targetWall.GetLength(0); i++)
         {
-            Vector3 spawnLocation = wallLocation.position;
-            spawnLocation += wallLocation.right * -i;
-            spawnLocation += (targetWall.GetLength(0)) * wallLocation.up;
-
-            //GameObject spawnedCube = Instantiate(dropZone, spawnLocation, wallLocation.rotation);
-            //spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
-            //spawnedCube.transform.parent = transform;
-
             for (int j = 0; j < targetWall.GetLength(0); j++)
             {
-                spawnLocation = wallLocation.position;
-                spawnLocation += wallLocation.right * -i;
-                spawnLocation += wallLocation.up * j;
+                Vector3 spawnLocation = wallLocation.position;
+                spawnLocation += wallLocation.right * -(i + 1);
+                spawnLocation += wallLocation.up * -(j + 1);
 
                 GameObject placeholder = Instantiate(spotPlaceHolder, spawnLocation, wallLocation.rotation);
                 placeholder.transform.parent = wallLocation.transform;
