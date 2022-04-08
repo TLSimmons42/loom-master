@@ -63,8 +63,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     {
                         Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
                         GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
-                        hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
-                        hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
+                        hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
+                        hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
 
                         hostDropZone.transform.position = hostBuildWallLocation.transform.position;
                         hostDropZone.transform.position += hostBuildWallLocation.transform.right * -j;
@@ -73,8 +73,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         hostDropZone.transform.parent = hostBuildWallLocation.transform;
 
                         GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
-                        clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(i, j, levelImport);
-                        clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(i, j);
+                        clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
+                        clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
 
                         clientDropZone.transform.position = clientBuildWallLocation.transform.position;
                         clientDropZone.transform.position += clientBuildWallLocation.transform.right * -j;
@@ -90,13 +90,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     // Converts given indices and returns the direction is should face
     public string indicesToDirection(int x, int y, string[,] array)
     {
-        if (x == 0 && y != 0 && y != array.GetLength(1)) {
+        if (x == 0) {
             return "right";
-        } else if (x == array.GetLength(0) && y != 0 && y != array.GetLength(1)) {
+        } else if (x == array.GetLength(0) - 1) {
             return "left";
-        } else if (y == 0 && x != 0 && x != array.GetLength(0)) {
+        } else if (y == 0) {
             return "down";
-        } else if (y == array.GetLength(1) && x != 0 && x != array.GetLength(0)) {
+        } else if (y == array.GetLength(1) - 1) {
             return "up";
         } else {
             return "invalid";
@@ -123,8 +123,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void initializeBuildWalls()
     {
-        hostBuildWallLocation.transform.position += hostBuildWallLocation.transform.up * masterBuildArray.GetLength(0);
-        clientBuildWallLocation.transform.position += clientBuildWallLocation.transform.up * masterBuildArray.GetLength(0);
+        hostBuildWallLocation.transform.position += hostBuildWallLocation.transform.up * levelImport.GetLength(0);
+        clientBuildWallLocation.transform.position += clientBuildWallLocation.transform.up * levelImport.GetLength(0);
         ConstructBuildWall(hostBuildWallLocation.transform);
         ConstructBuildWall(clientBuildWallLocation.transform);
     }
