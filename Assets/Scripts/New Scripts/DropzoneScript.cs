@@ -8,10 +8,13 @@ public class DropzoneScript : MonoBehaviour
     GameObject buildWall;
     public string direction;
     public Vector2Int index;
+    public bool hostDropZone = false;
+    public GameObject masterBuildWall;
 
     // Start is called before the first frame update
     void Start()
     {
+        masterBuildWall = GameObject.FindGameObjectWithTag("master build wall");
         buildWall = transform.parent.gameObject;
     }
 
@@ -41,8 +44,8 @@ public class DropzoneScript : MonoBehaviour
         if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
         {
             
-                Debug.Log("drop zone script");
-                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+            Debug.Log("drop zone script");
+            masterBuildWall.GetComponent<MasterBuildWall>().DropBox(other.gameObject, this.gameObject, )
             
         }
         else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)

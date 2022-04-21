@@ -12,6 +12,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     private string[,] levelImport;
     private string[,] targetWall;
     private string[,] masterBuildArray = new string[5,5];
+    private GameObject[,] hostSpotHolderArray = new GameObject[5,5];
+    private GameObject[,] clientSpotHolderArray = new GameObject[5,5];
 
     public GameObject hostBuildWallLocation, clientBuildWallLocation;
 
@@ -68,6 +70,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
                         hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
+                        hostDropZone.GetComponent<DropzoneScript>().hostDropZone = true;
 
                         hostDropZone.transform.position = hostBuildWallLocation.transform.position;
                         hostDropZone.transform.position += hostBuildWallLocation.transform.right * -j;
@@ -78,6 +81,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
                         clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
+                        clientDropZone.GetComponent<DropzoneScript>().hostDropZone = false;
 
                         clientDropZone.transform.position = clientBuildWallLocation.transform.position;
                         clientDropZone.transform.position += clientBuildWallLocation.transform.right * -j;
@@ -128,11 +132,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         hostBuildWallLocation.transform.position += hostBuildWallLocation.transform.up * levelImport.GetLength(0);
         clientBuildWallLocation.transform.position += clientBuildWallLocation.transform.up * levelImport.GetLength(0);
-        ConstructBuildWall(hostBuildWallLocation.transform);
-        ConstructBuildWall(clientBuildWallLocation.transform);
+        ConstructBuildWall(hostBuildWallLocation.transform, "host");
+        ConstructBuildWall(clientBuildWallLocation.transform, "client");
     }
 
-    void ConstructBuildWall(Transform wallLocation)
+    void ConstructBuildWall(Transform wallLocation, string wall)
     {
         initalizeDropZones();
         for (int i = 0; i < targetWall.GetLength(0); i++)
@@ -145,6 +149,14 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                 GameObject placeholder = Instantiate(spotPlaceHolder, spawnLocation, wallLocation.rotation);
                 placeholder.transform.parent = wallLocation.transform;
+                if(wall == "host")
+                {
+                    placeholder = hostSpotHolderArray[i, j];
+                }
+                else if(wall == "client")
+                {
+                    placeholder = clientSpotHolderArray[i, j];
+                }
             }
         }
     }
@@ -230,71 +242,117 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
 
-    public void calculateNextFreePosition(DropzoneScript drop)
+    public Vector2 calculateNextFreePosition(GameObject drop)
     {
+        string direction = drop.GetComponent<DropzoneScript>().direction;
         Vector3 dropPos = drop.gameObject.transform.position;
         Vector3 deltaPosition = new Vector3(Mathf.Abs(dropPos.x), Mathf.Abs(dropPos.y), Mathf.Abs(dropPos.z));
+        Vector2 temp = new Vector2(0,0);
 
-        switch (drop.direction)
+        switch (direction)
         {
             case "right":
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
                 {
-                    if (masterBuildArray[i, drop.index.y] == null)
+                    if (masterBuildArray[i, drop.GetComponent<DropzoneScript>().index.y] == null)
                     {
-                        PV.RPC("addCube", RpcTarget.AllBuffered, i, drop.index.y, drop.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, i, drop.GetComponent<DropzoneScript>().index.y, drop.tag);
+                        temp = new Vector2(i, drop.GetComponent<DropzoneScript>().index.y);
                     }
                 }
                 break;
             case "left":
                 for (int i = 0; i < masterBuildArray.GetLength(0); i++)
                 {
-                    if (masterBuildArray[i, drop.index.y] == null)
+                    if (masterBuildArray[i, drop.GetComponent<DropzoneScript>().index.y] == null)
                     {
-                        PV.RPC("addCube", RpcTarget.AllBuffered, i, drop.index.y, drop.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, i, drop.GetComponent<DropzoneScript>().index.y, drop.tag);
+                        temp = new Vector2(i, drop.GetComponent<DropzoneScript>().index.y);
                     }
                 }
                 break;
             case "up":
                 for (int i = 0; i < masterBuildArray.GetLength(0); i++)
                 {
-                    if (masterBuildArray[drop.index.x, i] == null)
+                    if (masterBuildArray[drop.GetComponent<DropzoneScript>().index.x, i] == null)
                     {
-                        PV.RPC("addCube", RpcTarget.AllBuffered, drop.index.y, i, drop.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, drop.GetComponent<DropzoneScript>().index.x, i, drop.tag);
+                        temp = new Vector2(drop.GetComponent<DropzoneScript>().index.x, i);
                     }
                 }
                 break;
             case "down":
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
                 {
-                    if (masterBuildArray[drop.index.x, i] == null)
+                    if (masterBuildArray[drop.GetComponent<DropzoneScript>().index.x, i] == null)
                     {
-                        PV.RPC("addCube", RpcTarget.AllBuffered, drop.index.y, i, drop.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, drop.GetComponent<DropzoneScript>().index.x, i, drop.tag);
+                        temp = new Vector2(drop.GetComponent<DropzoneScript>().index.x, i); 
                     }
                 }
                 break;
             default:
                 Debug.LogError("Trying to drop at zone without valid direction)");
+                temp = new Vector2(0,0);
                 break;
         }
+        return temp;
+
     }
 
-    [PunRPC]
+    public void DropBox(GameObject box, GameObject dropZone, int x, int y, bool isHostDropZone)
+    {
+        calculateNextFreePosition(dropZone);
 
-    public void addCube(int x, int y, string cubeCode)
-    { 
-        if (GameManager.instance.host)
+        Vector3 newLocation;
+        if (isHostDropZone)
         {
-            GameObject hostCube = PhotonNetwork.Instantiate("Network Blue Cube", hostBuildWallLocation.transform.position, hostBuildWallLocation.transform.rotation);
-            GameObject clientCube = cubeCodeToGameObject(cubeCode);
+            newLocation = hostSpotHolderArray[x, y].transform.position;
+        }
+        else
+        {
+            newLocation = clientSpotHolderArray[x, y].transform.position;
+        }
 
-            hostCube.GetComponent<Cube>().index = new Vector2Int(x, y);
-            clientCube.GetComponent<Cube>().index = new Vector2Int(x, y);
+
+        if (box.tag == "left gold cube" || box.tag == "right gold cube")
+        {
+            box.GetComponent<GoldCubeHalf>().currentZone = "BuildWall";
+            //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+            box.GetComponent<GoldCubeHalf>().buildWallTargetPos = newLocation;
+            box.GetComponent<GoldCubeHalf>().buildWallTargetRotation = dropZone.transform.rotation;
+        }
+        else if (box.tag == "gold cube")
+        {
+            box.GetComponent<GoldCubeWhole>().currentZone = "BuildWall";
+            //box.GetComponent<GoldCubeHalf>().SetZoneToBuild();
+            box.GetComponent<GoldCubeWhole>().buildWallTargetPos = newLocation;
+            box.GetComponent<GoldCubeWhole>().buildWallTargetRotation = dropZone.transform.rotation;
+        }
+        else
+        {
+            box.GetComponent<XRGrabNetworkInteractable>().currentZone = "BuildWall";
+            box.GetComponent<XRGrabNetworkInteractable>().SetZoneToBuild();
+            box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = newLocation;
+            box.GetComponent<XRGrabNetworkInteractable>().buildWallTargetRotation = dropZone.transform.rotation;
         }
     }
 
     [PunRPC]
+    public void addCube(int x, int y, string cubeCode)
+    {
+        masterBuildArray[x, y] = cubeCode;
+        //if (GameManager.instance.host)
+        //{
+        //    GameObject hostCube = PhotonNetwork.Instantiate("Network Blue Cube", hostBuildWallLocation.transform.position, hostBuildWallLocation.transform.rotation);
+        //    GameObject clientCube = cubeCodeToGameObject(cubeCode);
 
+        //    hostCube.GetComponent<Cube>().index = new Vector2Int(x, y);
+        //    clientCube.GetComponent<Cube>().index = new Vector2Int(x, y);
+        //}
+    }
+
+    [PunRPC]
     public void removeCube(int x, int y, string cubeCode)
     {
         if (GameManager.instance.host)
