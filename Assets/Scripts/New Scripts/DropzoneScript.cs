@@ -14,7 +14,7 @@ public class DropzoneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        masterBuildWall = GameObject.FindGameObjectWithTag("master build wall");
+        //masterBuildWall = GameObject.FindGameObjectWithTag("master build wall");
         buildWall = transform.parent.gameObject;
     }
 
