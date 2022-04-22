@@ -37,7 +37,7 @@ public class DropzoneScript : MonoBehaviour
             if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall") )
             {
                 Debug.Log("drop zone script");
-                MasterBuildWall.instance.dropZoneHit(index, other.gameObject);
+                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }
         else
@@ -45,7 +45,7 @@ public class DropzoneScript : MonoBehaviour
         {
             
                 Debug.Log("drop zone script");
-            MasterBuildWall.instance.dropZoneHit(index, other.gameObject);
+            MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
 
         }
         else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)
@@ -53,14 +53,14 @@ public class DropzoneScript : MonoBehaviour
             if (GameManager.instance.host)
             {
                 Debug.Log("bout to drop a cube");
-                MasterBuildWall.instance.dropZoneHit(index, other.gameObject);
+                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }
         else if(other.tag == "gold cube")
         {
             if (GameManager.instance.host)
             {
-                MasterBuildWall.instance.dropZoneHit(index, other.gameObject);
+                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }
         else

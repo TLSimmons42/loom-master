@@ -335,19 +335,19 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             hostSpawnLocation += hostBuildWallLocation.transform.right * -(start.x + 1);
             hostSpawnLocation += hostBuildWallLocation.transform.up * -(start.y + 1);
 
-            Vector3 clientSpawnLocation = hostBuildWallLocation.transform.position;
-            clientSpawnLocation += hostBuildWallLocation.transform.right * -(start.x + 1);
-            clientSpawnLocation += hostBuildWallLocation.transform.up * -(start.y + 1);
+            Vector3 clientSpawnLocation = clientBuildWallLocation.transform.position;
+            clientSpawnLocation += clientBuildWallLocation.transform.right * -(start.x + 1);
+            clientSpawnLocation += clientBuildWallLocation.transform.up * -(start.y + 1);
 
             string networkedCode = cubeCodeToNetworked(cubeCode);
 
             GameObject hostCube = PhotonNetwork.Instantiate(networkedCode, hostSpawnLocation, hostBuildWallLocation.transform.rotation);
             GameObject clientCube = PhotonNetwork.Instantiate(networkedCode, clientSpawnLocation, clientBuildWallLocation.transform.rotation);
 
-            hostCube.GetComponent<Cube>().index = target;
-            hostCube.GetComponent<Cube>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
-            clientCube.GetComponent<Cube>().index = target;
-            clientCube.GetComponent<Cube>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + clientBuildWallLocation.transform.position;
+            hostCube.GetComponent<XRGrabNetworkInteractable>().index = target;
+            hostCube.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+            clientCube.GetComponent<XRGrabNetworkInteractable>().index = target;
+            clientCube.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + clientBuildWallLocation.transform.position;
         }
     }
 
