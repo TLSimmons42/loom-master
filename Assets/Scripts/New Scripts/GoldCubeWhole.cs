@@ -18,6 +18,8 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     private BoxCollider collider;
 
+    public Vector2Int index;
+
     public int playersHoldingCube = 0;
     private float playZoneFallSpeed = 2f;
 
@@ -156,7 +158,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
-        PhotonNetwork.Destroy(gameObject);
+        MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
     private void OnTriggerEnter(Collider other)

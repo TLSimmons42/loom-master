@@ -208,7 +208,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             Debug.Log("In the build wall");
         }else{
             Debug.Log("destory this cube");
-            PhotonNetwork.Destroy(this.gameObject);
+            MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }
 
         

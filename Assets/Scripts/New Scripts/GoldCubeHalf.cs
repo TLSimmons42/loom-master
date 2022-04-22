@@ -16,6 +16,8 @@ public class GoldCubeHalf : XRSimpleInteractable
     public GameObject rightRay;
     public GameObject leftRay;
 
+    public Vector2Int index;
+
     public LineRenderer rightLineRenderer;
     public LineRenderer leftLineRenderer;
 
@@ -113,7 +115,7 @@ public class GoldCubeHalf : XRSimpleInteractable
         else
         {
             Debug.Log("destory this cube");
-            PhotonNetwork.Destroy(this.gameObject);
+            MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }
     }
 
