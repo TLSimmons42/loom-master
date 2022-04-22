@@ -30,6 +30,14 @@ public class Levels : Singleton<Levels>
     public Array2DString medium1;
     [SerializeField]
     public Array2DString medium2;
+    [SerializeField]
+    public Array2DString medium3;
+    [SerializeField]
+    public Array2DString medium4;
+    [SerializeField]
+    public Array2DString medium5;
+    [SerializeField]
+    public Array2DString medium6;
 
     List<Array2DString> hardLevels = new List<Array2DString>();
     [Header("Hard Levels")]
@@ -38,6 +46,14 @@ public class Levels : Singleton<Levels>
     public Array2DString hard1;
     [SerializeField]
     public Array2DString hard2;
+    [SerializeField]
+    public Array2DString hard3;
+    [SerializeField]
+    public Array2DString hard4;
+    [SerializeField]
+    public Array2DString hard5;
+    [SerializeField]
+    public Array2DString hard6;
 
     public void Awake()
     {
@@ -55,9 +71,19 @@ public class Levels : Singleton<Levels>
 
         mediumLevels.Add(medium1);
         mediumLevels.Add(medium2);
+        mediumLevels.Add(medium3);
+        mediumLevels.Add(medium4);
+        mediumLevels.Add(medium5);
+        mediumLevels.Add(medium6);
 
         hardLevels.Add(hard1);
         hardLevels.Add(hard2);
+        hardLevels.Add(hard3);
+        hardLevels.Add(hard4);
+        hardLevels.Add(hard5);
+        hardLevels.Add(hard6);
+
+
     }
 
     public string[,] getRandomLevel(string difficulty)
