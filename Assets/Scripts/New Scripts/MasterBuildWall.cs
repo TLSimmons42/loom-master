@@ -319,7 +319,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 break;
             default:
                 Debug.LogError("Trying to drop at zone without valid direction)");
-                temp = new Vector2(0,0);
+               // temp = new Vector2(0,0);
                 break;
         }
 
