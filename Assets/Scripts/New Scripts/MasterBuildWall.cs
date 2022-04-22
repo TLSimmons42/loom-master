@@ -12,6 +12,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     private string[,] levelImport;
     private string[,] targetWall;
     private string[,] masterBuildArray = new string[5,5];
+    private GameObject[,] hostSpotHolderArray = new GameObject[5,5];
+    private GameObject[,] clientSpotHolderArray = new GameObject[5,5];
 
     public GameObject hostBuildWallLocation, clientBuildWallLocation;
 
@@ -68,6 +70,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
                         hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
+                        hostDropZone.GetComponent<DropzoneScript>().hostDropZone = true;
 
                         hostDropZone.transform.position = hostBuildWallLocation.transform.position;
                         hostDropZone.transform.position += hostBuildWallLocation.transform.right * -j;
@@ -78,6 +81,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
                         clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
+                        clientDropZone.GetComponent<DropzoneScript>().hostDropZone = false;
 
                         clientDropZone.transform.position = clientBuildWallLocation.transform.position;
                         clientDropZone.transform.position += clientBuildWallLocation.transform.right * -j;
@@ -128,11 +132,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         hostBuildWallLocation.transform.position += hostBuildWallLocation.transform.up * levelImport.GetLength(0);
         clientBuildWallLocation.transform.position += clientBuildWallLocation.transform.up * levelImport.GetLength(0);
-        ConstructBuildWall(hostBuildWallLocation.transform);
-        ConstructBuildWall(clientBuildWallLocation.transform);
+        ConstructBuildWall(hostBuildWallLocation.transform, "host");
+        ConstructBuildWall(clientBuildWallLocation.transform, "client");
     }
 
-    void ConstructBuildWall(Transform wallLocation)
+    void ConstructBuildWall(Transform wallLocation, string wall)
     {
         initalizeDropZones();
         for (int i = 0; i < targetWall.GetLength(0); i++)
@@ -145,6 +149,14 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                 GameObject placeholder = Instantiate(spotPlaceHolder, spawnLocation, wallLocation.rotation);
                 placeholder.transform.parent = wallLocation.transform;
+                if(wall == "host")
+                {
+                    placeholder = hostSpotHolderArray[i, j];
+                }
+                else if(wall == "client")
+                {
+                    placeholder = clientSpotHolderArray[i, j];
+                }
             }
         }
     }
@@ -307,12 +319,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 break;
             default:
                 Debug.LogError("Trying to drop at zone without valid direction)");
+                temp = new Vector2(0,0);
                 break;
         }
+
     }
 
     [PunRPC]
-
     public void addCube(Vector2Int start, Vector2Int target, string cubeCode)
     {
         masterBuildArray[start.x, start.y] = cubeCode;
@@ -338,8 +351,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
 
-    [PunRPC]
+    
 
+
+    [PunRPC]
     public void removeCube(int x, int y, string cubeCode)
     {
             masterBuildArray[x, y] = null;

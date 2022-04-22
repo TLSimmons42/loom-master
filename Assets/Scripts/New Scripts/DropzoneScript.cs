@@ -8,10 +8,13 @@ public class DropzoneScript : MonoBehaviour
     GameObject buildWall;
     public string direction;
     public Vector2Int index;
+    public bool hostDropZone = false;
+    public GameObject masterBuildWall;
 
     // Start is called before the first frame update
     void Start()
     {
+        masterBuildWall = GameObject.FindGameObjectWithTag("master build wall");
         buildWall = transform.parent.gameObject;
     }
 
