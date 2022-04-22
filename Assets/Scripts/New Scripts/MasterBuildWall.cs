@@ -281,6 +281,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         startPos = dropIndex;
                         targetPos = new Vector2Int(i, dropIndex.y);
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PhotonView.Destroy(cube);
                     }
                 }
                 break;
@@ -292,6 +293,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         startPos = dropIndex;
                         targetPos = new Vector2Int(i, dropIndex.y);
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PhotonView.Destroy(cube);
                     }
                 }
                 break;
@@ -303,6 +305,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x, i);
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PhotonView.Destroy(cube);
                     }
                 }
                 break;
@@ -314,6 +317,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x, i);
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PhotonView.Destroy(cube);
                     }
                 }
                 break;
