@@ -271,7 +271,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         Vector2Int startPos, targetPos;
 
+        Debug.Log("Direction: " + direction);
         switch (direction)
+        
         {
             case "right":
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
@@ -280,6 +282,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     {
                         startPos = dropIndex;
                         targetPos = new Vector2Int(i, dropIndex.y);
+                        Debug.Log("Start: " + startPos.ToString());
+                        Debug.Log("Target: " + targetPos.ToString());
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
                         PhotonView.Destroy(cube);
                     }
@@ -292,6 +296,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     {
                         startPos = dropIndex;
                         targetPos = new Vector2Int(i, dropIndex.y);
+                        Debug.Log("Start: " + startPos.ToString());
+                        Debug.Log("Target: " + targetPos.ToString());
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
                         PhotonView.Destroy(cube);
                     }
@@ -304,6 +310,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     {
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x, i);
+                        Debug.Log("Start: " + startPos.ToString());
+                        Debug.Log("Target: " + targetPos.ToString());
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
                         PhotonView.Destroy(cube);
                     }
@@ -316,6 +324,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     {
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x, i);
+                        Debug.Log("Start: " + startPos.ToString());
+                        Debug.Log("Target: " + targetPos.ToString());
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
                         PhotonView.Destroy(cube);
                     }
