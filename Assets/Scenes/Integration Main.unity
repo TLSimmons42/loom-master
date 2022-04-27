@@ -91544,6 +91544,54 @@ MonoBehaviour:
       - d
       - 
       - 
+  easy4:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  easy5:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  easy6:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
   medium1:
     gridSize: {x: 12, y: 12}
     cellSize: {x: 16, y: 16}
@@ -91861,6 +91909,70 @@ MonoBehaviour:
       - 
       - 
       - 
+      - 
+      - 
+      - 
+  medium3:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  medium4:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  medium5:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  medium6:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
       - 
       - 
       - 
@@ -92481,6 +92593,70 @@ MonoBehaviour:
       - 
       - 
       - 
+      - 
+      - 
+      - 
+  hard3:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  hard4:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  hard5:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+  hard6:
+    gridSize: {x: 3, y: 3}
+    cellSize: {x: 64, y: 16}
+    cells:
+    - row:
+      - 
+      - 
+      - 
+    - row:
+      - 
+      - 
+      - 
+    - row:
       - 
       - 
       - 

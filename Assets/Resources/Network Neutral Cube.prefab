@@ -333,6 +333,7 @@ MonoBehaviour:
   holdGold: Hold Gold
   isHeld: 0
   canBeDroped: 0
+  index: {x: 0, y: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
   rightLineRenderer: {fileID: 0}
