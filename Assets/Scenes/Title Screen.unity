@@ -7453,7 +7453,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 2 Player
 --- !u!222 &476025228
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30636,7 +30636,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: Initalize Room
 --- !u!222 &953276774
 CanvasRenderer:
   m_ObjectHideFlags: 0
