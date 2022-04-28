@@ -350,7 +350,7 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
-        MasterBuildWall.instance.importLevel();
+       // MasterBuildWall.instance.importLevel();
     }
 
     public void Gameover()
