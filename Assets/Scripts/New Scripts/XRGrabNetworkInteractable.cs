@@ -136,7 +136,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
-
+        Debug.Log("This cube was grabed");
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
             if (gameObject.tag == "gold cube")
@@ -216,7 +216,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     protected override void OnHoverEntered(XRBaseInteractor interactor)
     {
-        //Debug.Log(gameObject.name + " has been hovered");
+        Debug.Log(gameObject.name + " has been hovered");
     }
 
 
