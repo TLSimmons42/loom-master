@@ -101,4 +101,34 @@ public class Levels : Singleton<Levels>
                 return easyLevels[Random.Range(0, easyLevels.Count)].GetCells();
         }
     }
+
+    public int getRandomIndex(string difficulty)
+    {
+        switch (difficulty)
+        {
+            case "easy":
+                return easyLevels.Count;
+            case "medium":
+                return mediumLevels.Count;
+            case "hard":
+                return hardLevels.Count;
+            default:
+                return easyLevels.Count;
+        }
+    }
+
+    public string[,] getLevelFromIndex(string difficulty, int index)
+    {
+        switch (difficulty)
+        {
+            case "easy":
+                return easyLevels[index].GetCells();
+            case "medium":
+                return mediumLevels[index].GetCells();
+            case "hard":
+                return hardLevels[index].GetCells();
+            default:
+                return easyLevels[index].GetCells();
+        }
+    }
 }

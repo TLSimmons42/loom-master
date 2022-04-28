@@ -20,6 +20,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     public GameObject dropZone;
     public GameObject spotPlaceHolder;
 
+    int index;
+
     public GameObject redCube, blueCube, invsCube, goldCube, leftGoldCube, rightGoldCube;
     List<GameObject> hostCubes = new List<GameObject>();
     List<GameObject> clientCubes = new List<GameObject>();
@@ -30,7 +32,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     public void Start()
     {
         PV = GetComponent<PhotonView>();
-        importLevel();
+        
         //initBuildWallTest();
         displayEditorMasterArray();
     }
@@ -42,12 +44,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             Debug.Log("Difficulty: " + PlayerPrefs.GetString("gameDifficulty"));
 
-            //setTargetWall();
-            //initializeBuildWalls();
             Debug.Log("Setting level import...");
-            PV.RPC("setLevelImport", RpcTarget.AllBuffered, Levels.instance.getRandomLevel(PlayerPrefs.GetString("gameDifficulty")));
-            Debug.Log("Setting target wall...");
-            PV.RPC("setTargetWall", RpcTarget.AllBuffered);
+            index = Levels.instance.getRandomIndex(PlayerPrefs.GetString("gameDifficulty"));
+            Debug.Log(index);
+            PV.RPC("sendIndex", RpcTarget.AllBuffered, index);
             Debug.Log("Making build walls...");
             PV.RPC("initializeBuildWalls", RpcTarget.AllBuffered);
             Debug.Log("Making view walls...");
@@ -60,6 +60,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         GameManager.instance.targetWall = targetWall;
         GameManager.instance.BuildViewWall();
+    }
+
+    [PunRPC]
+    public void sendIndex(int index)
+    {
+        levelImport = Levels.instance.getLevelFromIndex(PlayerPrefs.GetString("gameDifficulty"), index);
+        setTargetWall();
     }
 
 
