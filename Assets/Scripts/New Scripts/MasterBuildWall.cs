@@ -46,9 +46,17 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             PV.RPC("setLevelImport", RpcTarget.AllBuffered, Levels.instance.getRandomLevel(PlayerPrefs.GetString("gameDifficulty")));
             PV.RPC("setTargetWall", RpcTarget.AllBuffered);
             PV.RPC("initializeBuildWalls", RpcTarget.AllBuffered);
+            PV.RPC("buildViewWall", RpcTarget.AllBuffered);
         }
-        
     }
+
+    [PunRPC]
+    public void buildViewWall()
+    {
+        GameManager.instance.targetWall = targetWall;
+        GameManager.instance.BuildViewWall();
+    }
+
 
     public void DebugLog2DArray(string[,] array)
     {
