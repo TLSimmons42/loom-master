@@ -37,10 +37,17 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     public void importLevel()
     {
-        Debug.Log("Difficulty: " + PlayerPrefs.GetString("gameDifficulty"));
-        levelImport = Levels.instance.getRandomLevel(PlayerPrefs.GetString("gameDifficulty"));
-        setTargetWall();
-        initializeBuildWalls();
+        if (GameManager.instance.host)
+        {
+            Debug.Log("Difficulty: " + PlayerPrefs.GetString("gameDifficulty"));
+
+            //setTargetWall();
+            //initializeBuildWalls();
+            PV.RPC("setLevelImport", RpcTarget.AllBuffered, Levels.instance.getRandomLevel(PlayerPrefs.GetString("gameDifficulty")));
+            PV.RPC("setTargetWall", RpcTarget.AllBuffered);
+            PV.RPC("initializeBuildWalls", RpcTarget.AllBuffered);
+        }
+        
     }
 
     public void DebugLog2DArray(string[,] array)
@@ -54,6 +61,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
 
+    [PunRPC]
+    public void setLevelImport(string[,] level)
+    {
+        levelImport = level;
+    }
+
+    [PunRPC]
     // Instaniates the drop zones
     public void initalizeDropZones()
     {
@@ -110,9 +124,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
 
+    [PunRPC]
     // Grabs the inside of the imported wall (ie no dropzone notation) and sets it as the target
     public void setTargetWall()
     {
+        
         targetWall = new string[levelImport.GetLength(0) - 2, levelImport.GetLength(1) - 2];
 
         for (int i = 1; i < levelImport.GetLength(0) - 1; i++)
@@ -383,6 +399,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void addCube(Vector2Int start, Vector2Int target, string cubeCode)
     {
+        Debug.Log(start + "  " + target + "  " + cubeCode);
         masterBuildArray[target.x, target.y] = cubeCode;
         if (GameManager.instance.host)
         {
