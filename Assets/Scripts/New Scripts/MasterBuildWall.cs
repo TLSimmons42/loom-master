@@ -37,15 +37,20 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     public void importLevel()
     {
+        Debug.Log("Is host: " + GameManager.instance.host);
         if (GameManager.instance.host)
         {
             Debug.Log("Difficulty: " + PlayerPrefs.GetString("gameDifficulty"));
 
             //setTargetWall();
             //initializeBuildWalls();
+            Debug.Log("Setting level import...");
             PV.RPC("setLevelImport", RpcTarget.AllBuffered, Levels.instance.getRandomLevel(PlayerPrefs.GetString("gameDifficulty")));
+            Debug.Log("Setting target wall...");
             PV.RPC("setTargetWall", RpcTarget.AllBuffered);
+            Debug.Log("Making build walls...");
             PV.RPC("initializeBuildWalls", RpcTarget.AllBuffered);
+            Debug.Log("Making view walls...");
             PV.RPC("buildViewWall", RpcTarget.AllBuffered);
         }
     }
