@@ -67,7 +67,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         levelImport = level;
     }
 
-    [PunRPC]
     // Instaniates the drop zones
     public void initalizeDropZones()
     {
