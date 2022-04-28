@@ -14,12 +14,6 @@ public class Levels : Singleton<Levels>
     public Array2DString easy2;
     [SerializeField]
     public Array2DString easy3;
-    [SerializeField]
-    public Array2DString easy4;
-    [SerializeField]
-    public Array2DString easy5;
-    [SerializeField]
-    public Array2DString easy6;
 
 
 
@@ -65,9 +59,6 @@ public class Levels : Singleton<Levels>
         easyLevels.Add(easy1);
         easyLevels.Add(easy2);
         easyLevels.Add(easy3);
-        easyLevels.Add(easy4);
-        easyLevels.Add(easy5);
-        easyLevels.Add(easy6);
 
         mediumLevels.Add(medium1);
         mediumLevels.Add(medium2);
