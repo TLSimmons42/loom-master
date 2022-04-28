@@ -41,11 +41,11 @@ public class MyRayInteractor : XRRayInteractor
     {
         Debug.Log("ray select exited");
 
-        if (GameManager.instance.host)
-        {
-            Debug.Log("the ray is about to delete the cube");
-            PhotonNetwork.Destroy(gameObject);
-        }
+        //if (GameManager.instance.host)
+        //{
+        //    Debug.Log("the ray is about to delete the cube");
+        //    PhotonNetwork.Destroy(gameObject);
+        //}
     }
 
     protected override void OnHoverExited(XRBaseInteractable obj)
