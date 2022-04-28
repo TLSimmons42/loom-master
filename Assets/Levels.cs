@@ -107,13 +107,13 @@ public class Levels : Singleton<Levels>
         switch (difficulty)
         {
             case "easy":
-                return easyLevels.Count;
+                return Random.Range(0, easyLevels.Count);
             case "medium":
-                return mediumLevels.Count;
+                return Random.Range(0, mediumLevels.Count);
             case "hard":
-                return hardLevels.Count;
+                return Random.Range(0, hardLevels.Count);
             default:
-                return easyLevels.Count;
+                return Random.Range(0, easyLevels.Count);
         }
     }
 
