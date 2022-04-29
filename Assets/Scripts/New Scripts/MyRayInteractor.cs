@@ -39,6 +39,8 @@ public class MyRayInteractor : XRRayInteractor
 
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
+        Debug.Log("the ray is about to delete the cube");
+        PhotonNetwork.Destroy(gameObject);
         Debug.Log("ray select exited");
         //if(interactor != null && interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
         //    GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
@@ -62,11 +64,11 @@ public class MyRayInteractor : XRRayInteractor
 
 
         //}
-        if (GameManager.instance.host)
-        {
-            Debug.Log("the ray is about to delete the cube");
-            PhotonNetwork.Destroy(gameObject);
-        }
+        //if (GameManager.instance.host)
+        //{
+        //    Debug.Log("the ray is about to delete the cube");
+        //    PhotonNetwork.Destroy(gameObject);
+        //}
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
 
