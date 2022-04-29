@@ -14,6 +14,12 @@ public class Levels : Singleton<Levels>
     public Array2DString easy2;
     [SerializeField]
     public Array2DString easy3;
+    [SerializeField]
+    public Array2DString easy4;
+    [SerializeField]
+    public Array2DString easy5;
+    [SerializeField]
+    public Array2DString easy6;
 
 
 
