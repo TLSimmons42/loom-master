@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("the player count is: " + playerCount);
 
         ConvertGameDiffToInt(strGameDiff); //gets game difficulty 
-        //MakeViewWall(); // detects # of players and spawns appropriate view walls
+        MakeViewWall(); // detects # of players and spawns appropriate view walls
         if (playerCount == 2)
         {
             StartCoroutine(AssignHostAndPlayerPos()); // this will set the host and give access to the players gameobjects
@@ -283,11 +283,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (PlayerPrefs.GetInt("playerCount") == 1)
         {
-            BuildViewWall();
+            BuildViewWall(gameDiff, new GameObject[] { ViewWall1 });
         }
         else
         {
-            BuildViewWall();
+            BuildViewWall(gameDiff, new GameObject[] { ViewWall1, ViewWall2 });
         }
     }
 
