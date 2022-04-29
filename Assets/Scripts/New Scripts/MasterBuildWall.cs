@@ -129,7 +129,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         
         targetWall = new string[levelImport.GetLength(0) - 2, levelImport.GetLength(1) - 2];
-        GameManager.instance.targetWall = targetWall;
+        
 
         for (int i = 1; i < levelImport.GetLength(0) - 1; i++)
         {
@@ -141,6 +141,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
 
         displayEditorTargetWall();
+        GameManager.instance.targetWall = targetWall;
     }
 
     [PunRPC]
