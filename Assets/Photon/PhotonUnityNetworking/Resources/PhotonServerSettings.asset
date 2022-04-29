@@ -54,10 +54,6 @@ MonoBehaviour:
   - addCube
   - removeCube
   - initializeBuildWalls
-  - initalizeDropZones
-  - setTargetWall
-  - setLevelImport
-  - buildViewWall
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
