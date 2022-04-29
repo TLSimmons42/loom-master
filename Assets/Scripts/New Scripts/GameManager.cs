@@ -60,6 +60,7 @@ public class GameManager : Singleton<GameManager>
 
 
     GameObject[,] buildWallArr;
+    public string[,] targetWall;
 
 
     // Start is called before the first frame update
@@ -149,12 +150,12 @@ public class GameManager : Singleton<GameManager>
 
 
     // this will be called at the start of the game to build a the view wall for the player
-    public void BuildViewWall(int difficulty, GameObject[] spawnLocations)
+    public void BuildViewWall()
     {
-
+        GameObject[] spawnLocations = { ViewWall1, ViewWall2 };
 
         //string diff = "easy";
-        int viewWallSize = difficulty * 5;
+        
         /*
         switch (diff)
         {
@@ -181,37 +182,24 @@ public class GameManager : Singleton<GameManager>
                             {1,2,2,2,1},
                             {1,1,1,1,1}};
 
-        int[,] level = ReadRandomLevel(difficulty);
+        //int[,] level = ReadRandomLevel(difficulty);
 
-        buildWall1.GetComponent<BuildWall>().SetViewWall(level);
-        buildWall2.GetComponent<BuildWall>().SetViewWall(level);
+        //buildWall1.GetComponent<BuildWall>().SetViewWall(level);
+        //buildWall2.GetComponent<BuildWall>().SetViewWall(level);
 
         // Making the view wall depending on the difficulty
         for (int l = 0; l < spawnLocations.Length; l++)
         {
-            for (int i = 0; i < viewWallSize; i++)
+            for (int i = 0; i < targetWall.GetLength(0); i++)
             {
-                for (int j = 0; j < viewWallSize; j++)
+                for (int j = 0; j < targetWall.GetLength(1); j++)
                 {
                     Vector3 spawnLocation = spawnLocations[l].transform.position;
                     spawnLocation += spawnLocations[l].transform.right * -i;
                     spawnLocation += spawnLocations[l].transform.up * j;
-                    GameObject cube = BlueCube;
-                    switch (level[i, j])
-                    {
-                        case 1:
-                            cube = BlueCube;
-                            break;
-                        case 2:
-                            cube = RedCube;
-                            break;
-                        case 3:
-                            cube = GoldCube;
-                            break;
-                        case 4:
-                            cube = NeutralCube;
-                            break;
-                    }
+
+
+                    GameObject cube = MasterBuildWall.instance.cubeCodeToGameObject(targetWall[i, j]);
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
                     //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;
@@ -317,11 +305,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (PlayerPrefs.GetInt("playerCount") == 1)
         {
-            BuildViewWall(gameDiff, new GameObject[] { ViewWall1 });
+            BuildViewWall();
         }
         else
         {
-            BuildViewWall(gameDiff, new GameObject[] { ViewWall1, ViewWall2 });
+            BuildViewWall();
         }
     }
 
