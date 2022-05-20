@@ -39,7 +39,7 @@ public class MyRayInteractor : XRRayInteractor
 
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
-        Debug.Log("ray select exited");
+        Debug.Log("ray select exited from " + interactor.gameObject.name);
 
         //if (GameManager.instance.host)
         //{

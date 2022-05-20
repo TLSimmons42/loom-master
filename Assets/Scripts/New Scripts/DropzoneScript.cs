@@ -4,31 +4,9 @@ using UnityEngine;
 
 public class DropzoneScript : MonoBehaviour
 {
-    public int column;
-    GameObject buildWall;
     public string direction;
     public Vector2Int index;
-    public bool hostDropZone = false;
-    public GameObject masterBuildWall;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //masterBuildWall = GameObject.FindGameObjectWithTag("master build wall");
-        buildWall = transform.parent.gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetColumn(int c)
-    {
-        column = c;
-    }
-    //&& (other.GetComponent<Cube>().currentZone != "BuildWall" || other.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag + " THIS IS THE TAG");

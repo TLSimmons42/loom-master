@@ -82,7 +82,6 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-
         if (dropCubes)
         {
             StartCoroutine(BuildNewCube());
@@ -111,61 +110,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private int[,] ReadRandomLevel(int difficulty)
-    {
-        int levelSize = difficulty * 5;
-        int[,] level = new int[levelSize, levelSize];
-
-        string levelText = GetRandomLevel(difficulty).text;
-        Regex rgx = new Regex("[^a-zA-Z0-9 -]");
-        levelText = rgx.Replace(levelText, "");
-
-        for (int i = 0; i < levelSize; i++)
-        {
-            for (int j = 0; j < levelSize; j++)
-            {
-                //Debug.Log("Attempting to convert to integer");
-                level[i, j] = int.Parse(char.ToString(levelText[j + (levelSize * i)]));
-                //Debug.Log("Successfully converted to integer");
-            }
-        }
-
-        return level;
-    }
-
-    private TextAsset GetRandomLevel(int difficulty)
-    {
-        TextAsset randLevel;
-        switch (difficulty)
-        {
-            case 1:
-                return easyLevels[Mathf.FloorToInt(Random.Range(0, easyLevels.Length))];
-            case 2:
-                return mediumLevels[Mathf.FloorToInt(Random.Range(0, mediumLevels.Length))];
-            default:
-                return hardLevels[Mathf.FloorToInt(Random.Range(0, hardLevels.Length))];
-        }
-    }
-
 
     // this will be called at the start of the game to build a the view wall for the player
     public void BuildViewWall()
     {
         GameObject[] spawnLocations = { ViewWall1, ViewWall2 };
-
-        int[,] testLevel = {{1,2,1,2,1},
-                            {2,1,2,1,2},
-                            {1,2,1,2,1},
-                            {2,1,2,1,2},
-                            {1,2,1,2,1}};
-
-        int[,] easy1 =     {{1,1,1,1,1},
-                            {1,2,2,2,1},
-                            {1,2,3,2,1},
-                            {1,2,2,2,1},
-                            {1,1,1,1,1}};
-
-
 
         // Making the view wall depending on the difficulty
         for (int l = 0; l < spawnLocations.Length; l++)
@@ -195,8 +144,6 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-
-
 
     // this will be called durring the game in order to build a new cube on the Play Wall
     public IEnumerator BuildNewCube()
@@ -277,18 +224,6 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(cubeDropTimer);
             dropNetworkCubes = true;
         }
-
-    }
-    public void MakeViewWall()
-    {
-        if (PlayerPrefs.GetInt("playerCount") == 1)
-        {
-            BuildViewWall();
-        }
-        else
-        {
-            BuildViewWall();
-        }
     }
 
 
@@ -324,33 +259,34 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitForSeconds(3);
 
-        Debug.Log("deteting the num of players");
+        Debug.Log("detecting the number of players");
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
         {
 
             if (obj.name == "Network Player(Clone)")
             {
                 Players.Add(obj);
-                if (Players.Count == 2)
+                if (Players.Count == 1)
                 {
                     host = true;
                     this.tag = "host";
+                    Players[0].tag = "P1";
                     VRrig.tag = "P1";
-                    //AssignPlayerTags();
                     VRrig.transform.position = playerPos2.transform.position;
                     Debug.Log("the host has been set");
                 }
-                else if (Players.Count == 1)
+                else if (Players.Count == 2)
                 {
                     host = false;
                     this.tag = "cliant";
+                    Players[1].tag = "P2";
                     VRrig.tag = "P2";
                     VRrig.transform.position = playerPos1.transform.position;
-                    Debug.Log("a cliant has been set");
+                    Debug.Log("a client has been set");
                 }
             }
         }
-       // MasterBuildWall.instance.importLevel();
+       MasterBuildWall.instance.importLevel();
     }
 
     public void Gameover()

@@ -27,9 +27,9 @@ public class BuildWall : Singleton<BuildWall>
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        ConvertGameDiffToInt(PlayerPrefs.GetString("gameDifficulty"));
-        InitiateBuildWall(gameDiff);
-        DisplayBuildWall(gameDiff);
+        //ConvertGameDiffToInt(PlayerPrefs.GetString("gameDifficulty"));
+        //InitiateBuildWall(gameDiff);
+        //DisplayBuildWall(gameDiff);
     }
 
     // Update is called once per frame
@@ -67,34 +67,34 @@ public class BuildWall : Singleton<BuildWall>
 
     void DisplayBuildWall(int difficulty)
     {
-        int viewWallSize = difficulty * 5;
-        //viewWallSize = 15;
+        //int viewWallSize = difficulty * 5;
+        ////viewWallSize = 15;
 
-        for (int i = 0; i < viewWallSize; i++)
-        {
-            Vector3 spawnLocation = transform.position;
-            spawnLocation += transform.right * -i;
-            spawnLocation += (viewWallSize) * transform.up;
+        //for (int i = 0; i < viewWallSize; i++)
+        //{
+        //    Vector3 spawnLocation = transform.position;
+        //    spawnLocation += transform.right * -i;
+        //    spawnLocation += (viewWallSize) * transform.up;
 
-            ////Debug.Log("Attempting to spawn placeholder");
+        //    ////Debug.Log("Attempting to spawn placeholder");
 
-            GameObject spawnedCube = Instantiate(dropZone, spawnLocation, transform.rotation);
-            spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
-            spawnedCube.transform.parent = transform;
+        //    GameObject spawnedCube = Instantiate(dropZone, spawnLocation, transform.rotation);
+        //    spawnedCube.GetComponent<DropzoneScript>().SetColumn(i);
+        //    spawnedCube.transform.parent = transform;
 
-            for (int j = 0; j < viewWallSize; j++)
-            {
-                spawnLocation = transform.position;
-                spawnLocation += transform.right * -i;
-                spawnLocation += transform.up * j;
+        //    for (int j = 0; j < viewWallSize; j++)
+        //    {
+        //        spawnLocation = transform.position;
+        //        spawnLocation += transform.right * -i;
+        //        spawnLocation += transform.up * j;
 
-               // //Debug.Log("Attempting to spawn placeholder");
+        //       // //Debug.Log("Attempting to spawn placeholder");
 
-                spawnedCube = Instantiate(cubeSlot, spawnLocation, transform.rotation);
-                spawnedCube.transform.parent = transform;
-                //spawnedCube.GetComponent<Cube>().enabled = false;
-            }
-        }
+        //        spawnedCube = Instantiate(cubeSlot, spawnLocation, transform.rotation);
+        //        spawnedCube.transform.parent = transform;
+        //        //spawnedCube.GetComponent<Cube>().enabled = false;
+        //    }
+        //}
     }
     bool CheckGoldMatch(GameObject cube1, GameObject cube2)
     {

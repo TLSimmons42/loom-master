@@ -115,8 +115,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public void PlayerGrab()
     {
         photonView.RequestOwnership();
-        //currentZone = NoZone
-        changeState();
+        currentZone = NoZone;
+        Debug.Log("New zone: " + currentZone);
         photonView.RPC("changeState", RpcTarget.AllBuffered);
         collider.isTrigger = true;
     }
@@ -206,7 +206,11 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
-        }else{
+        } else if (currentZone == NoZone)
+        {
+            PhotonView.Destroy(this.gameObject);
+        } 
+        else{
             Debug.Log("destory this cube");
             MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }

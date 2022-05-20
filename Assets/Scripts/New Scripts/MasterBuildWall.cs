@@ -33,26 +33,25 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         PV = GetComponent<PhotonView>();
         
-        //initBuildWallTest();
         displayEditorMasterArray();
     }
 
     public void importLevel()
     {
         Debug.Log("Is host: " + GameManager.instance.host);
-        //if (GameManager.instance.host)
-        //{
-        //    Debug.Log("Difficulty: " + PlayerPrefs.GetString("gameDifficulty"));
+        if (GameManager.instance.host)
+        {
+            Debug.Log("Difficulty: " + PlayerPrefs.GetString("gameDifficulty"));
 
-        //    Debug.Log("Setting level import...");
-        //    index = Levels.instance.getRandomIndex(PlayerPrefs.GetString("gameDifficulty"));
-        //    Debug.Log(index);
-        //    PV.RPC("sendIndex", RpcTarget.AllBuffered, index);
-        //    Debug.Log("Making build walls...");
-        //    PV.RPC("initializeBuildWalls", RpcTarget.AllBuffered);
-        //    Debug.Log("Making view walls...");
-        //    PV.RPC("buildViewWall", RpcTarget.AllBuffered);
-        //}
+            Debug.Log("Setting level import...");
+            index = Levels.instance.getRandomIndex(PlayerPrefs.GetString("gameDifficulty"));
+            Debug.Log(index);
+            PV.RPC("sendIndex", RpcTarget.AllBuffered, index);
+            Debug.Log("Making build walls...");
+            PV.RPC("initializeBuildWalls", RpcTarget.AllBuffered);
+            Debug.Log("Making view walls...");
+            PV.RPC("buildViewWall", RpcTarget.AllBuffered);
+        }
     }
 
     [PunRPC]
@@ -103,7 +102,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
                         hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
-                        hostDropZone.GetComponent<DropzoneScript>().hostDropZone = true;
 
                         hostDropZone.transform.position = hostBuildWallLocation.transform.position;
                         hostDropZone.transform.position += hostBuildWallLocation.transform.right * -j;
@@ -114,7 +112,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         GameObject clientDropZone = Instantiate(dropZone, clientBuildWallLocation.transform);
                         clientDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         clientDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
-                        clientDropZone.GetComponent<DropzoneScript>().hostDropZone = false;
 
                         clientDropZone.transform.position = clientBuildWallLocation.transform.position;
                         clientDropZone.transform.position += clientBuildWallLocation.transform.right * -j;
@@ -147,7 +144,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     // Grabs the inside of the imported wall (ie no dropzone notation) and sets it as the target
     public void setTargetWall()
     {
-        
         targetWall = new string[levelImport.GetLength(0) - 2, levelImport.GetLength(1) - 2];
 
         for (int i = 1; i < levelImport.GetLength(0) - 1; i++)
@@ -176,11 +172,12 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         clientBuildWallLocation.transform.position += clientBuildWallLocation.transform.up * levelImport.GetLength(0);
         ConstructBuildWall(hostBuildWallLocation.transform, "host");
         ConstructBuildWall(clientBuildWallLocation.transform, "client");
+        initalizeDropZones();
     }
 
     void ConstructBuildWall(Transform wallLocation, string wall)
     {
-        initalizeDropZones();
+        
         for (int i = 0; i < targetWall.GetLength(0); i++)
         {
             for (int j = 0; j < targetWall.GetLength(0); j++)
@@ -203,26 +200,14 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
 
-    private void initBuildWallTest()
-    {
-        masterBuildArray = new string[5, 5]
-        {
-            {"a", "b", "c", "d", "e" },
-            {"f", "g", "h", "i", "j" },
-            {"k", "l", "m", "n", "o" },
-            {"p", "q", "r", "s", "t" },
-            {"u", "v", "w", "x", "y" }
-        };
-    }
-
     private void displayEditorMasterArray()
     {
         for (int x = 0; x < masterBuildArray.GetLength(0); x++)
         {
             for (int y = 0; y < masterBuildArray.GetLength(1); y++)
             {
-                Debug.Log("X:" + x + ", Y:" + y);
-                Debug.Log(masterBuildArray[x, y]);
+                //Debug.Log("X:" + x + ", Y:" + y);
+                //Debug.Log(masterBuildArray[x, y]);
                 editorBuildMasterArray.SetCell(y, x, masterBuildArray[x, y]);
             }
         }
@@ -233,8 +218,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             for (int y = 0; y < targetWall.GetLength(1); y++)
             {
-                Debug.Log("X:" + x + ", Y:" + y);
-                Debug.Log(targetWall[x, y]);
+                //Debug.Log("X:" + x + ", Y:" + y);
+                //Debug.Log(targetWall[x, y]);
                 editorTargetWall.SetCell(y, x, targetWall[x, y]);
             }
         }
@@ -375,10 +360,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             case "up":
                 for (int i = 0; i < masterBuildArray.GetLength(0); i++)
                 {
-                    if (masterBuildArray[dropIndex.x, i] == null || masterBuildArray[dropIndex.x, i].Equals(""))
+                    if (masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals(""))
                     {
                         startPos = dropIndex;
-                        targetPos = new Vector2Int(dropIndex.x, i);
+                        targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("Start: " + startPos.ToString());
                         Debug.Log("Target: " + targetPos.ToString());
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
@@ -386,14 +371,15 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     }
                     else
                     {
-                        Debug.Log(new Vector2Int(dropIndex.x, i) + " is not null; actual: " + masterBuildArray[dropIndex.x, i]);
+                        Debug.Log(new Vector2Int(dropIndex.x - 1, i) + " is not null; actual: " + masterBuildArray[dropIndex.x - 1, i]);
                     }
                 }
                 break;
             case "down":
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
                 {
-                    if (masterBuildArray[dropIndex.x, i] == null || masterBuildArray[dropIndex.x, i].Equals(""))
+                    Debug.Log("Checking for empty: " + new Vector2Int(dropIndex.x, i).ToString());
+                    if (masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals(""))
                     {
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x, i);
@@ -404,7 +390,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     }
                     else
                     {
-                        Debug.Log(new Vector2Int(dropIndex.x, i) + " is not null; actual: " + masterBuildArray[dropIndex.x, i]);
+                        Debug.Log(new Vector2Int(dropIndex.x - 1, i) + " is not null; actual: " + masterBuildArray[dropIndex.x - 1, i]);
                     }
                 }
                 break;
