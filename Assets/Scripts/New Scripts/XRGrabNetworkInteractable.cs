@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public enum State
+{
+    Play, 
+    Build, 
+    None, 
+    Held,
+    Gold
+}
+
 public class XRGrabNetworkInteractable : XRGrabInteractable
 {
 
@@ -13,6 +22,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public string currentZone;
     public int playersHoldingCube = 0;
     public Vector3 goldCubeHoldPos;
+
+    public State currentState;
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";

@@ -11,9 +11,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     private string[,] levelImport;
     private string[,] targetWall;
-    private string[,] masterBuildArray = new string[5,5];
-    private GameObject[,] hostSpotHolderArray = new GameObject[5,5];
-    private GameObject[,] clientSpotHolderArray = new GameObject[5,5];
+    private string[,] masterBuildArray = new string[5, 5];
+    private GameObject[,] hostSpotHolderArray = new GameObject[5, 5];
+    private GameObject[,] clientSpotHolderArray = new GameObject[5, 5];
 
     public GameObject hostBuildWallLocation, clientBuildWallLocation;
 
@@ -23,8 +23,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     int index;
 
     public GameObject redCube, blueCube, invsCube, goldCube, leftGoldCube, rightGoldCube;
-    List<GameObject> hostCubes = new List<GameObject>();
-    List<GameObject> clientCubes = new List<GameObject>();
 
     PhotonView PV;
 
@@ -32,7 +30,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     public void Start()
     {
         PV = GetComponent<PhotonView>();
-        
+
         displayEditorMasterArray();
     }
 
@@ -95,7 +93,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             {
                 Debug.Log("Current indices: (" + i + ", " + j + ")");
                 if (i == 0 || i == levelImport.GetLength(0) - 1 || j == 0 || j == levelImport.GetLength(1) - 1)
-                { 
+                {
                     if (!levelImport[i, j].Equals(""))
                     {
                         Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
@@ -177,7 +175,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     void ConstructBuildWall(Transform wallLocation, string wall)
     {
-        
+
         for (int i = 0; i < targetWall.GetLength(0); i++)
         {
             for (int j = 0; j < targetWall.GetLength(0); j++)
@@ -188,11 +186,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                 GameObject placeholder = Instantiate(spotPlaceHolder, spawnLocation, wallLocation.rotation);
                 placeholder.transform.parent = wallLocation.transform;
-                if(wall == "host")
+                if (wall == "host")
                 {
                     placeholder = hostSpotHolderArray[i, j];
                 }
-                else if(wall == "client")
+                else if (wall == "client")
                 {
                     placeholder = clientSpotHolderArray[i, j];
                 }
@@ -320,7 +318,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
         Debug.Log("Direction: " + direction);
         switch (direction)
-        
+
         {
             case "right":
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
@@ -331,7 +329,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         targetPos = new Vector2Int(i, dropIndex.y);
                         Debug.Log("Start: " + startPos.ToString());
                         Debug.Log("Target: " + targetPos.ToString());
-                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, cube.tag);
                         PhotonView.Destroy(cube);
                     }
                     else
@@ -347,7 +345,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     {
                         startPos = dropIndex;
                         targetPos = new Vector2Int(i, dropIndex.y);
-                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, cube.tag);
                         PhotonView.Destroy(cube);
                     }
                     else
@@ -366,7 +364,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("Start: " + startPos.ToString());
                         Debug.Log("Target: " + targetPos.ToString());
-                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, cube.tag);
                         PhotonView.Destroy(cube);
                     }
                     else
@@ -382,10 +380,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     if (masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals(""))
                     {
                         startPos = dropIndex;
-                        targetPos = new Vector2Int(dropIndex.x, i);
+                        targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("Start: " + startPos.ToString());
                         Debug.Log("Target: " + targetPos.ToString());
-                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos, targetPos, cube.tag);
+                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, cube.tag);
                         PhotonView.Destroy(cube);
                     }
                     else
@@ -402,8 +400,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     }
 
     [PunRPC]
-    public void addCube(Vector2Int start, Vector2Int target, string cubeCode)
+    public void addCube(int startX, int startY, int targetX, int targetY, string cubeCode)
     {
+        Vector2Int start = new Vector2Int(startX, startY);
+        Vector2Int target = new Vector2Int(targetX, targetY);
         Debug.Log(start + "  " + target + "  " + cubeCode);
         masterBuildArray[target.x, target.y] = cubeCode;
         if (GameManager.instance.host)
@@ -423,46 +423,45 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
             if (cubeCode == "lG" || cubeCode == "rG")
             {
-                hostCube.GetComponent<GoldCubeHalf>().canBeDroped = false;
-                hostCube.GetComponent<GoldCubeHalf>().currentZone = hostCube.GetComponent<GoldCubeWhole>().BuildWallZone;
-                hostCube.GetComponent<GoldCubeHalf>().index = target;
-                hostCube.GetComponent<GoldCubeHalf>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
-
-                clientCube.GetComponent<GoldCubeHalf>().canBeDroped = false;
-                clientCube.GetComponent<GoldCubeHalf>().currentZone = clientCube.GetComponent<GoldCubeWhole>().BuildWallZone;
-                clientCube.GetComponent<GoldCubeHalf>().index = target;
-                clientCube.GetComponent<GoldCubeHalf>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + clientBuildWallLocation.transform.position;
+                addToBuildWall(hostCube.GetComponent<GoldCubeHalf>(), target);
+                addToBuildWall(clientCube.GetComponent<GoldCubeHalf>(), target);
             }
             else if (cubeCode == "G")
             {
-                hostCube.GetComponent<GoldCubeWhole>().canBeDroped = false;
-                hostCube.GetComponent<GoldCubeWhole>().currentZone = hostCube.GetComponent<GoldCubeWhole>().BuildWallZone;
-                hostCube.GetComponent<GoldCubeWhole>().index = target;
-                hostCube.GetComponent<GoldCubeWhole>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
-
-                clientCube.GetComponent<GoldCubeWhole>().canBeDroped = false;
-                clientCube.GetComponent<GoldCubeWhole>().currentZone = clientCube.GetComponent<GoldCubeWhole>().BuildWallZone;
-                clientCube.GetComponent<GoldCubeWhole>().index = target;
-                clientCube.GetComponent<GoldCubeWhole>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + clientBuildWallLocation.transform.position;
+                addToBuildWall(hostCube.GetComponent<GoldCubeWhole>(), target);
+                addToBuildWall(clientCube.GetComponent<GoldCubeWhole>(), target);
             }
             else
             {
-                hostCube.GetComponent<XRGrabNetworkInteractable>().currentZone = hostCube.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
-                hostCube.GetComponent<XRGrabNetworkInteractable>().index = target;
-                hostCube.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
-
-                clientCube.GetComponent<XRGrabNetworkInteractable>().currentZone = hostCube.GetComponent<XRGrabNetworkInteractable>().BuildWallZone;
-                clientCube.GetComponent<XRGrabNetworkInteractable>().index = target;
-                clientCube.GetComponent<XRGrabNetworkInteractable>().buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + clientBuildWallLocation.transform.position;
+                addToBuildWall(hostCube.GetComponent<XRGrabNetworkInteractable>(), target);
+                addToBuildWall(clientCube.GetComponent<XRGrabNetworkInteractable>(), target);
             }
-
-
-            
         }
     }
 
-    
+    private void addToBuildWall(XRGrabNetworkInteractable script, Vector2Int target)
+    {
+        script.canBeDroped = false;
+        script.currentZone = script.BuildWallZone;
+        script.index = target;
+        script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+    }
 
+    private void addToBuildWall(GoldCubeHalf script, Vector2Int target)
+    {
+        script.canBeDroped = false;
+        script.currentZone = script.BuildWallZone;
+        script.index = target;
+        script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+    }
+
+    private void addToBuildWall(GoldCubeWhole script, Vector2Int target)
+    {
+        script.canBeDroped = false;
+        script.currentZone = script.BuildWallZone;
+        script.index = target;
+        script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+    }
 
     [PunRPC]
     public void removeCube(Vector2Int index, string cubeCode)
