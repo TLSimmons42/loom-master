@@ -81,6 +81,7 @@ MonoBehaviour:
   replacedCube: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
+  index: {x: 0, y: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []

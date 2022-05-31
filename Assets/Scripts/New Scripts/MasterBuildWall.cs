@@ -249,17 +249,17 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         switch (cubeCode)
         {
-            case "R":
+            case "red cube":
                 return "Network Red Cube";
-            case "B":
+            case "blue cube":
                 return "Network Blue Cube";
-            case "I":
+            case "invis cube":
                 return "Network Neutral Cube";
-            case "G":
+            case "gold cube":
                 return "Network Gold Cube";
-            case "lG":
+            case "left gold cube":
                 return "Network Gold Left Cube";
-            case "rG":
+            case "right gold cube":
                 return "Network Gold Right Cube";
             default:
                 Debug.LogError("Invalid cubeCode: " + cubeCode);
