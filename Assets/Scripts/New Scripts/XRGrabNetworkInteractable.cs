@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Array2DEditor;
+
 
 public enum State
 {
@@ -22,13 +24,13 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public string currentZone;
     public int playersHoldingCube = 0;
     public Vector3 goldCubeHoldPos;
-
     public State currentState;
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
+    public string currentBuildWall;
 
     public bool isHeld = false;
     public bool canBeDroped = false;
@@ -45,6 +47,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public GameObject rightRay;
     public GameObject leftRay;
+    public GameObject mirroredBuildWallCube;
 
     public LineRenderer rightLineRenderer;
     public LineRenderer leftLineRenderer;
@@ -148,6 +151,11 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         base.OnSelectEntered(interactor);
         Debug.Log("This cube was grabed");
+
+        if(currentZone == BuildWallZone)
+        {
+            photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
+        }
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
             if (gameObject.tag == "gold cube")
@@ -271,5 +279,17 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public void changeState()
     {
         currentZone = NoZone;
+    }
+    [PunRPC]
+    public void removeCube(int x, int y)
+    {
+        MasterBuildWall.instance.masterBuildArray[x, y] = null;
+
+        if (GameManager.instance.host)
+        {
+            //PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.Destroy(mirroredBuildWallCube);
+        }
+
     }
 }

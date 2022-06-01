@@ -11,6 +11,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public string BuildWallZone = "BuildWall";
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
+    public string currentBuildWall;
 
     public bool isHeld = false;
     public bool isHeldByBoth = false;
@@ -30,6 +31,8 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     public GameObject rightRay;
     public GameObject leftRay;
+    public GameObject mirroredBuildWallCube;
+
 
     public LineRenderer rightLineRenderer;
     public LineRenderer leftLineRenderer;

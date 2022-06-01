@@ -10,11 +10,14 @@ public class GoldCubeHalf : XRSimpleInteractable
     public string currentZone;
     public string NoZone = "No Zone";
     public string BuildWallZone = "BuildWall";
+    public string currentBuildWall;
 
     public bool canBeDroped =false;
     public GameObject replacedCube;
     public GameObject rightRay;
     public GameObject leftRay;
+    public GameObject mirroredBuildWallCube;
+
 
     public Vector2Int index;
 
