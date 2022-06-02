@@ -227,7 +227,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             Debug.Log("In the build wall");
         } else if (currentZone == NoZone)
         {
-            PhotonView.Destroy(this.gameObject);
+            PhotonNetwork.Destroy(this.gameObject);
         } 
         else{
             Debug.Log("destory this cube");

@@ -123,7 +123,7 @@ public class GoldCubeHalf : XRGrabInteractable
     { 
         if(currentZone == BuildWallZone)
         {
-            PlayerGrab();
+            //PlayerGrab();
             PV.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
         }
     }
