@@ -437,15 +437,18 @@ MonoBehaviour:
   currentZone: 
   playersHoldingCube: 0
   goldCubeHoldPos: {x: 0, y: 0, z: 0}
+  currentState: 0
   playWallZone: PlayWall
   BuildWallZone: BuildWall
   NoZone: No Zone
   holdGold: Hold Gold
+  currentBuildWall: 
   isHeld: 0
   canBeDroped: 0
   index: {x: 0, y: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
+  mirroredBuildWallCube: {fileID: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []

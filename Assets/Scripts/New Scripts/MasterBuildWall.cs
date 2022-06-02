@@ -258,9 +258,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             case "gold cube":
                 return "Network Gold Cube";
             case "left gold cube":
-                return "Network Gold Left Cube";
+                return "Network Gold Left Half";
             case "right gold cube":
-                return "Network Gold Right Cube";
+                return "Network Gold Right Half";
             default:
                 Debug.LogError("Invalid cubeCode: " + cubeCode);
                 return null;
@@ -413,11 +413,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         if (GameManager.instance.host)
         {
             Vector3 hostSpawnLocation = hostBuildWallLocation.transform.position;
-            hostSpawnLocation += hostBuildWallLocation.transform.right * -(start.x + 1);
+            hostSpawnLocation += hostBuildWallLocation.transform.right * -(start.x);
             hostSpawnLocation += hostBuildWallLocation.transform.up * -(start.y + 1);
 
             Vector3 clientSpawnLocation = clientBuildWallLocation.transform.position;
-            clientSpawnLocation += clientBuildWallLocation.transform.right * -(start.x + 1);
+            clientSpawnLocation += clientBuildWallLocation.transform.right * -(start.x);
             clientSpawnLocation += clientBuildWallLocation.transform.up * -(start.y + 1);
 
             string networkedCode = cubeCodeToNetworked(cubeCode);
@@ -425,19 +425,19 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             GameObject hostCube = PhotonNetwork.Instantiate(networkedCode, hostSpawnLocation, hostBuildWallLocation.transform.rotation);
             GameObject clientCube = PhotonNetwork.Instantiate(networkedCode, clientSpawnLocation, clientBuildWallLocation.transform.rotation);
 
-            if (cubeCode == "lG" || cubeCode == "rG")
+            if (cubeCode == "left gold cube" || cubeCode == "right gold cube")
             {
                 addToBuildWall(hostCube.GetComponent<GoldCubeHalf>(), target, "host");
                 addToBuildWall(clientCube.GetComponent<GoldCubeHalf>(), target, "client");
-                hostCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = clientCube;
-                clientCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = hostCube;
+                hostCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = clientCube;
+                clientCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = hostCube;
             }
-            else if (cubeCode == "G")
+            else if (cubeCode == "gold cube")
             {
                 addToBuildWall(hostCube.GetComponent<GoldCubeWhole>(), target, "host");
                 addToBuildWall(clientCube.GetComponent<GoldCubeWhole>(), target, "client");
-                hostCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = clientCube;
-                clientCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = hostCube;
+                hostCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = clientCube;
+                clientCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = hostCube;
             }
             else
             {
@@ -456,7 +456,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         script.index = target;
         if (buildWall == "host")
         {
-            script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+            script.buildWallTargetPos = new Vector3((target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
             script.currentBuildWall = "host";
         }
         else
@@ -473,7 +473,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         script.index = target;
         if (buildWall == "host")
         {
-            script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+            script.buildWallTargetPos = new Vector3((target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
             script.currentBuildWall = "host";
         }
         else
@@ -490,7 +490,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         script.index = target;
        if (buildWall == "host")
        {
-            script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
+            script.buildWallTargetPos = new Vector3((target.x + 1), -(target.y + 1), 0) + hostBuildWallLocation.transform.position;
             script.currentBuildWall = "host";
         }
         else

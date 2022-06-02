@@ -22,17 +22,16 @@ public class DropzoneScript : MonoBehaviour
         if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
         {
             
-                Debug.Log("drop zone script");
+            Debug.Log("drop zone script");
             MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
 
         }
         else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)
         {
-            if (GameManager.instance.host)
-            {
-                Debug.Log("bout to drop a cube");
-                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
-            }
+            
+            Debug.Log("bout to drop a cube");
+            MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
+            
         }
         else if(other.tag == "gold cube")
         {

@@ -415,6 +415,7 @@ MonoBehaviour:
   BuildWallZone: BuildWall
   NoZone: No Zone
   holdGold: Hold Gold
+  currentBuildWall: 
   isHeld: 0
   isHeldByBoth: 0
   canBeDroped: 0
@@ -426,6 +427,7 @@ MonoBehaviour:
   PV: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
+  mirroredBuildWallCube: {fileID: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
 --- !u!1 &4845458031497525813
