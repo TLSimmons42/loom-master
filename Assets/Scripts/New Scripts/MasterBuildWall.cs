@@ -379,7 +379,17 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
                 {
                     Debug.Log("Checking for empty: " + new Vector2Int(dropIndex.x, i).ToString());
-                    if ((masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals("")) && canDrop)
+                    if((masterBuildArray[dropIndex.x - 1, i] == "left gold cube" && cube.tag == "right gold cube")   || (masterBuildArray[dropIndex.x - 1, i] == "right gold cube" && cube.tag == "left gold cube"))
+                    {
+                        canDrop = false;
+                        startPos = dropIndex;
+                        targetPos = new Vector2Int(dropIndex.x - 1, i);
+                        Debug.Log("MAKE A NEW GOLD WHOLE");
+                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
+                        PhotonNetwork.Destroy(cube);
+                        removeHalfCube(targetPos.x, targetPos.y,cube.tag);
+                    }
+                    else if ((masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals("")) && canDrop)
                     {
                         canDrop = false;
                         startPos = dropIndex;
@@ -500,15 +510,28 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
        }
     }
 
-    [PunRPC]
-    public void removeCube(Vector2Int index, string cubeCode)
+    public void removeHalfCube(int index_x, int index_y, string cubeCode)
     {
-            masterBuildArray[index.x, index.y] = null;
+        Debug.Log("this the cubeCode: " + cubeCode);
+        GameObject[] cubesForDeletion;
+        if(cubeCode == "left gold cube")
+        {
+            cubesForDeletion = GameObject.FindGameObjectsWithTag("right gold cube");
+        }
+        else
+        {
+            cubesForDeletion = GameObject.FindGameObjectsWithTag("left gold cube");
+        }
 
-            if (GameManager.instance.host)
+        foreach (GameObject cube in cubesForDeletion)
+        {
+            Debug.Log("found a half cube");
+            if(cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
             {
-                
+                Debug.Log("deleting a half cube now");
+                PhotonNetwork.Destroy(cube);
             }
+        }
          
     }
 }

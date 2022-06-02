@@ -231,7 +231,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         } 
         else{
             Debug.Log("destory this cube");
-            MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
+            //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }
 
         

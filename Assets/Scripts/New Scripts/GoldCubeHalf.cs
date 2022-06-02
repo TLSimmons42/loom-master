@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
 
-public class GoldCubeHalf : XRSimpleInteractable
+public class GoldCubeHalf : XRGrabInteractable
 {
 
     public string currentZone;
@@ -33,7 +33,7 @@ public class GoldCubeHalf : XRSimpleInteractable
     public Quaternion buildWallTargetRotation;
 
     PhotonView PV;
-    private BoxCollider collider;
+    public BoxCollider collider;
 
     MyRayInteractor myRay;
     void Start()
@@ -58,6 +58,7 @@ public class GoldCubeHalf : XRSimpleInteractable
         }
         if(currentZone == BuildWallZone)
         {
+            collider.isTrigger = false;
             MoveCubeBuildWall();
         }
     }
@@ -108,6 +109,24 @@ public class GoldCubeHalf : XRSimpleInteractable
             }
         }
     }
+    public void PlayerGrab()
+    {
+        PV.RequestOwnership();
+        currentZone = NoZone;
+        Debug.Log("New zone: " + currentZone);
+        PV.RPC("changeState", RpcTarget.AllBuffered);
+        collider.isTrigger = true;
+    }
+
+
+    protected override void OnSelectEntered(XRBaseInteractor interactor)
+    { 
+        if(currentZone == BuildWallZone)
+        {
+            PlayerGrab();
+            PV.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
+        }
+    }
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
         //collider.isTrigger = false;
@@ -117,9 +136,27 @@ public class GoldCubeHalf : XRSimpleInteractable
         }
         else
         {
+            PhotonView.Destroy(this.gameObject);
             Debug.Log("destory this cube");
-            MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
+            //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }
     }
 
+    [PunRPC]
+    public void changeState()
+    {
+        currentZone = NoZone;
+    }
+    [PunRPC]
+    public void removeCube(int x, int y)
+    {
+        MasterBuildWall.instance.masterBuildArray[x, y] = null;
+
+        if (GameManager.instance.host)
+        {
+            //PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.Destroy(mirroredBuildWallCube);
+        }
+
+    }
 }

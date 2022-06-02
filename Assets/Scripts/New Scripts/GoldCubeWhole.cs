@@ -161,7 +161,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
-        MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
+        //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
     private void OnTriggerEnter(Collider other)
