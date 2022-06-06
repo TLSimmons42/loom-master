@@ -62,6 +62,10 @@ TagManager:
   - cliant left ray
   - network right ray
   - network left ray
+  - R
+  - B
+  - I
+  - G
   layers:
   - Default
   - TransparentFX

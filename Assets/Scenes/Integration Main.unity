@@ -133357,7 +133357,7 @@ GameObject:
   - component: {fileID: 2087162943}
   - component: {fileID: 2087162942}
   m_Layer: 0
-  m_Name: Start Button
+  m_Name: Submit Button
   m_TagString: start button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138518,8 +138518,8 @@ MonoBehaviour:
     type: 3}
   NetworkNeutralCube: {fileID: 1656098595970179428, guid: 58993542babc61041a7a4d185d2b703b,
     type: 3}
-  buildWall1: {fileID: 196652852}
-  buildWall2: {fileID: 417753606}
+  buildWall1: {fileID: 2100322412}
+  buildWall2: {fileID: 2090823310}
   ViewWall1: {fileID: 380159249}
   ViewWall2: {fileID: 447822529}
   startView: {fileID: 0}

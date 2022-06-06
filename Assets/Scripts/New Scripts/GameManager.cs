@@ -123,10 +123,13 @@ public class GameManager : Singleton<GameManager>
             {
                 for (int j = 0; j < targetWall.GetLength(1); j++)
                 {
+                    Debug.Log("X:" + i + ", Y:" + j);
+                    Debug.Log(targetWall[i, j]);
+
                     Vector3 spawnLocation = spawnLocations[l].transform.position;
                     spawnLocation += spawnLocations[l].transform.right * -i;
                     spawnLocation += spawnLocations[l].transform.up * j;
-                    GameObject cube = MasterBuildWall.instance.cubeCodeToGameObject(targetWall[i, j]);
+                    GameObject cube = MasterBuildWall.instance.cubeCodeToGameObject(targetWall[j, i]);
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
                     //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;
@@ -245,7 +248,9 @@ public class GameManager : Singleton<GameManager>
     public void SinglePlayerStart()
     {
         Debug.Log("single player start");
-
+        buildWall2.SetActive(false);
+        ViewWall2.SetActive(false);
+        MasterBuildWall.instance.importLevel();
         dropCubes = true;
     }
 
@@ -253,6 +258,7 @@ public class GameManager : Singleton<GameManager>
     public void MultiplayerStart()
     {
         Debug.Log("multiplayer start");
+        MasterBuildWall.instance.importLevel();
         dropNetworkCubes = true;
     }
     public IEnumerator AssignHostAndPlayerPos()
@@ -286,7 +292,6 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
-       MasterBuildWall.instance.importLevel();
     }
 
     public void Gameover()
@@ -308,18 +313,29 @@ public class GameManager : Singleton<GameManager>
 
     public void SubmitButton()
     {
-        if (buildWall1.GetComponent<BuildWall>().CheckBuildWall())
+        bool allCorrect = true;
+        if (playerCount == 1)
         {
-            // The build wall matches the view wall
-            TimerScript.instance.DisplayText("You win!", 5);
-            TimerScript.instance.record = false;
-            Gameover();
+            for (int x = 0; x < MasterBuildWall.instance.masterBuildArray.GetLength(0); x++)
+            {
+                for (int y = 0; y < MasterBuildWall.instance.masterBuildArray.GetLength(1); y++)
+                {
+                    Debug.Log("master build wall: " + MasterBuildWall.instance.masterBuildArray[x, y]);
+                    Debug.Log("target build wall: " + MasterBuildWall.instance.targetWall[x, y]);
+                    if (MasterBuildWall.instance.masterBuildArray[x, y] == MasterBuildWall.instance.targetWall[x, y])
+                    {
+                        //Debug.Log("GOOD match!!");
+                    }
+                    else
+                    {
+                        allCorrect = false;
+                        //Debug.Log("not good match!!");
+                    }
+                }
+            }
         }
-        else
-        {
-            // The build wall DOESN'T match the view wall
-            TimerScript.instance.DisplayText("Doesn't match", 5);
-        }
+        Debug.Log("This puzzle is all correct: " + allCorrect);
+        Gameover();
     }
 
     public void RestartGame()

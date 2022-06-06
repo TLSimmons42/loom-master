@@ -12,7 +12,7 @@ public class DropzoneScript : MonoBehaviour
         Debug.Log(other.tag + " THIS IS THE TAG");
         if (GameManager.instance.playerCount == 1)
         {
-            if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall") )
+            if ((other.tag == "B" || other.tag == "R" || other.tag == "G" || other.tag == "I") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall") )
             {
                 Debug.Log("drop zone script");
                 MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);

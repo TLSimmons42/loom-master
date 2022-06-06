@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 2970056198916999538}
   m_Layer: 0
   m_Name: Regular Blue Cube
-  m_TagString: blue cube
+  m_TagString: B
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -620,6 +620,7 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
+  index: {x: 0, y: 0}
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}

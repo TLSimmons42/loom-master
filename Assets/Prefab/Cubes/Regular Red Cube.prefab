@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 1962551476112854848}
   m_Layer: 0
   m_Name: Regular Red Cube
-  m_TagString: red cube
+  m_TagString: R
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
+  index: {x: 0, y: 0}
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
