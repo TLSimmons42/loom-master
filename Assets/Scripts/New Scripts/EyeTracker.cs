@@ -102,6 +102,11 @@ public class EyeTracker : MonoBehaviour
                     Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
                     //Debug.Log("looking at: " + type.ToString());
                 }
+                if (type == "DropZone")
+                {
+                    Analytics.instance.WriteData("looking at Drop Zone", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    //Debug.Log("looking at: " + type.ToString());
+                }
             }
         }
         else
