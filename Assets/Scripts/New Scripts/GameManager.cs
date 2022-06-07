@@ -129,7 +129,7 @@ public class GameManager : Singleton<GameManager>
                     Vector3 spawnLocation = spawnLocations[l].transform.position;
                     spawnLocation += spawnLocations[l].transform.right * -i;
                     spawnLocation += spawnLocations[l].transform.up * j;
-                    GameObject cube = MasterBuildWall.instance.cubeCodeToGameObject(targetWall[j, i]);
+                    GameObject cube = MasterBuildWall.instance.cubeCodeToGameObject(targetWall[i, j]);
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
                     //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;

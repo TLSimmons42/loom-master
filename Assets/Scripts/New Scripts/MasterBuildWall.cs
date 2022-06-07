@@ -170,7 +170,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             for (int j = 1; j < levelImport.GetLength(1) - 1; j++)
             {
                 Debug.Log("Setting target (" + (i - 1) + ", " + (j - 1) + ") to " + levelImport[i, j]);
-                targetWall[i - 1, j - 1] = levelImport[i, j];
+                targetWall[j - 1, i - 1] = levelImport[i, j];
             }
         }
 
