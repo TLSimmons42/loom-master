@@ -233,7 +233,7 @@ public class GameManager : Singleton<GameManager>
     //This will detect the number of players and start the game accordingly
     public void StartTheGame()
     {
-       // Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
         TimerScript.instance.record = true;
         if (playerCount == 2)
         {
@@ -298,6 +298,7 @@ public class GameManager : Singleton<GameManager>
     {
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
+        Analytics.instance.WriteData("Game Over", "", "", "","","");
         gameOverView.Show();
         dropCubes = false;
         dropNetworkCubes = false;
@@ -314,7 +315,7 @@ public class GameManager : Singleton<GameManager>
     public void SubmitButton()
     {
         bool allCorrect = true;
-        if (playerCount == 1)
+        if (playerCount == 1  || playerCount == 2)
         {
             for (int x = 0; x < MasterBuildWall.instance.masterBuildArray.GetLength(0); x++)
             {

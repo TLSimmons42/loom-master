@@ -93438,7 +93438,6 @@ GameObject:
   - component: {fileID: 1142550585}
   - component: {fileID: 1142550584}
   - component: {fileID: 1142550583}
-  - component: {fileID: 1142550582}
   m_Layer: 0
   m_Name: Play Wall
   m_TagString: Untagged
@@ -93461,57 +93460,6 @@ Transform:
   m_Father: {fileID: 516095900}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1142550582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1142550580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a823c21c76fdf8d4093c9780ca75d05b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Persistent: 0
-  cols: 6
-  fallSpeed: 2
-  fallDistance: 10
-  dropRate: 0.5
-  squareSize: 1
-  offset: {x: 0, y: -10, z: 3}
-  dropLocs: []
-  endLocs: []
-  levelOver: 0
-  blockPrefabs:
-  - {fileID: -2190505472820833934, guid: 6987614c56aca7b46a791f54e4e9f603, type: 3}
-  - {fileID: 3515656752206876922, guid: 799243829bf8ea147894fe191c4579dc, type: 3}
-  - {fileID: 4268208269937096574, guid: eb3ba5df591c8b34198ed290c4000ee7, type: 3}
-  - {fileID: -8924661668640100710, guid: f79f4c7f569f87048a65e8a2bb51257c, type: 3}
-  - {fileID: 2455506473332305838, guid: 4a98b87ccb36b974fb4e9208b78c55ec, type: 3}
-  - {fileID: 9112824691819376968, guid: acc62cf9d72c6d7458cd2fe24523d04c, type: 3}
-  spawningPool: []
-  goldLeftPool: []
-  goldRightPool: []
-  goldMergePool: []
-  fallingBlocks: []
-  cubeInts: 
-  ViewWall1: {fileID: 380159249}
-  ViewWall2: {fileID: 447822529}
-  blueBlock: {fileID: 4759646497205039304, guid: 6987614c56aca7b46a791f54e4e9f603,
-    type: 3}
-  redBlock: {fileID: 1395681118583206208, guid: 799243829bf8ea147894fe191c4579dc,
-    type: 3}
-  goldBlock: {fileID: 1778872838298375876, guid: eb3ba5df591c8b34198ed290c4000ee7,
-    type: 3}
-  goldBlockLeft: {fileID: 3941825084010289961, guid: f79f4c7f569f87048a65e8a2bb51257c,
-    type: 3}
-  goldBlockRight: {fileID: 1834382132447452981, guid: 4a98b87ccb36b974fb4e9208b78c55ec,
-    type: 3}
-  invisBlock: {fileID: 6765297673553367282, guid: acc62cf9d72c6d7458cd2fe24523d04c,
-    type: 3}
-  RecycleHeight: -1
-  player2Path: 
 --- !u!65 &1142550583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93522,7 +93470,7 @@ BoxCollider:
   m_GameObject: {fileID: 1142550580}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -128178,7 +128126,7 @@ PrefabInstance:
     - target: {fileID: 114366848731431556, guid: 95145ad4fe8448d4ebdcf3760752e2e5,
         type: 3}
       propertyPath: LengthOfRay
-      value: 14
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 120159424192045528, guid: 95145ad4fe8448d4ebdcf3760752e2e5,
         type: 3}
@@ -128225,6 +128173,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f2ac90296475f134198dd5975440c070, type: 2}
+    - target: {fileID: 120159424192045528, guid: 95145ad4fe8448d4ebdcf3760752e2e5,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95145ad4fe8448d4ebdcf3760752e2e5, type: 3}
 --- !u!4 &1824223529 stripped

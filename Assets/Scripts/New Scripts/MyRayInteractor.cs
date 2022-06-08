@@ -54,6 +54,6 @@ public class MyRayInteractor : XRRayInteractor
     }
     protected override void OnHoverEntered(XRBaseInteractable obj)
     {
-        Debug.Log(obj.gameObject.name);
+        //Debug.Log(obj.gameObject.name);
     }
 }

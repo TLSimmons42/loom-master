@@ -96,6 +96,7 @@ public class Cube : XRGrabInteractable
 
     public void PlayerGrab()
     {
+        Analytics.instance.WriteData(gameObject.name +" was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
         currentZone = NoZone;
         collider.isTrigger = true;
         //rb.detectCollisions = false;
@@ -103,7 +104,11 @@ public class Cube : XRGrabInteractable
         //isHeld = true;
         //Debug.Log("GRABBED cube");
     }
+    public void removeCube(int x, int y)
+    {
+        MasterBuildWall.instance.masterBuildArray[x, y] = null;
 
+    }
 
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -113,6 +118,11 @@ public class Cube : XRGrabInteractable
         //  this will grab all colors in single player mode
         if (GameManager.instance.playerCount == 1)
         {
+
+            if(currentZone == BuildWallZone)
+            {
+                removeCube(index.x, index.y);
+            }
 
             PlayerGrab();
         }

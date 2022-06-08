@@ -15,6 +15,7 @@ public class DropzoneScript : MonoBehaviour
             if ((other.tag == "B" || other.tag == "R" || other.tag == "G" || other.tag == "I") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall") )
             {
                 Debug.Log("drop zone script");
+                Analytics.instance.WriteData(other.gameObject.name + "was placed in dropzone", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
                 MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }

@@ -36,8 +36,10 @@ public class Analytics : Singleton<Analytics>
     {
         DataPoint data = new DataPoint();
         data.timestamp = DateTime.Now.Ticks.ToString();
-        data.participant = "placeholder";
+        data.participant = "P1";
         data.task = "Loom";
+        data.age = "20";
+        data.gender = "f";
         data.sessionTime = sessionTime;
         data.eventName = eventString;
         data.testX = testX;
@@ -64,6 +66,8 @@ public class Analytics : Singleton<Analytics>
         stringlist.Add(data.timestamp);
         stringlist.Add(data.participant);
         stringlist.Add(data.task);
+        stringlist.Add(data.age);
+        stringlist.Add(data.gender);
         stringlist.Add(data.sessionTime);
         stringlist.Add(data.eventName);
         stringlist.Add(data.testX);
@@ -79,6 +83,8 @@ public class Analytics : Singleton<Analytics>
         public string timestamp;
         public string participant;
         public string task;
+        public string age;
+        public string gender;
         public string sessionTime;
         public string eventName;
         public string testX;

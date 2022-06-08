@@ -225,8 +225,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             for (int y = 0; y < masterBuildArray.GetLength(1); y++)
             {
-                Debug.Log("X:" + x + ", Y:" + y);
-                Debug.Log(masterBuildArray[x, y]);
+                //Debug.Log("X:" + x + ", Y:" + y);
+                //Debug.Log(masterBuildArray[x, y]);
                 editorBuildMasterArray.SetCell(x, y, masterBuildArray[x, y]);
             }
         }
@@ -237,8 +237,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             for (int y = 0; y < targetWall.GetLength(1); y++)
             {
-                Debug.Log("X:" + x + ", Y:" + y);
-                Debug.Log(targetWall[x, y]);
+                //Debug.Log("X:" + x + ", Y:" + y);
+               // Debug.Log(targetWall[x, y]);
                 editorTargetWall.SetCell(x, y, targetWall[x, y]);
             }
         }
@@ -399,7 +399,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             case "down":
                 for (int i = masterBuildArray.GetLength(0) - 1; i >= 0; i--)
                 {
-                    Debug.Log("Checking for empty: " + new Vector2Int(dropIndex.x, i).ToString());
+                   // Debug.Log("Checking for empty: " + new Vector2Int(dropIndex.x, i).ToString());
                     if((masterBuildArray[dropIndex.x - 1, i] == "left gold cube" && cube.tag == "right gold cube")   || (masterBuildArray[dropIndex.x - 1, i] == "right gold cube" && cube.tag == "left gold cube"))
                     {
                         canDrop = false;
@@ -415,8 +415,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         canDrop = false;
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x - 1, i);
-                        Debug.Log("Start: " + startPos.ToString());
-                        Debug.Log("Target: " + targetPos.ToString());
+                       // Debug.Log("Start: " + startPos.ToString());
+                        //Debug.Log("Target: " + targetPos.ToString());
 
                         if (GameManager.instance.playerCount == 2)
                         {
