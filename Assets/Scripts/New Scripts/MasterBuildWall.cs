@@ -431,7 +431,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     }
                     else
                     {
-                        Debug.Log(new Vector2Int(dropIndex.x - 1, i) + " is not null; actual: " + masterBuildArray[dropIndex.x - 1, i]);
+                        //Debug.Log(new Vector2Int(dropIndex.x - 1, i) + " is not null; actual: " + masterBuildArray[dropIndex.x - 1, i]);
                     }
                 }
                 break;
@@ -448,9 +448,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         Debug.Log("adding cube");
         Vector2Int start = new Vector2Int(startX, startY);
         Vector2Int target = new Vector2Int(targetX, targetY);
-        Debug.Log(start + "  " + target + "  " + cubeCode);
+        //Debug.Log(start + "  " + target + "  " + cubeCode);
 
-        Debug.Log("Add Target: " + target.ToString());
+        //Debug.Log("Add Target: " + target.ToString());
         masterBuildArray[target.x, target.y] = cubeCode;
 
         if (GameManager.instance.playerCount == 2)
@@ -477,6 +477,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     addToBuildWall(clientCube.GetComponent<GoldCubeHalf>(), target, "client");
                     hostCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = clientCube;
                     clientCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = hostCube;
+
+
+                    hostCube.GetComponent<GoldCubeHalf>().index = target;
+                    clientCube.GetComponent<GoldCubeHalf>().index = target;
                 }
                 else if (cubeCode == "gold cube")
                 {
@@ -579,7 +583,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         foreach (GameObject cube in cubesForDeletion)
         {
             Debug.Log("found a half cube");
-            if(cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
+            Debug.Log("this the index for remove: " + index_x + "this the index for remove: " + index_y);
+            if (cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
             {
                 Debug.Log("deleting a half cube now");
                 PhotonNetwork.Destroy(cube);

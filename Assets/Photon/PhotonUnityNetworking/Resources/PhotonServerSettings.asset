@@ -59,6 +59,8 @@ MonoBehaviour:
   - setLevelImport
   - buildViewWall
   - sendIndex
+  - assignIndex
+  - assignNetworkIndex
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

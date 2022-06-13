@@ -123,8 +123,8 @@ public class GameManager : Singleton<GameManager>
             {
                 for (int j = 0; j < targetWall.GetLength(1); j++)
                 {
-                    Debug.Log("X:" + i + ", Y:" + j);
-                    Debug.Log(targetWall[i, j]);
+                   // Debug.Log("X:" + i + ", Y:" + j);
+                   // Debug.Log(targetWall[i, j]);
 
                     Vector3 spawnLocation = spawnLocations[l].transform.position;
                     spawnLocation += spawnLocations[l].transform.right * -i;

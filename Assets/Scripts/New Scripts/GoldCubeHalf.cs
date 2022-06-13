@@ -32,7 +32,7 @@ public class GoldCubeHalf : XRGrabInteractable
 
     public Quaternion buildWallTargetRotation;
 
-    PhotonView PV;
+    public PhotonView PV;
     public BoxCollider collider;
 
     MyRayInteractor myRay;
@@ -41,6 +41,12 @@ public class GoldCubeHalf : XRGrabInteractable
         StartCoroutine(CanDropCubeTimer());
         collider = GetComponent<BoxCollider>();
         PV = GetComponent<PhotonView>();
+        if(index.x != 0 || index.y != 0)
+        {
+            AssignIndex(index.x, index.y);
+            Debug.Log("did a network index");
+        }
+        Debug.Log("the PV is assigned");
         //currentZone = NoZone;
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
@@ -142,11 +148,33 @@ public class GoldCubeHalf : XRGrabInteractable
         }
     }
 
+    public void AssignIndex(int x, int y)
+    {
+        Debug.Log("index x: " + x + "   index y: " + y);
+        if (PV != null)
+        {
+            PV.RPC("assignNetworkIndex", RpcTarget.AllBuffered, x, y);
+        }
+        else
+        {
+            Debug.Log("the PV was null");
+        }
+    }
+
     [PunRPC]
     public void changeState()
     {
         currentZone = NoZone;
     }
+
+    [PunRPC]
+    public void assignNetworkIndex(int x, int y)
+    {
+        index.x = x;
+        index.y = y;
+        Debug.Log("network index is now: " + index);
+    }
+
     [PunRPC]
     public void removeCube(int x, int y)
     {

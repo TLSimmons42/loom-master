@@ -38,7 +38,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public Vector2Int index;
 
     private BoxCollider collider;
-    private PhotonView photonView;
+    public PhotonView photonView;
     private Transform currentPos;
     //Cube cube;
     private Rigidbody rb;

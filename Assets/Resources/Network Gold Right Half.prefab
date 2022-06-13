@@ -157,6 +157,7 @@ MonoBehaviour:
   leftRayPoints: []
   buildWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
+  PV: {fileID: 0}
   collider: {fileID: 0}
 --- !u!114 &-4750746698835154573
 MonoBehaviour:

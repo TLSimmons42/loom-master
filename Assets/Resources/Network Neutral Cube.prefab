@@ -336,6 +336,7 @@ MonoBehaviour:
   isHeld: 0
   canBeDroped: 0
   index: {x: 0, y: 0}
+  photonView: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
   mirroredBuildWallCube: {fileID: 0}
