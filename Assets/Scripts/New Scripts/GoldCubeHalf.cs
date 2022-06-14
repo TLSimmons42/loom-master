@@ -43,7 +43,7 @@ public class GoldCubeHalf : XRGrabInteractable
         PV = GetComponent<PhotonView>();
         if(index.x != 0 || index.y != 0)
         {
-            AssignIndex(index.x, index.y);
+            PV.RPC("assignNetworkIndex", RpcTarget.AllBuffered, index.x, index.y);
             Debug.Log("did a network index");
         }
         Debug.Log("the PV is assigned");

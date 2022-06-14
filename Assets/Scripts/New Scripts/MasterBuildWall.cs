@@ -407,8 +407,12 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("MAKE A NEW GOLD WHOLE");
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
-                        PhotonNetwork.Destroy(cube);
-                        removeHalfCube(targetPos.x, targetPos.y,cube.tag);
+
+                        if (GameManager.instance.host)
+                        {
+                            PhotonNetwork.Destroy(cube);
+                            removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+                        }
                     }
                     else if ((masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals("")) && canDrop)
                     {
@@ -586,8 +590,15 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             Debug.Log("this the index for remove: " + index_x + "this the index for remove: " + index_y);
             if (cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
             {
-                Debug.Log("deleting a half cube now");
-                PhotonNetwork.Destroy(cube);
+                if (GameManager.instance.host)
+                {
+                    Debug.Log("deleting a half cube now");
+                    PhotonNetwork.Destroy(cube);
+                }
+                else
+                {
+                    Debug.Log("was not the host");
+                }
             }
         }
          
