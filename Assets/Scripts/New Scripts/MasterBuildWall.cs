@@ -409,10 +409,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("MAKE A NEW GOLD WHOLE");
 
-                        
-                        PhotonNetwork.Destroy(cube);
-                        removeHalfCube(targetPos.x, targetPos.y, cube.tag);
-                        
+                        if (GameManager.instance.host)
+                        {
+                            PhotonNetwork.Destroy(cube);
+                            removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+                        }
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
 
 
@@ -493,13 +494,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     hostCube.GetComponent<GoldCubeHalf>().index = target;
                     clientCube.GetComponent<GoldCubeHalf>().index = target;
                 }
-                //else if (cubeCode == "gold cube")
-                //{
-                //    addToBuildWall(hostCube.GetComponent<GoldCubeWhole>(), target, "host");
-                //    addToBuildWall(clientCube.GetComponent<GoldCubeWhole>(), target, "client");
-                //    hostCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = clientCube;
-                //    clientCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = hostCube;
-                //}
+                else if (cubeCode == "gold cube")
+                {
+                    addToBuildWall(hostCube.GetComponent<GoldCubeWhole>(), target, "host");
+                    addToBuildWall(clientCube.GetComponent<GoldCubeWhole>(), target, "client");
+                    hostCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = clientCube;
+                    clientCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = hostCube;
+                }
                 else
                 {
                     addToBuildWall(hostCube.GetComponent<XRGrabNetworkInteractable>(), target, "host");

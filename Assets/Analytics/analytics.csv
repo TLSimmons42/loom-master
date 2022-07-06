@@ -2818,9 +2818,13 @@ TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos
 637926388311974284,P1,Loom,20,f,,Game Over,,,
 637926394911493283,P1,Loom,20,f,300,Game Start,,,
 637926398259837619,P1,Loom,20,f,300,Game Start,,,
+<<<<<<< HEAD
 637926400539486813,P1,Loom,20,f,300,Game Start,,,
 637926402627960967,P1,Loom,20,f,300,Game Start,,,
 637926408113897815,P1,Loom,20,f,300,Game Start,,,
 637926409260872176,P1,Loom,20,f,300,Game Start,,,
 637926411882348021,P1,Loom,20,f,300,Game Start,,,
 637926414007680463,P1,Loom,20,f,300,Game Start,,,
+=======
+637926400539486813,P1,Loom,20,f,300,Game Start,,,
+>>>>>>> parent of f5c0d61 (t)

@@ -35,13 +35,13 @@ public class DropzoneScript : MonoBehaviour
                 MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }
-        //else if(other.tag == "gold cube")
-        //{
-        //    if (GameManager.instance.host)
-        //    {
-        //        MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
-        //    }
-        //}
+        else if (other.tag == "gold cube")
+        {
+            if (GameManager.instance.host)
+            {
+                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
+            }
+        }
         else
         {
             Debug.Log("nothing happens in this collision");
