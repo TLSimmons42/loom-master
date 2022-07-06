@@ -408,17 +408,19 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         startPos = dropIndex;
                         targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("MAKE A NEW GOLD WHOLE");
-                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
-
-
-                        //PhotonNetwork.Destroy(cube);
-                        //removeHalfCube(targetPos.x, targetPos.y, cube.tag);
 
                         if (GameManager.instance.host)
                         {
                             PhotonNetwork.Destroy(cube);
                             removeHalfCube(targetPos.x, targetPos.y, cube.tag);
                         }
+                        PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
+
+
+                        //PhotonNetwork.Destroy(cube);
+                        //removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+
+                        
                     }
                     else if ((masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals("")) && canDrop)
                     {
