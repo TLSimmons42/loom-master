@@ -14,6 +14,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     public string[,] masterBuildArray = new string[5, 5];
     private GameObject[,] hostSpotHolderArray = new GameObject[5, 5];
     private GameObject[,] clientSpotHolderArray = new GameObject[5, 5];
+    private GameObject[,] hostWallArray = new GameObject[5, 5];
+    private GameObject[,] clientWallArray = new GameObject[5, 5];
 
     public GameObject hostBuildWallLocation, clientBuildWallLocation;
 
@@ -112,7 +114,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             for (int j = 0; j < levelImport.GetLength(1); j++)
             {
-                Debug.Log("Current indices: (" + i + ", " + j + ")");
+                //Debug.Log("Current indices: (" + i + ", " + j + ")");
                 if (i == 0 || i == levelImport.GetLength(0) - 1 || j == 0 || j == levelImport.GetLength(1) - 1)
                 {
                     if (!levelImport[i, j].Equals(""))
@@ -169,7 +171,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             for (int j = 1; j < levelImport.GetLength(1) - 1; j++)
             {
-                Debug.Log("Setting target (" + (i - 1) + ", " + (j - 1) + ") to " + levelImport[i, j]);
+               // Debug.Log("Setting target (" + (i - 1) + ", " + (j - 1) + ") to " + levelImport[i, j]);
                 targetWall[j - 1, i - 1] = levelImport[i, j];
             }
         }
@@ -409,14 +411,14 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
 
 
-                        PhotonNetwork.Destroy(cube);
-                        removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+                        //PhotonNetwork.Destroy(cube);
+                        //removeHalfCube(targetPos.x, targetPos.y, cube.tag);
 
-                        //if (GameManager.instance.host)
-                        //{
-                        //    PhotonNetwork.Destroy(cube);
-                        //    removeHalfCube(targetPos.x, targetPos.y, cube.tag);
-                        //}
+                        if (GameManager.instance.host)
+                        {
+                            PhotonNetwork.Destroy(cube);
+                            removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+                        }
                     }
                     else if ((masterBuildArray[dropIndex.x - 1, i] == null || masterBuildArray[dropIndex.x - 1, i].Equals("")) && canDrop)
                     {
@@ -605,6 +607,12 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 }
             }
         }
-         
+
     }
+    [PunRPC]
+    public void AssignGoldCubeHalfIndex() 
+    { 
+        
+    }
+
 }
