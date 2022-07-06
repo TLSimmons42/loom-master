@@ -23,6 +23,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public string currentZone;
     public int playersHoldingCube = 0;
+    public int mirroredBuildWallCubeID;
     public Vector3 goldCubeHoldPos;
     public State currentState;
 
@@ -284,9 +285,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public void removeCube(int x, int y)
     {
         MasterBuildWall.instance.masterBuildArray[x, y] = null;
-
+        Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
         
-            //PhotonNetwork.Destroy(gameObject);
             PhotonNetwork.Destroy(mirroredBuildWallCube);
         
 
