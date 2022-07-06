@@ -436,6 +436,7 @@ MonoBehaviour:
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   currentZone: 
   playersHoldingCube: 0
+  mirroredBuildWallCubeID: 0
   goldCubeHoldPos: {x: 0, y: 0, z: 0}
   currentState: 0
   playWallZone: PlayWall

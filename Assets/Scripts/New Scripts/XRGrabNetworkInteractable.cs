@@ -275,6 +275,16 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         }
     }
 
+    public void changeStateToBuildWallCall()
+    {
+        photonView.RPC("changeStateBuildWall", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+
+    public void changeStateBuildWall()
+    {
+        currentZone = BuildWallZone;
+    }
     [PunRPC]
 
     public void changeState()
