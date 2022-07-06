@@ -285,11 +285,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         MasterBuildWall.instance.masterBuildArray[x, y] = null;
 
-        if (GameManager.instance.host)
-        {
+        
             //PhotonNetwork.Destroy(gameObject);
             PhotonNetwork.Destroy(mirroredBuildWallCube);
-        }
+        
 
     }
 }
