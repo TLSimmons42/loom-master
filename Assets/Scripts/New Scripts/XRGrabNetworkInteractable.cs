@@ -132,7 +132,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         photonView.RequestOwnership();
         currentZone = NoZone;
         Debug.Log("New zone: " + currentZone);
-        photonView.RPC("changeState", RpcTarget.AllBuffered);
+        photonView.RPC("ChangeState", RpcTarget.AllBuffered);
         collider.isTrigger = true;
     }
     public void PlayerGrabGoldHalf()
