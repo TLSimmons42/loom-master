@@ -225,6 +225,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
         if (currentZone == BuildWallZone)
         {
+            photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
             Debug.Log("In the build wall");
         } else if (currentZone == NoZone)
         {

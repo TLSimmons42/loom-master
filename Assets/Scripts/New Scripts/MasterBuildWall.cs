@@ -531,7 +531,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     private void addToBuildWall(XRGrabNetworkInteractable script, Vector2Int target, string buildWall)
     {
         script.canBeDroped = false;
-        script.ChangeStateToBuildWallCall();
+        script.currentZone = script.BuildWallZone;
         script.index = target;
         if (buildWall == "host")
         {
