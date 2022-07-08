@@ -77,7 +77,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if (currentZone == BuildWallZone)
         {
             photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
-            MoveCubeBuildWall();
+            if (GameManager.instance.host)
+            {
+                MoveCubeBuildWall();
+            }
         }
         if (currentZone == NoZone)
         {
