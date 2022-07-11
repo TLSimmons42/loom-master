@@ -289,6 +289,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     [PunRPC]
     public void ChangeStateBuildWall()
     {
+        Debug.Log("current zone is now buildwall");
         currentZone = BuildWallZone;
     }
     

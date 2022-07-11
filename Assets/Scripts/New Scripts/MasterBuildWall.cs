@@ -530,6 +530,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     private void addToBuildWall(XRGrabNetworkInteractable script, Vector2Int target, string buildWall)
     {
+        Debug.Log("changing the zone to buildwall");
         script.canBeDroped = false;
         script.currentZone = script.BuildWallZone;
         script.index = target;
