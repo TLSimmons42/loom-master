@@ -482,6 +482,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                 GameObject hostCube = PhotonNetwork.Instantiate(networkedCode, hostSpawnLocation, hostBuildWallLocation.transform.rotation);
                 GameObject clientCube = PhotonNetwork.Instantiate(networkedCode, clientSpawnLocation, clientBuildWallLocation.transform.rotation);
+                PV.RPC("SetCubeIndex", RpcTarget.AllBuffered, cubeCode, hostCube.GetComponent<PhotonView>().ViewID, clientCube.GetComponent<PhotonView>().ViewID);
+                PV.RPC("SetCubeIndex", RpcTarget.AllBuffered, cubeCode, clientCube.GetComponent<PhotonView>().ViewID, hostCube.GetComponent<PhotonView>().ViewID);
+
 
                 if (cubeCode == "left gold cube" || cubeCode == "right gold cube")
                 {
