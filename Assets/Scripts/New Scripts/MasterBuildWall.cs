@@ -14,8 +14,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     public string[,] masterBuildArray = new string[5, 5];
     private GameObject[,] hostSpotHolderArray = new GameObject[5, 5];
     private GameObject[,] clientSpotHolderArray = new GameObject[5, 5];
-    private GameObject[,] hostWallArray = new GameObject[5, 5];
-    private GameObject[,] clientWallArray = new GameObject[5, 5];
+    private int[,] hostWallArrayIDs = new int[5, 5];
+    private int[,] clientWallArrayIDs = new int[5, 5];
 
     public GameObject hostBuildWallLocation, clientBuildWallLocation;
 
@@ -507,6 +507,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     addToBuildWall(clientCube.GetComponent<XRGrabNetworkInteractable>(), target, "client");
                     hostCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = clientCube;
                     clientCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = hostCube;
+                    hostWallArrayIDs[target.x, target.y] = hostCube.GetComponent<PhotonView>().ViewID;
+                    clientWallArrayIDs[target.x, target.y] = clientCube.GetComponent<PhotonView>().ViewID;
                 }
             }
         }
