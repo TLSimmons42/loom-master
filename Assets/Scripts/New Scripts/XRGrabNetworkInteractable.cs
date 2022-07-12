@@ -304,8 +304,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         MasterBuildWall.instance.masterBuildArray[x, y] = null;
         Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
-        
-            PhotonNetwork.Destroy(mirroredBuildWallCube);
+
+        PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
+
+        PhotonNetwork.Destroy(temp.gameObject);
         
 
     }
