@@ -87,7 +87,6 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         {
             if (photonView.IsMine)
             {
-
                 rightLineRenderer.GetPositions(rightRayPoints);
                 gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
             }
@@ -297,6 +296,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     [PunRPC]
     public void ChangeState()
     {
+        PhotonView temp = PhotonView.Find(photonView.ViewID);
+        temp.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone = NoZone;
         currentZone = NoZone;
     }
     [PunRPC]
