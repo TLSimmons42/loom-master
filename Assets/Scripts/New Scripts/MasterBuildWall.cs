@@ -28,6 +28,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     PhotonView PV;
 
+    public bool updateMasterArray = false;
+
 
     public void Start()
     {
@@ -36,6 +38,11 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     }
     private void Update()
     {
+        if (updateMasterArray)
+        {
+            PV.RPC("UpdateMasterArray", RpcTarget.AllBuffered);
+            updateMasterArray = false;
+        }
         if (Input.GetKeyDown("space"))
         {
             displayEditorMasterArray();
@@ -626,14 +633,15 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
         }
     }
-    public void removeCubeFromMasterWallCall(int x, int y)
-    {
-        PV.RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
-    }
     [PunRPC]
     public void removeCubeFromMasterWall(int x, int y)
     {
         Debug.Log("removing cube from the master array");
         masterBuildArray[x, y] = null;
+    }
+    [PunRPC]
+    public void UpdateMasterArray()
+    {
+        masterBuildArray = masterBuildArray;
     }
 }
