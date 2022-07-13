@@ -18,7 +18,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public GameObject leftRay;
     public GameObject mirroredBuildWallCube;
 
-
+    public int mirroredBuildWallCubeID;
     public Vector2Int index;
 
     public LineRenderer rightLineRenderer;
@@ -70,7 +70,8 @@ public class GoldCubeHalf : XRGrabInteractable
     }
     IEnumerator CanDropCubeTimer()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
+        PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
         canBeDroped = true;
     }
 
@@ -129,7 +130,7 @@ public class GoldCubeHalf : XRGrabInteractable
     { 
         if(currentZone == BuildWallZone)
         {
-            //PlayerGrab();
+            PlayerGrab();
             PV.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
         }
     }
@@ -178,13 +179,24 @@ public class GoldCubeHalf : XRGrabInteractable
     [PunRPC]
     public void removeCube(int x, int y)
     {
+
+        //MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
         MasterBuildWall.instance.masterBuildArray[x, y] = null;
+        MasterBuildWall.instance.updateMasterArray = true;
 
-        if (GameManager.instance.host)
-        {
-            //PhotonNetwork.Destroy(gameObject);
-            PhotonNetwork.Destroy(mirroredBuildWallCube);
-        }
+        //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
 
+        PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
+
+        PhotonNetwork.Destroy(temp.gameObject);
+
+
+    }
+
+    [PunRPC]
+    public void ChangeStateBuildWall()
+    {
+        Debug.Log("current zone is now buildwall");
+        currentZone = "BuildWall";
     }
 }

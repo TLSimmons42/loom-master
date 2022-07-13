@@ -637,6 +637,25 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
     }
     [PunRPC]
+    public void SetCubeIndexGoldHalf(string cubeCode, int objID, int mirrorObjID, int index_x, int index_y)
+    {
+        if (cubeCode == "blue cube" || cubeCode == "red cube" || cubeCode == "invis cube")
+        {
+            PhotonView temp = PhotonView.Find(objID);
+            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
+            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().index.x = index_x;
+            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().index.y = index_y;
+        }
+        if (cubeCode == "left gold cube " || cubeCode == "right gold cube")
+        {
+            PhotonView temp = PhotonView.Find(objID);
+            temp.gameObject.GetComponent<GoldCubeHalf>().mirroredBuildWallCubeID = mirrorObjID;
+            temp.gameObject.GetComponent<GoldCubeHalf>().index.x = index_x;
+            temp.gameObject.GetComponent<GoldCubeHalf>().index.y = index_y;
+        }
+    }
+
+    [PunRPC]
     public void removeCubeFromMasterWall(int x, int y)
     {
         Debug.Log("removing cube from the master array");

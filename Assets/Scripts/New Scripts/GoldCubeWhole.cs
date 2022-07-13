@@ -148,6 +148,10 @@ public class GoldCubeWhole : XRSimpleInteractable
 
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+
+                    PV.RPC("SetMirrorCubeCode", RpcTarget.AllBuffered, cube.GetComponent<PhotonView>().ViewID, cube1.GetComponent<PhotonView>().ViewID);
+                    PV.RPC("SetMirrorCubeCode", RpcTarget.AllBuffered, cube1.GetComponent<PhotonView>().ViewID, cube.GetComponent<PhotonView>().ViewID);
+
                     PhotonNetwork.Destroy(gameObject);
                 }
             }
@@ -185,8 +189,16 @@ public class GoldCubeWhole : XRSimpleInteractable
             // Debug.Log("cube destroyed");
         }
     }
+    [PunRPC]
+    public void SetMirrorCubeCode(int objID, int mirrorObjID)
+    {
 
-
-
-
+        PhotonView temp = PhotonView.Find(objID);
+        temp.gameObject.GetComponent<GoldCubeHalf>().mirroredBuildWallCubeID = mirrorObjID;
+       
     }
+
+
+
+
+}
