@@ -165,8 +165,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if(currentZone == BuildWallZone)
         {
             Debug.Log("trying to remove cube from build walls");
-            MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, index.x, index.y);
-            //photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
+            photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
             PlayerGrab();
         }
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
@@ -309,7 +308,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     [PunRPC]
     public void removeCube(int x, int y)
     {
-        MasterBuildWall.instance.removeCubeFromMasterWallCall(x, y);
+        MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
 
         //MasterBuildWall.instance.masterBuildArray[x, y] = null;
         //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
