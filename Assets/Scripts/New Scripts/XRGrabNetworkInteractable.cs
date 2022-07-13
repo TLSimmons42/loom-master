@@ -77,7 +77,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if (currentZone == BuildWallZone)
         {
             Debug.Log("please");
-            photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+            //photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
             if (GameManager.instance.host)
             {
                 MoveCubeBuildWall();
@@ -148,8 +148,13 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     IEnumerator CanDropCubeTimer()
     {
-        yield return new WaitForSeconds(4);
-        canBeDroped = true;
+        yield return new WaitForSeconds(3);
+        if (currentZone == BuildWallZone)
+        {
+            Debug.Log("please");
+            photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+        }
+            canBeDroped = true;
     }
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -304,7 +309,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public void removeCube(int x, int y)
     {
         MasterBuildWall.instance.masterBuildArray[x, y] = null;
-        Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
+        //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
 
         PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
 
