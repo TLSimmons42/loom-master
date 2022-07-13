@@ -626,5 +626,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
         }
     }
-
+    public void removeCubeFromMasterWallCall(int x, int y)
+    {
+        PV.RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
+    }
+    [PunRPC]
+    public void removeCubeFromMasterWall(int x, int y)
+    {
+        masterBuildArray[x, y] = null;
+    }
 }
