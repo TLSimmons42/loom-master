@@ -633,6 +633,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void removeCubeFromMasterWall(int x, int y)
     {
+        Debug.Log("removing cube from the master array");
         masterBuildArray[x, y] = null;
     }
 }

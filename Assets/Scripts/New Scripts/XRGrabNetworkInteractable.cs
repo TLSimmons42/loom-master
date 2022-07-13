@@ -76,7 +76,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
         if (currentZone == BuildWallZone)
         {
-            Debug.Log("please");
+            //Debug.Log("please");
             //photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
             if (GameManager.instance.host)
             {
