@@ -490,8 +490,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                 GameObject hostCube = PhotonNetwork.Instantiate(networkedCode, hostSpawnLocation, hostBuildWallLocation.transform.rotation);
                 GameObject clientCube = PhotonNetwork.Instantiate(networkedCode, clientSpawnLocation, clientBuildWallLocation.transform.rotation);
-                PV.RPC("SetCubeIndex", RpcTarget.AllBuffered, cubeCode, hostCube.GetComponent<PhotonView>().ViewID, clientCube.GetComponent<PhotonView>().ViewID);
-                PV.RPC("SetCubeIndex", RpcTarget.AllBuffered, cubeCode, clientCube.GetComponent<PhotonView>().ViewID, hostCube.GetComponent<PhotonView>().ViewID);
+                PV.RPC("SetCubeIndex", RpcTarget.AllBuffered, cubeCode, hostCube.GetComponent<PhotonView>().ViewID, clientCube.GetComponent<PhotonView>().ViewID, target.x, target.y);
+                PV.RPC("SetCubeIndex", RpcTarget.AllBuffered, cubeCode, clientCube.GetComponent<PhotonView>().ViewID, hostCube.GetComponent<PhotonView>().ViewID, target.x, target.y);
 
 
                 if (cubeCode == "left gold cube" || cubeCode == "right gold cube")
@@ -626,11 +626,12 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     }
     [PunRPC]
-    public void SetCubeIndex(string cubeCode, int objID, int mirrorObjID) 
+    public void SetCubeIndex(string cubeCode, int objID, int mirrorObjID, int index_x, int index_y) 
     { 
         if(cubeCode == "blue cube" || cubeCode == "red cube" || cubeCode == "invis cube")
         {
             PhotonView temp = PhotonView.Find(objID);
+            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
         }
     }
