@@ -165,7 +165,8 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if(currentZone == BuildWallZone)
         {
             Debug.Log("trying to remove cube from build walls");
-            photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
+            MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, index.x, index.y);
+            //photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
             PlayerGrab();
         }
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
