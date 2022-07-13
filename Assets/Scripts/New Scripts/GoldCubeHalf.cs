@@ -35,6 +35,8 @@ public class GoldCubeHalf : XRGrabInteractable
     public PhotonView PV;
     public BoxCollider collider;
 
+    public bool updateBuildWallState = false;
+
     MyRayInteractor myRay;
     void Start()
     {
@@ -58,6 +60,11 @@ public class GoldCubeHalf : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
+        if (updateBuildWallState)
+        {
+            PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+            updateBuildWallState = false;
+        }
         if(currentZone == NoZone)
         {
             PlayerMovesHalf();
