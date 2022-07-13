@@ -78,7 +78,7 @@ public class GoldCubeHalf : XRGrabInteractable
     IEnumerator CanDropCubeTimer()
     {
         yield return new WaitForSeconds(3);
-        PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+        //PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
         canBeDroped = true;
     }
 
