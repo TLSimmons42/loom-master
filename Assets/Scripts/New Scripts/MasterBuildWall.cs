@@ -632,7 +632,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             PhotonView temp = PhotonView.Find(objID);
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
-            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
+            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().index.x = index_x;
+            temp.gameObject.GetComponent<XRGrabNetworkInteractable>().index.x = index_y;
         }
     }
     [PunRPC]
