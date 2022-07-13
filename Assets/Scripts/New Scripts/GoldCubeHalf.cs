@@ -72,7 +72,10 @@ public class GoldCubeHalf : XRGrabInteractable
         if(currentZone == BuildWallZone)
         {
             collider.isTrigger = false;
-            MoveCubeBuildWall();
+            if (GameManager.instance.host)
+            {
+                MoveCubeBuildWall();
+            }
         }
     }
     IEnumerator CanDropCubeTimer()
