@@ -151,7 +151,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         yield return new WaitForSeconds(3);
         if (currentZone == BuildWallZone)
         {
-            Debug.Log("please");
+            //Debug.Log("please");
             photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
         }
             canBeDroped = true;
@@ -164,9 +164,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
         if(currentZone == BuildWallZone)
         {
+            PlayerGrab();
             Debug.Log("trying to remove cube from build walls");
             photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
-            PlayerGrab();
+            
         }
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
