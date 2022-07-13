@@ -42,6 +42,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         {
             PV.RPC("UpdateMasterArray", RpcTarget.AllBuffered);
             updateMasterArray = false;
+            Debug.Log("Updating the master ARrfay");
         }
         if (Input.GetKeyDown("space"))
         {
