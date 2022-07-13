@@ -309,17 +309,16 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     [PunRPC]
     public void removeCube(int x, int y)
     {
-        if (photonView.IsMine)
-        {
-            MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
 
-            //MasterBuildWall.instance.masterBuildArray[x, y] = null;
-            //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
+        MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
 
-            PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
+        //MasterBuildWall.instance.masterBuildArray[x, y] = null;
+        //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
 
-            PhotonNetwork.Destroy(temp.gameObject);
-        }
+        PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
+
+        PhotonNetwork.Destroy(temp.gameObject);
+        
 
     }
 }
