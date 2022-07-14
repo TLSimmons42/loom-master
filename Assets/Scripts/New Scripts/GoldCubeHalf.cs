@@ -36,7 +36,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public BoxCollider collider;
 
     public bool updateBuildWallState = false;
-    public bool requestNetworkOwnershipUpdate = false;
+    public bool destroyCube = false;
 
     MyRayInteractor myRay;
     void Start()
@@ -66,11 +66,11 @@ public class GoldCubeHalf : XRGrabInteractable
             PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
             updateBuildWallState = false;
         }
-        if (requestNetworkOwnershipUpdate)
+        if (destroyCube)
         {
             Debug.Log("meow");
-            PV.RequestOwnership();
-            requestNetworkOwnershipUpdate = false;
+            PhotonNetwork.Destroy(this.gameObject);
+            destroyCube = false;
         }
 
         if(currentZone == NoZone)
