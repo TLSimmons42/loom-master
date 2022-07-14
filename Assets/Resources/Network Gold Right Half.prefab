@@ -151,6 +151,7 @@ MonoBehaviour:
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
   mirroredBuildWallCube: {fileID: 0}
+  mirroredBuildWallCubeID: 0
   index: {x: 0, y: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
@@ -159,6 +160,7 @@ MonoBehaviour:
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   PV: {fileID: 0}
   collider: {fileID: 0}
+  updateBuildWallState: 0
 --- !u!114 &-4750746698835154573
 MonoBehaviour:
   m_ObjectHideFlags: 0

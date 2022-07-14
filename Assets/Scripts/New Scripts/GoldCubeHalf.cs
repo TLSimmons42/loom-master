@@ -67,7 +67,10 @@ public class GoldCubeHalf : XRGrabInteractable
         }
         if(currentZone == NoZone)
         {
-            PlayerMovesHalf();
+            if (PV.IsMine)
+            {
+                PlayerMovesHalf();
+            }
         }
         if(currentZone == BuildWallZone)
         {
