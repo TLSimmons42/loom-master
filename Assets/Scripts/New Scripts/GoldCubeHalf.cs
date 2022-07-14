@@ -203,7 +203,6 @@ public class GoldCubeHalf : XRGrabInteractable
 
         PhotonNetwork.Destroy(temp.gameObject);
 
-
     }
 
     [PunRPC]
