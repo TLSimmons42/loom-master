@@ -161,6 +161,7 @@ MonoBehaviour:
   PV: {fileID: 0}
   collider: {fileID: 0}
   updateBuildWallState: 0
+  requestNetworkOwnershipUpdate: 0
 --- !u!114 &-4750746698835154573
 MonoBehaviour:
   m_ObjectHideFlags: 0

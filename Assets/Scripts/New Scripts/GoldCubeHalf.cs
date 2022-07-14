@@ -68,6 +68,7 @@ public class GoldCubeHalf : XRGrabInteractable
         }
         if (requestNetworkOwnershipUpdate)
         {
+            Debug.Log("meow");
             PV.RequestOwnership();
             requestNetworkOwnershipUpdate = false;
         }
