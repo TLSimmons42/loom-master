@@ -36,6 +36,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public BoxCollider collider;
 
     public bool updateBuildWallState = false;
+    public bool requestNetworkOwnershipUpdate = false;
 
     MyRayInteractor myRay;
     void Start()
@@ -65,6 +66,12 @@ public class GoldCubeHalf : XRGrabInteractable
             PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
             updateBuildWallState = false;
         }
+        if (requestNetworkOwnershipUpdate)
+        {
+            PV.RequestOwnership();
+            requestNetworkOwnershipUpdate = false;
+        }
+
         if(currentZone == NoZone)
         {
             if (PV.IsMine)
@@ -211,4 +218,6 @@ public class GoldCubeHalf : XRGrabInteractable
         Debug.Log("current zone is now buildwall");
         currentZone = "BuildWall";
     }
+
+
 }

@@ -613,7 +613,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             if (cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
             {
 
-                cube.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+                cube.GetComponent<GoldCubeHalf>().requestNetworkOwnershipUpdate = true;
                 Debug.Log("deleting a half cube now");
                 if (cube.GetComponent<PhotonView>().IsMine)
                 {
