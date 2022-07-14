@@ -614,7 +614,14 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             {
                 cube.GetComponent<PhotonView>().RequestOwnership();
                 Debug.Log("deleting a half cube now");
-                PhotonNetwork.Destroy(cube);
+                if (cube.GetComponent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(cube);
+                }
+                else
+                {
+                    Debug.Log("is not mine");
+                }
                 
             }
         }
