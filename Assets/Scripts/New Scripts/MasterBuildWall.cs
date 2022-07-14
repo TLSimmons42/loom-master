@@ -635,7 +635,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().index.x = index_x;
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().index.y = index_y;
         }
-        if (cubeCode == "left gold cube " || cubeCode == "right gold cube")
+        if (cubeCode == "left gold cube" || cubeCode == "right gold cube")
         {
             PhotonView temp = PhotonView.Find(objID);
             temp.gameObject.GetComponent<GoldCubeHalf>().mirroredBuildWallCubeID = mirrorObjID;
