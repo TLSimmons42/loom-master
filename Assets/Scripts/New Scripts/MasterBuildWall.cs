@@ -418,7 +418,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         Debug.Log("MAKE A NEW GOLD WHOLE");
 
                   
-                            //removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+                        removeHalfCube(targetPos.x, targetPos.y, cube.tag);
                       
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
                         PhotonNetwork.Destroy(cube);
