@@ -612,15 +612,10 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             Debug.Log("this the index for remove: " + index_x + "this the index for remove: " + index_y);
             if (cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
             {
-                if (GameManager.instance.host)
-                {
-                    Debug.Log("deleting a half cube now");
-                    PhotonNetwork.Destroy(cube);
-                }
-                else
-                {
-                    Debug.Log("was not the host");
-                }
+                
+                Debug.Log("deleting a half cube now");
+                PhotonNetwork.Destroy(cube);
+                
             }
         }
 
