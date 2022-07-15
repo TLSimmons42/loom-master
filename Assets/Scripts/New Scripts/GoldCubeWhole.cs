@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class GoldCubeWhole : XRSimpleInteractable
 {
@@ -37,7 +38,6 @@ public class GoldCubeWhole : XRSimpleInteractable
     public LineRenderer rightLineRenderer;
     public LineRenderer leftLineRenderer;
     private Vector3[] rightRayPoints = new Vector3[2];
-
 
 
 
@@ -166,8 +166,10 @@ public class GoldCubeWhole : XRSimpleInteractable
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
 
-
-                    PV.TransferOwnership(PhotonNetwork.LocalPlayer);
+                    int temp = PhotonNetwork.PlayerList.Length;
+                    Debug.Log("this is the amount of player in tha game" + temp);
+                    Player tempPlayer = PhotonNetwork.PlayerList[temp-1];
+                    PV.TransferOwnership(tempPlayer);
                     if (PV.IsMine)
                     {
                         PhotonNetwork.Destroy(this.gameObject);
