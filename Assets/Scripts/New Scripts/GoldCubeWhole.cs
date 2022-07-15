@@ -131,7 +131,6 @@ public class GoldCubeWhole : XRSimpleInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         isHeld = true;
-        //PV.RequestOwnership();
 
         if (currentZone == BuildWallZone)
         {
@@ -145,6 +144,7 @@ public class GoldCubeWhole : XRSimpleInteractable
             {
                 if (interactor.transform.parent.parent.gameObject.tag == "P1")
                 {
+                    PV.RequestOwnership();
                     Debug.Log("spawning left half");
                     //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
                     //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
@@ -156,6 +156,7 @@ public class GoldCubeWhole : XRSimpleInteractable
                 }
                 else if (interactor.transform.parent.parent.gameObject.tag == "P2")
                 {
+                    PV.RequestOwnership();
                     Debug.Log("spawning right half");
                     //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
                     //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
