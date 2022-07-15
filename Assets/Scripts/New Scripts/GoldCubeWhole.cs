@@ -167,7 +167,7 @@ public class GoldCubeWhole : XRSimpleInteractable
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
 
 
-                    PV.TransferOwnership(PhotonNetwork.PlayerList[1]);
+                    PV.TransferOwnership(PhotonNetwork.LocalPlayer);
                     
                     PhotonNetwork.Destroy(this.gameObject);
                     //PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
