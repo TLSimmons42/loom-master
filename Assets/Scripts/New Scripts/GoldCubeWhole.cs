@@ -12,6 +12,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public string BuildWallZone = "BuildWall";
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
+    public string deleteZone = "delete zone"
     public string currentBuildWall;
 
     public bool isHeld = false;
@@ -53,6 +54,10 @@ public class GoldCubeWhole : XRSimpleInteractable
     // Update is called once per frame
     void Update()
     {
+        if (currentZone == deleteZone)
+        {
+
+        }
         if(currentZone == playWallZone)
         {
             MoveCubePlayWall();
@@ -126,6 +131,11 @@ public class GoldCubeWhole : XRSimpleInteractable
     {
         currentZone = NoZone;
     }
+    [PunRPC]
+    public void ChangeStateToDelete()
+    {
+        currentZone = deleteZone;
+    }
 
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -166,19 +176,20 @@ public class GoldCubeWhole : XRSimpleInteractable
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
 
-                    int temp = PhotonNetwork.PlayerList.Length;
-                    Debug.Log("this is the amount of player in tha game" + temp);
-                    Player tempPlayer = PhotonNetwork.PlayerList[temp];
-                    PV.TransferOwnership(tempPlayer);
-                    if (PV.IsMine)
-                    {
-                        PhotonNetwork.Destroy(this.gameObject);
-                    }
-                    //PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
+                    //int temp = PhotonNetwork.PlayerList.Length;
+                    //Debug.Log("this is the amount of player in tha game" + temp);
+                    //Player tempPlayer = PhotonNetwork.PlayerList[temp-1];
+                    //PV.TransferOwnership(tempPlayer);
+                    //if (PV.IsMine)
+                    //{
+                    //    PhotonNetwork.Destroy(this.gameObject);
+                    //}
+                    PV.RPC("ChangeStateToDelete", RpcTarget.AllBuffered);
                 }
             }
             else
             {
+                Debug.Log("helllllloooooo");
                 PV.RPC("changeState", RpcTarget.AllBuffered);
                 currentZone = holdGold;
             }
