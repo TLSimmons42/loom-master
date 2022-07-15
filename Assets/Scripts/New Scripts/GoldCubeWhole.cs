@@ -157,6 +157,7 @@ public class GoldCubeWhole : XRSimpleInteractable
                 else if (interactor.transform.parent.parent.gameObject.tag == "P2")
                 {
                     PV.RequestOwnership();
+
                     Debug.Log("spawning right half");
                     //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
                     //gameObject.transform.parent.GetComponent<GoldParent>().rightHalf.SetActive(true);
@@ -165,6 +166,9 @@ public class GoldCubeWhole : XRSimpleInteractable
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
 
+
+                    PV.TransferOwnership(PhotonNetwork.PlayerList[1]);
+                    
                     PhotonNetwork.Destroy(this.gameObject);
                     //PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
                 }
