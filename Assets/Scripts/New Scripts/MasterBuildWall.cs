@@ -417,8 +417,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                         targetPos = new Vector2Int(dropIndex.x - 1, i);
                         Debug.Log("MAKE A NEW GOLD WHOLE");
 
-                  
-                        removeHalfCube(targetPos.x, targetPos.y, cube.tag);
+
+                        PV.RPC("removeHalfCube", RpcTarget.AllBuffered, targetPos.x, targetPos.y, cube.tag);
+                        //removeHalfCube(targetPos.x, targetPos.y, cube.tag);
                       
                         PV.RPC("addCube", RpcTarget.AllBuffered, startPos.x, startPos.y, targetPos.x, targetPos.y, "gold cube");
                         PhotonNetwork.Destroy(cube);
@@ -593,6 +594,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
        }
     }
 
+    [PunRPC]
     public void removeHalfCube(int index_x, int index_y, string cubeCode)
     {
         Debug.Log("this the cubeCode: " + cubeCode);
@@ -617,9 +619,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 Debug.Log("deleting a half cube now");
                 
                 PhotonNetwork.Destroy(cube);
-                
-                
-                
+  
             }
         }
 
