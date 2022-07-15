@@ -12,7 +12,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public string BuildWallZone = "BuildWall";
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
-    public string deleteZone = "delete zone"
+    public string deleteZone = "delete zone";
     public string currentBuildWall;
 
     public bool isHeld = false;
@@ -56,7 +56,10 @@ public class GoldCubeWhole : XRSimpleInteractable
     {
         if (currentZone == deleteZone)
         {
-
+            if (GameManager.instance.host)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
         }
         if(currentZone == playWallZone)
         {
