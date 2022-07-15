@@ -162,7 +162,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-
+                    PV.RequestOwnership();
                     PhotonNetwork.Destroy(gameObject);
                 }
             }
