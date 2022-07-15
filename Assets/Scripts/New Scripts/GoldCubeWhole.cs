@@ -151,7 +151,7 @@ public class GoldCubeWhole : XRSimpleInteractable
                     //gameObject.SetActive(false);
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                    PhotonNetwork.Destroy(gameObject);
+                    PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
                 }
                 else if (interactor.transform.parent.parent.gameObject.tag == "P2")
                 {
@@ -162,8 +162,8 @@ public class GoldCubeWhole : XRSimpleInteractable
 
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-                    PV.RequestOwnership();
-                    PhotonNetwork.Destroy(gameObject);
+
+                    PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
                 }
             }
             else
@@ -200,6 +200,12 @@ public class GoldCubeWhole : XRSimpleInteractable
             // Debug.Log("cube destroyed");
         }
     }
+    [PunRPC]
+    public void DestoryThisObjectOnNetwork()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+
     [PunRPC]
     public void SetMirrorCubeCode(int objID, int mirrorObjID)
     {
