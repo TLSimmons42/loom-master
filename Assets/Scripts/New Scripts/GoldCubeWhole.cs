@@ -168,7 +168,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
                     int temp = PhotonNetwork.PlayerList.Length;
                     Debug.Log("this is the amount of player in tha game" + temp);
-                    Player tempPlayer = PhotonNetwork.PlayerList[temp-1];
+                    Player tempPlayer = PhotonNetwork.PlayerList[temp];
                     PV.TransferOwnership(tempPlayer);
                     if (PV.IsMine)
                     {
