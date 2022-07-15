@@ -203,7 +203,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     [PunRPC]
     public void DestoryThisObjectOnNetwork()
     {
-        if (GameManager.instance.host)
+        if (!GameManager.instance.host)
         {
             PhotonNetwork.Destroy(gameObject);
         }
