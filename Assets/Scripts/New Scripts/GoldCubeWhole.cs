@@ -68,6 +68,15 @@ public class GoldCubeWhole : XRSimpleInteractable
         }
     }
 
+    public void PlayerGrab()
+    {
+        PV.RequestOwnership();
+        currentZone = NoZone;
+        Debug.Log("New zone: " + currentZone);
+        PV.RPC("ChangeStateNoZone", RpcTarget.AllBuffered);
+        collider.isTrigger = true;
+    }
+
     public void MoveCubePlayWall()
     {
         //if(currentZone == playWallZone && transform.position == gameManager.PlaywallDropPoints[0].transform.position)
@@ -108,11 +117,16 @@ public class GoldCubeWhole : XRSimpleInteractable
         }
     }
     [PunRPC]
-
-    public void changeState()
+    public void ChangeStateToHold()
     {
         currentZone = holdGold;
     }
+    [PunRPC]
+    public void ChangeStateNoZone()
+    {
+        currentZone = NoZone;
+    }
+
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
@@ -122,7 +136,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         if (currentZone == BuildWallZone)
         {
             collider.isTrigger = true;
-            currentZone = NoZone;
+            PlayerGrab();
         }
         else
         {
@@ -148,9 +162,6 @@ public class GoldCubeWhole : XRSimpleInteractable
 
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-
-                    PV.RPC("SetMirrorCubeCode", RpcTarget.AllBuffered, cube.GetComponent<PhotonView>().ViewID, cube1.GetComponent<PhotonView>().ViewID);
-                    PV.RPC("SetMirrorCubeCode", RpcTarget.AllBuffered, cube1.GetComponent<PhotonView>().ViewID, cube.GetComponent<PhotonView>().ViewID);
 
                     PhotonNetwork.Destroy(gameObject);
                 }
