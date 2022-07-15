@@ -131,7 +131,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         isHeld = true;
-        PV.RequestOwnership();
+        //PV.RequestOwnership();
 
         if (currentZone == BuildWallZone)
         {
@@ -203,10 +203,9 @@ public class GoldCubeWhole : XRSimpleInteractable
     [PunRPC]
     public void DestoryThisObjectOnNetwork()
     {
-        if (!GameManager.instance.host)
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
+        
+        PhotonNetwork.Destroy(gameObject);
+        
     }
 
     [PunRPC]
