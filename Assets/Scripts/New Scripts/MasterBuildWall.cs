@@ -614,15 +614,12 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             Debug.Log("this the index for remove: " + index_x + "this the index for remove: " + index_y);
             if (cube.GetComponent<GoldCubeHalf>().index.x == index_x && cube.GetComponent<GoldCubeHalf>().index.y == index_y)
             {
-
                 cube.GetComponent<GoldCubeHalf>().destroyCube = true;
                 Debug.Log("deleting a half cube now");
-                
                 PhotonNetwork.Destroy(cube);
   
             }
         }
-
     }
     [PunRPC]
     public void SetCubeIndex(string cubeCode, int objID, int mirrorObjID, int index_x, int index_y) 
