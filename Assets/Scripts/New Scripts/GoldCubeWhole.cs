@@ -168,8 +168,10 @@ public class GoldCubeWhole : XRSimpleInteractable
 
 
                     PV.TransferOwnership(PhotonNetwork.LocalPlayer);
-                    
-                    PhotonNetwork.Destroy(this.gameObject);
+                    if (PV.IsMine)
+                    {
+                        PhotonNetwork.Destroy(this.gameObject);
+                    }
                     //PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
                 }
             }
@@ -197,11 +199,6 @@ public class GoldCubeWhole : XRSimpleInteractable
                 {
                     PhotonNetwork.Destroy(this.gameObject);
                 }
-            }
-            else
-            {
-                Destroy(this.gameObject);
-
             }
 
             // Debug.Log("cube destroyed");
