@@ -129,7 +129,7 @@ public class GoldCubeHalf : XRGrabInteractable
             {
                 if (currentZone != BuildWallZone)
                 {
-                    PV.RequestOwnership();
+                    //PV.RequestOwnership();
                     currentZone = NoZone;
                 }
             }
