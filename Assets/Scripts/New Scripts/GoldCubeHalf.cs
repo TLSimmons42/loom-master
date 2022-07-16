@@ -10,6 +10,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public string currentZone;
     public string NoZone = "No Zone";
     public string BuildWallZone = "BuildWall";
+    public string deleteZone = "delete zone";
     public string currentBuildWall;
 
     public bool canBeDroped =false;
@@ -61,6 +62,13 @@ public class GoldCubeHalf : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
+        if(currentZone == deleteZone)
+        {
+            if (GameManager.instance.host)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
         if (updateBuildWallState)
         {
             PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
@@ -131,7 +139,7 @@ public class GoldCubeHalf : XRGrabInteractable
             {
                 if (currentZone != BuildWallZone)
                 {
-                    PV.RequestOwnership();
+                    //PV.RequestOwnership();
                     currentZone = NoZone;
                 }
             }
@@ -187,6 +195,11 @@ public class GoldCubeHalf : XRGrabInteractable
     public void changeState()
     {
         currentZone = NoZone;
+    }
+    [PunRPC]
+    public void ChangeStateToDelete()
+    {
+        currentZone = deleteZone;
     }
 
     [PunRPC]
