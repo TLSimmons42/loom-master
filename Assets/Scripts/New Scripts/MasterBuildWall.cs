@@ -568,8 +568,9 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
         }
         else
         {
-            script.currentBuildWall = "client";
+            
             script.buildWallTargetPos = new Vector3(-(target.x + 1), -(target.y + 1), 0) + clientBuildWallLocation.transform.position;
+            script.currentBuildWall = "client";
         }
     }
 

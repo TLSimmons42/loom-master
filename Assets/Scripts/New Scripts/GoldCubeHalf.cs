@@ -119,9 +119,9 @@ public class GoldCubeHalf : XRGrabInteractable
         {
             if(rightRay.transform.parent.parent.gameObject.tag == "P1")
             {
-                PV.RequestOwnership();
                 if (currentZone != BuildWallZone)
                 {
+                    PV.RequestOwnership();
                     currentZone = NoZone;
                 }
             }
@@ -129,9 +129,9 @@ public class GoldCubeHalf : XRGrabInteractable
         {
             if (rightRay.transform.parent.parent.gameObject.tag == "P2")
             {
-                PV.RequestOwnership();
                 if (currentZone != BuildWallZone)
                 {
+                    PV.RequestOwnership();
                     currentZone = NoZone;
                 }
             }
