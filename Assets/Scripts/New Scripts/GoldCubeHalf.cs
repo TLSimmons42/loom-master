@@ -123,7 +123,7 @@ public class GoldCubeHalf : XRGrabInteractable
 
     public void AssignCubeToPlayers()
     {
-        PV.RPC("changeState", RpcTarget.AllBuffered);
+        //PV.RPC("changeState", RpcTarget.AllBuffered);
 
         if (this.name == "Network Gold Left Half(Clone)")
         {
