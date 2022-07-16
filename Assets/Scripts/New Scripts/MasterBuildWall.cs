@@ -501,10 +501,6 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     addToBuildWall(clientCube.GetComponent<GoldCubeHalf>(), target, "client");
                     hostCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = clientCube;
                     clientCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = hostCube;
-
-
-                    hostCube.GetComponent<GoldCubeHalf>().index = target;
-                    clientCube.GetComponent<GoldCubeHalf>().index = target;
                 }
                 else if (cubeCode == "gold cube")
                 {
