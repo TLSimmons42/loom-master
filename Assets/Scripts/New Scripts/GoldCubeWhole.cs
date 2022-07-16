@@ -169,7 +169,7 @@ public class GoldCubeWhole : XRSimpleInteractable
                 }
                 else if (interactor.transform.parent.parent.gameObject.tag == "P2")
                 {
-                    PV.RequestOwnership();
+                    //PV.RequestOwnership();
 
                     Debug.Log("spawning right half");
                     //gameObject.transform.parent.GetComponent<GoldParent>().leftHalf.SetActive(true);
