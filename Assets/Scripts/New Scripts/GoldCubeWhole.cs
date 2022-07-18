@@ -82,8 +82,11 @@ public class GoldCubeWhole : XRSimpleInteractable
         }
         if(currentZone == NoZone)
         {
-            rightLineRenderer.GetPositions(rightRayPoints);
-            gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+            if (PV.IsMine)
+            {
+                rightLineRenderer.GetPositions(rightRayPoints);
+                gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
+            }
         }
     }
 
