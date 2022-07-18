@@ -75,7 +75,10 @@ public class GoldCubeWhole : XRSimpleInteractable
         }
         if (currentZone == BuildWallZone)
         {
-            MoveCubeBuildWall();
+            if (GameManager.instance.host)
+            {
+                MoveCubeBuildWall();
+            }
         }
         if(currentZone == NoZone)
         {
