@@ -244,7 +244,7 @@ public class GoldCubeHalf : XRGrabInteractable
     [PunRPC]
     public void ChangeDestoryVariable()
     {
-        destroyCube = destroyCube;
+        destroyCube = true;
     }
 
 
