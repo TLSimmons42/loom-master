@@ -123,7 +123,7 @@ public class GoldCubeHalf : XRGrabInteractable
 
     public void AssignCubeToPlayers()
     {
-        PV.RPC("changeState", RpcTarget.AllBuffered);
+        //PV.RPC("changeState", RpcTarget.AllBuffered);
 
         if (this.name == "Network Gold Left Half(Clone)")
         {
@@ -131,7 +131,7 @@ public class GoldCubeHalf : XRGrabInteractable
             {
                 if (currentZone != BuildWallZone)
                 {
-                    //PV.RequestOwnership();
+                    PV.RequestOwnership();
                     PV.RPC("changeState", RpcTarget.AllBuffered);
                 }
             }
