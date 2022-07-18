@@ -141,7 +141,7 @@ public class GoldCubeHalf : XRGrabInteractable
             {
                 if (currentZone != BuildWallZone)
                 {
-                    //PV.RequestOwnership();
+                    PV.RequestOwnership();
                     PV.RPC("changeState", RpcTarget.AllBuffered);
                 }
             }
