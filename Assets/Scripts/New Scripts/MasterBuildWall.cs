@@ -613,7 +613,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             {
                 cube.GetComponent<GoldCubeHalf>().destroyCube = true;
                 Debug.Log("deleting a half cube now");
-                PhotonNetwork.Destroy(cube);
+                //PhotonNetwork.Destroy(cube);
   
             }
         }

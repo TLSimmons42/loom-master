@@ -76,8 +76,13 @@ public class GoldCubeHalf : XRGrabInteractable
         }
         if (destroyCube)
         {
+            PV.RPC("ChangeDestoryVariable", RpcTarget.AllBuffered);
             Debug.Log("meow");
-            PhotonNetwork.Destroy(this.gameObject);
+
+            if (GameManager.instance.host)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+            }
             destroyCube = false;
         }
 
@@ -233,6 +238,12 @@ public class GoldCubeHalf : XRGrabInteractable
     {
         Debug.Log("current zone is now buildwall");
         currentZone = "BuildWall";
+    }
+
+    [PunRPC]
+    public void ChangeDestoryVariable()
+    {
+        destroyCube = destroyCube;
     }
 
 
