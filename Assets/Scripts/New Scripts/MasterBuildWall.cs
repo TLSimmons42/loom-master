@@ -635,6 +635,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             temp.gameObject.GetComponent<GoldCubeHalf>().index.x = index_x;
             temp.gameObject.GetComponent<GoldCubeHalf>().index.y = index_y;
         }
+        if (cubeCode == "gold cube")
+        {
+            PhotonView temp = PhotonView.Find(objID);
+            temp.gameObject.GetComponent<GoldCubeWhole>().mirroredBuildWallCubeID = mirrorObjID;
+            temp.gameObject.GetComponent<GoldCubeWhole>().index.x = index_x;
+            temp.gameObject.GetComponent<GoldCubeWhole>().index.y = index_y;
+        }
     }
     
 
