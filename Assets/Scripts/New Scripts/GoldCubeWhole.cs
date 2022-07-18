@@ -230,8 +230,23 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     protected override void OnSelectExited(XRBaseInteractor interactor)
     {
-        //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
-        //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
+        collider.isTrigger = false;
+
+        if (currentZone == BuildWallZone)
+        {
+            Debug.Log("In the build wall");
+        }
+        else if (currentZone == NoZone)
+        {
+            PhotonNetwork.Destroy(this.gameObject);
+        }
+        else
+        {
+            Debug.Log("destory this cube");
+            //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
+        }
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
