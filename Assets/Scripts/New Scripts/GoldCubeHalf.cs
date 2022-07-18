@@ -82,8 +82,9 @@ public class GoldCubeHalf : XRGrabInteractable
             if (GameManager.instance.host)
             {
                 PhotonNetwork.Destroy(this.gameObject);
+                //destroyCube = false;
             }
-            destroyCube = false;
+            
         }
 
         if(currentZone == NoZone)
