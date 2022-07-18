@@ -18,6 +18,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public bool isHeld = false;
     public bool isHeldByBoth = false;
     public bool canBeDroped = false;
+    public bool updateBuildWallState = false;
 
     private BoxCollider collider;
 
