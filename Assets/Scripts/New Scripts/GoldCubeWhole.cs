@@ -24,6 +24,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public Vector2Int index;
 
     public int playersHoldingCube = 0;
+    public int mirroredBuildWallCubeID;
     private float playZoneFallSpeed = 2f;
 
     public Vector3 playWallTargetPos, buildWallTargetPos;
@@ -155,6 +156,13 @@ public class GoldCubeWhole : XRSimpleInteractable
             PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
             if (playersHoldingCube == 2)
             {
+                if (currentZone == BuildWallZone)
+                {
+                    PlayerGrab();
+                    Debug.Log("trying to remove cube from build walls");
+                    PV.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
+
+                }else
                 if (interactor.transform.parent.parent.gameObject.tag == "P1")
                 {
                     PV.RequestOwnership();
@@ -235,6 +243,22 @@ public class GoldCubeWhole : XRSimpleInteractable
         PhotonView temp = PhotonView.Find(objID);
         temp.gameObject.GetComponent<GoldCubeHalf>().mirroredBuildWallCubeID = mirrorObjID;
        
+    }
+    [PunRPC]
+    public void removeCube(int x, int y)
+    {
+
+        //MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
+        MasterBuildWall.instance.masterBuildArray[x, y] = null;
+        MasterBuildWall.instance.updateMasterArray = true;
+
+        //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
+
+        PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
+
+        PhotonNetwork.Destroy(temp.gameObject);
+
+
     }
 
 
