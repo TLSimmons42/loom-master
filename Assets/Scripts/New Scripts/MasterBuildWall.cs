@@ -542,7 +542,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         Debug.Log("changing the zone to buildwall");
         script.canBeDroped = false;
-        script.currentZone = script.BuildWallZone;
+        script.updateBuildWallState = true;
         script.index = target;
         if (buildWall == "host")
         {
@@ -577,7 +577,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     private void addToBuildWall(GoldCubeWhole script, Vector2Int target, string buildWall)
     {
         script.canBeDroped = false;
-        script.currentZone = script.BuildWallZone;
+        script.updateBuildWallState = true;
         script.index = target;
        if (buildWall == "host")
        {

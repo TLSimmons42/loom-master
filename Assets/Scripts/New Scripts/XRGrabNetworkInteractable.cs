@@ -35,6 +35,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public bool isHeld = false;
     public bool canBeDroped = false;
+    public bool updateBuildWallState;
 
     public Vector2Int index;
 
@@ -72,6 +73,11 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if (currentZone == playWallZone)
         {
             MoveCubePlayWall();
+        }
+        if (updateBuildWallState)
+        {
+            photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+            updateBuildWallState = false;
         }
 
         if (currentZone == BuildWallZone)
@@ -149,11 +155,6 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     IEnumerator CanDropCubeTimer()
     {
         yield return new WaitForSeconds(3);
-        if (currentZone == BuildWallZone)
-        {
-            //Debug.Log("please");
-            photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
-        }
             canBeDroped = true;
     }
 

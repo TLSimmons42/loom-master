@@ -62,7 +62,13 @@ public class GoldCubeWhole : XRSimpleInteractable
                 PhotonNetwork.Destroy(gameObject);
             }
         }
-        if(currentZone == playWallZone)
+        if (updateBuildWallState)
+        {
+            PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+            updateBuildWallState = false;
+        }
+
+        if (currentZone == playWallZone)
         {
             MoveCubePlayWall();
         }
@@ -124,6 +130,14 @@ public class GoldCubeWhole : XRSimpleInteractable
             PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
             PhotonNetwork.Destroy(gameObject);
         }
+    }
+    
+    
+    [PunRPC]
+    public void ChangeStateBuildWall()
+    {
+        //Debug.Log("current zone is now buildwall");
+        currentZone = "BuildWall";
     }
     [PunRPC]
     public void ChangeStateToHold()
