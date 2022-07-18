@@ -138,7 +138,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     public void ChangeStateBuildWall()
     {
         //Debug.Log("current zone is now buildwall");
-        currentZone = "BuildWall";
+        currentZone = BuildWallZone;
     }
     [PunRPC]
     public void ChangeStateToHold()
