@@ -84,7 +84,7 @@ public class GoldCubeHalf : XRGrabInteractable
                 PhotonNetwork.Destroy(this.gameObject);
                 //destroyCube = false;
             }
-            
+           
         }
 
         if(currentZone == NoZone)
@@ -96,9 +96,10 @@ public class GoldCubeHalf : XRGrabInteractable
         }
         if(currentZone == BuildWallZone)
         {
+            
+                collider.isTrigger = false;
             if (GameManager.instance.host)
             {
-                collider.isTrigger = false;
                 MoveCubeBuildWall();
             }
         }
