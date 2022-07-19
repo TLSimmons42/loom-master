@@ -121,6 +121,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     [PunRPC]
     public void IncreaseGoldCubeNetworkVar()
     {
+        Debug.Log("adding a person to the gold box");
         playersHoldingCube++;
     }
 
@@ -218,8 +219,8 @@ public class GoldCubeWhole : XRSimpleInteractable
             else
             {
                 Debug.Log("helllllloooooo");
-                PV.RPC("changeState", RpcTarget.AllBuffered);
-                currentZone = holdGold;
+                PV.RPC("ChangeStateToHold", RpcTarget.AllBuffered);
+                //currentZone = holdGold;
             }
         }
     }

@@ -77,7 +77,7 @@ public class GoldCubeHalf : XRGrabInteractable
         if (destroyCube)
         {
             PV.RPC("ChangeDestoryVariable", RpcTarget.AllBuffered);
-            Debug.Log("meow");
+            //Debug.Log("meow");
 
             if (GameManager.instance.host)
             {
