@@ -171,19 +171,15 @@ public class GoldCubeWhole : XRSimpleInteractable
         {
             collider.isTrigger = true;
             PlayerGrab();
+            PV.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
+
         }
         else
         {
             PV.RPC("IncreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
             if (playersHoldingCube == 2)
             {
-                if (currentZone == BuildWallZone)
-                {
-                    PlayerGrab();
-                    Debug.Log("trying to remove cube from build walls");
-                    PV.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
-
-                }else
+                
                 if (interactor.transform.parent.parent.gameObject.tag == "P1")
                 {
                     PV.RequestOwnership();
