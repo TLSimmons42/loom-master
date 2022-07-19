@@ -233,7 +233,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         {
             Debug.Log("In the build wall");
         }
-        else if (currentZone == NoZone)
+        else if (currentZone == NoZone || currentZone == holdGold)
         {
             PhotonNetwork.Destroy(this.gameObject);
         }
