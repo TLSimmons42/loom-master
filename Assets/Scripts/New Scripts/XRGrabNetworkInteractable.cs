@@ -168,8 +168,9 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             PlayerGrab();
             Debug.Log("trying to remove cube from build walls");
             photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
-            
+
         }
+        else 
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
             if (gameObject.tag == "gold cube")

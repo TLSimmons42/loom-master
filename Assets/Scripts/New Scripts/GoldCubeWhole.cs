@@ -293,7 +293,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
 
         PhotonNetwork.Destroy(temp.gameObject);
-
+        Debug.Log("WE ARE HERE");
 
     }
 
