@@ -207,6 +207,7 @@ MonoBehaviour:
   currentZone: 
   NoZone: No Zone
   BuildWallZone: BuildWall
+  deleteZone: delete zone
   currentBuildWall: 
   canBeDroped: 0
   replacedCube: {fileID: 0}
@@ -223,7 +224,7 @@ MonoBehaviour:
   PV: {fileID: 0}
   collider: {fileID: 0}
   updateBuildWallState: 0
-  requestNetworkOwnershipUpdate: 0
+  destroyCube: 0
 --- !u!114 &-3886285357491533744
 MonoBehaviour:
   m_ObjectHideFlags: 0

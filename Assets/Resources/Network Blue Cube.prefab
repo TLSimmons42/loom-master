@@ -507,6 +507,7 @@ MonoBehaviour:
   currentBuildWall: 
   isHeld: 0
   canBeDroped: 0
+  updateBuildWallState: 0
   index: {x: 0, y: 0}
   photonView: {fileID: 0}
   rightRay: {fileID: 0}
