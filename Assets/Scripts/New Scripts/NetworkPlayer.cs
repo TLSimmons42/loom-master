@@ -36,8 +36,8 @@ public class NetworkPlayer : MonoBehaviour
         headRig = rig.transform.Find("Camera Offset/VR Camera");
         leftHandRig = rig.transform.Find("Camera Offset/Left Hand");
         rightHandRig = rig.transform.Find("Camera Offset/Right Hand");
-        leftHandRayRig = rig.transform.Find("Camera Offset/Left Ray Interactor");
-        rightHandRayRig = rig.transform.Find("Camera Offset/Right Ray Interactor");
+        //leftHandRayRig = rig.transform.Find("Camera Offset/Left Ray Interactor");
+        //rightHandRayRig = rig.transform.Find("Camera Offset/Right Ray Interactor");
 
         //if (photonView.IsMine)
         //{
@@ -58,8 +58,8 @@ public class NetworkPlayer : MonoBehaviour
             MapPosition(head, headRig);
             MapPosition(leftHand, leftHandRig);
             MapPosition(rightHand, rightHandRig);
-            MapPosition(rightHandRay, rightHandRayRig);
-            MapPosition(leftHandRay, leftHandRayRig);
+           // MapPosition(rightHandRay, rightHandRayRig);
+            //MapPosition(leftHandRay, leftHandRayRig);
 
 
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
