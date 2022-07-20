@@ -457,10 +457,10 @@ MonoBehaviour:
   - {fileID: 6304270093135735420}
   - {fileID: 7667304641590518691}
   - {fileID: 8634836957642990714}
-  - {fileID: 4240106774692275482}
-  - {fileID: 4138453683400106171}
   - {fileID: 2922843044444296636}
   - {fileID: 3626374754496037954}
+  - {fileID: 4138453683400106171}
+  - {fileID: 4240106774692275482}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -545,7 +545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6816150700327411476}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.30533335, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_Children: []
   m_Father: {fileID: 7343099771232510328}
@@ -911,7 +911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7891478777414336878}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.0010000003, y: -0.0010000002, z: -0.39066666}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33333325, y: 0.33333325, z: 0.33333334}
   m_Children: []
   m_Father: {fileID: 8962264293582847172}
