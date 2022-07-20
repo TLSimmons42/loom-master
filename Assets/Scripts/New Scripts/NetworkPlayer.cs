@@ -39,13 +39,13 @@ public class NetworkPlayer : MonoBehaviour
         leftHandRayRig = rig.transform.Find("Camera Offset/Left Ray Interactor");
         rightHandRayRig = rig.transform.Find("Camera Offset/Right Ray Interactor");
 
-        if (photonView.IsMine)
-        {
-            foreach (var item in GetComponentsInChildren<Renderer>())
-            {
-                item.enabled = false;
-            }
-        }
+        //if (photonView.IsMine)
+        //{
+        //    foreach (var item in GetComponentsInChildren<Renderer>())
+        //    {
+        //        item.enabled = false;
+        //    }
+        //}
     }
 
     // Update is called once per frame
