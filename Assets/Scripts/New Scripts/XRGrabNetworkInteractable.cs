@@ -162,7 +162,11 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     {
         base.OnSelectEntered(interactor);
         Debug.Log("This cube was grabed");
-
+        if (GameManager.instance.holdingGoldHalf)
+        {
+            Debug.Log("cant pick anything up");
+        }
+        else
         if(currentZone == BuildWallZone)
         {
             PlayerGrab();

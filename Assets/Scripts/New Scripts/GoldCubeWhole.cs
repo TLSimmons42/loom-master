@@ -166,8 +166,11 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
-        isHeld = true;
-
+        if (GameManager.instance.holdingGoldHalf)
+        {
+            Debug.Log("cant pick anything up");
+        }
+        else
         if (currentZone == BuildWallZone)
         {
             collider.isTrigger = true;

@@ -66,6 +66,7 @@ public class GoldCubeHalf : XRGrabInteractable
         {
             if (GameManager.instance.host)
             {
+                GameManager.instance.holdingGoldHalf = false;
                 PhotonNetwork.Destroy(gameObject);
             }
         }
@@ -81,6 +82,7 @@ public class GoldCubeHalf : XRGrabInteractable
 
             if (GameManager.instance.host)
             {
+                GameManager.instance.holdingGoldHalf = false;
                 PhotonNetwork.Destroy(this.gameObject);
                 //destroyCube = false;
             }
@@ -91,6 +93,7 @@ public class GoldCubeHalf : XRGrabInteractable
         {
             if (PV.IsMine)
             {
+                GameManager.instance.holdingGoldHalf = true;
                 PlayerMovesHalf();
             }
         }
@@ -181,6 +184,7 @@ public class GoldCubeHalf : XRGrabInteractable
         }
         else
         {
+            GameManager.instance.holdingGoldHalf = false;
             PhotonView.Destroy(this.gameObject);
             Debug.Log("destory this cube");
             //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
