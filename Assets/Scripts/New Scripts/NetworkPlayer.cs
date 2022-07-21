@@ -58,8 +58,8 @@ public class NetworkPlayer : MonoBehaviour
             MapPosition(head, headRig);
             MapPosition(leftHand, leftHandRig);
             MapPosition(rightHand, rightHandRig);
-            MapPosition(rightHandRay, rightHandRayRig);
-            MapPosition(leftHandRay, leftHandRayRig);
+           // MapPosition(rightHandRay, rightHandRayRig);
+           // MapPosition(leftHandRay, leftHandRayRig);
 
 
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
