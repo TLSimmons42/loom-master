@@ -238,6 +238,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         }
         else if (currentZone == NoZone || currentZone == holdGold)
         {
+            Debug.Log("Delete GOLD CUBES");
             PV.RPC("ChangeStateToDelete", RpcTarget.AllBuffered);
         }
         else
