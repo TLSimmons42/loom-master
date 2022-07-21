@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
     public bool dropNetworkCubes = false;
     public bool host = false;
     public bool allPlayersConnected = false;
+    public bool holdingGoldHalf = false;
+
 
     public TextAsset[] easyLevels;
     public TextAsset[] mediumLevels;
