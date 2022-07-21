@@ -235,7 +235,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         }
         else if (currentZone == NoZone || currentZone == holdGold)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            PV.RPC("ChangeStateToDelete", RpcTarget.AllBuffered);
         }
         else
         {
