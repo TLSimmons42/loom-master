@@ -58,7 +58,7 @@ public class GoldCubeWhole : XRSimpleInteractable
     {
         if (currentZone == deleteZone)
         {
-            if (GameManager.instance.host)
+            if (PV.IsMine)
             {
                 PhotonNetwork.Destroy(gameObject);
             }
