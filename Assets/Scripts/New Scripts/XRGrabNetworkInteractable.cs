@@ -60,12 +60,13 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
  
     void Start()
     {
-        if(gameObject.tag == "blue cube")
+        if (gameObject.tag == "blue cube")
         {
             if (GameManager.instance.host)
             {
                 gameObject.layer = LayerMask.NameToLayer("blue cube");
             }
+        }
         StartCoroutine(CanDropCubeTimer());
         photonView = GetComponent<PhotonView>();
         collider = GetComponent<BoxCollider>();
