@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 2695708706539166091}
   - component: {fileID: 2380552330065205695}
   - component: {fileID: 3450111847450880900}
+  - component: {fileID: -426438457428199916}
   m_Layer: 0
   m_Name: Network Red Cube
   m_TagString: red cube
@@ -455,6 +456,19 @@ MonoBehaviour:
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []
+--- !u!114 &-426438457428199916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853146711882562333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d854917d39e2f7d4588d9ef8c25d8bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: red cube
 --- !u!1 &3106996390058224459
 GameObject:
   m_ObjectHideFlags: 0

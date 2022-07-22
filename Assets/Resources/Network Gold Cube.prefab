@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 1959236069213754833}
   - component: {fileID: 8213535516991881882}
   - component: {fileID: 7145689961780771295}
+  - component: {fileID: 9207635287255816773}
   m_Layer: 0
   m_Name: Network Gold Cube
   m_TagString: gold cube
@@ -433,6 +434,19 @@ MonoBehaviour:
   mirroredBuildWallCube: {fileID: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
+--- !u!114 &9207635287255816773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715053983011264332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d854917d39e2f7d4588d9ef8c25d8bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: gold cube
 --- !u!1 &4845458031497525813
 GameObject:
   m_ObjectHideFlags: 0

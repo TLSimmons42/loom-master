@@ -84,10 +84,6 @@ public class EyeTracker : MonoBehaviour
         //Debug.Log("start: " + SRCombinedPoint + "   " + "end: " + gazerayData.GazeDirectionCombined * gazerayData.LengthOfRay);
         Debug.DrawRay(SRCombinedPoint, gazePoint, Color.yellow);
 
-
-
-
-
         if (Physics.Raycast(gazeRay, out hit, 100))
         {
             //Debug.Log(hit.transform.name);
