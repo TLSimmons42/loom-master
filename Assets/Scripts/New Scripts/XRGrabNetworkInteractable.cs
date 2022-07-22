@@ -160,7 +160,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
-        //base.OnSelectEntered(interactor);
+        base.OnSelectEntered(interactor);
         Debug.Log("This cube was grabed");
         if (GameManager.instance.holdingGoldHalf)
         {
