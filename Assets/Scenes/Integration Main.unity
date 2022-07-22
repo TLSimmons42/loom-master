@@ -35533,6 +35533,11 @@ PrefabInstance:
       propertyPath: m_LineLength
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3340444503886700235, guid: 008cb725957c29f4a9050d9dcd39f72a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5295710434285750444, guid: 008cb725957c29f4a9050d9dcd39f72a,
         type: 3}
       propertyPath: m_LineLength
