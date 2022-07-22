@@ -44,6 +44,8 @@ public class GameManager : Singleton<GameManager>
     public bool host = false;
     public bool allPlayersConnected = false;
     public bool holdingGoldHalf = false;
+    public bool gameStarted = true;
+    
 
 
     public TextAsset[] easyLevels;
@@ -80,10 +82,16 @@ public class GameManager : Singleton<GameManager>
 
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.Return) && gameStarted)
+        {
+            StartTheGame();
+            gameStarted = false;
+        }
         if (dropCubes)
         {
             StartCoroutine(BuildNewCube());

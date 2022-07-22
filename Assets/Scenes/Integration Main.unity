@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -32352,7 +32352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380159249}
   m_LocalRotation: {x: 0, y: 0.9914449, z: 0, w: 0.13052626}
-  m_LocalPosition: {x: 0, y: 5, z: 10}
+  m_LocalPosition: {x: -2.09, y: 5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -32765,7 +32765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417753606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.25, y: 7.3, z: -5.71}
+  m_LocalPosition: {x: -10.25, y: 7.3, z: -6.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -137981,6 +137981,7 @@ MonoBehaviour:
   host: 0
   allPlayersConnected: 0
   holdingGoldHalf: 0
+  gameStarted: 1
   easyLevels:
   - {fileID: 4900000, guid: 7e8b0abb0e899444aaa289f8ee3e4956, type: 3}
   - {fileID: 4900000, guid: 1605be7476084ed468b0abb1504b4200, type: 3}
