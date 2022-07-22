@@ -93,27 +93,56 @@ public class EyeTracker : MonoBehaviour
                 //EventManager.instance.FixationOnObject.Invoke(type);
                 if (type == "blue cube")
                 {
-                    Analytics.instance.WriteData("looking at blue cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
+                    if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
+                    {
+                        Analytics.instance.WriteData("looking at blue cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                        Debug.Log("looking at: " + type.ToString());
+                    }
                 }
                 if (type == "red cube")
                 {
-                    Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
+                    if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
+                    {
+                        Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                        Debug.Log("looking at: " + type.ToString());
+                    }
                 }
                 if (type == "invis cube")
                 {
-                    Analytics.instance.WriteData("looking at invis cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
+                    if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
+                    {
+                        Analytics.instance.WriteData("looking at invis cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                        Debug.Log("looking at: " + type.ToString());
+                    }
                 }
                 if (type == "gold cube")
                 {
-                    Analytics.instance.WriteData("looking at gold cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
+                    if (hit.transform.GetComponent<GoldCubeWhole>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
+                    {
+                        Analytics.instance.WriteData("looking at gold cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                        Debug.Log("looking at: " + type.ToString());
+                    }
                 }
                 if (type == "DropZone")
                 {
+                    
                     Analytics.instance.WriteData("looking at Drop Zone", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Debug.Log("looking at: " + type.ToString());
+                    
+                }
+                if(type == "View Wall")
+                {
+                    Analytics.instance.WriteData("looking at View wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Debug.Log("looking at: " + type.ToString());
+                }
+                if (type == "Play Wall")
+                {
+                    Analytics.instance.WriteData("looking at Play wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Debug.Log("looking at: " + type.ToString());
+                }
+                if (type == "Build Wall")
+                {
+                    Analytics.instance.WriteData("looking at Build wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                 }
             }
