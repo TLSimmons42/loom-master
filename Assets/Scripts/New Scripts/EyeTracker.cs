@@ -81,10 +81,12 @@ public class EyeTracker : MonoBehaviour
         SRCombinedPoint = Camera.main.transform.position - Camera.main.transform.up * 0.05f;
         gazePoint = gazerayData.GazeDirectionCombined * gazerayData.LengthOfRay;
         gazeRay = new Ray(SRCombinedPoint, gazePoint);
+        Ray gazeRay2 = new Ray(SRCombinedPoint, gazePoint);
+        int layerMask = ~LayerMask.GetMask("walls");
         //Debug.Log("start: " + SRCombinedPoint + "   " + "end: " + gazerayData.GazeDirectionCombined * gazerayData.LengthOfRay);
         Debug.DrawRay(SRCombinedPoint, gazePoint, Color.yellow);
 
-        if (Physics.Raycast(gazeRay, out hit, 100))
+        if (Physics.Raycast(gazeRay, out hit, 100, layerMask))
         {
             //Debug.Log(hit.transform.name);
             if (hit.transform.GetComponent<GazeTarget>() != null) //need to have the target class
@@ -147,10 +149,27 @@ public class EyeTracker : MonoBehaviour
                 }
             }
         }
-        else
+        else if (Physics.Raycast(gazeRay2, out hit, 100))
         {
-           // EventManager.instance.CenterFocusLost.Invoke();
-            //EventManager.instance.LaserEyeFixationLoss.Invoke();
+            if (hit.transform.GetComponent<GazeTarget>() != null) //need to have the target class
+            {
+                string type = hit.transform.GetComponent<GazeTarget>().targetType;
+                if (type == "View Wall")
+                {
+                    Analytics.instance.WriteData2("looking at View wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Debug.Log("looking at: " + type.ToString());
+                }
+                if (type == "Play Wall")
+                {
+                    Analytics.instance.WriteData2("looking at Play wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Debug.Log("looking at: " + type.ToString());
+                }
+                if (type == "Build Wall")
+                {
+                    Analytics.instance.WriteData2("looking at Build wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Debug.Log("looking at: " + type.ToString());
+                }
+            }
         }
         
         

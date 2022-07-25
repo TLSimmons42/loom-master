@@ -10,12 +10,16 @@ public class Analytics : Singleton<Analytics>
     string savePath;
     string filePath;
     string csvPath;
+    string filePath2;
+    string csvPath2;
     // Start is called before the first frame update
     void Start()
     {
         savePath = Application.dataPath + "/Analytics";
         filePath = Application.dataPath + "/Analytics/analytics.json";
         csvPath = Application.dataPath + "/Analytics/analytics.csv";
+        filePath2 = Application.dataPath + "/Analytics/analytics2.json";
+        csvPath2 = Application.dataPath + "/Analytics/analytics2.csv";
 
         if (!File.Exists(savePath))
         {
@@ -36,10 +40,10 @@ public class Analytics : Singleton<Analytics>
     {
         DataPoint data = new DataPoint();
         data.timestamp = DateTime.Now.Ticks.ToString();
-        data.participant = "P1";
-        data.task = "Loom";
-        data.age = "20";
-        data.gender = "f";
+        data.participant = PlayerPrefs.GetString("ParticipantID");
+        data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
+        data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
         data.testX = testX;
@@ -59,6 +63,33 @@ public class Analytics : Singleton<Analytics>
         File.AppendAllText(filePath, jsonString);
         File.AppendAllText(csvPath, csvstring);
     }
+    public void WriteData2(string eventString, string participant, string sessionTime, string testX, string testY, string testZ)
+    {
+        DataPoint data = new DataPoint();
+        data.timestamp = DateTime.Now.Ticks.ToString();
+        data.participant = PlayerPrefs.GetString("ParticipantID");
+        data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
+        data.gender = PlayerPrefs.GetString("ParticipantGender");
+        data.sessionTime = sessionTime;
+        data.eventName = eventString;
+        data.testX = testX;
+        data.testY = testY;
+        data.testZ = testZ;
+
+
+
+        string jsonString = JsonUtility.ToJson(data);
+        string csvstring = String.Join(",", GetDataArray(data));
+        //File.AppendAllText(filePath, "\n");
+        if (!File.Exists(csvPath2))
+        {
+            File.WriteAllText(csvPath2, "TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos");
+        }
+        File.AppendAllText(csvPath2, "\n");
+        File.AppendAllText(filePath2, jsonString);
+        File.AppendAllText(csvPath2, csvstring);
+    }
 
     string[] GetDataArray(DataPoint data)
     {
@@ -77,6 +108,24 @@ public class Analytics : Singleton<Analytics>
 
         return stringlist.ToArray();
     }
+
+    public void SetParticipantID(string id)
+    {
+        PlayerPrefs.SetString("ParticipantID", id);
+    }
+    public void SetParticipantAge(int age)
+    {
+        PlayerPrefs.SetInt("ParticipantAge", age);
+    }
+    public void SetParticipantCondition(string con)
+    {
+        PlayerPrefs.SetString("ParticipantCondition", con);
+    }
+    public void SetParticipantGender(string gen)
+    {
+        PlayerPrefs.SetString("ParticipantGender", gen);
+    }
+
 
     public class DataPoint
     {
