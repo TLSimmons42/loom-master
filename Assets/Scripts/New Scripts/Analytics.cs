@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 
 public class Analytics : Singleton<Analytics>
@@ -12,9 +13,19 @@ public class Analytics : Singleton<Analytics>
     string csvPath;
     string filePath2;
     string csvPath2;
+
+    public InputField partID;
+    public InputField partAge;
+    public InputField partGender;
+    public InputField condition;
+
+
     // Start is called before the first frame update
     void Start()
     {
+
+        
+
         savePath = Application.dataPath + "/Analytics";
         filePath = Application.dataPath + "/Analytics/analytics.json";
         csvPath = Application.dataPath + "/Analytics/analytics.csv";
@@ -113,9 +124,9 @@ public class Analytics : Singleton<Analytics>
     {
         PlayerPrefs.SetString("ParticipantID", id);
     }
-    public void SetParticipantAge(int age)
+    public void SetParticipantAge(string age)
     {
-        PlayerPrefs.SetInt("ParticipantAge", age);
+        PlayerPrefs.SetString("ParticipantAge", age);
     }
     public void SetParticipantCondition(string con)
     {
@@ -124,6 +135,13 @@ public class Analytics : Singleton<Analytics>
     public void SetParticipantGender(string gen)
     {
         PlayerPrefs.SetString("ParticipantGender", gen);
+    }
+    public void SetPartVariables()
+    {
+        SetParticipantID(partID.text);
+        SetParticipantAge(partAge.text);
+        SetParticipantCondition(condition.text);
+        SetParticipantGender(partGender.text);
     }
 
 
