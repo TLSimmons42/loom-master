@@ -38,6 +38,8 @@ public class GameManager : Singleton<GameManager>
     public UIView startView;
     public UIView waitingView;
     public UIView gameOverView;
+    public UIView gameOverView2;
+
 
     public bool dropCubes = false;
     public bool dropNetworkCubes = false;
@@ -244,6 +246,8 @@ public class GameManager : Singleton<GameManager>
     public void StartTheGame()
     {
         Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
+        Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
+
         TimerScript.instance.record = true;
         if (playerCount == 2)
         {
@@ -309,7 +313,18 @@ public class GameManager : Singleton<GameManager>
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
         Analytics.instance.WriteData("Game Over", "", "", "","","");
-        gameOverView.Show();
+        Analytics.instance.WriteData2("Game Over", "", "", "", "", "");
+        if(playerCount == 2)
+        {
+            gameOverView.Show();
+            gameOverView2.Show();
+        }
+        else
+        {
+            gameOverView.Show();
+        }
+
+
         dropCubes = false;
         dropNetworkCubes = false;
     }
@@ -325,6 +340,10 @@ public class GameManager : Singleton<GameManager>
     public void SubmitButton()
     {
         bool allCorrect = true;
+        if(playerCount == 2)
+        {
+            MasterBuildWall.instance.updateMasterArray = true;
+        }
         if (playerCount == 1  || playerCount == 2)
         {
             for (int x = 0; x < MasterBuildWall.instance.masterBuildArray.GetLength(0); x++)

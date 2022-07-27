@@ -18,6 +18,8 @@ public class Analytics : Singleton<Analytics>
     public InputField partAge;
     public InputField partGender;
     public InputField condition;
+    public InputField trial;
+
 
 
     // Start is called before the first frame update
@@ -53,6 +55,7 @@ public class Analytics : Singleton<Analytics>
         data.timestamp = DateTime.Now.Ticks.ToString();
         data.participant = PlayerPrefs.GetString("ParticipantID");
         data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.trial = PlayerPrefs.GetString("trial");
         data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
@@ -80,6 +83,7 @@ public class Analytics : Singleton<Analytics>
         data.timestamp = DateTime.Now.Ticks.ToString();
         data.participant = PlayerPrefs.GetString("ParticipantID");
         data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.trial = PlayerPrefs.GetString("trial");
         data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
@@ -108,6 +112,7 @@ public class Analytics : Singleton<Analytics>
         stringlist.Add(data.timestamp);
         stringlist.Add(data.participant);
         stringlist.Add(data.task);
+        stringlist.Add(data.trial);
         stringlist.Add(data.age);
         stringlist.Add(data.gender);
         stringlist.Add(data.sessionTime);
@@ -132,6 +137,10 @@ public class Analytics : Singleton<Analytics>
     {
         PlayerPrefs.SetString("ParticipantCondition", con);
     }
+    public void Settrial(string trial)
+    {
+        PlayerPrefs.SetString("trial", trial);
+    }
     public void SetParticipantGender(string gen)
     {
         PlayerPrefs.SetString("ParticipantGender", gen);
@@ -142,6 +151,7 @@ public class Analytics : Singleton<Analytics>
         SetParticipantAge(partAge.text);
         SetParticipantCondition(condition.text);
         SetParticipantGender(partGender.text);
+        Settrial(trial.text);
     }
 
 
@@ -150,6 +160,7 @@ public class Analytics : Singleton<Analytics>
         public string timestamp;
         public string participant;
         public string task;
+        public string trial;
         public string age;
         public string gender;
         public string sessionTime;
