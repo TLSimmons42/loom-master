@@ -132,24 +132,24 @@ public class EyeTracker : MonoBehaviour
                     Debug.Log("looking at: " + type.ToString());
                     
                 }
-                if(type == "View Wall")
-                {
-                    Analytics.instance.WriteData("looking at View wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
-                }
-                if (type == "Play Wall")
-                {
-                    Analytics.instance.WriteData("looking at Play wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
-                }
-                if (type == "Build Wall")
-                {
-                    Analytics.instance.WriteData("looking at Build wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
-                    Debug.Log("looking at: " + type.ToString());
-                }
+                //if(type == "View Wall")
+                //{
+                //    Analytics.instance.WriteData2("looking at View wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                //    Debug.Log("looking at: " + type.ToString());
+                //}
+                //if (type == "Play Wall")
+                //{
+                //    Analytics.instance.WriteData2("looking at Play wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                //    Debug.Log("looking at: " + type.ToString());
+                //}
+                //if (type == "Build Wall")
+                //{
+                //    Analytics.instance.WriteData2("looking at Build wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                //    Debug.Log("looking at: " + type.ToString());
+                //}
             }
         }
-        else if (Physics.Raycast(gazeRay2, out hit, 100))
+        if (Physics.Raycast(gazeRay2, out hit, 10000))
         {
             if (hit.transform.GetComponent<GazeTarget>() != null) //need to have the target class
             {
