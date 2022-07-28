@@ -96,6 +96,7 @@ public class EyeTracker : MonoBehaviour
                 //EventManager.instance.FixationOnObject.Invoke(type);
                 if (type == "blue cube")
                 {
+                    Debug.Log("hit a blue cube gen");
                     if (GameManager.instance.playerCount == 2)
                     {
                         if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
@@ -106,6 +107,7 @@ public class EyeTracker : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("looking at blue cube before play wall");
                         if (hit.transform.GetComponent<Cube>().currentZone == hit.transform.GetComponent<Cube>().playWallZone)
                         {
                             Analytics.instance.WriteData("looking at blue cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
