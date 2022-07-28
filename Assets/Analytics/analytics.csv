@@ -1,70 +1,90 @@
 TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos
-637945427041032588,,,,0,,300,Game Start,,,
-637945427080668174,,,,0,,,Regular Red Cube(Clone) was picked up,1.390015,18.23871,-1.813
-637945427095124801,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
-637945427108534324,,,,0,,,Regular Red Cube(Clone) was picked up,1.390015,15.72386,-1.813
-637945427124632950,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
-637945427137063621,,,,0,,,Regular Red Cube(Clone) was picked up,1.390015,13.09031,-1.813
-637945427148954690,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
-637945427149443993,,,,0,,,looking at Drop Zone,14,7,10.41
-637945427149674042,,,,0,,,looking at Drop Zone,14,7,10.41
-637945427149884086,,,,0,,,looking at Drop Zone,14,7,10.41
-637945427150114147,,,,0,,,looking at Drop Zone,14,7,10.41
-637945427160837209,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,11.43264,-0.46
-637945427174945251,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
-637945427175875480,,,,0,,,looking at Drop Zone,12,7,10.41
-637945427185271401,,,,0,,,Regular Red Cube(Clone) was picked up,1.389999,9.612251,0.944
-637945427191257986,,,,0,,,looking at Drop Zone,13,7,10.41
-637945427202821556,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
-637945427214619658,,,,0,,,Regular Red Cube(Clone) was picked up,1.389999,6.764684,0.944
-637945427224672529,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
-637945427233199734,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,9.169215,2.336
-637945427242689475,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
-637945427251686591,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,8.536424,0.944
-637945427257454601,,,,0,,,looking at Drop Zone,12,7,10.41
-637945427262358431,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
-637945427281349828,,,,0,,,Regular Blue Cube(Clone) was picked up,1.390015,17.91934,-3.12
-637945427292627126,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
-637945427309899471,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,18.27166,2.336
-637945427322107503,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
-637945427335911698,,,,0,,,Regular Blue Cube(Clone) was picked up,1.390015,16.1461,-3.12
-637945427346291592,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
-637945427541162866,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,17.89993,0.944
-637945427553781503,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
-637945427554937139,,,,0,,,looking at Drop Zone,11,7,10.41
-637945427556447481,,,,0,,,looking at Drop Zone,11,7,10.41
-637945427583022381,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.69882,-0.46
-637945427592128797,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
-637945427592528892,,,,0,,,looking at Drop Zone,11,7,10.41
-637945427645631719,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.42583,-0.46
-637945427656628861,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
-637945427670913289,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,16.4178,2.336
-637945427680400311,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
-637945427693723652,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.00784,-0.46
-637945427702495470,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
-637945427784963591,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.08339,0.944
-637945427797460090,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
-637945427844991579,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.390015,18.31978,-1.813
-637945427857021976,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
-637945427857682129,,,,0,,,Regular Neutral Cube(Clone) was picked up,13,5.86025,10.41
-637945427860324141,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
-637945427860814277,,,,0,,,looking at Drop Zone,13,7,10.41
-637945427861024320,,,,0,,,looking at Drop Zone,13,7,10.41
-637945427877429896,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.390015,17.93794,-3.12
-637945427890515023,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,14,7,10.41
-637945427890535031,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
-637945427893465684,,,,0,,,looking at Drop Zone,13,7,10.41
-637945427936150683,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.4163,0.944
-637945427948387310,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
-637945428041542812,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.390015,18.74591,-1.813
-637945428052009446,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,14,7,10.41
-637945428060391534,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
-637945428134033521,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.59002,0.944
-637945428147860481,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
-637945428186965493,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,17.23144,2.336
-637945428198331561,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
-637945428256824627,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.390015,18.59768,-3.12
-637945428273308599,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
-637945428316716115,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.85524,2.336
-637945428326593969,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
-637945428356987077,,,,0,,,Game Over,,,
+637945438779597991,,,,0,,300,Game Start,,,
+637945438803100240,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,15.36256,2.336
+637945438810976244,,,,0,,,looking at Drop Zone,14,7,10.41
+637945438830434191,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945438843313346,,,,0,,,Regular Blue Cube(Clone) was picked up,1.390015,10.37044,-1.813
+637945438854422319,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945438866198375,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,8.84591,0.944
+637945438885183999,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
+637945438906855577,,,,0,,,Regular Red Cube(Clone) was picked up,1.390015,3.77955,-1.813
+637945438918280401,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
+637945438932190411,,,,0,,,Regular Red Cube(Clone) was picked up,1.389999,4.836559,2.336
+637945438941398960,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
+637945438950273205,,,,0,,,Regular Red Cube(Clone) was picked up,1.389999,4.275517,2.336
+637945438959543169,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
+637945438969548667,,,,0,,,Regular Red Cube(Clone) was picked up,1.390015,3.500324,-3.12
+637945438979587463,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
+637945438990035300,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,5.543275,-0.46
+637945439004295834,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
+637945439015446151,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,6.562571,0.944
+637945439024458483,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439036787471,,,,0,,,Regular Red Cube(Clone) was picked up,1.389999,5.369509,0.944
+637945439052562473,,,,0,,,Regular Red Cube(Clone)was placed in dropzone,14,7,10.41
+637945439071447209,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,10.63986,2.336
+637945439080875323,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439124978769,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.27586,-0.46
+637945439135302301,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
+637945439137282828,,,,0,,,Regular Neutral Cube(Clone) was picked up,11,5.588564,10.41
+637945439138012977,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
+637945439155142902,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.34271,-0.46
+637945439165551846,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
+637945439167338716,,,,0,,,looking at Drop Zone,11,7,10.41
+637945439183410958,,,,0,,,Regular Blue Cube(Clone) was picked up,1.390015,18.81622,-3.12
+637945439193169991,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,13,7,10.41
+637945439201385808,,,,0,,,Regular Blue Cube(Clone) was picked up,13,4.37118,10.41
+637945439204489614,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,13,7,10.41
+637945439204519624,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439208820583,,,,0,,,Regular Blue Cube(Clone) was picked up,12,6,10.41
+637945439208990617,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439209020634,,,,0,,,Regular Blue Cube(Clone) was picked up,12,6,10.41
+637945439209210675,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439209240676,,,,0,,,Regular Blue Cube(Clone) was picked up,12,6,10.41
+637945439214379419,,,,0,,,Regular Blue Cube(Clone) was picked up,13,4.045506,10.41
+637945439217708809,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,13,7,10.41
+637945439217738459,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439222154138,,,,0,,,Regular Blue Cube(Clone) was picked up,12,6,10.41
+637945439226872906,,,,0,,,Regular Blue Cube(Clone) was picked up,13,4.145943,10.41
+637945439244591626,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,15.7637,2.336
+637945439252204077,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,11,7,10.41
+637945439263358011,,,,0,,,Regular Blue Cube(Clone) was picked up,1.389999,15.09757,2.336
+637945439271908755,,,,0,,,Regular Blue Cube(Clone)was placed in dropzone,12,7,10.41
+637945439274358725,,,,0,,,looking at Drop Zone,12,7,10.41
+637945439274808831,,,,0,,,looking at Drop Zone,12,7,10.41
+637945439283866484,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,14.07531,0.944
+637945439293203342,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439305456516,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,15.85654,0.944
+637945439316000483,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439316450593,,,,0,,,Regular Neutral Cube(Clone) was picked up,13,5.911309,10.41
+637945439333327855,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,13.35132,0.944
+637945439341766283,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439355105764,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,15.14324,0.944
+637945439364202913,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439431791522,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.10286,0.944
+637945439458119631,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439473782128,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,15.82902,0.944
+637945439483169344,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439483749472,,,,0,,,looking at Drop Zone,13,7,10.41
+637945439483949514,,,,0,,,looking at Drop Zone,13,7,10.41
+637945439484129554,,,,0,,,looking at Drop Zone,13,7,10.41
+637945439484299586,,,,0,,,looking at Drop Zone,13,7,10.41
+637945439484979744,,,,0,,,Regular Neutral Cube(Clone) was picked up,13,6,10.41
+637945439485049765,,,,0,,,looking at Drop Zone,13,7,10.41
+637945439485169784,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439485199790,,,,0,,,Regular Neutral Cube(Clone) was picked up,13,6,10.41
+637945439485269806,,,,0,,,looking at Drop Zone,13,7,10.41
+637945439485399831,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439485429842,,,,0,,,Regular Neutral Cube(Clone) was picked up,13,6,10.41
+637945439485629890,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,13,7,10.41
+637945439488210843,,,,0,,,looking at Drop Zone,12,7,10.41
+637945439521370747,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.57384,-0.46
+637945439534239321,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
+637945439548347676,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,16.25457,2.336
+637945439559494548,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
+637945439583556853,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.389999,18.38638,0.944
+637945439595200805,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
+637945439613251227,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.390015,18.54662,-3.12
+637945439623852543,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
+637945439642981030,,,,0,,,Regular Neutral Cube(Clone) was picked up,1.390015,18.71881,-1.813
+637945439653856638,,,,0,,,Regular Neutral Cube(Clone)was placed in dropzone,15,7,10.41
+637945439689793671,,,,0,,,Game Over,,,
