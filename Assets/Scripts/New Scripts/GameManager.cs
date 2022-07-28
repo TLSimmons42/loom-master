@@ -263,7 +263,7 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("single player start");
         buildWall2.SetActive(false);
-        ViewWall2.SetActive(false);
+        ViewWall1.SetActive(false);
         MasterBuildWall.instance.importLevel();
         dropCubes = true;
     }
