@@ -35171,7 +35171,7 @@ GameObject:
   - component: {fileID: 380159250}
   - component: {fileID: 380159252}
   - component: {fileID: 380159251}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: View Wall 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38639,7 +38639,7 @@ GameObject:
   - component: {fileID: 447822530}
   - component: {fileID: 447822532}
   - component: {fileID: 447822531}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: View Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102145,6 +102145,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1096569678}
     m_Modifications:
+    - target: {fileID: -6068473104853779112, guid: 8d5a6cca7b46fad46bc786db37eb5862,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8d5a6cca7b46fad46bc786db37eb5862,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -102225,6 +102230,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8d5a6cca7b46fad46bc786db37eb5862,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5273098768098936037, guid: 8d5a6cca7b46fad46bc786db37eb5862,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -102301,7 +102311,7 @@ BoxCollider:
   m_GameObject: {fileID: 1118820088}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 2.6, z: 5}
   m_Center: {x: 0, y: 0, z: 0.31}
@@ -152932,7 +152942,7 @@ GameObject:
   - component: {fileID: 2090823311}
   - component: {fileID: 2090823313}
   - component: {fileID: 2090823312}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Client Build Wall
   m_TagString: build wall 2
   m_Icon: {fileID: 0}
@@ -152990,7 +153000,7 @@ GameObject:
   - component: {fileID: 2100322413}
   - component: {fileID: 2100322415}
   - component: {fileID: 2100322414}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Host Build Wall
   m_TagString: build wall 1
   m_Icon: {fileID: 0}
