@@ -1,4 +1,4 @@
-TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos
+TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos
 637946262401757969,,,,0,,300,Game Start,,,
 637946262412672175,,,,0,,,looking at red cube,1.389999,17.85289,-0.46
 637946262412881341,,,,0,,,looking at red cube,1.389999,17.80884,-0.46

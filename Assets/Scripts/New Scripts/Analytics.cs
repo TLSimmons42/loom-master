@@ -71,7 +71,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath))
         {
-            File.WriteAllText(csvPath, "TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos");
+            File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos");
         }
         File.AppendAllText(csvPath, "\n");
         File.AppendAllText(filePath, jsonString);
@@ -99,7 +99,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath2))
         {
-            File.WriteAllText(csvPath2, "TimeStamp,participant,Experiment,SessionTime,Event, xPos, yPos, zPos");
+            File.WriteAllText(csvPath2, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos");
         }
         File.AppendAllText(csvPath2, "\n");
         File.AppendAllText(filePath2, jsonString);
