@@ -70,6 +70,7 @@ TagManager:
   - view wall 2
   - build wall 1
   - build wall 2
+  - DropZoneEye
   layers:
   - Default
   - TransparentFX
