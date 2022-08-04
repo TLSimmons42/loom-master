@@ -51,6 +51,30 @@ MonoBehaviour:
   - DeleteObjsOverNetwork
   - FillArray
   - FillArrayOverNetwork
+  - addCube
+  - removeCube
+  - initializeBuildWalls
+  - initalizeDropZones
+  - setTargetWall
+  - setLevelImport
+  - buildViewWall
+  - sendIndex
+  - assignIndex
+  - assignNetworkIndex
+  - AssignGoldCubeHalfIndex
+  - ChangeState
+  - ChangeStateBuildWall
+  - SetCubeIndex
+  - removeCubeFromMasterWall
+  - UpdateMasterArray
+  - SetCubeIndexGoldHalf
+  - SetMirrorCubeCode
+  - ChangeDestoryVariable
+  - ChangeStateNoZone
+  - ChangeStateToDelete
+  - ChangeStateToHold
+  - DestoryThisObjectOnNetwork
+  - removeHalfCube
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

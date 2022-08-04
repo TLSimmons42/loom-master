@@ -39,39 +39,21 @@ public class MyRayInteractor : XRRayInteractor
 
     protected override void OnSelectExited(XRBaseInteractable interactor)
     {
-        Debug.Log("ray select exited");
-        //if(interactor != null && interactor.gameObject.tag == "left gold cube" || interactor.gameObject.tag == "right gold cube"){
-        //    GameObject leftCube = GameObject.FindGameObjectWithTag("left gold cube");
-        //    GameObject rightCube = GameObject.FindGameObjectWithTag("right gold cube");
-        //    Debug.Log("exited gold cube");
-        //    if (GameManager.instance.tag == "host")
-        //    {
-        //        if (leftCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
-        //        {
-        //            Debug.Log("host destroy cube");
-        //            PhotonNetwork.Destroy(leftCube);
-        //        }
-        //    }
-        //    if (GameManager.instance.tag == "cliant")
-        //    {
-        //        if (rightCube.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")
-        //        {
-        //            PhotonNetwork.Destroy(rightCube);
-        //        }
-        //    }
+       // Debug.Log("ray select exited from " + interactor.gameObject.name);
 
-
+        //if (GameManager.instance.host)
+        //{
+        //    Debug.Log("the ray is about to delete the cube");
+        //    PhotonNetwork.Destroy(gameObject);
         //}
-        if (GameManager.instance.host)
-        {
-            Debug.Log("the ray is about to delete the cube");
-            PhotonNetwork.Destroy(gameObject);
-        }
-        //PV.RPC("DecreaseGoldCubeNetworkVar", RpcTarget.AllBuffered);
     }
 
     protected override void OnHoverExited(XRBaseInteractable obj)
     {
 
+    }
+    protected override void OnHoverEntered(XRBaseInteractable obj)
+    {
+        //Debug.Log(obj.gameObject.name);
     }
 }

@@ -38,11 +38,17 @@ public class GameManager : Singleton<GameManager>
     public UIView startView;
     public UIView waitingView;
     public UIView gameOverView;
+    public UIView gameOverView2;
+
 
     public bool dropCubes = false;
     public bool dropNetworkCubes = false;
     public bool host = false;
     public bool allPlayersConnected = false;
+    public bool holdingGoldHalf = false;
+    public bool gameStarted = true;
+    
+
 
     public TextAsset[] easyLevels;
     public TextAsset[] mediumLevels;
@@ -59,7 +65,7 @@ public class GameManager : Singleton<GameManager>
     int numOfPlayersInGame;
 
 
-    GameObject[,] buildWallArr;
+    public string[,] targetWall;
 
 
     // Start is called before the first frame update
@@ -70,7 +76,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("the player count is: " + playerCount);
 
         ConvertGameDiffToInt(strGameDiff); //gets game difficulty 
-        MakeViewWall(); // detects # of players and spawns appropriate view walls
+        //MakeViewWall(); // detects # of players and spawns appropriate view walls
         if (playerCount == 2)
         {
             StartCoroutine(AssignHostAndPlayerPos()); // this will set the host and give access to the players gameobjects
@@ -78,11 +84,16 @@ public class GameManager : Singleton<GameManager>
 
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
 
+        if(Input.GetKeyDown(KeyCode.Return) && gameStarted)
+        {
+            StartTheGame();
+            gameStarted = false;
+        }
         if (dropCubes)
         {
             StartCoroutine(BuildNewCube());
@@ -111,107 +122,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private int[,] ReadRandomLevel(int difficulty)
-    {
-        int levelSize = difficulty * 5;
-        int[,] level = new int[levelSize, levelSize];
-
-        string levelText = GetRandomLevel(difficulty).text;
-        Regex rgx = new Regex("[^a-zA-Z0-9 -]");
-        levelText = rgx.Replace(levelText, "");
-
-        for (int i = 0; i < levelSize; i++)
-        {
-            for (int j = 0; j < levelSize; j++)
-            {
-                //Debug.Log("Attempting to convert to integer");
-                level[i, j] = int.Parse(char.ToString(levelText[j + (levelSize * i)]));
-                //Debug.Log("Successfully converted to integer");
-            }
-        }
-
-        return level;
-    }
-
-    private TextAsset GetRandomLevel(int difficulty)
-    {
-        TextAsset randLevel;
-        switch (difficulty)
-        {
-            case 1:
-                return easyLevels[Mathf.FloorToInt(Random.Range(0, easyLevels.Length))];
-            case 2:
-                return mediumLevels[Mathf.FloorToInt(Random.Range(0, mediumLevels.Length))];
-            default:
-                return hardLevels[Mathf.FloorToInt(Random.Range(0, hardLevels.Length))];
-        }
-    }
-
 
     // this will be called at the start of the game to build a the view wall for the player
-    public void BuildViewWall(int difficulty, GameObject[] spawnLocations)
+    public void BuildViewWall()
     {
-
-
-        //string diff = "easy";
-        int viewWallSize = difficulty * 5;
-        /*
-        switch (diff)
-        {
-            case "easy":
-                viewWallSize = 5;
-                break;
-            case "medium":
-                viewWallSize = 10;
-                break;
-            case "hard":
-                viewWallSize = 15;
-                break;
-        } */
-
-        int[,] testLevel = {{1,2,1,2,1},
-                            {2,1,2,1,2},
-                            {1,2,1,2,1},
-                            {2,1,2,1,2},
-                            {1,2,1,2,1}};
-
-        int[,] easy1 =     {{1,1,1,1,1},
-                            {1,2,2,2,1},
-                            {1,2,3,2,1},
-                            {1,2,2,2,1},
-                            {1,1,1,1,1}};
-
-        int[,] level = ReadRandomLevel(difficulty);
-
-        buildWall1.GetComponent<BuildWall>().SetViewWall(level);
-        buildWall2.GetComponent<BuildWall>().SetViewWall(level);
+        GameObject[] spawnLocations = { ViewWall1, ViewWall2 };
 
         // Making the view wall depending on the difficulty
         for (int l = 0; l < spawnLocations.Length; l++)
         {
-            for (int i = 0; i < viewWallSize; i++)
+            for (int i = 0; i < targetWall.GetLength(0); i++)
             {
-                for (int j = 0; j < viewWallSize; j++)
+                for (int j = 0; j < targetWall.GetLength(1); j++)
                 {
+                   // Debug.Log("X:" + i + ", Y:" + j);
+                   // Debug.Log(targetWall[i, j]);
+
                     Vector3 spawnLocation = spawnLocations[l].transform.position;
                     spawnLocation += spawnLocations[l].transform.right * -i;
                     spawnLocation += spawnLocations[l].transform.up * j;
-                    GameObject cube = BlueCube;
-                    switch (level[i, j])
-                    {
-                        case 1:
-                            cube = BlueCube;
-                            break;
-                        case 2:
-                            cube = RedCube;
-                            break;
-                        case 3:
-                            cube = GoldCube;
-                            break;
-                        case 4:
-                            cube = NeutralCube;
-                            break;
-                    }
+                    GameObject cube = MasterBuildWall.instance.cubeCodeToGameObject(targetWall[i, j]);
                     GameObject spawnedCube = Instantiate(cube, spawnLocation, spawnLocations[l].transform.rotation);
                     //Destroy(spawnedCube.GetComponent<Rigidbody>());
                     spawnedCube.GetComponent<Cube>().enabled = false;
@@ -229,8 +159,6 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-
-
 
     // this will be called durring the game in order to build a new cube on the Play Wall
     public IEnumerator BuildNewCube()
@@ -311,25 +239,15 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(cubeDropTimer);
             dropNetworkCubes = true;
         }
-
-    }
-    public void MakeViewWall()
-    {
-        if (PlayerPrefs.GetInt("playerCount") == 1)
-        {
-            BuildViewWall(gameDiff, new GameObject[] { ViewWall1 });
-        }
-        else
-        {
-            BuildViewWall(gameDiff, new GameObject[] { ViewWall1, ViewWall2 });
-        }
     }
 
 
     //This will detect the number of players and start the game accordingly
     public void StartTheGame()
     {
-       // Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
+        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
+        Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
+
         TimerScript.instance.record = true;
         if (playerCount == 2)
         {
@@ -344,7 +262,9 @@ public class GameManager : Singleton<GameManager>
     public void SinglePlayerStart()
     {
         Debug.Log("single player start");
-
+        buildWall2.SetActive(false);
+        ViewWall1.SetActive(false);
+        MasterBuildWall.instance.importLevel();
         dropCubes = true;
     }
 
@@ -352,46 +272,59 @@ public class GameManager : Singleton<GameManager>
     public void MultiplayerStart()
     {
         Debug.Log("multiplayer start");
+        MasterBuildWall.instance.importLevel();
         dropNetworkCubes = true;
     }
     public IEnumerator AssignHostAndPlayerPos()
     {
         yield return new WaitForSeconds(3);
 
-        Debug.Log("deteting the num of players");
+        Debug.Log("detecting the number of players");
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Network Player"))
         {
 
             if (obj.name == "Network Player(Clone)")
             {
                 Players.Add(obj);
-                if (Players.Count == 2)
+                if (Players.Count == 1)
                 {
                     host = true;
                     this.tag = "host";
+                    Players[0].tag = "P1";
                     VRrig.tag = "P1";
-                    //AssignPlayerTags();
                     VRrig.transform.position = playerPos2.transform.position;
                     Debug.Log("the host has been set");
                 }
-                else if (Players.Count == 1)
+                else if (Players.Count == 2)
                 {
                     host = false;
                     this.tag = "cliant";
+                    Players[1].tag = "P2";
                     VRrig.tag = "P2";
                     VRrig.transform.position = playerPos1.transform.position;
-                    Debug.Log("a cliant has been set");
+                    Debug.Log("a client has been set");
                 }
             }
         }
-
     }
 
     public void Gameover()
     {
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
-        gameOverView.Show();
+        Analytics.instance.WriteData("Game Over", "", "", "","","");
+        Analytics.instance.WriteData2("Game Over", "", "", "", "", "");
+        if(playerCount == 2)
+        {
+            gameOverView.Show();
+            gameOverView2.Show();
+        }
+        else
+        {
+            gameOverView.Show();
+        }
+
+
         dropCubes = false;
         dropNetworkCubes = false;
     }
@@ -406,18 +339,33 @@ public class GameManager : Singleton<GameManager>
 
     public void SubmitButton()
     {
-        if (buildWall1.GetComponent<BuildWall>().CheckBuildWall())
+        bool allCorrect = true;
+        if(playerCount == 2)
         {
-            // The build wall matches the view wall
-            TimerScript.instance.DisplayText("You win!", 5);
-            TimerScript.instance.record = false;
-            Gameover();
+            MasterBuildWall.instance.updateMasterArray = true;
         }
-        else
+        if (playerCount == 1  || playerCount == 2)
         {
-            // The build wall DOESN'T match the view wall
-            TimerScript.instance.DisplayText("Doesn't match", 5);
+            for (int x = 0; x < MasterBuildWall.instance.masterBuildArray.GetLength(0); x++)
+            {
+                for (int y = 0; y < MasterBuildWall.instance.masterBuildArray.GetLength(1); y++)
+                {
+                    Debug.Log("master build wall: " + MasterBuildWall.instance.masterBuildArray[x, y]);
+                    Debug.Log("target build wall: " + MasterBuildWall.instance.targetWall[x, y]);
+                    if (MasterBuildWall.instance.masterBuildArray[x, y] == MasterBuildWall.instance.targetWall[x, y])
+                    {
+                        //Debug.Log("GOOD match!!");
+                    }
+                    else
+                    {
+                        allCorrect = false;
+                        //Debug.Log("not good match!!");
+                    }
+                }
+            }
         }
+        Debug.Log("This puzzle is all correct: " + allCorrect);
+        Gameover();
     }
 
     public void RestartGame()

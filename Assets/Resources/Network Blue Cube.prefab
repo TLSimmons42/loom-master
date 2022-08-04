@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 8388604339181633402}
   - component: {fileID: 1870637267738474786}
   - component: {fileID: 3575153471029888261}
+  - component: {fileID: 5735813417135918743}
   m_Layer: 0
   m_Name: Network Blue Cube
   m_TagString: blue cube
@@ -497,18 +498,38 @@ MonoBehaviour:
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   currentZone: 
   playersHoldingCube: 0
+  mirroredBuildWallCubeID: 0
   goldCubeHoldPos: {x: 0, y: 0, z: 0}
+  currentState: 0
   playWallZone: PlayWall
   BuildWallZone: BuildWall
   NoZone: No Zone
   holdGold: Hold Gold
+  currentBuildWall: 
   isHeld: 0
   canBeDroped: 0
+  updateBuildWallState: 0
+  index: {x: 0, y: 0}
+  photonView: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
+  mirroredBuildWallCube: {fileID: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []
+--- !u!114 &5735813417135918743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195285304216092228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d854917d39e2f7d4588d9ef8c25d8bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: blue cube
 --- !u!1 &3316432716266148669
 GameObject:
   m_ObjectHideFlags: 0

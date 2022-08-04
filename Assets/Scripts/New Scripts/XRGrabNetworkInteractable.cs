@@ -3,6 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Array2DEditor;
+
+
+public enum State
+{
+    Play, 
+    Build, 
+    None, 
+    Held,
+    Gold
+}
 
 public class XRGrabNetworkInteractable : XRGrabInteractable
 {
@@ -12,18 +23,24 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public string currentZone;
     public int playersHoldingCube = 0;
+    public int mirroredBuildWallCubeID;
     public Vector3 goldCubeHoldPos;
+    public State currentState;
 
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
+    public string currentBuildWall;
 
     public bool isHeld = false;
     public bool canBeDroped = false;
+    public bool updateBuildWallState;
+
+    public Vector2Int index;
 
     private BoxCollider collider;
-    private PhotonView photonView;
+    public PhotonView photonView;
     private Transform currentPos;
     //Cube cube;
     private Rigidbody rb;
@@ -32,6 +49,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public GameObject rightRay;
     public GameObject leftRay;
+    public GameObject mirroredBuildWallCube;
 
     public LineRenderer rightLineRenderer;
     public LineRenderer leftLineRenderer;
@@ -42,6 +60,13 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
  
     void Start()
     {
+        if (gameObject.tag == "blue cube")
+        {
+            if (GameManager.instance.host)
+            {
+                gameObject.layer = LayerMask.NameToLayer("blue cube");
+            }
+        }
         StartCoroutine(CanDropCubeTimer());
         photonView = GetComponent<PhotonView>();
         collider = GetComponent<BoxCollider>();
@@ -56,16 +81,25 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         {
             MoveCubePlayWall();
         }
+        if (updateBuildWallState)
+        {
+            photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+            updateBuildWallState = false;
+        }
 
         if (currentZone == BuildWallZone)
         {
-            MoveCubeBuildWall();
+            //Debug.Log("please");
+            //photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+            if (GameManager.instance.host)
+            {
+                MoveCubeBuildWall();
+            }
         }
         if (currentZone == NoZone)
         {
             if (photonView.IsMine)
             {
-
                 rightLineRenderer.GetPositions(rightRayPoints);
                 gameObject.transform.position = rightRayPoints[rightRayPoints.Length - 1];
             }
@@ -113,9 +147,9 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public void PlayerGrab()
     {
         photonView.RequestOwnership();
-        //currentZone = NoZone
-        changeState();
-        photonView.RPC("changeState", RpcTarget.AllBuffered);
+        currentZone = NoZone;
+        Debug.Log("New zone: " + currentZone);
+        photonView.RPC("ChangeState", RpcTarget.AllBuffered);
         collider.isTrigger = true;
     }
     public void PlayerGrabGoldHalf()
@@ -127,14 +161,27 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     IEnumerator CanDropCubeTimer()
     {
-        yield return new WaitForSeconds(4);
-        canBeDroped = true;
+        yield return new WaitForSeconds(3);
+            canBeDroped = true;
     }
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
     {
         base.OnSelectEntered(interactor);
+        Debug.Log("This cube was grabed");
+        if (GameManager.instance.holdingGoldHalf)
+        {
+            Debug.Log("cant pick anything up");
+        }
+        else
+        if(currentZone == BuildWallZone)
+        {
+            PlayerGrab();
+            Debug.Log("trying to remove cube from build walls");
+            photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
 
+        }
+        else 
         if (interactor.transform.parent.parent.gameObject.tag == "P1")
         {
             if (gameObject.tag == "gold cube")
@@ -204,9 +251,13 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
-        }else{
-            Debug.Log("destory this cube");
+        } else if (currentZone == NoZone)
+        {
             PhotonNetwork.Destroy(this.gameObject);
+        } 
+        else{
+            Debug.Log("destory this cube");
+            //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }
 
         
@@ -214,7 +265,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     protected override void OnHoverEntered(XRBaseInteractor interactor)
     {
-        //Debug.Log(gameObject.name + " has been hovered");
+        Debug.Log(gameObject.name + " has been hovered");
     }
 
 
@@ -249,10 +300,39 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         }
     }
 
-    [PunRPC]
-
-    public void changeState()
+    public void ChangeStateToBuildWallCall()
     {
+        photonView.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
+    }
+    
+    [PunRPC]
+    public void ChangeStateBuildWall()
+    {
+        Debug.Log("current zone is now buildwall");
+        currentZone = "BuildWall";
+    }
+    
+    [PunRPC]
+    public void ChangeState()
+    {
+        PhotonView temp = PhotonView.Find(photonView.ViewID);
+        temp.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone = NoZone;
         currentZone = NoZone;
+    }
+    [PunRPC]
+    public void removeCube(int x, int y)
+    {
+
+        //MasterBuildWall.instance.GetComponent<PhotonView>().RPC("removeCubeFromMasterWall", RpcTarget.AllBuffered, x, y);
+        MasterBuildWall.instance.masterBuildArray[x, y] = null;
+        MasterBuildWall.instance.updateMasterArray = true;
+
+        //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
+
+        PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
+
+        PhotonNetwork.Destroy(temp.gameObject);
+        
+
     }
 }

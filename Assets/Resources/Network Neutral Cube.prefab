@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 1444206317336511474}
   - component: {fileID: 1182940972678759366}
   - component: {fileID: 2198477095945581053}
+  - component: {fileID: -831892700729151366}
   m_Layer: 0
   m_Name: Network Neutral Cube
   m_TagString: invis cube
@@ -326,18 +327,38 @@ MonoBehaviour:
   buildWallTargetRotation: {x: 0, y: 0, z: 0, w: 0}
   currentZone: 
   playersHoldingCube: 0
+  mirroredBuildWallCubeID: 0
   goldCubeHoldPos: {x: 0, y: 0, z: 0}
+  currentState: 0
   playWallZone: PlayWall
   BuildWallZone: BuildWall
   NoZone: No Zone
   holdGold: Hold Gold
+  currentBuildWall: 
   isHeld: 0
   canBeDroped: 0
+  updateBuildWallState: 0
+  index: {x: 0, y: 0}
+  photonView: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}
+  mirroredBuildWallCube: {fileID: 0}
   rightLineRenderer: {fileID: 0}
   leftLineRenderer: {fileID: 0}
   leftRayPoints: []
+--- !u!114 &-831892700729151366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656098595970179428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d854917d39e2f7d4588d9ef8c25d8bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: invis cube
 --- !u!1 &1898144210675743135
 GameObject:
   m_ObjectHideFlags: 0

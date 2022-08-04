@@ -62,6 +62,15 @@ TagManager:
   - cliant left ray
   - network right ray
   - network left ray
+  - R
+  - B
+  - I
+  - G
+  - view wall 1
+  - view wall 2
+  - build wall 1
+  - build wall 2
+  - DropZoneEye
   layers:
   - Default
   - TransparentFX
@@ -73,9 +82,9 @@ TagManager:
   - 
   - PostProcessing
   - PlayerHeads
-  - 
-  - 
-  - 
+  - blue cube
+  - red cube
+  - walls
   - 
   - 
   - 

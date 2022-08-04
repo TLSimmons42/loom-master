@@ -4,58 +4,41 @@ using UnityEngine;
 
 public class DropzoneScript : MonoBehaviour
 {
-    public int column;
-    GameObject buildWall;
+    public string direction;
+    public Vector2Int index;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        buildWall = transform.parent.gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetColumn(int c)
-    {
-        column = c;
-    }
-    //&& (other.GetComponent<Cube>().currentZone != "BuildWall" || other.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall")
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag + " THIS IS THE TAG");
         if (GameManager.instance.playerCount == 1)
         {
-            if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "gold cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall") )
+            if ((other.tag == "B" || other.tag == "R" || other.tag == "G" || other.tag == "I") && (other.gameObject.GetComponent<Cube>().currentZone != "BuildWall") )
             {
                 Debug.Log("drop zone script");
-                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+                Analytics.instance.WriteData(other.gameObject.name + "was placed in dropzone", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
+                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }
         else
-        if ((other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
+        if ((other.tag == "gold cube" || other.tag == "blue cube" || other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
         {
             
-                Debug.Log("drop zone script");
-                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
-            
+            Debug.Log("drop zone script");
+            MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
+
         }
         else if ( other.tag == "right gold cube" || other.tag == "left gold cube" && (other.gameObject.GetComponent<GoldCubeHalf>().currentZone != "BuildWall")&& other.gameObject.GetComponent<GoldCubeHalf>().canBeDroped)
         {
-            if (GameManager.instance.host)
-            {
-                Debug.Log("bout to drop a cube");
-                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
-            }
+            GameManager.instance.holdingGoldHalf = false;
+            Debug.Log("bout to drop a cube");
+            MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
+            
         }
-        else if(other.tag == "gold cube")
+        else if (other.tag == "gold cube")
         {
             if (GameManager.instance.host)
             {
-                buildWall.GetComponent<BuildWall>().DropBox(other.gameObject, column);
+                MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             }
         }
         else
