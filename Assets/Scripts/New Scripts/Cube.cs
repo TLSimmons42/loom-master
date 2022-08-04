@@ -122,7 +122,7 @@ public class Cube : XRGrabInteractable
             if(currentZone == BuildWallZone)
             {
                 removeCube(index.x, index.y);
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
 
             PlayerGrab();
