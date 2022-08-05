@@ -420,7 +420,7 @@ MonoBehaviour:
   currentBuildWall: 
   isHeld: 0
   isHeldByBoth: 0
-  canBeDroped: 0
+  canDrop: 0
   updateBuildWallState: 0
   index: {x: 0, y: 0}
   playersHoldingCube: 0

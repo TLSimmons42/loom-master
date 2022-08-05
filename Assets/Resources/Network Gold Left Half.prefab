@@ -209,7 +209,7 @@ MonoBehaviour:
   BuildWallZone: BuildWall
   deleteZone: delete zone
   currentBuildWall: 
-  canBeDroped: 0
+  canDrop: 0
   replacedCube: {fileID: 0}
   rightRay: {fileID: 0}
   leftRay: {fileID: 0}

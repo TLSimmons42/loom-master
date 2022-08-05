@@ -446,7 +446,7 @@ MonoBehaviour:
   holdGold: Hold Gold
   currentBuildWall: 
   isHeld: 0
-  canBeDroped: 0
+  canDrop: 0
   updateBuildWallState: 0
   index: {x: 0, y: 0}
   photonView: {fileID: 0}
