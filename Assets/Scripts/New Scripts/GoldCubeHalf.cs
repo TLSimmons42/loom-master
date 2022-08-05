@@ -13,7 +13,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public string deleteZone = "delete zone";
     public string currentBuildWall;
 
-    public bool canBeDroped =false;
+    public bool canDrop =false;
     public GameObject replacedCube;
     public GameObject rightRay;
     public GameObject leftRay;
@@ -109,9 +109,9 @@ public class GoldCubeHalf : XRGrabInteractable
     }
     IEnumerator CanDropCubeTimer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         //PV.RPC("ChangeStateBuildWall", RpcTarget.AllBuffered);
-        canBeDroped = true;
+        canDrop = true;
     }
 
     public void PlayerMovesHalf()
@@ -203,6 +203,16 @@ public class GoldCubeHalf : XRGrabInteractable
             Debug.Log("the PV was null");
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "DropZone")
+        {
+            canDrop = false;
+            // currentZone = BuildWallZone;
+        }
+    }
+
 
     [PunRPC]
     public void changeState()

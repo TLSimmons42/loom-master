@@ -17,7 +17,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     public bool isHeld = false;
     public bool isHeldByBoth = false;
-    public bool canBeDroped = false;
+    public bool canDrop = false;
     public bool updateBuildWallState = false;
 
     private BoxCollider collider;
@@ -114,8 +114,8 @@ public class GoldCubeWhole : XRSimpleInteractable
     }
     IEnumerator CanDropCubeTimer()
     {
-        yield return new WaitForSeconds(4);
-        canBeDroped = true;
+        yield return new WaitForSeconds(1.5f);
+        canDrop = true;
     }
 
     [PunRPC]
@@ -251,6 +251,12 @@ public class GoldCubeWhole : XRSimpleInteractable
     }
     private void OnTriggerEnter(Collider other)
     {
+
+        if (other.tag == "DropZone")
+        {
+            canDrop = false;
+            // currentZone = BuildWallZone;
+        }
 
         if (other.tag == "cube despawner")
         {
