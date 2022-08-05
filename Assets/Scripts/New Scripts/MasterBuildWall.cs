@@ -292,6 +292,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 return "Network Gold Left Half";
             case "right gold cube":
                 return "Network Gold Right Half";
+            case "gold cube whole":
+                return "Network Gold Cube Whole";
             default:
                 Debug.LogError("Invalid cubeCode: " + cubeCode);
                 return null;

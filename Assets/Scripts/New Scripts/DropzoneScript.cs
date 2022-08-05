@@ -34,7 +34,7 @@ public class DropzoneScript : MonoBehaviour
             MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
             
         }
-        else if (other.tag == "gold cube" && other.gameObject.GetComponent<GoldCubeWhole>().canDrop)
+        else if (other.tag == "gold cube" && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canDrop)
         {
             if (GameManager.instance.host)
             {
