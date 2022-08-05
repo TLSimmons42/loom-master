@@ -55,6 +55,7 @@ public class GoldCubeHalf : XRGrabInteractable
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
 
+        
         AssignCubeToPlayers();
 
     }
