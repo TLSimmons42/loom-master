@@ -504,13 +504,13 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     hostCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = clientCube;
                     clientCube.GetComponent<GoldCubeHalf>().mirroredBuildWallCube = hostCube;
                 }
-                else if (cubeCode == "gold cube")
-                {
-                    addToBuildWall(hostCube.GetComponent<GoldCubeWhole>(), target, "host");
-                    addToBuildWall(clientCube.GetComponent<GoldCubeWhole>(), target, "client");
-                    hostCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = clientCube;
-                    clientCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = hostCube;
-                }
+                //else if (cubeCode == "gold cube")
+                //{
+                //    addToBuildWall(hostCube.GetComponent<GoldCubeWhole>(), target, "host");
+                //    addToBuildWall(clientCube.GetComponent<GoldCubeWhole>(), target, "client");
+                //    hostCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = clientCube;
+                //    clientCube.GetComponent<GoldCubeWhole>().mirroredBuildWallCube = hostCube;
+                //}
                 else
                 {
                     addToBuildWall(hostCube.GetComponent<XRGrabNetworkInteractable>(), target, "host");
