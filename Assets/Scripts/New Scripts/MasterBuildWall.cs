@@ -558,7 +558,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     private void addToBuildWall(GoldCubeHalf script, Vector2Int target, string buildWall)
     {
-        script.canBeDroped = false;
+        //script.canBeDroped = false;
         script.updateBuildWallState = true;
         script.index = target;
         if (buildWall == "host")
@@ -576,7 +576,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
     private void addToBuildWall(GoldCubeWhole script, Vector2Int target, string buildWall)
     {
-        script.canBeDroped = false;
+        //script.canBeDroped = false;
         script.updateBuildWallState = true;
         script.index = target;
        if (buildWall == "host")
