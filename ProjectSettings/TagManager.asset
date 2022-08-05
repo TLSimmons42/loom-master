@@ -71,6 +71,7 @@ TagManager:
   - build wall 1
   - build wall 2
   - DropZoneEye
+  - gold cube whole
   layers:
   - Default
   - TransparentFX

@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d854917d39e2f7d4588d9ef8c25d8bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetType: gold cube
+  targetType: gold cube whole
 --- !u!114 &-9016301962631761538
 MonoBehaviour:
   m_ObjectHideFlags: 0
