@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: -9016301962631761538}
   m_Layer: 0
   m_Name: Network Gold Cube Whole
-  m_TagString: gold cube
+  m_TagString: gold cube whole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
