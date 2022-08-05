@@ -157,7 +157,7 @@ public class EyeTracker : MonoBehaviour
                 {
                     if (GameManager.instance.playerCount == 2)
                     {
-                        if (hit.transform.GetComponent<GoldCubeWhole>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
+                        if (hit.transform.GetComponent<GoldCubeWhole>().currentZone == hit.transform.GetComponent<GoldCubeWhole>().playWallZone)
                         {
                             Analytics.instance.WriteData("looking at gold cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
