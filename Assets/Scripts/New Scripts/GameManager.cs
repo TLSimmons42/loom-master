@@ -247,6 +247,7 @@ public class GameManager : Singleton<GameManager>
     {
         Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
         Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
+        Analytics.instance.WriteData3("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
 
         TimerScript.instance.record = true;
         if (playerCount == 2)
@@ -314,7 +315,8 @@ public class GameManager : Singleton<GameManager>
         TimerScript.instance.record = false;
         Analytics.instance.WriteData("Game Over", "", "", "","","");
         Analytics.instance.WriteData2("Game Over", "", "", "", "", "");
-        if(playerCount == 2)
+        Analytics.instance.WriteData3("Game Over", "", "", "", "", "");
+        if (playerCount == 2)
         {
             gameOverView.Show();
             gameOverView2.Show();

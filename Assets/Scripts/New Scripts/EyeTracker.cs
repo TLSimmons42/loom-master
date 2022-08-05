@@ -66,7 +66,7 @@ public class EyeTracker : MonoBehaviour
         leftEyePupil_diameter = verboseData.left.pupil_diameter_mm;
         rightEyePupil_diameter = verboseData.right.pupil_diameter_mm;
 
-
+        Analytics.instance.WriteData3("RightPupil", "", "", leftEyePupil_diameter.ToString(), rightEyePupil_diameter.ToString(), "");
 
         // Debug.Log("Left eye size: " + pupil_diameter);
 

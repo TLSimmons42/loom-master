@@ -13,6 +13,8 @@ public class Analytics : Singleton<Analytics>
     string csvPath;
     string filePath2;
     string csvPath2;
+    string filePath3;
+    string csvPath3;
 
     public InputField partID;
     public InputField partAge;
@@ -33,6 +35,8 @@ public class Analytics : Singleton<Analytics>
         csvPath = Application.dataPath + "/Analytics/analytics.csv";
         filePath2 = Application.dataPath + "/Analytics/analytics2.json";
         csvPath2 = Application.dataPath + "/Analytics/analytics2.csv";
+        filePath3 = Application.dataPath + "/Analytics/analytics3.json";
+        csvPath3 = Application.dataPath + "/Analytics/analytics3.csv";
 
         if (!File.Exists(savePath))
         {
@@ -104,6 +108,35 @@ public class Analytics : Singleton<Analytics>
         File.AppendAllText(csvPath2, "\n");
         File.AppendAllText(filePath2, jsonString);
         File.AppendAllText(csvPath2, csvstring);
+    }
+
+    public void WriteData3(string eventString, string participant, string sessionTime, string testX, string testY, string testZ)
+    {
+        DataPoint data = new DataPoint();
+        data.timestamp = DateTime.Now.Ticks.ToString();
+        data.participant = PlayerPrefs.GetString("ParticipantID");
+        data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.trial = PlayerPrefs.GetString("trial");
+        data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
+        data.gender = PlayerPrefs.GetString("ParticipantGender");
+        data.sessionTime = sessionTime;
+        data.eventName = eventString;
+        data.testX = testX;
+        data.testY = testY;
+        data.testZ = testZ;
+
+
+
+        string jsonString = JsonUtility.ToJson(data);
+        string csvstring = String.Join(",", GetDataArray(data));
+        //File.AppendAllText(filePath, "\n");
+        if (!File.Exists(csvPath3))
+        {
+            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos");
+        }
+        File.AppendAllText(csvPath3, "\n");
+        File.AppendAllText(filePath3, jsonString);
+        File.AppendAllText(csvPath3, csvstring);
     }
 
     string[] GetDataArray(DataPoint data)
