@@ -177,10 +177,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if(currentZone == BuildWallZone)
         {
             PlayerGrab();
-            photonView.RequestOwnership();
+            //photonView.RequestOwnership();
             Debug.Log("trying to remove cube from build walls");
             photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
-            PhotonNetwork.Destroy(gameObject);
+            //PhotonNetwork.Destroy(gameObject);
 
         }
         else 
