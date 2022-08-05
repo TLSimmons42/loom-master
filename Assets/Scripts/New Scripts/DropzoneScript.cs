@@ -20,7 +20,7 @@ public class DropzoneScript : MonoBehaviour
             }
         }
         else
-        if ((other.tag == "gold cube" || other.tag == "blue cube" || other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canBeDroped)
+        if ((other.tag == "gold cube" || other.tag == "blue cube" || other.tag == "blue cube" || other.tag == "red cube" || other.tag == "invis cube") && (other.gameObject.GetComponent<XRGrabNetworkInteractable>().currentZone != "BuildWall") && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canDrop)
         {
             
             Debug.Log("drop zone script");
