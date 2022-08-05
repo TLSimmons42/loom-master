@@ -623,7 +623,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void SetCubeIndex(string cubeCode, int objID, int mirrorObjID, int index_x, int index_y) 
     { 
-        if(cubeCode == "blue cube" || cubeCode == "red cube" || cubeCode == "invis cube")
+        if(cubeCode == "blue cube" || cubeCode == "red cube" || cubeCode == "invis cube" || cubeCode == "gold cube whole")
         {
             PhotonView temp = PhotonView.Find(objID);
             temp.gameObject.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCubeID = mirrorObjID;
@@ -644,6 +644,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
             temp.gameObject.GetComponent<GoldCubeWhole>().index.x = index_x;
             temp.gameObject.GetComponent<GoldCubeWhole>().index.y = index_y;
         }
+
     }
     
 
