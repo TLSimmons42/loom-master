@@ -34,7 +34,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     public string currentBuildWall;
 
     public bool isHeld = false;
-    public bool canBeDroped = false;
+    public bool canDrop = false;
     public bool updateBuildWallState;
 
     public Vector2Int index;
@@ -162,7 +162,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     IEnumerator CanDropCubeTimer()
     {
         yield return new WaitForSeconds(3);
-            canBeDroped = true;
+        canDrop = true;
     }
 
     protected override void OnSelectEntered(XRBaseInteractor interactor)
@@ -177,10 +177,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
         if(currentZone == BuildWallZone)
         {
             PlayerGrab();
-            //photonView.RequestOwnership();
+            photonView.RequestOwnership();
             Debug.Log("trying to remove cube from build walls");
             photonView.RPC("removeCube", RpcTarget.AllBuffered, index.x, index.y);
-            //PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
 
         }
         else 
@@ -211,6 +211,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
             Debug.Log("teir 1 pass");
             if (gameObject.tag == "red cube" || gameObject.tag == "invis cube")
             {
+                canDrop = true;
                 Debug.Log(gameObject.tag + " was grabbed");
                 PlayerGrab();
             }
@@ -240,6 +241,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
             if (gameObject.tag == "blue cube" || gameObject.tag == "invis cube")
             {
+                canDrop = true;
                 Debug.Log(gameObject.tag + " was grabbed");
                 PlayerGrab();
             }
@@ -276,6 +278,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
         if (other.tag == "DropZone")
         {
+            canDrop = false;
             if (currentZone != BuildWallZone)
             {
                 //int col;

@@ -23,6 +23,7 @@ public class Cube : XRGrabInteractable
     public string playWallZone = "PlayWall";
     public string BuildWallZone = "BuildWall";
     public bool isHeld = false;
+    public bool canDrop;
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
 
@@ -41,14 +42,13 @@ public class Cube : XRGrabInteractable
 
     void Start()
     {
-
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
         rightRay = GameObject.FindGameObjectWithTag("right ray");
         rightLineRenderer = rightRay.GetComponent<LineRenderer>();
+        StartCoroutine(CanDropCubeTimer());
 
-
-        
+        //canDrop = true;
 
     }
     void Update()
@@ -99,6 +99,7 @@ public class Cube : XRGrabInteractable
         Analytics.instance.WriteData(gameObject.name +" was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
         currentZone = NoZone;
         collider.isTrigger = true;
+
         //rb.detectCollisions = false;
         //gameObject.layer = 2;
         //isHeld = true;
@@ -115,6 +116,10 @@ public class Cube : XRGrabInteractable
     {
         base.OnSelectEntered(interactor);
 
+        if(currentZone == playWallZone)
+        {
+            canDrop = true;
+        }
         //  this will grab all colors in single player mode
         if (GameManager.instance.playerCount == 1)
         {
@@ -160,6 +165,12 @@ public class Cube : XRGrabInteractable
         //}
     }
 
+    IEnumerator CanDropCubeTimer()
+    {
+        yield return new WaitForSeconds(1.5f);
+        canDrop = true;
+    }
+
 
 
 
@@ -168,7 +179,7 @@ public class Cube : XRGrabInteractable
 
         if(other.tag == "DropZone")
         {
-            
+            canDrop = false;
            // currentZone = BuildWallZone;
         }
         if (other.tag == "cube despawner")
