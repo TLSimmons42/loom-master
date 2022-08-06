@@ -85,6 +85,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     [PunRPC]
     public void buildViewWall()
     {
+        setTargetWall();
         GameManager.instance.targetWall = targetWall;
         GameManager.instance.BuildViewWall();
     }
