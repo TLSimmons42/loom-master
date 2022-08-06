@@ -146,6 +146,10 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
 
     public void PlayerGrab()
     {
+        Analytics.instance.WriteData(gameObject.name + " was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
+        Analytics.instance.WriteData2(gameObject.name + " was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
+        Analytics.instance.WriteData3(gameObject.name + " was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
+
         photonView.RequestOwnership();
         currentZone = NoZone;
         Debug.Log("New zone: " + currentZone);
