@@ -423,7 +423,7 @@ MonoBehaviour:
   canDrop: 0
   updateBuildWallState: 0
   index: {x: 0, y: 0}
-  playersHoldingCube: 1
+  playersHoldingCube: 0
   mirroredBuildWallCubeID: 0
   playWallTargetPos: {x: 0, y: 0, z: 0}
   buildWallTargetPos: {x: 0, y: 0, z: 0}
