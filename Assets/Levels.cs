@@ -62,7 +62,7 @@ public class Levels : Singleton<Levels>
 
     public void initializeLevels()
     {
-        easyLevels.Add(easy1);
+        //easyLevels.Add(easy1);
         easyLevels.Add(easy2);
         easyLevels.Add(easy3);
 
