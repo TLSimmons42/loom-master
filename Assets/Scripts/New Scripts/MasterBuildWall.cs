@@ -63,7 +63,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
 
                 Debug.Log("Setting level import...");
                 index = Levels.instance.getRandomIndex(PlayerPrefs.GetString("gameDifficulty"));
-                Debug.Log(index);
+                
+                Debug.Log("this is the index: "+index);
 
                     PV.RPC("sendIndex", RpcTarget.AllBuffered, index);
                     Debug.Log("Making build walls...");
@@ -95,6 +96,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         Debug.Log("SEND INDEX");
         levelImport = Levels.instance.getLevelFromIndex(PlayerPrefs.GetString("gameDifficulty"), index);
+        //levelImport = Levels.instance.getLevelFromIndex("medium", index);
         setTargetWall();
     }
 
@@ -128,7 +130,7 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                 {
                     if (!levelImport[i, j].Equals(""))
                     {
-                        Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
+                       // Debug.Log("Spawning cube at: (" + i + ", " + j + ")");
                         GameObject hostDropZone = Instantiate(dropZone, hostBuildWallLocation.transform);
                         hostDropZone.GetComponent<DropzoneScript>().direction = indicesToDirection(j, i, levelImport);
                         hostDropZone.GetComponent<DropzoneScript>().index = new Vector2Int(j, i);
@@ -518,8 +520,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
                     addToBuildWall(clientCube.GetComponent<XRGrabNetworkInteractable>(), target, "client");
                     hostCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = clientCube;
                     clientCube.GetComponent<XRGrabNetworkInteractable>().mirroredBuildWallCube = hostCube;
-                    hostWallArrayIDs[target.x, target.y] = hostCube.GetComponent<PhotonView>().ViewID;
-                    clientWallArrayIDs[target.x, target.y] = clientCube.GetComponent<PhotonView>().ViewID;
+                    //hostWallArrayIDs[target.x, target.y] = hostCube.GetComponent<PhotonView>().ViewID;
+                    //clientWallArrayIDs[target.x, target.y] = clientCube.GetComponent<PhotonView>().ViewID;
                 }
             }
         }

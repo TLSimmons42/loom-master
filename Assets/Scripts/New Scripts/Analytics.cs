@@ -132,7 +132,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath3))
         {
-            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos");
+            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, rightEye, leftEye, zPos");
         }
         File.AppendAllText(csvPath3, "\n");
         File.AppendAllText(filePath3, jsonString);
