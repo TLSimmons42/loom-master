@@ -27,7 +27,7 @@ public class Cube : XRGrabInteractable
     public string NoZone = "No Zone";
     public string holdGold = "Hold Gold";
 
-    private float playZoneFallSpeed = 2f;
+    private float playZoneFallSpeed = 3f;
 
     public GameObject rightRay;
     public GameObject leftRay;

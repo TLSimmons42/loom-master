@@ -26,7 +26,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
     public int playersHoldingCube = 0;
     public int mirroredBuildWallCubeID;
-    private float playZoneFallSpeed = 2f;
+    private float playZoneFallSpeed = 3f;
 
     public Vector3 playWallTargetPos, buildWallTargetPos;
     public Quaternion buildWallTargetRotation;

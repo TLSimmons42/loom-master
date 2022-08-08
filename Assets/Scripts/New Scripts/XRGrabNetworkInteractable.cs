@@ -45,7 +45,7 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     //Cube cube;
     private Rigidbody rb;
 
-    private float playZoneFallSpeed = 2f;
+    private float playZoneFallSpeed = 3f;
 
     public GameObject rightRay;
     public GameObject leftRay;

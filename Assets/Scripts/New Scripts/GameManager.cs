@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
 
-    private float cubeDropTimer = 1.5f;
+    private float cubeDropTimer = 1f;
 
     public GameObject[] PlaywallDropPoints;
     public GameObject[] PlaywallEndPoints;
