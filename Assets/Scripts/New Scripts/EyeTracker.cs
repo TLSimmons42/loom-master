@@ -172,7 +172,7 @@ public class EyeTracker : MonoBehaviour
                         }
                     }
                 }
-                if (type == "qqq")
+                if (type == "DropZoneEye")
                 {
                     
                     Analytics.instance.WriteData("looking at Drop Zone", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
