@@ -60,7 +60,7 @@ public class Analytics : Singleton<Analytics>
         data.participant = PlayerPrefs.GetString("ParticipantID");
         data.task = PlayerPrefs.GetString("ParticipantCondition");
         data.trial = PlayerPrefs.GetString("trial");
-        data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
+        data.age = PlayerPrefs.GetString("ParticipantAge").ToString();
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
@@ -88,7 +88,7 @@ public class Analytics : Singleton<Analytics>
         data.participant = PlayerPrefs.GetString("ParticipantID");
         data.task = PlayerPrefs.GetString("ParticipantCondition");
         data.trial = PlayerPrefs.GetString("trial");
-        data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
+        data.age = PlayerPrefs.GetString("ParticipantAge").ToString();
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
@@ -117,7 +117,7 @@ public class Analytics : Singleton<Analytics>
         data.participant = PlayerPrefs.GetString("ParticipantID");
         data.task = PlayerPrefs.GetString("ParticipantCondition");
         data.trial = PlayerPrefs.GetString("trial");
-        data.age = PlayerPrefs.GetInt("ParticipantAge").ToString();
+        data.age = PlayerPrefs.GetString("ParticipantAge").ToString();
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
@@ -201,7 +201,6 @@ public class Analytics : Singleton<Analytics>
         public string testX;
         public string testY;
         public string testZ;
-
 
     }
 }

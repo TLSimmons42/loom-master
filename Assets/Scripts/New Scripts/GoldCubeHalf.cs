@@ -29,7 +29,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public Vector3[] leftRayPoints;
     public Vector3 buildWallTargetPos;
 
-    private float playZoneFallSpeed = 2f;
+    private float playZoneFallSpeed = 3f;
 
     public Quaternion buildWallTargetRotation;
 
