@@ -38702,6 +38702,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &445238893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7225740642353668131, guid: 008cb725957c29f4a9050d9dcd39f72a,
+    type: 3}
+  m_PrefabInstance: {fileID: 445238888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &447822529
 GameObject:
   m_ObjectHideFlags: 0
@@ -146412,6 +146418,7 @@ MonoBehaviour:
   partGender: {fileID: 0}
   condition: {fileID: 0}
   trial: {fileID: 0}
+  VRcamHeadPos: {fileID: 0}
 --- !u!4 &1918683536
 Transform:
   m_ObjectHideFlags: 0
@@ -155640,6 +155647,7 @@ MonoBehaviour:
   VRrig: {fileID: 539570748}
   playerPos1: {fileID: 2030533057}
   playerPos2: {fileID: 557783446}
+  VRcamHeadPos: {fileID: 445238893}
   BlueCube: {fileID: 8484043734802563057, guid: 0c4d0dc0d0d7710409c9e276e8a6a97a,
     type: 3}
   RedCube: {fileID: 3515984329757670175, guid: 325fb100648b778499e4e211396229e3, type: 3}

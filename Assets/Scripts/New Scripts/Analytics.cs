@@ -22,6 +22,8 @@ public class Analytics : Singleton<Analytics>
     public InputField condition;
     public InputField trial;
 
+    public GameObject VRcamHeadPos;
+
 
 
     // Start is called before the first frame update
@@ -138,6 +140,38 @@ public class Analytics : Singleton<Analytics>
         File.AppendAllText(filePath3, jsonString);
         File.AppendAllText(csvPath3, csvstring);
     }
+    public void WriteData4(string eventString, string participant, string sessionTime, string xRow, string yRow, string zRow, string xPos, string yPos, string zPos)
+    {
+        DataPoint data = new DataPoint();
+        data.timestamp = DateTime.Now.Ticks.ToString();
+        data.participant = PlayerPrefs.GetString("ParticipantID");
+        data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.trial = PlayerPrefs.GetString("trial");
+        data.age = PlayerPrefs.GetString("ParticipantAge").ToString();
+        data.gender = PlayerPrefs.GetString("ParticipantGender");
+        data.sessionTime = sessionTime;
+        data.eventName = eventString;
+        data.testX = xRow;
+        data.testY = yRow;
+        data.testZ = zRow;
+        data.x = xPos;
+        data.y = yPos;
+        data.z = zPos;
+
+
+
+
+        string jsonString = JsonUtility.ToJson(data);
+        string csvstring = String.Join(",", GetDataArray(data));
+        //File.AppendAllText(filePath, "\n");
+        if (!File.Exists(csvPath3))
+        {
+            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xRotation, yRotation, zRotation, xPos, yPos, Zpos");
+        }
+        File.AppendAllText(csvPath3, "\n");
+        File.AppendAllText(filePath3, jsonString);
+        File.AppendAllText(csvPath3, csvstring);
+    }
 
     string[] GetDataArray(DataPoint data)
     {
@@ -153,6 +187,9 @@ public class Analytics : Singleton<Analytics>
         stringlist.Add(data.testX);
         stringlist.Add(data.testY);
         stringlist.Add(data.testZ);
+        stringlist.Add(data.x);
+        stringlist.Add(data.y);
+        stringlist.Add(data.z);
 
 
         return stringlist.ToArray();
@@ -201,6 +238,9 @@ public class Analytics : Singleton<Analytics>
         public string testX;
         public string testY;
         public string testZ;
+        public string x;
+        public string y;
+        public string z;
 
     }
 }

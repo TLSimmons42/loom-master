@@ -19,6 +19,8 @@ public class GameManager : Singleton<GameManager>
     public GameObject VRrig;
     public GameObject playerPos1;
     public GameObject playerPos2;
+    public GameObject VRcamHeadPos;
+
 
     public GameObject BlueCube;
     public GameObject RedCube;
@@ -96,10 +98,12 @@ public class GameManager : Singleton<GameManager>
         }
         if (dropCubes)
         {
+            Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
             StartCoroutine(BuildNewCube());
         }
         if (dropNetworkCubes)
         {
+            Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
             StartCoroutine(BuildNewNetworkCube());
         }
     }
