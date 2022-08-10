@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
     public bool allPlayersConnected = false;
     public bool holdingGoldHalf = false;
     public bool gameStarted = true;
-    
+    public bool gameOn = false;
 
 
     public TextAsset[] easyLevels;
@@ -98,14 +98,17 @@ public class GameManager : Singleton<GameManager>
         }
         if (dropCubes)
         {
-            Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
             StartCoroutine(BuildNewCube());
         }
         if (dropNetworkCubes)
         {
-            Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
             StartCoroutine(BuildNewNetworkCube());
         }
+        if (gameOn)
+        {
+            Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
+        }
+
     }
 
     void ConvertGameDiffToInt(string strDiff)
@@ -249,6 +252,7 @@ public class GameManager : Singleton<GameManager>
     //This will detect the number of players and start the game accordingly
     public void StartTheGame()
     {
+        gameOn = true;
         Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
         Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
         Analytics.instance.WriteData3("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
@@ -315,6 +319,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Gameover()
     {
+        gameOn = false;
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
         Analytics.instance.WriteData("Game Over", "", "", "","","");

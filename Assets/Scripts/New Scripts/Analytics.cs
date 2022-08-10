@@ -132,7 +132,6 @@ public class Analytics : Singleton<Analytics>
         data.testZ = testZ;
 
 
-
         string jsonString = JsonUtility.ToJson(data);
         string csvstring = String.Join(",", GetDataArray(data));
         //File.AppendAllText(filePath, "\n");
@@ -168,13 +167,13 @@ public class Analytics : Singleton<Analytics>
         string jsonString = JsonUtility.ToJson(data);
         string csvstring = String.Join(",", GetDataArray(data));
         //File.AppendAllText(filePath, "\n");
-        if (!File.Exists(csvPath3))
+        if (!File.Exists(csvPath4))
         {
-            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xRotation, yRotation, zRotation, xPos, yPos, Zpos");
+            File.WriteAllText(csvPath4, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xRotation, yRotation, zRotation, xPos, yPos, Zpos");
         }
-        File.AppendAllText(csvPath3, "\n");
-        File.AppendAllText(filePath3, jsonString);
-        File.AppendAllText(csvPath3, csvstring);
+        File.AppendAllText(csvPath4, "\n");
+        File.AppendAllText(filePath4, jsonString);
+        File.AppendAllText(csvPath4, csvstring);
     }
 
     string[] GetDataArray(DataPoint data)
