@@ -15,6 +15,8 @@ public class Analytics : Singleton<Analytics>
     string csvPath2;
     string filePath3;
     string csvPath3;
+    string filePath4;
+    string csvPath4;
 
     public InputField partID;
     public InputField partAge;
@@ -39,6 +41,8 @@ public class Analytics : Singleton<Analytics>
         csvPath2 = Application.dataPath + "/Analytics/analytics2.csv";
         filePath3 = Application.dataPath + "/Analytics/analytics3.json";
         csvPath3 = Application.dataPath + "/Analytics/analytics3.csv";
+        filePath4 = Application.dataPath + "/Analytics/analytics4.json";
+        csvPath4 = Application.dataPath + "/Analytics/analytics4.csv";
 
         if (!File.Exists(savePath))
         {
