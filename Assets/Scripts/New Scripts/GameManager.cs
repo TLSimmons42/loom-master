@@ -50,6 +50,7 @@ public class GameManager : Singleton<GameManager>
     public bool holdingGoldHalf = false;
     public bool gameStarted = true;
     public bool gameOn = false;
+    public bool canPickUpOffBuildWall = false;
 
 
     public TextAsset[] easyLevels;
@@ -83,6 +84,7 @@ public class GameManager : Singleton<GameManager>
         {
             StartCoroutine(AssignHostAndPlayerPos()); // this will set the host and give access to the players gameobjects
         }
+        canPickUpOffBuildWall = true;
 
 
     }
@@ -377,6 +379,19 @@ public class GameManager : Singleton<GameManager>
         }
         Debug.Log("This puzzle is all correct: " + allCorrect);
         Gameover();
+    }
+
+    public void CanPickUpOffBuildWall()
+    {
+        StartCoroutine(CanPickUpOffBuildwall());
+    }
+
+    IEnumerator CanPickUpOffBuildwall()
+    {
+        canPickUpOffBuildWall = false;
+        yield return new WaitForSeconds(2);
+        canPickUpOffBuildWall = true;
+
     }
 
     public void RestartGame()

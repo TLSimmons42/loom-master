@@ -40,6 +40,8 @@ public class DropzoneScript : MonoBehaviour
             GameManager.instance.holdingGoldHalf = false;
             Debug.Log("bout to drop a cube");
             MasterBuildWall.instance.dropZoneHit(index, direction, other.gameObject);
+            GameManager.instance.CanPickUpOffBuildWall();
+            
             
         }
         else if (other.tag == "gold cube" && other.gameObject.GetComponent<XRGrabNetworkInteractable>().canDrop)
