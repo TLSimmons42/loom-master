@@ -23,6 +23,7 @@ public class Analytics : Singleton<Analytics>
     public InputField partGender;
     public InputField condition;
     public InputField trial;
+    public InputField group;
 
     public GameObject VRcamHeadPos;
 
@@ -31,8 +32,6 @@ public class Analytics : Singleton<Analytics>
     // Start is called before the first frame update
     void Start()
     {
-
-        
 
         savePath = Application.dataPath + "/Analytics";
         filePath = Application.dataPath + "/Analytics/analytics.json";
@@ -73,7 +72,7 @@ public class Analytics : Singleton<Analytics>
         data.testX = testX;
         data.testY = testY;
         data.testZ = testZ;
-
+        data.group = PlayerPrefs.GetString("group");
 
 
         string jsonString = JsonUtility.ToJson(data);
@@ -81,7 +80,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath))
         {
-            File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos");
+            File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos, Group");
         }
         File.AppendAllText(csvPath, "\n");
         File.AppendAllText(filePath, jsonString);
@@ -101,6 +100,7 @@ public class Analytics : Singleton<Analytics>
         data.testX = testX;
         data.testY = testY;
         data.testZ = testZ;
+        data.group = PlayerPrefs.GetString("group");
 
 
 
@@ -109,7 +109,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath2))
         {
-            File.WriteAllText(csvPath2, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos");
+            File.WriteAllText(csvPath2, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos, Group");
         }
         File.AppendAllText(csvPath2, "\n");
         File.AppendAllText(filePath2, jsonString);
@@ -130,6 +130,8 @@ public class Analytics : Singleton<Analytics>
         data.testX = testX;
         data.testY = testY;
         data.testZ = testZ;
+        data.group = PlayerPrefs.GetString("group");
+
 
 
         string jsonString = JsonUtility.ToJson(data);
@@ -137,7 +139,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath3))
         {
-            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, rightEye, leftEye, zPos");
+            File.WriteAllText(csvPath3, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, rightEye, leftEye, zPos, Group");
         }
         File.AppendAllText(csvPath3, "\n");
         File.AppendAllText(filePath3, jsonString);
@@ -160,8 +162,7 @@ public class Analytics : Singleton<Analytics>
         data.x = xPos;
         data.y = yPos;
         data.z = zPos;
-
-
+        data.group = PlayerPrefs.GetString("group");
 
 
         string jsonString = JsonUtility.ToJson(data);
@@ -169,7 +170,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath4))
         {
-            File.WriteAllText(csvPath4, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xRotation, yRotation, zRotation, xPos, yPos, Zpos");
+            File.WriteAllText(csvPath4, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xRotation, yRotation, zRotation, xPos, yPos, Zpos, Group");
         }
         File.AppendAllText(csvPath4, "\n");
         File.AppendAllText(filePath4, jsonString);
@@ -193,6 +194,7 @@ public class Analytics : Singleton<Analytics>
         stringlist.Add(data.x);
         stringlist.Add(data.y);
         stringlist.Add(data.z);
+        stringlist.Add(data.group);
 
 
         return stringlist.ToArray();
@@ -218,6 +220,12 @@ public class Analytics : Singleton<Analytics>
     {
         PlayerPrefs.SetString("ParticipantGender", gen);
     }
+    public void SetParticipantGroup(string group)
+    {
+        PlayerPrefs.SetString("group", group);
+    }
+
+
     public void SetPartVariables()
     {
         SetParticipantID(partID.text);
@@ -225,6 +233,7 @@ public class Analytics : Singleton<Analytics>
         SetParticipantCondition(condition.text);
         SetParticipantGender(partGender.text);
         Settrial(trial.text);
+        SetParticipantGroup(group.text);
     }
 
 
@@ -244,6 +253,7 @@ public class Analytics : Singleton<Analytics>
         public string x;
         public string y;
         public string z;
+        public string group;
 
     }
 }
