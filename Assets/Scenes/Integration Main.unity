@@ -20550,7 +20550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &239364336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38792,7 +38792,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451520219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000034332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1300278595}
@@ -38800,8 +38800,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0.00002861, y: 4.5}
+  m_SizeDelta: {x: 234.61975, y: 161.93881}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451520221
 MonoBehaviour:
@@ -38851,8 +38851,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -109742,8 +109742,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 177.02, y: 61}
+  m_AnchoredPosition: {x: 12.24, y: 0}
+  m_SizeDelta: {x: 234.6198, y: 170.89499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1300278596
 BoxCollider:
@@ -146418,6 +146418,7 @@ MonoBehaviour:
   partGender: {fileID: 0}
   condition: {fileID: 0}
   trial: {fileID: 0}
+  group: {fileID: 0}
   VRcamHeadPos: {fileID: 0}
 --- !u!4 &1918683536
 Transform:
@@ -146459,7 +146460,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923019790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 9.4587e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2087162941}
@@ -146467,8 +146468,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -0.00005722, y: 0.00012589}
+  m_SizeDelta: {x: 270.22415, y: 215.1646}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1923019792
 MonoBehaviour:
@@ -146518,8 +146519,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -150394,8 +150395,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 177.02, y: 61}
+  m_AnchoredPosition: {x: 4.8, y: 6.9177}
+  m_SizeDelta: {x: 270.22437, y: 215.16454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &2087162942
 BoxCollider:
@@ -155677,6 +155678,8 @@ MonoBehaviour:
   allPlayersConnected: 0
   holdingGoldHalf: 0
   gameStarted: 1
+  gameOn: 0
+  canPickUpOffBuildWall: 0
   easyLevels:
   - {fileID: 4900000, guid: 7e8b0abb0e899444aaa289f8ee3e4956, type: 3}
   - {fileID: 4900000, guid: 1605be7476084ed468b0abb1504b4200, type: 3}
