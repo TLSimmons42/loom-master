@@ -203,17 +203,17 @@ public class EyeTracker : MonoBehaviour
                 string type = hit.transform.GetComponent<GazeTarget>().targetType;
                 if (type == "View Wall")
                 {
-                    Analytics.instance.WriteData2("looking at View wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Analytics.instance.WriteData2("looking at View wall", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                 }
                 if (type == "Play Wall")
                 {
-                    Analytics.instance.WriteData2("looking at Play wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Analytics.instance.WriteData2("looking at Play wall", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                 }
                 if (type == "Build Wall")
                 {
-                    Analytics.instance.WriteData2("looking at Build wall", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Analytics.instance.WriteData2("looking at Build wall", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                 }
             }
