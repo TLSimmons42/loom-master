@@ -101,7 +101,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at blue cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at blue cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -110,7 +110,7 @@ public class EyeTracker : MonoBehaviour
                         Debug.Log("looking at blue cube before play wall");
                         if (hit.transform.GetComponent<Cube>().currentZone == hit.transform.GetComponent<Cube>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at blue cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at blue cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -121,7 +121,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at red cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -129,7 +129,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<Cube>().currentZone == hit.transform.GetComponent<Cube>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at red cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at red cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -140,7 +140,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<XRGrabNetworkInteractable>().currentZone == hit.transform.GetComponent<XRGrabNetworkInteractable>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at invis cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at invis cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -148,7 +148,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<Cube>().currentZone == hit.transform.GetComponent<Cube>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at invis cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at invis cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -159,7 +159,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<GoldCubeWhole>().currentZone == hit.transform.GetComponent<GoldCubeWhole>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at gold cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at gold cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -167,7 +167,7 @@ public class EyeTracker : MonoBehaviour
                     {
                         if (hit.transform.GetComponent<Cube>().currentZone == hit.transform.GetComponent<Cube>().playWallZone)
                         {
-                            Analytics.instance.WriteData("looking at gold cube", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                            Analytics.instance.WriteData("looking at gold cube", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                             Debug.Log("looking at: " + type.ToString());
                         }
                     }
@@ -175,7 +175,7 @@ public class EyeTracker : MonoBehaviour
                 if (type == "DropZoneEye")
                 {
                     
-                    Analytics.instance.WriteData("looking at Drop Zone", "", "", hit.transform.position.x.ToString(), hit.transform.position.y.ToString(), hit.transform.position.z.ToString());
+                    Analytics.instance.WriteData("looking at Drop Zone", "", "", hit.point.x.ToString(), hit.point.y.ToString(), hit.point.z.ToString());
                     Debug.Log("looking at: " + type.ToString());
                     
                 }
