@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject playerPos1;
     public GameObject playerPos2;
     public GameObject VRcamHeadPos;
+    public GameObject eyeTracker;
 
 
     public GameObject BlueCube;
@@ -51,6 +52,7 @@ public class GameManager : Singleton<GameManager>
     public bool gameStarted = true;
     public bool gameOn = false;
     public bool canPickUpOffBuildWall = false;
+    public bool eyeTracking = false;
 
 
     public TextAsset[] easyLevels;
@@ -254,6 +256,7 @@ public class GameManager : Singleton<GameManager>
     //This will detect the number of players and start the game accordingly
     public void StartTheGame()
     {
+        eyeTracking = true;
         gameOn = true;
         Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
         Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
@@ -321,6 +324,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Gameover()
     {
+        eyeTracking = false;
         gameOn = false;
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
