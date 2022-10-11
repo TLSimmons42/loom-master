@@ -223,6 +223,11 @@ public class EyeTracker : MonoBehaviour
                         Analytics.instance.WriteData2("looking at Build wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
                         //Debug.Log("looking at: " + type.ToString());
                     }
+                    if (type == "Background Wall")
+                    {
+                        Analytics.instance.WriteData2("looking at Background wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
+                        //Debug.Log("looking at: " + type.ToString());
+                    }
                 }
             }
         }
