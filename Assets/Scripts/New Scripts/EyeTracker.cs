@@ -40,7 +40,7 @@ public class EyeTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         gazerayData = gazerayData.GetComponent<SRanipal_GazeRaySample>();
         rightEyeData = rightEye.right;
         leftEyeData = leftEye.left;
@@ -201,33 +201,41 @@ public class EyeTracker : MonoBehaviour
                 }
             }
         }
-        if (Physics.Raycast(gazeRay2, out hit2, 10000))
+        if (GameManager.instance.eyeTracking)
         {
-            if (GameManager.instance.eyeTracking)
+            if (Physics.Raycast(gazeRay2, out hit2, 10000))
             {
-                if (hit2.transform.GetComponent<GazeTarget>() != null) //need to have the target class
+                if (GameManager.instance.eyeTracking)
                 {
-                    string type = hit2.transform.GetComponent<GazeTarget>().targetType;
-                    if (type == "View Wall")
+                    if (hit2.transform.GetComponent<GazeTarget>() != null) //need to have the target class
                     {
-                        Analytics.instance.WriteData2("looking at View wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
-                        //Debug.Log("looking at: " + type.ToString());
-                    }
-                    if (type == "Play Wall")
-                    {
-                        Analytics.instance.WriteData2("looking at Play wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
-                        //Debug.Log("looking at: " + type.ToString());
-                    }
-                    if (type == "Build Wall")
-                    {
-                        Analytics.instance.WriteData2("looking at Build wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
-                        //Debug.Log("looking at: " + type.ToString());
+                        string type = hit2.transform.GetComponent<GazeTarget>().targetType;
+                        if (type == "View Wall")
+                        {
+                            Analytics.instance.WriteData2("looking at View wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
+                            //Debug.Log("looking at: " + type.ToString());
+                        }
+                        if (type == "Play Wall")
+                        {
+                            Analytics.instance.WriteData2("looking at Play wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
+                            //Debug.Log("looking at: " + type.ToString());
+                        }
+                        if (type == "Build Wall")
+                        {
+                            Analytics.instance.WriteData2("looking at Build wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
+                            //Debug.Log("looking at: " + type.ToString());
+                        }
+                        if (type == "Background Wall")
+                        {
+                            Analytics.instance.WriteData2("looking at Background wall", "", "", hit2.point.x.ToString(), hit2.point.y.ToString(), hit2.point.z.ToString());
+                            //Debug.Log("looking at: " + type.ToString());
+                        }
                     }
                 }
             }
         }
-        
-        
+
+
 
 
     }
