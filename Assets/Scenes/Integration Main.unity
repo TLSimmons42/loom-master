@@ -38815,6 +38815,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 445238888}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &445238894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7225740641978749114, guid: 008cb725957c29f4a9050d9dcd39f72a,
+    type: 3}
+  m_PrefabInstance: {fileID: 445238888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &447822529
 GameObject:
   m_ObjectHideFlags: 0
@@ -74541,7 +74547,7 @@ GameObject:
   - component: {fileID: 822532265}
   m_Layer: 0
   m_Name: Eye Tracker
-  m_TagString: Untagged
+  m_TagString: eye tracker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102448,7 +102454,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2.6, z: 5}
+  m_Size: {x: 0.73, y: 2.6, z: 5}
   m_Center: {x: 0, y: 0, z: 0.31}
 --- !u!1001 &1129704235
 PrefabInstance:
@@ -146635,7 +146641,9 @@ MonoBehaviour:
   condition: {fileID: 0}
   trial: {fileID: 0}
   group: {fileID: 0}
-  VRcamHeadPos: {fileID: 0}
+  sessionTime: 
+  VRcamHeadPos: {fileID: 445238893}
+  rightHand: {fileID: 445238894}
 --- !u!4 &1918683536
 Transform:
   m_ObjectHideFlags: 0

@@ -97,9 +97,8 @@ public class MasterBuildWall : Singleton<MasterBuildWall>
     {
         Debug.Log("SEND INDEX");
         levelImport = Levels.instance.getLevelFromIndex(PlayerPrefs.GetString("gameDifficulty"), index);
-        /** Generate Random Pattern -- Update */
-        // levelImport = Levels.instance.getRandomLevel(PlayerPrefs.GetString("gameDifficulty"));
         //levelImport = Levels.instance.getLevelFromIndex("medium", index);
+
         setTargetWall();
     }
 

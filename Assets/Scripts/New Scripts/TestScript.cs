@@ -29,8 +29,8 @@ public class TestScript : MonoBehaviour
     {
             if (shoulLerp)
             {
-            Analytics.instance.WriteData("Photon Test", "", Time.time.ToString(), gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
-
+            //Analytics.instance.WriteData("Photon Test", "", Time.time.ToString(), gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
+            Analytics.instance.writeEvent("Photon Test");
             if (GameManager.instance.gameObject.tag == "host")
                 {
                     photonView.RequestOwnership();
@@ -46,7 +46,8 @@ public class TestScript : MonoBehaviour
 
     private void StartLerping()
     {
-        Analytics.instance.WriteData("Cube start", "", Time.time.ToString(), gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
+        //Analytics.instance.WriteData("Cube start", "", Time.time.ToString(), gameObject.transform.position.x.ToString(), gameObject.transform.position.y.ToString(), gameObject.transform.position.z.ToString());
+        Analytics.instance.writeEvent("Cube start");
         Debug.Log("start lerp");
         int temp = Random.Range(1, 4);
 

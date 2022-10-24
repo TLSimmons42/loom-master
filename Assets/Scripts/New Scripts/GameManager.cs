@@ -110,7 +110,7 @@ public class GameManager : Singleton<GameManager>
         }
         if (gameOn)
         {
-            Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
+            //Analytics.instance.WriteData4("HeadPos", "", "", VRcamHeadPos.transform.rotation.x.ToString(), VRcamHeadPos.transform.rotation.y.ToString(), VRcamHeadPos.transform.rotation.z.ToString(), VRcamHeadPos.transform.position.x.ToString(), VRcamHeadPos.transform.position.y.ToString(), VRcamHeadPos.transform.position.z.ToString());
         }
 
     }
@@ -199,7 +199,7 @@ public class GameManager : Singleton<GameManager>
             }
             cube.gameObject.GetComponent<Cube>().playWallTargetPos = PlaywallEndPoints[spawnPointChoice].transform.position;
             cube.GetComponent<Cube>().SetZoneToPlay();
-
+            //for change
         }
         yield return new WaitForSeconds(cubeDropTimer);
         dropCubes = true;
@@ -258,9 +258,11 @@ public class GameManager : Singleton<GameManager>
     {
         eyeTracking = true;
         gameOn = true;
-        Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");
-        Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
-        Analytics.instance.WriteData3("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
+        //GetComponent<Analytics>().sessionTime = TimerScript.instance.currentTime.ToString();
+        //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");'
+        Analytics.instance.writeEvent("Game Start", false);
+        //Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
+        //Analytics.instance.WriteData3("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
 
         TimerScript.instance.record = true;
         if (playerCount == 2)
@@ -328,9 +330,10 @@ public class GameManager : Singleton<GameManager>
         gameOn = false;
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
-        Analytics.instance.WriteData("Game Over", "", "", "","","");
-        Analytics.instance.WriteData2("Game Over", "", "", "", "", "");
-        Analytics.instance.WriteData3("Game Over", "", "", "", "", "");
+        //Analytics.instance.WriteData("Game Over", "", "", "","","");
+        Analytics.instance.writeEvent("Game Over", false);
+        //Analytics.instance.WriteData2("Game Over", "", "", "", "", "");
+        //Analytics.instance.WriteData3("Game Over", "", "", "", "", "");
         if (playerCount == 2)
         {
             gameOverView.Show();

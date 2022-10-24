@@ -4,7 +4,9 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.UI;
-
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
+using System.Diagnostics.Eventing.Reader;
 
 public class Analytics : Singleton<Analytics>
 {
@@ -24,14 +26,22 @@ public class Analytics : Singleton<Analytics>
     public InputField condition;
     public InputField trial;
     public InputField group;
-
+    public string sessionTime;
     public GameObject VRcamHeadPos;
+    public GameObject rightHand;
+
+    GameObject eyeTracker;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        sessionTime = TimerScript.instance.currentTime.ToString();
+
+        eyeTracker = GameObject.FindGameObjectWithTag("eye tracker");
+
+
 
         savePath = Application.dataPath + "/Analytics";
         filePath = Application.dataPath + "/Analytics/analytics.json";
@@ -48,15 +58,114 @@ public class Analytics : Singleton<Analytics>
             Debug.Log("making new analytics forlder");
             Directory.CreateDirectory(savePath);
         }
+        try 
+        {
+            File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, eyePosX, eyePosY, eyePosZ, headPosX, HeadPosY, HeadPosZ, HeadRotX, HeadRotY, HeadRotZ, HandPosX, HandPosY, HandPosZ, HandRotX, HandRotY, HandRotZ, currentGazeTarget, EnvironmentGazeTarget, Handedness, RightPupil, LeftPupil, Group");
+        } catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (GameManager.instance.eyeTracking)
+        {
+            DataPoint data = new DataPoint();
+            data.timestamp = DateTime.Now.Ticks.ToString();
+            data.participant = PlayerPrefs.GetString("ParticipantID");
+            data.task = PlayerPrefs.GetString("ParticipantCondition");
+            data.trial = PlayerPrefs.GetString("trial");
+            data.age = PlayerPrefs.GetString("ParticipantAge").ToString();
+            data.gender = PlayerPrefs.GetString("ParticipantGender");
+            data.group = PlayerPrefs.GetString("group");
+            // Handedness is Right by default
+            data.handedness = "Right";
+            /*data.headPosX = */
+            data.eyePosX = eyeTracker.GetComponent<EyeTracker>().hit2.point.x.ToString();
+            data.eyePosY = eyeTracker.GetComponent<EyeTracker>().hit2.point.y.ToString();
+            data.eyePosZ = eyeTracker.GetComponent<EyeTracker>().hit2.point.z.ToString();
+            data.headPosX = VRcamHeadPos.transform.position.x.ToString();
+            data.headPosY = VRcamHeadPos.transform.position.y.ToString();
+            data.headPosZ = VRcamHeadPos.transform.position.z.ToString();
+            data.headRotX = VRcamHeadPos.transform.rotation.x.ToString();
+            data.headRotY = VRcamHeadPos.transform.rotation.y.ToString();
+            data.headRotZ = VRcamHeadPos.transform.rotation.z.ToString();
+            data.handPosX = rightHand.transform.position.x.ToString();
+            data.handPosY = rightHand.transform.position.y.ToString();
+            data.handPosZ = rightHand.transform.position.z.ToString();
+            data.handRotX = rightHand.transform.rotation.x.ToString();
+            data.handRotY = rightHand.transform.rotation.y.ToString();
+            data.handRotZ = rightHand.transform.rotation.z.ToString();
+            data.rigthPupil = eyeTracker.GetComponent<EyeTracker>().rightEyePupil_diameter.ToString();
+            data.leftPupil = eyeTracker.GetComponent<EyeTracker>().leftEyePupil_diameter.ToString();
+            string csvstring = String.Join(",", GetDataArray(data));
+            File.AppendAllText(csvPath, "\n");
+            File.AppendAllText(csvPath, csvstring);
+        }
     }
 
+    public void writeEvent(string eventString, bool hit_wall_1=true)
+    {
+        DataPoint data = new DataPoint();
+        data.timestamp = DateTime.Now.Ticks.ToString();
+        data.participant = PlayerPrefs.GetString("ParticipantID");
+        data.task = PlayerPrefs.GetString("ParticipantCondition");
+        data.trial = PlayerPrefs.GetString("trial");
+        data.age = PlayerPrefs.GetString("ParticipantAge").ToString();
+        data.gender = PlayerPrefs.GetString("ParticipantGender");
+        data.group = PlayerPrefs.GetString("group");
+        // Handedness is Right by default
+        data.handedness = "Right";
+        /*data.headPosX = */
+        if(hit_wall_1)
+        {
+            data.eyePosX = eyeTracker.GetComponent<EyeTracker>().hit1.point.x.ToString();
+            data.eyePosY = eyeTracker.GetComponent<EyeTracker>().hit1.point.y.ToString();
+            data.eyePosZ = eyeTracker.GetComponent<EyeTracker>().hit1.point.z.ToString();
+            try
+            {
+                data.currentGazeTraget = eventString;
+            } catch(Exception e)
+            {
+                data.currentGazeTraget = "";
+            }
+        } else
+        {
+            data.eyePosX = eyeTracker.GetComponent<EyeTracker>().hit2.point.x.ToString();
+            data.eyePosY = eyeTracker.GetComponent<EyeTracker>().hit2.point.y.ToString();
+            data.eyePosZ = eyeTracker.GetComponent<EyeTracker>().hit2.point.z.ToString();
+            try
+            {
+                data.currentGazeTraget = eventString;
+            }
+            catch (Exception e)
+            {
+                data.currentGazeTraget = "";
+            }
+        }
+        data.headPosX = VRcamHeadPos.transform.position.x.ToString();
+        data.headPosY = VRcamHeadPos.transform.position.y.ToString();
+        data.headPosZ = VRcamHeadPos.transform.position.z.ToString();
+        data.headRotX = VRcamHeadPos.transform.rotation.x.ToString();
+        data.headRotY = VRcamHeadPos.transform.rotation.y.ToString();
+        data.headRotZ = VRcamHeadPos.transform.rotation.z.ToString();
+        data.handPosX = rightHand.transform.position.x.ToString();
+        data.handPosY = rightHand.transform.position.y.ToString();
+        data.handPosZ = rightHand.transform.position.z.ToString();
+        data.handRotX = rightHand.transform.rotation.x.ToString();
+        data.handRotY = rightHand.transform.rotation.y.ToString();
+        data.handRotZ = rightHand.transform.rotation.z.ToString();
+        data.rigthPupil = eyeTracker.GetComponent<EyeTracker>().rightEyePupil_diameter.ToString();
+        data.leftPupil = eyeTracker.GetComponent<EyeTracker>().leftEyePupil_diameter.ToString();
+
+        string csvstring = String.Join(",", GetDataArray(data));
+        File.AppendAllText(csvPath, "\n");
+        File.AppendAllText(csvPath, csvstring);
+    }
 
     public void WriteData(string eventString, string participant, string sessionTime, string testX, string testY, string testZ)
     {
@@ -69,9 +178,9 @@ public class Analytics : Singleton<Analytics>
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
-        data.testX = testX;
+/*        data.testX = testX;
         data.testY = testY;
-        data.testZ = testZ;
+        data.testZ = testZ;*/
         data.group = PlayerPrefs.GetString("group");
 
 
@@ -80,7 +189,7 @@ public class Analytics : Singleton<Analytics>
         //File.AppendAllText(filePath, "\n");
         if (!File.Exists(csvPath))
         {
-            File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, xPos, yPos, zPos, Group");
+            File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, eyePosX, eyePosY, eyePosZ, Group");
         }
         File.AppendAllText(csvPath, "\n");
         File.AppendAllText(filePath, jsonString);
@@ -97,9 +206,9 @@ public class Analytics : Singleton<Analytics>
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
-        data.testX = testX;
+/*        data.testX = testX;
         data.testY = testY;
-        data.testZ = testZ;
+        data.testZ = testZ;*/
         data.group = PlayerPrefs.GetString("group");
 
 
@@ -127,9 +236,9 @@ public class Analytics : Singleton<Analytics>
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
-        data.testX = testX;
+        /*data.testX = testX;
         data.testY = testY;
-        data.testZ = testZ;
+        data.testZ = testZ;*/
         data.group = PlayerPrefs.GetString("group");
 
 
@@ -156,12 +265,12 @@ public class Analytics : Singleton<Analytics>
         data.gender = PlayerPrefs.GetString("ParticipantGender");
         data.sessionTime = sessionTime;
         data.eventName = eventString;
-        data.testX = xRow;
+        /*data.testX = xRow;
         data.testY = yRow;
         data.testZ = zRow;
         data.x = xPos;
         data.y = yPos;
-        data.z = zPos;
+        data.z = zPos;*/
         data.group = PlayerPrefs.GetString("group");
 
 
@@ -188,14 +297,27 @@ public class Analytics : Singleton<Analytics>
         stringlist.Add(data.gender);
         stringlist.Add(data.sessionTime);
         stringlist.Add(data.eventName);
-        stringlist.Add(data.testX);
-        stringlist.Add(data.testY);
-        stringlist.Add(data.testZ);
-        stringlist.Add(data.x);
-        stringlist.Add(data.y);
-        stringlist.Add(data.z);
+        stringlist.Add(data.eyePosX);
+        stringlist.Add(data.eyePosY);
+        stringlist.Add(data.eyePosZ);
+        stringlist.Add(data.headPosX);
+        stringlist.Add(data.headPosY);
+        stringlist.Add(data.headPosZ);
+        stringlist.Add(data.headRotX);
+        stringlist.Add(data.headRotY);
+        stringlist.Add(data.headRotZ);
+        stringlist.Add(data.handPosX);
+        stringlist.Add(data.handPosY);
+        stringlist.Add(data.handPosZ);
+        stringlist.Add(data.handRotX);
+        stringlist.Add(data.handRotY);
+        stringlist.Add(data.handRotZ);
+        stringlist.Add(data.currentGazeTraget);
+        stringlist.Add(data.environmentGazeTarget);
+        stringlist.Add(data.handedness);
+        stringlist.Add(data.rigthPupil);
+        stringlist.Add(data.leftPupil);
         stringlist.Add(data.group);
-
 
         return stringlist.ToArray();
     }
@@ -247,13 +369,32 @@ public class Analytics : Singleton<Analytics>
         public string gender;
         public string sessionTime;
         public string eventName;
-        public string testX;
+        /*public string testX;
         public string testY;
-        public string testZ;
-        public string x;
+        public string testZ;*/
+        public string eyePosX;
+        public string eyePosY;
+        public string eyePosZ;
+        public string headPosX;
+        public string headPosY;
+        public string headPosZ;
+        public string headRotX;
+        public string headRotY;
+        public string headRotZ;
+        public string handPosX;
+        public string handPosY;
+        public string handPosZ;
+        public string handRotX;
+        public string handRotY;
+        public string handRotZ;
+        /*public string x;
         public string y;
-        public string z;
+        public string z;*/
+        public string currentGazeTraget;
+        public string environmentGazeTarget;
+        public string handedness;
+        public string rigthPupil;
+        public string leftPupil;
         public string group;
-
     }
 }
