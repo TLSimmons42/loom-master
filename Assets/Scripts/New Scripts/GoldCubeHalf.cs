@@ -144,6 +144,7 @@ public class GoldCubeHalf : XRGrabInteractable
                 {
                     PV.RequestOwnership();
                     PV.RPC("changeState", RpcTarget.AllBuffered);
+                    //Analytics.instance.writeEvent("Player " + rightRay.transform.parent.parent.gameObject.tag + " grabs the " + this.name + " cube.", 3);
                 }
             }
         }else if (this.name == "Network Gold Right Half(Clone)")
@@ -154,6 +155,7 @@ public class GoldCubeHalf : XRGrabInteractable
                 {
                     PV.RequestOwnership();
                     PV.RPC("changeState", RpcTarget.AllBuffered);
+                    //Analytics.instance.writeEvent("Player 2 grabs the gold cube.", 3);
                 }
             }
         }
@@ -224,6 +226,7 @@ public class GoldCubeHalf : XRGrabInteractable
     public void ChangeStateToDelete()
     {
         currentZone = deleteZone;
+        Analytics.instance.writeEvent("Gold cube destroyed", 3);
     }
 
     [PunRPC]
@@ -245,7 +248,7 @@ public class GoldCubeHalf : XRGrabInteractable
         //Debug.Log("Delete this cube: "+ mirroredBuildWallCube.name);
 
         PhotonView temp = PhotonView.Find(mirroredBuildWallCubeID);
-
+        Analytics.instance.writeEvent("Gold cube destroyed", 3);
         PhotonNetwork.Destroy(temp.gameObject);
 
     }

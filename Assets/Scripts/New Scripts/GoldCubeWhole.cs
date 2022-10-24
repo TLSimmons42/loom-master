@@ -193,6 +193,8 @@ public class GoldCubeWhole : XRSimpleInteractable
                     //gameObject.SetActive(false);
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
+                    //Analytics.instance.writeEvent("Player 1 grabs the gold cube", 3);
+                    Analytics.instance.writeEvent("Player 1 finishes the gold cube", 3);
                     PhotonNetwork.Destroy(this.gameObject);
                     //PV.RPC("DestoryThisObjectOnNetwork", RpcTarget.AllBuffered);
                 }
@@ -207,7 +209,7 @@ public class GoldCubeWhole : XRSimpleInteractable
 
                     GameObject cube = PhotonNetwork.Instantiate("Network Gold Left Half", transform.position, Quaternion.identity);
                     GameObject cube1 = PhotonNetwork.Instantiate("Network Gold Right Half", transform.position, Quaternion.identity);
-
+                    //Analytics.instance.writeEvent("Player 2 grabs the gold cube", 3);
                     //int temp = PhotonNetwork.PlayerList.Length;
                     //Debug.Log("this is the amount of player in tha game" + temp);
                     //Player tempPlayer = PhotonNetwork.PlayerList[temp-1];
@@ -216,6 +218,8 @@ public class GoldCubeWhole : XRSimpleInteractable
                     //{
                     //    PhotonNetwork.Destroy(this.gameObject);
                     //}
+                    Analytics.instance.writeEvent("Player 2 finishes the gold cube", 3);
+
                     PV.RPC("ChangeStateToDelete", RpcTarget.AllBuffered);
                 }
             }
@@ -223,6 +227,14 @@ public class GoldCubeWhole : XRSimpleInteractable
             {
                 Debug.Log("helllllloooooo");
                 PV.RPC("ChangeStateToHold", RpcTarget.AllBuffered);
+                if (interactor.transform.parent.parent.gameObject.tag == "P1")
+                {
+                    Analytics.instance.writeEvent("Player 1 grabs the gold cube", 3);
+                }
+                else
+                {
+                    Analytics.instance.writeEvent("Player 2 grabs the gold cube", 3);
+                }
                 //currentZone = holdGold;
             }
         }
@@ -235,6 +247,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         if (currentZone == BuildWallZone)
         {
             Debug.Log("In the build wall");
+            Analytics.instance.writeEvent("Gold Cube Added", 3);
         }
         else if (currentZone == NoZone || currentZone == holdGold)
         {
@@ -244,6 +257,7 @@ public class GoldCubeWhole : XRSimpleInteractable
         else
         {
             Debug.Log("destory this cube");
+            Analytics.instance.writeEvent("Gold Cube Destroyed", 3);
             //MasterBuildWall.instance.removeCube(index, MasterBuildWall.instance.gameObjectToCubeCode(this.gameObject));
         }
 
