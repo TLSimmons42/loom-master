@@ -260,7 +260,7 @@ public class GameManager : Singleton<GameManager>
         gameOn = true;
         //GetComponent<Analytics>().sessionTime = TimerScript.instance.currentTime.ToString();
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(),"","","");'
-        Analytics.instance.writeEvent("Game Start", false);
+        Analytics.instance.writeEvent("Game Start", 3);
         //Analytics.instance.WriteData2("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
         //Analytics.instance.WriteData3("Game Start", "placeholder", TimerScript.instance.currentTime.ToString(), "", "", "");
 
@@ -331,7 +331,7 @@ public class GameManager : Singleton<GameManager>
         //Analytics.instance.WriteData("Game Start", "placeholder", TimerScript.instance.currentTime.ToString());
         TimerScript.instance.record = false;
         //Analytics.instance.WriteData("Game Over", "", "", "","","");
-        Analytics.instance.writeEvent("Game Over", false);
+        Analytics.instance.writeEvent("Game Over", 3);
         //Analytics.instance.WriteData2("Game Over", "", "", "", "", "");
         //Analytics.instance.WriteData3("Game Over", "", "", "", "", "");
         if (playerCount == 2)

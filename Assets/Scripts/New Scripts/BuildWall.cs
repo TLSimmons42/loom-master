@@ -209,6 +209,7 @@ public class BuildWall : Singleton<BuildWall>
                                 box = PhotonNetwork.Instantiate("Network Gold Cube", tempPos, Quaternion.identity);
                                 //buildWallArr[col, nextFreeRow - 1] = box;
                                 nextFreeRow -= 1;
+                                Analytics.instance.writeEvent("[Network] Gold Cube Complete", 3);
                             }
                         }
 

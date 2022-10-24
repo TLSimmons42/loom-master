@@ -97,7 +97,7 @@ public class Cube : XRGrabInteractable
     public void PlayerGrab()
     {
         //Analytics.instance.WriteData(gameObject.name +" was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
-        Analytics.instance.writeEvent(gameObject.name + " was picked up", false);
+        Analytics.instance.writeEvent(gameObject.name + " was picked up", 3);
         //Analytics.instance.WriteData2(gameObject.name + " was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
         //Analytics.instance.WriteData3(gameObject.name + " was picked up", "", "", transform.position.x.ToString(), transform.position.y.ToString(), transform.position.z.ToString());
         currentZone = NoZone;
@@ -111,7 +111,7 @@ public class Cube : XRGrabInteractable
     public void removeCube(int x, int y)
     {
         MasterBuildWall.instance.masterBuildArray[x, y] = null;
-
+        Analytics.instance.writeEvent("Cube removal from Build wall", 3);
     }
 
 

@@ -172,14 +172,15 @@ public class PlayZoneController : Singleton<PlayZoneController>
         goldLeftPool.Remove(goldL);
         goldRightPool.Remove(goldR);
         goldL.transform.position = gold.transform.position;
+        Analytics.instance.writeEvent("[Network] Player 2 grabs the gold cube.", 3);
         goldR.transform.position = gold.transform.position;
+        Analytics.instance.writeEvent("[Network] Player 1 grabs the gold cube.", 3);
         //Manager.instance.vrControllers[0].SetGrabbedObject(goldR.gameObject);
         //Manager.instance.vrControllers[1].SetGrabbedObject(goldL.gameObject);
         //Manager.instance.P1Laser.GetComponent<ControllerVR>().SetGrabbedObject(goldR.gameObject);
         //Manager.instance.P2Laser.GetComponent<ControllerVR>().SetGrabbedObject(goldL.gameObject);
         RecycleBlock(gold);
         AnalyticsManager.instance.FillEventLog("Gold Block Split");
-
         //Tell the SoundManager script to play the corresponding sound
         //at the blockGrabSounds AudioSource. -Nathan
         SoundManager.instance.soundPlay(0, 6);

@@ -108,7 +108,7 @@ public class Analytics : Singleton<Analytics>
         }
     }
 
-    public void writeEvent(string eventString, bool hit_wall_1=true)
+    public void writeEvent(string eventString, int hit_wall_1=1)
     {
         DataPoint data = new DataPoint();
         data.timestamp = DateTime.Now.Ticks.ToString();
@@ -121,7 +121,7 @@ public class Analytics : Singleton<Analytics>
         // Handedness is Right by default
         data.handedness = "Right";
         /*data.headPosX = */
-        if(hit_wall_1)
+        if(hit_wall_1 == 1)
         {
             data.eyePosX = eyeTracker.GetComponent<EyeTracker>().hit1.point.x.ToString();
             data.eyePosY = eyeTracker.GetComponent<EyeTracker>().hit1.point.y.ToString();
@@ -133,6 +133,19 @@ public class Analytics : Singleton<Analytics>
             {
                 data.currentGazeTraget = "";
             }
+        } else if (hit_wall_1 == 2)
+        {
+            data.eyePosX = eyeTracker.GetComponent<EyeTracker>().hit2.point.x.ToString();
+            data.eyePosY = eyeTracker.GetComponent<EyeTracker>().hit2.point.y.ToString();
+            data.eyePosZ = eyeTracker.GetComponent<EyeTracker>().hit2.point.z.ToString();
+            try
+            {
+                data.environmentGazeTarget = eventString;
+            }
+            catch (Exception e)
+            {
+                data.environmentGazeTarget = "";
+            }
         } else
         {
             data.eyePosX = eyeTracker.GetComponent<EyeTracker>().hit2.point.x.ToString();
@@ -140,11 +153,11 @@ public class Analytics : Singleton<Analytics>
             data.eyePosZ = eyeTracker.GetComponent<EyeTracker>().hit2.point.z.ToString();
             try
             {
-                data.currentGazeTraget = eventString;
+                data.eventName = eventString;
             }
             catch (Exception e)
             {
-                data.currentGazeTraget = "";
+                data.eventName = "";
             }
         }
         data.headPosX = VRcamHeadPos.transform.position.x.ToString();

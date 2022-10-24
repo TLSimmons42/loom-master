@@ -205,6 +205,7 @@ public class ControllerVR2 : MonoBehaviour
                 if (grabbedBlock.playerHolds[0] && grabbedBlock.playerHolds[1])
                 {
                     PlayZoneController.instance.PickupGold(grabbedBlock);
+                    Analytics.instance.writeEvent("[Network] Gold Cube grabbed by one player",3);
                 }
             }
             else if (grabbedBlock.zone == "Interact")
