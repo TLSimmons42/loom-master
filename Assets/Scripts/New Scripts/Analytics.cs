@@ -60,6 +60,7 @@ public class Analytics : Singleton<Analytics>
         }
         try 
         {
+            if(!File.Exists(csvPath))
             File.WriteAllText(csvPath, "TimeStamp,participant,Condition,Tiral,Age,Gender,SessionTime,Event, eyePosX, eyePosY, eyePosZ, headPosX, HeadPosY, HeadPosZ, HeadRotX, HeadRotY, HeadRotZ, HandPosX, HandPosY, HandPosZ, HandRotX, HandRotY, HandRotZ, currentGazeTarget, EnvironmentGazeTarget, Handedness, RightPupil, LeftPupil, Group");
         } catch (Exception e)
         {

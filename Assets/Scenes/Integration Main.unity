@@ -74584,6 +74584,8 @@ MonoBehaviour:
   rightEyePupil_diameter: 0
   leftEyePupil_diameter: 0
   endCollider: {fileID: 1966844644}
+  gazeTarget: {fileID: 0}
+  environmentGazeTarget: {fileID: 0}
 --- !u!1 &825801239
 GameObject:
   m_ObjectHideFlags: 0
@@ -102556,7 +102558,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: abb84a96f0eae994b99794a7014858fa,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: abb84a96f0eae994b99794a7014858fa,
         type: 3}
@@ -102566,7 +102568,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: abb84a96f0eae994b99794a7014858fa,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: abb84a96f0eae994b99794a7014858fa,
         type: 3}
